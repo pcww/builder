@@ -1,0 +1,25 @@
+{
+  "name": "trezy.com",
+  "description": "",
+  "main": "js/App.js",
+  "authors": [
+    "Trezy <tre@trezy.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.2",
+    "font-awesome": "fontawesome#^4.6.1",
+    "lodash": "^4.12.0",
+    "backbone": "^1.3.3",
+    "react": "^15.0.2"
+  }
+}
