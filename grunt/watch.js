@@ -10,7 +10,9 @@ module.exports = {
       'bower.json',
       'config.json',
       'package.json',
-      'js/**/*.js'
+      'js/**/*.js',
+      'js/**/*.json',
+      'js/**/*.jsx'
     ],
     tasks: [
       'buildJS'

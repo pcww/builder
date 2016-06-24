@@ -1,0 +1,113 @@
+// hera
+{
+  "brand": {
+    "placement": "top left" // ["bottom", "left", "right", "top"]
+  },
+  "edge": {
+    "profile": "small round" // ["small round", "large round", "bead", "chamfer", "cove"]
+  },
+  "endcaps": {
+    "color": "nickel", // ["black", "nickel", "white"]
+    "type": "nut cover" // ["button", "nut cover"]
+  },
+  "feet": {
+    "type": "screw" // ["screw", "suction"]
+  },
+  "handle": false, // ["shaped", "stainless", "dado", "turned", "elk horn"]
+  "groove": {
+    "location": false // ["bottom", "top"]
+  },
+  "length": "{calculated}",
+  "strips": [
+    // strip
+    {
+      "size": "xsmall",
+      "wood": "purpleheart"
+    },
+    {
+      "size": "small",
+      "wood": "oakred"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "small",
+      "wood": "oakred"
+    },
+    {
+      "size": "xsmall",
+      "wood": "purpleheart"
+    }
+  ],
+  "width": 25
+}

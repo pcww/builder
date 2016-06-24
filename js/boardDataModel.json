@@ -1,0 +1,111 @@
+{
+  "brand": {
+    "placement": "top left"
+  },
+  "edge": {
+    "profile": "small round"
+  },
+  "endcaps": {
+    "color": "nickel",
+    "type": "nut cover"
+  },
+  "feet": {
+    "type": "screw"
+  },
+  "handle": false,
+  "groove": {
+    "location": false
+  },
+  "length": "{calculated}",
+  "strips": [
+    {
+      "size": "xsmall",
+      "wood": "purpleheart"
+    },
+    {
+      "size": "small",
+      "wood": "oakred"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "medium",
+      "wood": "maple"
+    },
+    {
+      "size": "small",
+      "wood": "oakred"
+    },
+    {
+      "size": "xsmall",
+      "wood": "purpleheart"
+    }
+  ],
+  "width": 25
+}

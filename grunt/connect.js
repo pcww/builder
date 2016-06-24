@@ -34,7 +34,7 @@ module.exports = {
 
         return middlewares
       },
-      port: config.server.port
+      port: process.env.PORT || config.server.port
     }
   }
 }

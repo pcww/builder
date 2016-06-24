@@ -1,0 +1,9 @@
+.board {
+  display: flex;
+
+  .strip {
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 20rem;
+  }
+}

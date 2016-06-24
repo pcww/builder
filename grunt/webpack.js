@@ -22,16 +22,13 @@ module.exports = {
     module: {
       loaders: [
         {
-          test: /\.json$/,
-          loader: 'json'
-        },
-        {
           exclude: /(node_modules|bower_components)/,
           loader: 'babel',
-          test: /\.js$/,
-          query: {
-            presets: ['es2015', 'react']
-          }
+          test: /\.js|\.jsx$/
+        },
+        {
+          loader: 'json',
+          test: /\.json$/
         }
       ]
     },
@@ -52,7 +49,7 @@ module.exports = {
 
     resolve: {
       alias: {
-        exampleRequireAlias: path.resolve(__dirname + '/../js/exampleRequireAlias')
+        three: path.resolve(__dirname + '/../bower_components/three.js/examples/js')
       }
     },
 
