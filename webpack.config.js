@@ -52,7 +52,12 @@ module.exports = {
         test: /\.json$/,
         loaders: ['json']
       }
-    ]
+    ],
+    boobs: {
+      resolve: {
+          modulesDirectories: ["node_modules", "bower_components"]
+      }
+    }
   },
 
   plugins: [

@@ -1,6 +1,47 @@
-.toolbar {
-  .title {
+menu[type="toolbar"] {
+  background-color: #efefef;
+  display: flex;
+  flex-direction: column;
+
+  header {
+    padding: .5rem 2rem;
+    overflow: auto;
     background-color: black;
     color: white;
+
+    h3 {
+      margin-top: 1rem;
+      font-weight: 100;
+    }
+
+    .fa {
+      color: #62bd91;
+    }
   }
+
+  .options {
+    padding: 2rem;
+    flex-grow: 1;
+
+    fieldset {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .separator {
+    margin: 1.5rem 2rem 0;
+    border-top: .1rem solid #CCC;
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .controls {
+    padding: .5rem 2rem;
+  }
+
+  .details {
+    padding: 2rem;
+    font-weight: 100;
+    font-size: 2rem;
+  }
+
 }

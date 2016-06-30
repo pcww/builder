@@ -1,5 +1,6 @@
 import '../scss/app.scss'
 import '../scss/lib.scss'
+import 'bootstrap/dist/js/bootstrap.min.js'
 
 import THREE from 'three.js'
 import React from 'react'
