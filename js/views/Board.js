@@ -9,6 +9,10 @@ require('three/controls/OrbitControls')
 
 export default class Board {
 
+  _bindEvents () {
+    window.addEventListener('resize', this.resize.bind(this))
+  }
+
   /******************************************************************************\
     Public Methods
   \******************************************************************************/
@@ -17,7 +21,9 @@ export default class Board {
     this.data = data
     this.container = container
 
-    this.renderer = new THREE.WebGLRenderer
+    this.renderer = new THREE.WebGLRenderer({
+      alpha: true
+    })
     this.resize()
 
     this.materials = {}
@@ -26,7 +32,6 @@ export default class Board {
     this.far = 10000
     this.fov = 45
     this.near = 0.1
-
 
     this.scene = new THREE.Scene
     this.camera = new THREE.PerspectiveCamera(this.fov, this.width / this.height, this.near, this.far)
@@ -41,12 +46,15 @@ export default class Board {
     this.controls.dampingFactor = 0.25
 
     this.renderer.setClearColor('white', 1)
+    // this.renderer.setSize(width, height)
+//    this.renderer.setClearColor('transparent', 1)
 
     this.scene.add(this.camera)
 
     this.strips = new Backbone.Collection(data.strips)
 
     this.render()
+    this._bindEvents()
   }
 
   resize () {
@@ -102,4 +110,14 @@ export default class Board {
 
     requestAnimationFrame(this.render.bind(this))
   }
+
+  // resize () {
+  //   let height = this.el.offsetHeight
+  //   let width = this.el.offsetWidth
+  //
+  //   this.camera.aspect = width / height
+  //   this.camera.updateProjectionMatrix()
+  //
+  //   this.renderer.setSize(width, height)
+  // }
 }
