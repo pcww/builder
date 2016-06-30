@@ -31,26 +31,26 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.scss$/,
         include: /scss/,
         loaders: [
           'style',
           'css',
           'sass?outputStyle=expanded'
-        ],
-        test: /\.scss$/
+        ]
       },
       {
-        loaders: ['file'],
-        test: /\.(woff2*|ttf|eot|svg)$/
+        test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif)(\?\S*)?$/,
+        loader: 'url?limit=100000&name=[name].[ext]'
       },
       {
+        test: /\.js|\.jsx$/,
         exclude: /(node_modules|bower_components)/,
-        loaders: ['react-hot', 'babel'],
-        test: /\.js|\.jsx$/
+        loaders: ['react-hot', 'babel']
       },
       {
-        loaders: ['json'],
-        test: /\.json$/
+        test: /\.json$/,
+        loaders: ['json']
       }
     ]
   },
