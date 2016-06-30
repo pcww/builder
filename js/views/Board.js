@@ -44,23 +44,36 @@ export default class Board {
 
     this.scene.add(this.camera)
 
+    this.strips = new Backbone.Collection(data.strips)
+
     this.render()
   }
 
   render () {
-    for (let i = 0; i < this.data.strips.length; i++) {
-      let strip = this.data.strips[i]
+    this.strips.forEach((strip, index, collection) => {
+      if (!strip.get('rendered')) {
+        let boxMaterial
 
-      let boxMaterial = this.materials[strip.wood] = this.materials[strip.wood] ? this.materials[strip.wood] : new THREE.MeshLambertMaterial({
-        map: new THREE.TextureLoader().load(`/assets/woods/${strip.wood}.jpg`)
-      })
+        if (this.materials[strip.get('wood')]) {
+          boxMaterial = this.materials[strip.get('wood')]
 
-      let box = new THREE.Mesh(this.boxGeometry, boxMaterial)
+        } else {
+          boxMaterial = this.materials[strip.get('wood')] = new THREE.MeshLambertMaterial({
+            map: new THREE.TextureLoader().load(`/assets/woods/${strip.get('wood')}.jpg`)
+          })
+        }
 
-      box.position[this.direction === 'h' ? 'x' : 'z'] = ((this.boxDimension / 2) * i) - (Math.round(this.data.strips.length / 2) * (this.boxDimension / 2))
+        strip.set('object', new THREE.Mesh(this.boxGeometry, boxMaterial))
 
-      this.scene.add(box)
-    }
+        let box = strip.get('object')
+
+        box.position[this.direction === 'h' ? 'x' : 'z'] = ((this.boxDimension / 2) * index) - (Math.round(this.data.strips.length / 2) * (this.boxDimension / 2))
+
+        this.scene.add(box)
+
+        strip.set('rendered', true)
+      }
+    })
 
     this.controls.update()
     this.renderer.render(this.scene, this.camera)
