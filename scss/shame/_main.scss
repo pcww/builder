@@ -2,6 +2,11 @@ menu[type="toolbar"] {
   background-color: #efefef;
   display: flex;
   flex-direction: column;
+  overflow: auto;
+
+  > * {
+    flex-shrink: 0;
+  }
 
   header {
     padding: .5rem 2rem;
@@ -43,5 +48,4 @@ menu[type="toolbar"] {
     font-weight: 100;
     font-size: 2rem;
   }
-
 }
