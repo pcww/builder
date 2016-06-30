@@ -52,12 +52,7 @@ module.exports = {
         test: /\.json$/,
         loaders: ['json']
       }
-    ],
-    boobs: {
-      resolve: {
-          modulesDirectories: ["node_modules", "bower_components"]
-      }
-    }
+    ]
   },
 
   plugins: [
@@ -73,15 +68,21 @@ module.exports = {
     }),
     new Webpack.ProvidePlugin({
       $: 'jquery',
+      jQuery: "jquery",
       _: 'lodash'
-    })
+    }),
+    new Webpack.ResolverPlugin(
+        new Webpack.ResolverPlugin.DirectoryDescriptionFilePlugin(".bower.json", ["main"])
+    )
   ],
 
   resolve: {
+    modulesDirectories: ["node_modules", "bower_components"],
     alias: {
       models: path.resolve(__dirname, 'js', 'models'),
       three: path.resolve(__dirname, 'bower_components', 'three.js', 'examples', 'js'),
       views: path.resolve(__dirname, 'js', 'views')
+      // jquery: path.resolve(__dirname, 'bower_components', 'jquery', 'src', 'jquery')
     }
   },
 
