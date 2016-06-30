@@ -40,12 +40,16 @@ module.exports = {
         test: /\.scss$/
       },
       {
+        loaders: ['file'],
+        test: /\.(woff2*|ttf|eot|svg)$/
+      },
+      {
         exclude: /(node_modules|bower_components)/,
         loaders: ['react-hot', 'babel'],
         test: /\.js|\.jsx$/
       },
       {
-        loader: 'json',
+        loaders: ['json'],
         test: /\.json$/
       }
     ]

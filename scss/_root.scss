@@ -2,17 +2,18 @@
   box-sizing: border-box;
 }
 
-html {
-  font-size: 10px;
+html, body {
   height: 100vh;
   width: 100vw;
 }
 
+html {
+  font-size: 10px;
+}
+
 body {
-  align-items: center;
+  align-content: stretch;
+  align-items: stretch;
   display: flex;
   font-size: 14px;
-  height: 100vh;
-  justify-content: center;
-  width: 100vw;
 }

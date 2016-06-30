@@ -1,4 +1,5 @@
 import '../scss/app.scss'
+import '../scss/lib.scss'
 
 import THREE from 'three.js'
 import React from 'react'
@@ -7,8 +8,10 @@ import ReactDOM from 'react-dom'
 import BoardDataModel from './boardDataModel.json'
 
 window.onload = function () {
-  let height = window.innerHeight
-  let width = window.innerWidth
+  let boardEl = document.querySelector('main')
+
+  let height = boardEl.offsetHeight
+  let width = boardEl.offsetHeight
   let fov = 45
   let aspect = width / height
   let near = 0.1
@@ -25,7 +28,7 @@ window.onload = function () {
 
   renderer.setSize(width, height)
 
-  document.querySelector('body').appendChild(renderer.domElement)
+  boardEl.appendChild(renderer.domElement)
 
   let radius = 50
   let segments = 16

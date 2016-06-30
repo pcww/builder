@@ -24,6 +24,7 @@
     "connect-livereload": "^0.5.4",
     "connect-pushstate": "^1.0.0",
     "css-loader": "^0.23.1",
+    "file-loader": "^0.9.0",
     "grunt": "^0.4.5",
     "grunt-connect-proxy": "^0.2.0",
     "grunt-contrib-clean": "^1.0.0",
