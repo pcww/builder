@@ -1,8 +1,11 @@
 'use strict'
 
 let serveStatic = require('serve-static')
+let Webpack = require('webpack')
 
 let config = require('../config')
+let webpackConfig = require('../webpack.config')
+let compiler = Webpack(webpackConfig)
 
 
 
@@ -13,15 +16,14 @@ module.exports = {
     options: {
       middleware: function (connect, options) {
         let middlewares = [
-          require('connect-livereload')({
-            rules: [{
-              match: /<\/head>(?![\s\S]*<\/head>)/i,
-              fn: function (match, script) {
-                return script + match
-              }
-            }]
+          require('webpack-dev-middleware')(compiler, {
+            noInfo: true,
+            publicPath: webpackConfig.output.publicPath
           }),
-          require('grunt-connect-proxy/lib/utils').proxyRequest
+          require('webpack-hot-middleware')(compiler, {
+            log: console.log
+          }),
+//          require('grunt-connect-proxy/lib/utils').proxyRequest
         ]
 
         if (!Array.isArray(options.base)) {
