@@ -46,6 +46,51 @@ menu[type="toolbar"] {
   .details {
     padding: 2rem;
     font-weight: 100;
-    font-size: 2rem;
+    font-size: 3rem;
+  }
+}
+
+
+.container {
+  padding-top:50px;
+}
+
+.swatch {
+  width:70px;
+  height:70px;
+  border-radius:5px;
+  border: 2px solid #666;
+}
+
+.swatch-mini {
+  height: 2rem;
+  width: 2rem;
+  display: inline-block;
+  float: right;
+  border-width: .1rem;
+}
+
+.swatch-clickable:hover {
+  border: 2px solid #000;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  padding:10px;
+}
+
+#strip-list {
+  table {
+    td {
+      vertical-align: bottom;
+    }
+  }
+}
+
+
+.wood-picker {
+  .dropdown-menu {
+    padding: .5rem;
+    box-shadow: .5rem .5rem 1.5rem rgba(0, 0, 0, 0.2);
   }
 }
