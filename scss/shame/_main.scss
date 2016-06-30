@@ -1,8 +1,40 @@
+section[type="overlay"] {
+  font-weight: 100;
+  font-size: 3rem;
+  pointer-events: none;
+  width: 70vw;
+  height: 100vh;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  .dimensions {
+    position: absolute;
+    left: 0.5rem;
+    top: .5rem;
+    font-size: 2.0rem;
+  }
+
+  .cost {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 8.5rem;
+    width: 100%;
+    background-color: rgba(245, 245, 245, 0.7);
+    margin: 0;
+
+  }
+}
+
 menu[type="toolbar"] {
   background-color: #efefef;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
 
   > * {
     flex-shrink: 0;
@@ -40,13 +72,7 @@ menu[type="toolbar"] {
   }
 
   .controls {
-    padding: .5rem 2rem;
-  }
-
-  .details {
-    padding: 2rem;
-    font-weight: 100;
-    font-size: 3rem;
+    padding: 0.5rem 2rem 2rem;
   }
 }
 
@@ -60,6 +86,7 @@ menu[type="toolbar"] {
   height:70px;
   border-radius:5px;
   border: 2px solid #666;
+  background-size: cover;
 }
 
 .swatch-mini {
@@ -68,6 +95,7 @@ menu[type="toolbar"] {
   display: inline-block;
   float: right;
   border-width: .1rem;
+  background-size: cover;
 }
 
 .swatch-clickable:hover {
@@ -93,4 +121,40 @@ menu[type="toolbar"] {
     padding: .5rem;
     box-shadow: .5rem .5rem 1.5rem rgba(0, 0, 0, 0.2);
   }
+}
+
+
+.panel-heading {
+  .drag-handle {
+    opacity: 0;
+    margin-right: .5rem;
+
+    &:hover {
+      cursor: ns-resize;;
+    }
+  }
+
+  &:hover {
+    .drag-handle  {
+        opacity: .3;
+    }
+
+  }
+
+}
+
+section[type="step"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+section[type="step"] {
+  &.step-3 {
+    left: 150%;
+    right: -150%;
+  }
+
 }
