@@ -9,6 +9,10 @@ require('three/controls/OrbitControls')
 
 export default class Board {
 
+  _bindEvents () {
+    window.addEventListener('resize', this.resize.bind(this))
+  }
+
   /******************************************************************************\
     Public Methods
   \******************************************************************************/
@@ -16,9 +20,10 @@ export default class Board {
   constructor (data) {
     this.data = data
     this.el = document.querySelector('main')
-    this.height = this.el.offsetHeight
     this.materials = {}
-    this.width = this.el.offsetWidth
+
+    let height = this.el.offsetHeight
+    let width = this.el.offsetWidth
 
     this.boxDimension = 100
     this.boxGeometry = new THREE.BoxGeometry(this.boxDimension * 5, this.boxDimension, this.boxDimension / 2)
@@ -27,8 +32,10 @@ export default class Board {
     this.near = 0.1
 
     this.scene = new THREE.Scene
-    this.camera = new THREE.PerspectiveCamera(this.fov, this.width / this.height, this.near, this.far)
-    this.renderer = new THREE.WebGLRenderer
+    this.camera = new THREE.PerspectiveCamera(this.fov, width / height, this.near, this.far)
+    this.renderer = new THREE.WebGLRenderer({
+      alpha: true
+    })
     this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
 
     this.camera.position.z = 1000
@@ -39,14 +46,15 @@ export default class Board {
     this.controls.enableDamping = true
     this.controls.dampingFactor = 0.25
 
-    this.renderer.setSize(this.width, this.height)
-    this.renderer.setClearColor('white', 1)
+    this.renderer.setSize(width, height)
+//    this.renderer.setClearColor('transparent', 1)
 
     this.scene.add(this.camera)
 
     this.strips = new Backbone.Collection(data.strips)
 
     this.render()
+    this._bindEvents()
   }
 
   render () {
@@ -88,5 +96,15 @@ export default class Board {
     }
 
     requestAnimationFrame(this.render.bind(this))
+  }
+
+  resize () {
+    let height = this.el.offsetHeight
+    let width = this.el.offsetWidth
+
+    this.camera.aspect = width / height
+    this.camera.updateProjectionMatrix()
+
+    this.renderer.setSize(width, height)
   }
 }
