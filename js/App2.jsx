@@ -1,3 +1,5 @@
+import '../scss/app.scss'
+
 import THREE from 'three.js'
 import React from 'react'
 import ReactDOM from 'react-dom'

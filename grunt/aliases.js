@@ -16,8 +16,8 @@ module.exports = {
   ],
 
   buildCSS: [
-    'buildAppCSS',
-    'buildLibCSS'
+//    'buildAppCSS',
+//    'buildLibCSS'
   ],
 
   buildAppCSS: [
