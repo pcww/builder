@@ -10,453 +10,474 @@
 
 <body role="application">
   <main class="board-view"></main>
-
+  <section type="overlay">
+    <div class="dimensions badge">Dimensions 38.6" x 25.0"</div>
+    <div class="cost well text-center">Board Cost: <span class="label label-success">$297.36</span></div>
+  </section>
   <menu type="toolbar">
-    <header>
-      <h3>
-        Step 2. <i class="fa fa-check"></i> Customize Strips
-        <span class="pull-right">
-          <a href="#"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
-          <a href="#"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
-        </span>
-      </h3>
-      <div class="steps">
+    <section type="step" class="step-2">
+      <header>
+        <h3>
+          Step 2. <i class="fa fa-check"></i> Customize Strips
+          <span class="pull-right">
+            <a href="#"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+            <a href="#" class="next-step"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
+          </span>
+        </h3>
+      </header>
+      <div class="options">
+        <form>
+          <fieldset>
+            <legend>Wood Direction</legend>
 
-      </div>
-    </header>
-    <div class="options">
-      <form>
-        <fieldset>
-          <legend>Wood Direction</legend>
+            <label class="radio-inline">
+              <input id="wood-direction-1" name="wood-direction" type="radio" value="h">
+              <i class="fa fa-arrows-h" aria-hidden="true"></i> Horizontal
+            </label>
 
-          <label class="radio-inline">
-            <input id="wood-direction-1" name="wood-direction" type="radio" value="h">
-            <i class="fa fa-arrows-h" aria-hidden="true"></i> Horizontal
-          </label>
+            <label class="radio-inline">
+              <input id="wood-direction-2" name="wood-direction" type="radio" value="v" checked="checked">
+              <i class="fa fa-arrows-v" aria-hidden="true"></i> Vertical
+            </label>
+          </fieldset>
 
-          <label class="radio-inline">
-            <input id="wood-direction-2" name="wood-direction" type="radio" value="v" checked="checked">
-            <i class="fa fa-arrows-v" aria-hidden="true"></i> Vertical
-          </label>
-        </fieldset>
+          <fieldset>
+            <legend>Strips</legend>
 
-        <fieldset>
-          <legend>Strips</legend>
-
-          <div class="panel-group" id="strip-list" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingOne">
-                <h4 class="panel-title">
-                  <a role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Strip #1 <div class="swatch swatch-mini purpleheart"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body">
-                  <fieldset>
-                    <legend>Wood Type</legend>
-
-                    <table class="wood-picker">
-                      <tr>
-                        <td style="padding-right:5px;">
-                          <div id="preview" class="swatch purpleheart"></div>
-                        </td>
-                        <td>
-                          <span id="color-name">Purpleheart</span><br>
-                          <input id="color-field" value="Red" style="display:none;">
-                          <div class="dropdown">
-                            <a class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" style="color:#000;">Change Wood</a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                              <table>
-                                <tr>
-                                  <td><div id="African Mohogany" class="swatch swatch-clickable african-mohogany"></div></td>
-                                  <td><div id="Ash" class="swatch swatch-clickable ash"></div></td>
-                                  <td><div id="Brazilian Cherry" class="swatch swatch-clickable brazilian-cherry"></div></td>
-                                  <td><div id="Bubinga" class="swatch swatch-clickable bubinga"></div></td>
-                                  <td><div id="Cherry" class="swatch swatch-clickable cherry"></div></td>
-                                  <td><div id="Cocobolo" class="swatch swatch-clickable cocobolo"></div></td>
-                                </tr><tr>
-                                  <td><div id="Hickory" class="swatch swatch-clickable hickory"></div></td>
-                                  <td><div id="Lacewood" class="swatch swatch-clickable lacewood"></div></td>
-                                  <td><div id="Lyptus" class="swatch swatch-clickable lyptus"></div></td>
-                                  <td><div id="Maple" class="swatch swatch-clickable maple"></div></td>
-                                  <td><div id="Oak Red" class="swatch swatch-clickable oak-red"></div></td>
-                                  <td><div id="Oak White" class="swatch swatch-clickable oak-white"></div></td>
-                                </tr><tr>
-                                  <td><div id="Padauk" class="swatch swatch-clickable padauk"></div></td>
-                                  <td><div id="Purpleheart" class="swatch swatch-clickable purpleheart"></div></td>
-                                  <td><div id="Walnut" class="swatch swatch-clickable walnut"></div></td>
-                                  <td><div id="Wenge" class="swatch swatch-clickable wenge"></div></td>
-                                  <td><div id="Yellowheart" class="swatch swatch-clickable yellowheart"></div></td>
-                                  <td><div id="Zembrano" class="swatch swatch-clickable zembrano"></div></td>
-                                </tr>
-                              </table>
-                            </ul>
-                          </div>
-                        </tr>
-                      </table>
-                    </td>
-                    </fieldset>
-
+            <div class="panel-group" id="strip-list" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                  <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #1 <div class="swatch swatch-mini purpleheart"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                  <div class="panel-body">
                     <fieldset>
-                      <legend>Strip Width</legend>
+                      <legend>Wood Type</legend>
 
-                      <label class="radio-inline">
-                        <input id="strip-size-1" name="wood-size" type="radio" value="xsmall" checked="checked")>
-                        X-Small (3/8")
-                      </label>
+                      <table class="wood-picker">
+                        <tr>
+                          <td style="padding-right:5px;">
+                            <div id="preview" class="swatch purpleheart"></div>
+                          </td>
+                          <td>
+                            <span id="color-name">Purpleheart</span><br>
+                            <input id="color-field" value="Red" style="display:none;">
+                            <div class="dropdown">
+                              <a class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#" style="color:#000;">Change Wood</a>
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <table>
+                                  <tr>
+                                    <td><div id="African Mohogany" class="swatch swatch-clickable african-mohogany"></div></td>
+                                    <td><div id="Ash" class="swatch swatch-clickable ash"></div></td>
+                                    <td><div id="Brazilian Cherry" class="swatch swatch-clickable brazilian-cherry"></div></td>
+                                    <td><div id="Bubinga" class="swatch swatch-clickable bubinga"></div></td>
+                                    <td><div id="Cherry" class="swatch swatch-clickable cherry"></div></td>
+                                    <td><div id="Cocobolo" class="swatch swatch-clickable cocobolo"></div></td>
+                                  </tr><tr>
+                                    <td><div id="Hickory" class="swatch swatch-clickable hickory"></div></td>
+                                    <td><div id="Lacewood" class="swatch swatch-clickable lacewood"></div></td>
+                                    <td><div id="Lyptus" class="swatch swatch-clickable lyptus"></div></td>
+                                    <td><div id="Maple" class="swatch swatch-clickable maple"></div></td>
+                                    <td><div id="Oak Red" class="swatch swatch-clickable oak-red"></div></td>
+                                    <td><div id="Oak White" class="swatch swatch-clickable oak-white"></div></td>
+                                  </tr><tr>
+                                    <td><div id="Padauk" class="swatch swatch-clickable padauk"></div></td>
+                                    <td><div id="Purpleheart" class="swatch swatch-clickable purpleheart"></div></td>
+                                    <td><div id="Walnut" class="swatch swatch-clickable walnut"></div></td>
+                                    <td><div id="Wenge" class="swatch swatch-clickable wenge"></div></td>
+                                    <td><div id="Yellowheart" class="swatch swatch-clickable yellowheart"></div></td>
+                                    <td><div id="Zembrano" class="swatch swatch-clickable zembrano"></div></td>
+                                  </tr>
+                                </table>
+                              </ul>
+                            </div>
+                          </tr>
+                        </table>
+                      </td>
+                      </fieldset>
 
-                      <label class="radio-inline">
-                        <input id="strip-size-1" name="wood-size" type="radio" value="small")>
-                        Small (1/2")
-                      </label>
+                      <fieldset>
+                        <legend>Strip Width</legend>
 
-                      <label class="radio-inline">
-                        <input id="strip-size-1" name="wood-size" type="radio" value="medium")>
-                        Medium (2")
-                      </label>
+                        <label class="radio-inline">
+                          <input id="strip-size-1" name="wood-size" type="radio" value="xsmall" checked="checked")>
+                          X-Small (3/8")
+                        </label>
 
-                      <label class="radio-inline">
-                        <input id="strip-size-1" name="wood-size" type="radio" value="large")>
-                        Large (4")
-                      </label>
+                        <label class="radio-inline">
+                          <input id="strip-size-1" name="wood-size" type="radio" value="small")>
+                          Small (1/2")
+                        </label>
 
-                    </fieldset>
+                        <label class="radio-inline">
+                          <input id="strip-size-1" name="wood-size" type="radio" value="medium")>
+                          Medium (2")
+                        </label>
+
+                        <label class="radio-inline">
+                          <input id="strip-size-1" name="wood-size" type="radio" value="large")>
+                          Large (4")
+                        </label>
+
+                      </fieldset>
+                    </div>
+                </div>
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #2 <div class="swatch swatch-mini maple"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
                   </div>
-              </div>
-            </div>
-
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #2 <div class="swatch swatch-mini maple"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #3 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #3 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #4 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #4 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #5 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #5 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #6 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #6 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #7 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #7 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #8 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #8 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #9 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #9 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #10 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #10 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #11 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #11 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #12 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #12 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #13 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #13 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #14 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #14 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #15 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #15 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #16 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #16 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #17 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #17 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #18 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #18 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #19 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #19 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #20 <div class="swatch swatch-mini lyptus"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #20 <div class="swatch swatch-mini lyptus"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #21 <div class="swatch swatch-mini maple"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #21 <div class="swatch swatch-mini maple"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingTwo">
-                <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Strip #22 <div class="swatch swatch-mini purpleheart"></div>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <div class="panel-body">
-                  [...]
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#strip-list" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <i class="fa drag-handle fa-bars" aria-hidden="true"></i> Strip #22 <div class="swatch swatch-mini purpleheart"></div>
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="panel-body">
+                    [...]
+                  </div>
                 </div>
               </div>
+
             </div>
 
-          </div>
+            <hr />
+            <button class="btn btn-primary pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add a Strip</button>
+          </fieldset>
+        </form>
+      </div>
+      <div class="separator"></div>
+      <div class="controls text-right">
+        <button class="btn btn-default btn-lg"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+        <button class="btn btn-primary btn-lg next-step"> NEXT <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+      </div>
+    </section>
 
-          <hr />
-          <button class="btn btn-primary pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add a Strip</button>
-        </fieldset>
-      </form>
-    </div>
-    <div class="separator"></div>
-    <div class="controls text-right">
-      <button class="btn btn-default btn-lg"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
-      <button class="btn btn-primary btn-lg"> NEXT <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
-    </div>
-    <div class="separator"></div>
-    <div class="details">
-      <div class="cost text-right">Board Cost: <span class="text-success">$297.36</span></div>
-    </div>
+    <section type="step" class="step-3">
+      <header>
+        <h3>
+          Step 3. <i class="fa fa-check"></i> Summary
+          <span class="pull-right">
+            <a href="#"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+            <a href="#" class="next-step"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
+          </span>
+        </h3>
+      </header>
+      <div class="options">
+        <div class="text-center well">
+          <button class="btn btn-lg btn-success">Confirm Purchase</button>
+        </div>
+      </div>
+      <div class="separator"></div>
+      <div class="controls text-right">
+        <button class="btn btn-default btn-lg"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+        <button class="btn btn-primary btn-lg next-step"> NEXT <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+      </div>
+    </section>
+
   </menu>
 </body>
