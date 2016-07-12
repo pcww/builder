@@ -1,13 +1,33 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-// import BoardDataModel from './boardDataModel.json'
+import Step from 'views/Step.jsx'
+import StripPanel from 'views/StripPanel.jsx'
 
 export default class Wizard extends React.Component {
   render () {
+    let Strips = this.props.data.strips.map((strip, key) => {
+      return (
+        <StripPanel size={strip.size} wood={strip.wood} key={key}></StripPanel>
+      )
+    })
 
     return (
-      <div type="wizard"><pre>{JSON.stringify(this.props.data)}</pre></div>
+      <div id="wizard">
+        <Step heading="Step 3">
+          <fieldset>
+            <legend>Strip Length</legend>
+
+            <input type="range" max="48" min="8" step="2" />
+          </fieldset>
+
+          <fieldset>
+            <legend>Strips</legend>
+
+            {Strips}
+          </fieldset>
+        </Step>
+      </div>
     )
   }
 }
