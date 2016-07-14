@@ -18,7 +18,7 @@ export default class Wizard extends React.Component {
           <fieldset>
             <legend>Strip Length</legend>
 
-            <input type="range" max="48" min="8" step="2" />
+            <input type="range" max="48" min="8" step="2" value={this.props.data.width} />
           </fieldset>
 
           <fieldset>
