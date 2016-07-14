@@ -16,11 +16,11 @@ export default class Wizard extends React.Component {
 
     return (
       <div id="wizard">
-        <Step heading="Step 3">
+        <Step heading="Step 1">
           <fieldset>
             <legend>Strip Length</legend>
 
-            <input type="range" max="48" min="8" step="2" />
+            <input type="range" max="48" min="8" step="2" defaultValue={this.props.data.width} />
           </fieldset>
 
           <fieldset>
