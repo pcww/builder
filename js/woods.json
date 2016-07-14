@@ -1,91 +1,73 @@
-{
-  "mahogany": {
-    "name": "African Mahogany",
-    "safeName": "mahogany"
+[
+  {
+    "name": "African Mohogany",
+    "safeName": "mohogany"
   },
-
-  "ash": {
+  {
     "name": "Ash",
     "safeName": "ash"
   },
-
-  "cherry": {
+  {
     "name": "Brazilian Cherry",
     "safeName": "cherry"
   },
-
-  "bubinga": {
+  {
     "name": "Bubinga",
     "safeName": "bubinga"
   },
-
-  "cherry": {
+  {
     "name": "Cherry",
     "safeName": "cherry"
-  },
-
-  "cocobolo": {
+  }, {
     "name": "Cocobolo",
     "safeName": "cocobolo"
   },
-
-  "hickory": {
+  {
     "name": "Hickory",
     "safeName": "hickory"
   },
-
-  "lacewood": {
+  {
     "name": "Lacewood",
     "safeName": "lacewood"
   },
-
-  "lyptus": {
+  {
     "name": "Lyptus",
     "safeName": "lyptus"
   },
-
-  "maple": {
+  {
     "name": "Maple",
     "safeName": "maple"
   },
-
-  "red": {
+  {
     "name": "Oak Red",
     "safeName": "red"
   },
-
-  "white": {
+  {
     "name": "Oak White",
     "safeName": "white"
   },
-
-  "padauk": {
+  {
     "name": "Padauk",
     "safeName": "padauk"
   },
-
-  "purpleheart": {
+  {
     "name": "Purpleheart",
     "safeName": "purpleheart"
   },
-
-  "walnut": {
+  {
     "name": "Walnut",
     "safeName": "walnut"
   },
-
-  "wenge": {
+  {
     "name": "Wenge",
     "safeName": "wenge"
   },
-
-  "yellowheart": {
+  {
     "name": "Yellowheart",
     "safeName": "yellowheart"
   },
-
-  "zembrano": {
+  {
     "name": "Zembrano",
     "safeName": "zembrano"
   }
-}
+]
