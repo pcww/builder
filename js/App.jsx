@@ -1,13 +1,13 @@
 import '../scss/app.scss'
 import '../scss/lib.scss'
-import 'bootstrap/dist/js/npm.js'
+// import 'bootstrap/dist/js/npm.js'
 
-import THREE from 'three.js'
+// import THREE from 'three.js'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
 // import BoardDataModel from './boardDataModel.json'
-import Board from 'views/Board'
+// import Board from 'views/Board'
 // import Wizard from 'views/Wizard.jsx'
 import Builder from 'views/Builder.jsx'
 
@@ -55,7 +55,8 @@ import Builder from 'views/Builder.jsx'
 //   });
 // } // window.onload
 
-let boardId = 31337
+let hash = window.location.hash.match(/#\/?id=(\d+)/)
+let boardId = hash.length > 1 ? hash[1] : 1
 
 ReactDOM.render(
   <Builder id={boardId} />,
