@@ -6,55 +6,58 @@ import THREE from 'three.js'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import BoardDataModel from './boardDataModel.json'
+// import BoardDataModel from './boardDataModel.json'
 import Board from 'views/Board'
-import Wizard from 'views/Wizard.jsx'
+// import Wizard from 'views/Wizard.jsx'
+import Builder from 'views/Builder.jsx'
 
-window.onload = function () {
-  window.board = new Board(BoardDataModel, 'main')
+// window.onload = function () {
+//   window.board = new Board(BoardDataModel, 'main')
+//
+//   window.addEventListener('resize', onWindowResize, false);
+//
+//   function onWindowResize(){
+//     window.board.resize();
+//   }
+//
+//   // Some bullshit for the board UI mockups
+//   $('.swatch-clickable').tooltip();
+//
+//   $(".swatch-clickable").click(function() {
+//     let woodClass = $(this).attr('class').split(' ').pop();
+//
+//     $("#preview").attr('class', ['swatch', woodClass].join(' '));
+//     $('.swatch-mini').first().attr('class', ['swatch swatch-mini', woodClass].join(' '));
+//   });
+//
+//   $('.next-step').click(function() {
+//     $('section[type="step"]').each(function() {
+//       debugger;
+//       if ($(this).offset().left > $('body').width()) { //offscreen
+//         $(this).animate({
+//           left: '0',
+//           right: '0'
+//         }, 500 );
+//
+//       } else {
+//         $(this).animate({ //onscreen
+//           left: '150%',
+//           right: '-150%'
+//         }, 500 );
+//       }
+//     });
+//
+//     $('menu[type="toolbar"]').animate({
+//       scrollTop: 0
+//     }, 'fast');
+//
+//     $('menu[type="toolbar"]').scrollTop(0); // immediate scroll
+//   });
+// } // window.onload
 
-  window.addEventListener('resize', onWindowResize, false);
-
-  function onWindowResize(){
-    window.board.resize();
-  }
-
-  // Some bullshit for the board UI mockups
-  $('.swatch-clickable').tooltip();
-
-  $(".swatch-clickable").click(function() {
-    let woodClass = $(this).attr('class').split(' ').pop();
-
-    $("#preview").attr('class', ['swatch', woodClass].join(' '));
-    $('.swatch-mini').first().attr('class', ['swatch swatch-mini', woodClass].join(' '));
-  });
-
-  $('.next-step').click(function() {
-    $('section[type="step"]').each(function() {
-      debugger;
-      if ($(this).offset().left > $('body').width()) { //offscreen
-        $(this).animate({
-          left: '0',
-          right: '0'
-        }, 500 );
-
-      } else {
-        $(this).animate({ //onscreen
-          left: '150%',
-          right: '-150%'
-        }, 500 );
-      }
-    });
-
-    $('menu[type="toolbar"]').animate({
-      scrollTop: 0
-    }, 'fast');
-
-    $('menu[type="toolbar"]').scrollTop(0); // immediate scroll
-  });
-} // window.onload
+let boardId = 31337
 
 ReactDOM.render(
-  <Wizard data={BoardDataModel} />,
-  document.querySelector('menu[type="toolbar"]')
+  <Builder id={boardId} />,
+  document.querySelector('div[role="application"]')
 );
