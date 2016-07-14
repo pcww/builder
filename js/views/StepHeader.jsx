@@ -16,7 +16,7 @@ export default class StepHeader extends React.Component {
     }
 
     if (this.props.hasPrevious) {
-      previousButton = (
+      nextButton = (
         <a href="#"><i className="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
       )
     }

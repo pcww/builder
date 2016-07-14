@@ -8,7 +8,7 @@ export default class Wizard extends React.Component {
   render () {
     let Strips = this.props.data.strips.map((strip, key) => {
       return (
-        <StripPanel size={strip.size} wood={strip.wood} key={key}></StripPanel>
+        <StripPanel id={key} size={strip.size} wood={strip.wood} key={key}></StripPanel>
       )
     })
 

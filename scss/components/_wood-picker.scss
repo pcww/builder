@@ -1,0 +1,37 @@
+.wood-picker {
+  .dropdown-menu {
+    flex-wrap: wrap;
+
+    .swatch {
+      margin: .25rem;
+    }
+  }
+
+  &.open > .dropdown-menu {
+    display: flex;
+  }
+}
+
+.swatch {
+  background-size: cover;
+  border-color: #666;
+  border-radius: .5rem;
+  border-width: .2rem;
+  border-style: solid;
+  height: 7rem;
+  width: 7rem;
+}
+
+.swatch-mini {
+  background-: cover;
+  border-width: .1rem;
+  display: inline-block;
+  float: right;
+  height: 2rem;
+  width: 2rem;
+}
+
+.swatch-clickable:hover {
+  border-color: #000;
+  cursor: pointer;
+}

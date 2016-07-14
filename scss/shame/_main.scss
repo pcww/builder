@@ -81,28 +81,6 @@ menu[type="toolbar"] {
   padding-top:50px;
 }
 
-.swatch {
-  width:70px;
-  height:70px;
-  border-radius:5px;
-  border: 2px solid #666;
-  background-size: cover;
-}
-
-.swatch-mini {
-  height: 2rem;
-  width: 2rem;
-  display: inline-block;
-  float: right;
-  border-width: .1rem;
-  background-size: cover;
-}
-
-.swatch-clickable:hover {
-  border: 2px solid #000;
-  cursor: pointer;
-}
-
 .dropdown-menu {
   padding:10px;
 }
