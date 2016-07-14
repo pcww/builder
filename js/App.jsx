@@ -20,9 +20,6 @@ window.onload = function () {
   }
 
   // Some bullshit for the board UI mockups
-  $('.swatch-clickable').each(function () {
-    $(this).attr('title', $(this).attr('id'));
-  });
   $('.swatch-clickable').tooltip();
 
   $(".swatch-clickable").click(function() {
@@ -30,8 +27,6 @@ window.onload = function () {
 
     $("#preview").attr('class', ['swatch', woodClass].join(' '));
     $('.swatch-mini').first().attr('class', ['swatch swatch-mini', woodClass].join(' '));
-    $("#color-name").html($(this).attr("id"));
-    $("#color-field").val($(this).attr("id"))
   });
 
   $('.next-step').click(function() {
