@@ -6,7 +6,7 @@ export default class Step extends React.Component {
   render () {
 
     return (
-      <section>
+      <section className="step">
         <StepHeader heading={this.props.heading}></StepHeader>
 
         <form>{this.props.children}</form>
