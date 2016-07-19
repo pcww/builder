@@ -58,6 +58,7 @@ export default class Board {
   }
 
   resize () {
+    console.log('resize()')
     this.el = document.querySelector(this.container)
     this.height = this.el.offsetHeight
     this.width = this.el.offsetWidth
@@ -71,6 +72,7 @@ export default class Board {
   }
 
   render () {
+    console.log('render()')
     this.strips.forEach((strip, index, collection) => {
       if (!strip.get('rendered')) {
         let boxMaterial

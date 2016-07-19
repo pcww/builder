@@ -33,8 +33,9 @@ export default class Builder extends React.Component {
 
   render () {
     if (this.state.loaded) {
-      let strips = this.state.board.strips || []
-      let width = this.state.board.width || 0
+      let strips = this.state.board.get('strips')
+      let width = this.state.board.get('width')
+      console.log(this.state.board)
       return (
         <div>
           <main class="board-view"></main>
@@ -42,11 +43,7 @@ export default class Builder extends React.Component {
             <div class="dimensions badge">Dimensions 38.6" x 25.0"</div>
             <div class="cost well text-center">Board Cost: <span class="label label-success">$297.36</span></div>
           </section>
-          <menu type="toolbar">
-            <Wizard strips={strips} width={width}/>
-            <pre>this.state.board.strips: {JSON.stringify(this.state.board.strips)}</pre>
-            <pre>this.state.board: {JSON.stringify(this.state.board)}</pre>
-          </menu>
+
         </div>
       )
     }
