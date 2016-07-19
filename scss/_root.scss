@@ -11,7 +11,7 @@ html {
   font-size: 10px;
 }
 
-body {
+body, [role=application] {
   align-content: stretch;
   align-items: stretch;
   display: flex;
