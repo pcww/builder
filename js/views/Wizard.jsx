@@ -6,7 +6,7 @@ import StripPanel from 'views/StripPanel.jsx'
 
 export default class Wizard extends React.Component {
   render () {
-    let Strips = this.props.strips.map((strip, key) => {
+    let Strips = this.props.board.get('strips').map((strip, key) => {
       return (
         <StripPanel id={key} size={strip.size} wood={strip.wood} key={key}></StripPanel>
       )
