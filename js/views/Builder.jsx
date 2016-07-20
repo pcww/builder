@@ -34,7 +34,7 @@ export default class Builder extends React.Component {
     }
 
     return (
-      <main><div class="loading">Loading that sexy board data...</div></main>
+      <main><div className="loading">Loading that sexy board data...</div></main>
     )
 
   }
