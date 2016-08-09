@@ -61,7 +61,7 @@ export default class VirtualBoard {
     this.el = document.querySelector(this.container)
     this.height = this.el.offsetHeight
     this.width = this.el.offsetWidth
-    debugger;
+    
     console.log(`resize(${this.height},${this.width})`)
 
     if (this.camera) {
