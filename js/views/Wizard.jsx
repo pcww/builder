@@ -13,7 +13,7 @@ export default class Wizard extends React.Component {
     })
 
     return (
-      <div id="wizard">
+      <menu className="wizard" type="toolbar">
         <Step heading="Step 1">
           <fieldset>
             <legend>Strip Length</legend>
@@ -27,7 +27,7 @@ export default class Wizard extends React.Component {
             {Strips}
           </fieldset>
         </Step>
-      </div>
+      </menu>
     )
   }
 }
