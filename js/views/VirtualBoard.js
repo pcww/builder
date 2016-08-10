@@ -120,13 +120,4 @@ export default class VirtualBoard {
     requestAnimationFrame(this.render.bind(this))
   }
 
-  // resize () {
-  //   let height = this.el.offsetHeight
-  //   let width = this.el.offsetWidth
-  //
-  //   this.camera.aspect = width / height
-  //   this.camera.updateProjectionMatrix()
-  //
-  //   this.renderer.setSize(width, height)
-  // }
 }
