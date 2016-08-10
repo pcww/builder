@@ -1,6 +1,6 @@
 import '../scss/app.scss'
 import '../scss/lib.scss'
-// import 'bootstrap/dist/js/npm.js'
+import 'bootstrap/dist/js/npm.js'
 
 // import THREE from 'three.js'
 import React from 'react'
