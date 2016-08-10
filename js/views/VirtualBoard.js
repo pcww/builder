@@ -7,6 +7,18 @@ require('three/controls/OrbitControls')
 
 
 
+let sizes = {
+  small: 2/8,
+  xsmall: 3/8,
+  small: 4/8,
+  medium: 5/8,
+  large: 8/8
+}
+
+
+
+
+
 export default class VirtualBoard {
 
   _bindEvents () {
@@ -18,12 +30,10 @@ export default class VirtualBoard {
   \******************************************************************************/
 
   constructor (BoardModel, container) {
-    this.data = BoardModel.toJSON()
-    this.strips = BoardModel.get('strips')
+    this.board = BoardModel
 
     BoardModel.on('change', () => {
-      this.data = BoardModel.toJSON()
-      this.strips = BoardModel.get('strips')
+      this.board = BoardModel
     })
 
     this.container = container
@@ -81,7 +91,7 @@ export default class VirtualBoard {
   }
 
   render () {
-    this.strips.forEach((strip, index, collection) => {
+    this.board.get('strips').forEach((strip, index, collection) => {
       if (!strip.get('rendered')) {
         let boxMaterial
 
@@ -94,13 +104,27 @@ export default class VirtualBoard {
           })
         }
 
-        strip.set('object', new THREE.Mesh(this.boxGeometry, boxMaterial))
+        let dimensions = {
+          x: this.board.get('width') * this.boxDimension,
+          y: 1 * this.boxDimension,
+          z: sizes[strip.get('size')] * this.boxDimension
+        }
 
-        let box = strip.get('object')
+        let geometry = new THREE.BoxGeometry(dimensions.x, dimensions.y, dimensions.z)
+        let mesh
 
-        box.position[this.direction === 'h' ? 'x' : 'z'] = ((this.boxDimension / 2) * index) - (Math.round(this.data.strips.length / 2) * (this.boxDimension / 2))
+        if (strip.get('mesh')) {
+          mesh = strip.get('mesh')
+          mesh.geometry = geometry
 
-        this.scene.add(box)
+        } else {
+          mesh = new THREE.Mesh(geometry, boxMaterial)
+          strip.set('mesh', mesh)
+        }
+
+        mesh.position.z = ((this.boxDimension / 2) * index) - (Math.round(this.board.get('strips').length / 2) * (this.boxDimension / 2))
+
+        this.scene.add(mesh)
 
         strip.set('rendered', true)
       }

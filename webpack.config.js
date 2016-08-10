@@ -79,6 +79,7 @@ module.exports = {
   resolve: {
     modulesDirectories: ["node_modules", "bower_components"],
     alias: {
+      collections: path.resolve(__dirname, 'js', 'collections'),
       models: path.resolve(__dirname, 'js', 'models'),
       three: path.resolve(__dirname, 'bower_components', 'three.js', 'examples', 'js'),
       views: path.resolve(__dirname, 'js', 'views')
