@@ -19,6 +19,13 @@ export default class VirtualBoard {
 
   constructor (BoardModel, container) {
     this.data = BoardModel.toJSON()
+    this.strips = BoardModel.get('strips')
+
+    BoardModel.on('change', () => {
+      this.data = BoardModel.toJSON()
+      this.strips = BoardModel.get('strips')
+    })
+
     this.container = container
 
     this.renderer = new THREE.WebGLRenderer({
@@ -51,8 +58,6 @@ export default class VirtualBoard {
 
     this.scene.add(this.camera)
 
-    this.strips = new Backbone.Collection(this.data.strips)
-
     this.render()
     this._bindEvents()
   }
@@ -61,8 +66,6 @@ export default class VirtualBoard {
     this.el = document.querySelector(this.container)
     this.height = this.el.offsetHeight
     this.width = this.el.offsetWidth
-    
-    console.log(`resize(${this.height},${this.width})`)
 
     if (this.camera) {
       this.camera.aspect = this.width / this.height;
@@ -73,7 +76,6 @@ export default class VirtualBoard {
   }
 
   render () {
-    console.log('render(), strips:', this.strips.length)
     this.strips.forEach((strip, index, collection) => {
       if (!strip.get('rendered')) {
         let boxMaterial
@@ -103,7 +105,6 @@ export default class VirtualBoard {
     this.renderer.render(this.scene, this.camera)
 
     if (!this.rendered) {
-      console.log('Rendering!')
       this.rendered = true
 
       this.scene.add(new THREE.AmbientLight('white'))

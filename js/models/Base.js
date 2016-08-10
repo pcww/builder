@@ -1,5 +1,7 @@
-import Backbone from 'backbone' 
+import Backbone from 'backbone'
 
-export default Backbone.Model.extend({
-  urlRoot: 'http://linux.pinecliffwoodworks.com/wp-json/board-builder/v1'
-})
+export default class Base extends Backbone.Model {
+  get urlRoot () {
+    return 'http://linux.pinecliffwoodworks.com/wp-json/board-builder/v1'
+  }
+}
