@@ -25,27 +25,53 @@ export default class StripPanel extends React.Component {
                 <legend>Strip Width</legend>
 
                 <label className="radio-inline">
-                  <input id="strip-size-1" name="wood-size" type="radio" defaultValue="xsmall" defaultChecked="checked" />
+                  <input
+                    checked={this.props.size === 'xxsmall'}
+                    id={'strip-' +  + this.props.id + '-size-1'}
+                    name={'strip-' + this.props.id + '-wood-size'}
+                    type="radio"
+                    value="xxsmall"
+                    defaultChecked={true} />
                   Extra Extra Small
                 </label>
 
                 <label className="radio-inline">
-                  <input id="strip-size-1" name="wood-size" type="radio" defaultValue="small" />
+                  <input
+                    checked={this.props.size === 'xsmall'}
+                    id={'strip-' +  + this.props.id + '-size-2'}
+                    name={'strip-' + this.props.id + '-wood-size'}
+                    type="radio"
+                    value="xsmall" />
                   Extra Small
                 </label>
 
                 <label className="radio-inline">
-                  <input id="strip-size-1" name="wood-size" type="radio" defaultValue="small" />
+                  <input
+                    checked={this.props.size === 'small'}
+                    id={'strip-' +  + this.props.id + '-size-3'}
+                    name={'strip-' + this.props.id + '-wood-size'}
+                    type="radio"
+                    value="small" />
                   Small
                 </label>
 
                 <label className="radio-inline">
-                  <input id="strip-size-1" name="wood-size" type="radio" defaultValue="medium" />
+                  <input
+                    checked={this.props.size === 'medium'}
+                    id={'strip-' +  + this.props.id + '-size-4'}
+                    name={'strip-' + this.props.id + '-wood-size'}
+                    type="radio"
+                    value="medium" />
                   Medium
                 </label>
 
                 <label className="radio-inline">
-                  <input id="strip-size-1" name="wood-size" type="radio" defaultValue="large" />
+                  <input
+                    checked={this.props.size === 'large'}
+                    id={'strip-' +  + this.props.id + '-size-5'}
+                    name={'strip-' + this.props.id + '-wood-size'}
+                    type="radio"
+                    value="large" />
                   Large
                 </label>
               </fieldset>
