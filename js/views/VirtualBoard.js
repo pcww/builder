@@ -44,6 +44,10 @@ export default class VirtualBoard {
     this.camera = new THREE.PerspectiveCamera(this.fov, this.width / this.height, this.near, this.far)
     this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
 
+    // Limit zooming
+    this.controls.minDistance = 1500
+    this.controls.maxDistance = 9500
+
     this.camera.position.z = 1000
     this.camera.position.x = -500
     this.camera.position.y = 1000
@@ -52,9 +56,10 @@ export default class VirtualBoard {
     this.controls.enableDamping = true
     this.controls.dampingFactor = 0.25
 
+
     this.renderer.setClearColor('white', 1)
     // this.renderer.setSize(width, height)
-//    this.renderer.setClearColor('transparent', 1)
+    // this.renderer.setClearColor('transparent', 1)
 
     this.scene.add(this.camera)
 
