@@ -4,7 +4,7 @@ import BaseCollection from 'collections/Base'
 export default class Strips extends BaseCollection {
   _bindEvents () {
     this.on('change:size', (model, options) => {
-      this.collection.forEach(strip => {
+      this.forEach(strip => {
         strip.set('rendered', false)
       })
     })

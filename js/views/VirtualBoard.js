@@ -8,7 +8,7 @@ require('three/controls/OrbitControls')
 
 
 let sizes = {
-  small: 0.25,
+  xxsmall: 0.25,
   xsmall: 0.375,
   small: 0.5,
   medium: 0.625,
