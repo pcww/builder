@@ -24,14 +24,14 @@ export default class StripPanel extends React.Component {
     return (
       <div className="panel-group strip-list" role="tablist" aria-multiselectable="true">
         <div className="panel panel-default">
-          <StripHeader id={this.props.id} wood={this.props.wood} />
+          <StripHeader id={this.props.id} wood={this.props.strip.get('wood')} />
 
           <div id={collapseTarget} className={"panel-collapse collapse " + panelBodyClass} role="tabpanel" aria-labelledby="headingOne">
             <div className="panel-body">
               <fieldset>
                 <legend>Wood Type</legend>
 
-                <WoodPicker currentWood={this.props.wood} />
+                <WoodPicker strip={this.props.strip} />
               </fieldset>
 
               <fieldset>
