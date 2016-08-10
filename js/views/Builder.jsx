@@ -5,11 +5,13 @@ import Wizard from 'views/Wizard.jsx'
 
 export default class Builder extends React.Component {
   constructor (props) {
-      super(props)
-      this.state = {
-        board: new BoardModel({ id: this.props.id }),
-        loaded: false
-      }
+    super(props)
+    this.state = {
+      board: new BoardModel({ id: this.props.id }),
+      loaded: false
+    }
+
+    window.board = this.state.board
   }
 
   componentWillMount () {
