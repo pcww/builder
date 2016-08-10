@@ -1,6 +1,8 @@
 .wood-picker {
   .dropdown-menu {
     flex-wrap: wrap;
+    max-height: 23.5rem;
+    overflow: auto;
 
     .swatch {
       margin: .25rem;
@@ -20,6 +22,9 @@
   border-style: solid;
   height: 7rem;
   width: 7rem;
+  margin-right: 1rem;
+  float: left;
+
 }
 
 .swatch-mini {
@@ -29,6 +34,7 @@
   float: right;
   height: 2rem;
   width: 2rem;
+  margin: 0;
 }
 
 .swatch-clickable:hover {
