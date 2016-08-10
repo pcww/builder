@@ -8,11 +8,11 @@ require('three/controls/OrbitControls')
 
 
 let sizes = {
-  small: 2/8,
-  xsmall: 3/8,
-  small: 4/8,
-  medium: 5/8,
-  large: 8/8
+  small: 0.25,
+  xsmall: 0.375,
+  small: 0.5,
+  medium: 0.625,
+  large: 1
 }
 
 
@@ -21,9 +21,17 @@ let sizes = {
 
 export default class VirtualBoard {
 
+  /******************************************************************************\
+    Private Methods
+  \******************************************************************************/
+
   _bindEvents () {
     window.addEventListener('resize', this.resize.bind(this))
   }
+
+
+
+
 
   /******************************************************************************\
     Public Methods
@@ -91,7 +99,10 @@ export default class VirtualBoard {
   }
 
   render () {
-    this.board.get('strips').forEach((strip, index, collection) => {
+    let strips = this.board.get('strips')
+    let currentZ = 0
+
+    strips.forEach((strip, index, collection) => {
       if (!strip.get('rendered')) {
         let boxMaterial
 
@@ -122,7 +133,9 @@ export default class VirtualBoard {
           strip.set('mesh', mesh)
         }
 
-        mesh.position.z = ((this.boxDimension / 2) * index) - (Math.round(this.board.get('strips').length / 2) * (this.boxDimension / 2))
+        mesh.position.z = currentZ
+
+        currentZ += dimensions.z
 
         this.scene.add(mesh)
 
@@ -143,5 +156,4 @@ export default class VirtualBoard {
 
     requestAnimationFrame(this.render.bind(this))
   }
-
 }
