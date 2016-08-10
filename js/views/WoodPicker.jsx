@@ -19,10 +19,12 @@ export default class WoodPicker extends React.Component {
     return (
       <div className="wood-picker">
         <div id="preview" className={previewClasses}></div>
-        <a className="dropdown-toggle btn btn-default" data-toggle="dropdown">Change Wood</a>
-        <ul className="dropdown-menu" role="menu">
-          {Woods}
-        </ul>
+        <div className="dropdown">
+          <a className="dropdown-toggle btn btn-default" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Change Wood</a>
+          <ul className="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+            {Woods}
+          </ul>
+        </div>
       </div>
     )
   }
