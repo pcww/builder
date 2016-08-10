@@ -6,7 +6,9 @@ import StripPanel from 'views/StripPanel.jsx'
 
 export default class Wizard extends React.Component {
   render () {
-    let Strips = this.props.board.get('strips').map((strip, key) => {
+    let board = this.props.board
+
+    let Strips = board.get('strips').map((strip, key) => {
       return (
         <StripPanel id={key} strip={strip} size={strip.get('size')} wood={strip.get('wood')} key={key}></StripPanel>
       )
@@ -18,7 +20,7 @@ export default class Wizard extends React.Component {
           <fieldset>
             <legend>Strip Length</legend>
 
-            <input type="range" max="48" min="8" step="2" defaultValue={this.props.width} />
+            <input type="range" max="48" min="8" step="2" defaultValue={board.get('width')} />
           </fieldset>
 
           <fieldset>
