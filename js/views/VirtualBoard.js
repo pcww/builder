@@ -59,9 +59,9 @@ export default class VirtualBoard {
     this.camera.position.y = 1000
     this.camera.lookAt(0, 0, 0)
 
-    // Limit zooming
-    this.controls.minDistance = 1500
+    // Limit zooming (keeping in mind near/far camera planes)
     this.controls.maxDistance = 9500
+    this.controls.minDistance = 1000
 
     this.controls.enableDamping = true
     this.controls.dampingFactor = 0.25
@@ -144,13 +144,4 @@ export default class VirtualBoard {
     requestAnimationFrame(this.render.bind(this))
   }
 
-  // resize () {
-  //   let height = this.el.offsetHeight
-  //   let width = this.el.offsetWidth
-  //
-  //   this.camera.aspect = width / height
-  //   this.camera.updateProjectionMatrix()
-  //
-  //   this.renderer.setSize(width, height)
-  // }
 }
