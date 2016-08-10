@@ -49,12 +49,17 @@ export default class VirtualBoard {
     this.camera.position.y = 1000
     this.camera.lookAt(0, 0, 0)
 
+    // Limit zooming
+    this.controls.minDistance = 1500
+    this.controls.maxDistance = 9500
+
     this.controls.enableDamping = true
     this.controls.dampingFactor = 0.25
 
+
     this.renderer.setClearColor('white', 1)
     // this.renderer.setSize(width, height)
-//    this.renderer.setClearColor('transparent', 1)
+    // this.renderer.setClearColor('transparent', 1)
 
     this.scene.add(this.camera)
 
