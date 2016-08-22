@@ -4,8 +4,14 @@ import ReactDOM from 'react-dom'
 import woods from '../woods.json'
 
 export default class WoodPicker extends React.Component {
-  changeWood (event) {
-    this.props.strip.set('wood', event.currentTarget.id)
+  onChangeWood (event) {
+    let value = event.currentTarget.id
+
+    this.setState({
+      wood: value
+    })
+
+    this.props.strip.set('wood', value)
   }
 
   render () {
@@ -18,7 +24,7 @@ export default class WoodPicker extends React.Component {
       let classes = ['swatch', 'swatch-clickable', wood.safeName].join(' ')
 
       return (
-        <li className={classes} id={wood.safeName} key={index} title={wood.name} onClick={this.changeWood.bind(this)} />
+        <li className={classes} id={wood.safeName} key={index} title={wood.name} onClick={this.onChangeWood.bind(this)} />
       )
     })
 
