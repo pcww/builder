@@ -10,9 +10,7 @@ export default class Strips extends BaseCollection {
     })
 
     this.on('change:wood', (model, options) => {
-      if (!model.changed.rendered) {
-        model.set('rendered', false)
-      }
+      model.set('rendered', false)
     })
   }
 
