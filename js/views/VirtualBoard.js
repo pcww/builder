@@ -160,7 +160,7 @@ export default class VirtualBoard {
 
         let dimensions = {
           x: this.board.get('width'),
-          y: 1,
+          y: 1.75,
           z: sizes[strip.get('size')]
         }
 
