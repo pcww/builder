@@ -172,6 +172,7 @@ export default class VirtualBoard {
         if (strip.get('mesh')) {
           mesh = strip.get('mesh')
           mesh.geometry = geometry
+          mesh.material = boxMaterial
 
         } else {
           mesh = new THREE.Mesh(geometry, boxMaterial)
