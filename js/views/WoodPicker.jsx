@@ -7,10 +7,7 @@ export default class WoodPicker extends React.Component {
   onChangeWood (event) {
     let value = event.currentTarget.id
 
-    this.setState({
-      wood: value
-    })
-
+    this.props.updateState({ wood: value })
     this.props.strip.set('wood', value)
   }
 
