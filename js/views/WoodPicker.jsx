@@ -27,9 +27,9 @@ export default class WoodPicker extends React.Component {
 
     return (
       <div className="wood-picker">
-        <div id="preview" className={previewClasses}></div>
-        <span id="color-name">{currentWoodObj.name}</span>
         <div className="dropdown">
+          <a id="preview" className={previewClasses} data-toggle="dropdown"></a>
+          <span id="color-name">{currentWoodObj.name}</span>
           <a className="dropdown-toggle btn btn-sm btn-default" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Change Wood</a>
           <ul className="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
             {Woods}
