@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom'
 
 export default class StripPanel extends React.Component {
   render () {
-    let classes = ['swatch', 'swatch-mini', this.props.wood].join(' ')
+    let wood = this.props.strip.get('wood')
+    let classes = ['swatch', 'swatch-mini', wood].join(' ')
     let collapseTarget = 'collapse-' + this.props.id
     let collapseTargetId = '#' + collapseTarget
 
@@ -12,7 +13,7 @@ export default class StripPanel extends React.Component {
         <h4 className="panel-title">
           <a role="button" data-toggle="collapse" data-parent="#strip-list" href={collapseTargetId} aria-expanded="true" aria-controls={collapseTarget}>
             <i className="fa drag-handle fa-bars" aria-hidden="true"></i>
-            {this.props.wood}
+            {wood}
             <div className={classes}></div>
           </a>
         </h4>
