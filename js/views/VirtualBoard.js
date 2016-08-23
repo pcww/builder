@@ -98,6 +98,8 @@ export default class VirtualBoard {
     this.camera = new THREE.PerspectiveCamera(this.fov, this.width / this.height, this.near, this.far)
     this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
 
+    this.controls.enableKeys = false
+
     this.camera.position.z = 20
     this.camera.position.x = -40
     this.camera.position.y = 20
