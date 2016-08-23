@@ -1,0 +1,36 @@
+input {
+  &[type=range] {
+    position: relative;
+
+    &::-webkit-slider-thumb {
+      &:after {
+        -webkit-appearance: none;
+        content: attr(value);
+      }
+    }
+
+    &:after,
+    &:before {
+      align-items: center;
+      background-color: #efefef;
+      border-color: darkgrey;
+      border-style: solid;
+      border-width: 0;
+      display: flex;
+      justify-content: center;
+      padding: 0 0.5rem;
+    }
+
+    &:after {
+      border-left-width: 0.1rem;
+      content: attr(max) '"';
+      margin-left: 0.5rem;
+    }
+
+    &:before {
+      border-right-width: 0.1rem;
+      content: attr(min) '"';
+      margin-right: 0.5rem;
+    }
+  }
+}
