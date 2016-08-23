@@ -18,9 +18,15 @@ export default class Wizard extends React.Component {
       )
     })
 
+    let steps = [
+      { name: 'Step 3', active: true },
+      { name: 'Step 4', active: false },
+      { name: 'Summary', active: false }
+    ]
+
     return (
       <menu className="wizard" type="toolbar">
-        <Step heading="Step 1">
+        <Step index="0" steps={steps}>
           <fieldset>
             <legend>Strip Length</legend>
 
@@ -38,6 +44,32 @@ export default class Wizard extends React.Component {
 
             {Strips}
           </fieldset>
+        </Step>
+
+        <Step index="1" steps={steps}>
+          <fieldset>
+            <legend>Handle</legend>
+            <span>&hellip;</span>
+          </fieldset>
+
+          <fieldset>
+            <legend>Edge</legend>
+            <span>&hellip;</span>
+          </fieldset>
+
+          <fieldset>
+            <legend>Groove</legend>
+            <span>&hellip;</span>
+          </fieldset>
+
+          <fieldset>
+            <legend>Feet</legend>
+            <span>&hellip;</span>
+          </fieldset>
+        </Step>
+
+        <Step index="2" steps={steps}>
+          Order Summary
         </Step>
       </menu>
     )
