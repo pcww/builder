@@ -3,17 +3,6 @@ import BoardModel from 'models/Board'
 import VirtualBoard from 'views/VirtualBoard.js'
 
 export default class Builder extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.props.board.on('change', (model, option) => {
-      this.setState({
-        length: model.get('length'),
-        width: model.get('width')
-      })
-    })
-  }
-
   componentDidMount () {
     // Init Three.js board
     window.vboard = new VirtualBoard(this.props.board, '.virtual-board')
@@ -24,18 +13,22 @@ export default class Builder extends React.Component {
   }
 
   componentWillMount () {
-    this.setState({
-      length: this.props.board.get('length'),
-      width: this.props.board.get('width')
+    this.props.board.on('change', (model, option) => {
+      this.forceUpdate()
     })
   }
 
   render () {
     let overlay
+
+    let board = this.props.board
+    let length = board.get('length')
+    let width = board.get('width')
+
     if (this.props.overlay) {
       overlay = (
         <section type="overlay">
-          <div className="dimensions badge">Dimensions {this.state.length}" x {this.state.width}"</div>
+          <div className="dimensions badge">Dimensions {length}" x {width}"</div>
           <div className="cost well text-center">Board Cost: <span className="label label-success">$297.36</span></div>
         </section>
       )
