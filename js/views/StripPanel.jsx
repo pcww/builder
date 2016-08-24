@@ -5,19 +5,9 @@ import StripHeader from 'views/StripHeader.jsx'
 import WoodPicker from 'views/WoodPicker.jsx'
 
 export default class StripPanel extends React.Component {
-
-  updateState (obj) {
-    this.setState(obj)
-  }
-
   onSizeChange (event) {
-    let value = event.currentTarget.value
-
-    this.updateState({ size: value })
-
-    this.props.strip.set('size', value)
+    this.props.strip.set('size', event.currentTarget.value)
   }
-
 
   render () {
     let collapseTarget = 'collapse-' + this.props.id
@@ -35,7 +25,7 @@ export default class StripPanel extends React.Component {
               <fieldset>
                 <legend>Wood Type</legend>
 
-                <WoodPicker strip={this.props.strip} updateState={this.updateState.bind(this)}/>
+                <WoodPicker strip={this.props.strip} updateState={this.setState.bind(this)}/>
               </fieldset>
 
               <fieldset>
