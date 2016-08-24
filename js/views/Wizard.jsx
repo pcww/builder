@@ -2,9 +2,37 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import Step from 'views/Step.jsx'
+import StepHeader from 'views/StepHeader.jsx'
 import StripPanel from 'views/StripPanel.jsx'
 
 export default class Wizard extends React.Component {
+  componentWillMount () {
+    this.state = {
+      currentStep: 0,
+      totalSteps: 3
+    }
+  }
+
+  onNext () {
+    let nextStep = this.state.currentStep + 1
+
+    if (nextStep < this.state.totalSteps) {
+      this.setState({
+        currentStep: nextStep
+      })
+    }
+  }
+
+  onPrevious () {
+    let previousStep = this.state.currentStep - 1
+
+    if (previousStep >= 0) {
+      this.setState({
+        currentStep: previousStep
+      })
+    }
+  }
+
   onStripLengthChanged (event) {
     this.props.board.set('width', event.currentTarget.value)
   }
@@ -18,15 +46,15 @@ export default class Wizard extends React.Component {
       )
     })
 
-    let steps = [
-      { name: 'Step 3', active: true },
-      { name: 'Step 4', active: false },
-      { name: 'Summary', active: false }
-    ]
-
     return (
       <menu className="wizard" type="toolbar">
-        <Step index="0" steps={steps}>
+        <StepHeader
+          heading={'Step ' + (this.state.currentStep + 1)}
+          onNext={this.onNext.bind(this)}
+          onPrevious={this.onPrevious.bind(this)}>
+        </StepHeader>
+
+        <Step isActive={this.state.currentStep === 0} key={0}>
           <fieldset>
             <legend>Strip Length</legend>
 
@@ -46,7 +74,7 @@ export default class Wizard extends React.Component {
           </fieldset>
         </Step>
 
-        <Step index="1" steps={steps}>
+        <Step isActive={this.state.currentStep === 1} key={1}>
           <fieldset>
             <legend>Handle</legend>
             <span>&hellip;</span>
@@ -68,7 +96,7 @@ export default class Wizard extends React.Component {
           </fieldset>
         </Step>
 
-        <Step index="2" steps={steps}>
+        <Step isActive={this.state.currentStep === 2} key={2}>
           Order Summary
         </Step>
       </menu>
