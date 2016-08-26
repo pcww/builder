@@ -19,20 +19,42 @@ let sizes = {
 
 
 export default class Board extends BaseModel {
+  // _bindEvents () {
+  //   this.listenTo(this, 'change:width', () => {
+  //     this.get('strips').forEach(strip => {
+  //       strip.set('rendered', false)
+  //     })
+  //   })
+  //
+  //   this.listenTo(this.get('strips'), 'change:size', this._updateLength)
+  //   this.listenTo(this, 'sync', this._updateLength)
+  // }
+
+
   _bindEvents () {
     this.listenTo(this, 'change:width', () => {
-      this.get('strips').forEach(strip => {
-        strip.set('rendered', false)
-      })
+      this._rerenderStrips()
     })
 
     this.listenTo(this.get('strips'), 'change:size', this._updateLength)
+    this.get('strips').on('change add remove', () => {
+      this._rerenderStrips()
+      this._updateLength()
+    })
     this.listenTo(this, 'sync', this._updateLength)
+  }
+
+  _rerenderStrips() {
+    console.log('_rerenderStrips', this.get('strips').length)
+    // this.get('strips').forEach(strip => {
+    //   strip.set('rendered', false, {silent: true})
+    // })
+    this.set('redraw', true)
   }
 
   _updateLength () {
     let length = 0
-
+    console.log('_updateLength', this.get('strips').length)
     this.get('strips').forEach(strip => {
       length += sizes[strip.get('size')]
     })

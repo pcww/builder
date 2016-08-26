@@ -14,7 +14,7 @@ export default class WoodPicker extends React.Component {
   render () {
     let currentWood = this.props.strip.get('wood')
     let previewClasses = ['swatch', currentWood].join(' ')
-    let currentWoodObj = woods[currentWood] || 'Unknown'
+    let woodObj = woods[currentWood] || 'Unknown'
 
     let Woods = Object.keys(woods).map((key, index) => {
       let wood = woods[key]
@@ -29,7 +29,7 @@ export default class WoodPicker extends React.Component {
       <div className="wood-picker">
         <div className="dropdown">
           <a id="preview" className={previewClasses} data-toggle="dropdown"></a>
-          <span id="color-name">{currentWoodObj.name}</span>
+          <span id="color-name">{woodObj.name}</span><br/>
           <a className="dropdown-toggle btn btn-sm btn-default" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Change Wood</a>
           <ul className="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
             {Woods}

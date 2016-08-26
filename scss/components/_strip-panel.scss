@@ -1,5 +1,15 @@
 .panel-group {
   &.strip-list {
     margin-bottom: .5rem;
+    position: relative;
+
+    .remove-strip {
+      // position: absolute;
+      // right: 5.5rem;
+      // top: .5rem;
+      float: right;
+      color: #d9534f;
+    }
+
   }
 }

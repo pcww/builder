@@ -93,7 +93,7 @@ export default class VirtualBoard {
     this.fov = 45
     this.near = 0.1
 
-    this.mesh = new THREE.Object3D
+    this.meshGroup = new THREE.Object3D
     this.scene = new THREE.Scene
     this.camera = new THREE.PerspectiveCamera(this.fov, this.width / this.height, this.near, this.far)
     this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement)
@@ -106,7 +106,7 @@ export default class VirtualBoard {
     this.camera.lookAt(0, 0, 0)
 
     // Limit zooming (keeping in mind near/far camera planes)
-    this.controls.maxDistance = 50
+    this.controls.maxDistance = 100
     this.controls.minDistance = 10
 
     this.controls.enableDamping = true
@@ -118,10 +118,10 @@ export default class VirtualBoard {
       this.scene.add(buildAxes(1000))
     }
 
-    this.scene.add(this.mesh)
+    this.scene.add(this.meshGroup)
     this.scene.add(this.camera)
 
-    window.mesh = this.mesh
+    window.meshGroup = this.meshGroup
 
     this.render()
     this._bindEvents()
@@ -143,9 +143,15 @@ export default class VirtualBoard {
   render () {
     let strips = this.board.get('strips')
     let currentZ = 0
+    let redraw = this.board.get('redraw')
 
-    strips.forEach((strip, index, collection) => {
-      if (!strip.get('rendered')) {
+    if (redraw) {
+      // remove all existing meshes from groupMesh
+      while (meshGroup.children.length > 0) { window.meshGroup.remove(window.meshGroup.children[0]); }
+
+      // slap in all the strip meshes
+      strips.forEach((strip, index, collection) => {
+        // if (!strip.get('rendered')) {
         let boxMaterial
 
         if (this.materials[strip.get('wood')]) {
@@ -170,34 +176,40 @@ export default class VirtualBoard {
 
         let geometry = new THREE.BoxGeometry(dimensions.x, dimensions.y, dimensions.z)
         let mesh
+        //
+        // if (strip.get('mesh')) {
+        //   mesh = strip.get('mesh')
+        //   mesh.geometry = geometry
+        //   mesh.material = boxMaterial
+        //
+        // } else {
+        //   mesh = new THREE.Mesh(geometry, boxMaterial)
+        //   strip.set('mesh', mesh)
+        // }
 
-        if (strip.get('mesh')) {
-          mesh = strip.get('mesh')
-          mesh.geometry = geometry
-          mesh.material = boxMaterial
-
-        } else {
-          mesh = new THREE.Mesh(geometry, boxMaterial)
-          strip.set('mesh', mesh)
-        }
+        mesh = new THREE.Mesh(geometry, boxMaterial)
 
         mesh.position.z = currentZ
 
         currentZ += (dimensions.z / 2)
 
-        this.mesh.add(mesh)
+        this.meshGroup.add(mesh)
 
         let boardWidth = 0
 
-        this.mesh.children.forEach(strip => {
+        this.meshGroup.children.forEach(strip => {
           boardWidth += strip.geometry.parameters.depth
         })
 
-        this.mesh.position.z = -(boardWidth / 2)
+        this.meshGroup.position.z = -(boardWidth / 2)
 
-        strip.set('rendered', true)
-      }
-    })
+        // strip.set('rendered', true, {silent: true})
+        // }
+      })
+
+
+      this.board.set('redraw', false)
+    }
 
     this.controls.update()
     this.renderer.render(this.scene, this.camera)

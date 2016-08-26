@@ -39,7 +39,15 @@ export default class Wizard extends React.Component {
 
   addStrip () {
     this.props.board.get('strips').add({ "wood": "maple", "size": "large"})
-    console.log(this.board)
+    this.forceUpdate()
+    console.log(this.props.board.get('strips'))
+  }
+
+  removeStrip (strip) {
+    this.props.board.get('strips').remove(strip)
+    this.props.board.set('redraw', true)
+    this.forceUpdate()
+    console.log(this.props.board.get('strips'))
   }
 
   render () {
@@ -47,7 +55,7 @@ export default class Wizard extends React.Component {
 
     let Strips = board.get('strips').map((strip, key) => {
       return (
-        <StripPanel id={key} strip={strip} key={key}></StripPanel>
+        <StripPanel id={key} strip={strip} key={key} removeStrip={this.removeStrip.bind(this)}></StripPanel>
       )
     })
 
@@ -60,23 +68,25 @@ export default class Wizard extends React.Component {
         </StepHeader>
 
         <Step isActive={this.state.currentStep === 0} key={0}>
-          <fieldset>
-            <legend>Strip Length</legend>
+          <div className="step-content">
+            <fieldset>
+              <legend>Strip Length</legend>
 
-            <input
-              type="range"
-              max="48"
-              min="8"
-              step="2"
-              defaultValue={board.get('width')}
-              onChange={this.onStripLengthChanged.bind(this)} />
-          </fieldset>
+              <input
+                type="range"
+                max="48"
+                min="8"
+                step="2"
+                defaultValue={board.get('width')}
+                onChange={this.onStripLengthChanged.bind(this)} />
+            </fieldset>
 
-          <fieldset>
-            <legend>Strips</legend>
+            <fieldset>
+              <legend>Strips</legend>
 
-            {Strips}
-          </fieldset>
+              {Strips}
+            </fieldset>
+          </div>
 
           <div className="controls">
             <button type="button" className="btn btn-sm btn-primary" onClick={this.addStrip.bind(this)}><i className="fa fa-plus-circle"></i> Add Strip</button>

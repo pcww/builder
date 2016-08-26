@@ -86,6 +86,10 @@ export default class StripPanel extends React.Component {
                   Large
                 </label>
               </fieldset>
+
+              <hr/>
+              <button type="button" className="btn btn-link remove-strip" onClick={this.props.removeStrip.bind(this, this.props.strip)}>remove strip</button>
+
             </div>
           </div>
         </div>
