@@ -37,6 +37,11 @@ export default class Wizard extends React.Component {
     this.props.board.set('width', event.currentTarget.value)
   }
 
+  addStrip () {
+    this.props.board.get('strips').add({ "wood": "maple", "size": "large"})
+    console.log(this.board)
+  }
+
   render () {
     let board = this.props.board
 
@@ -72,6 +77,11 @@ export default class Wizard extends React.Component {
 
             {Strips}
           </fieldset>
+
+          <div className="controls">
+            <button type="button" className="btn btn-sm btn-primary" onClick={this.addStrip.bind(this)}><i className="fa fa-plus-circle"></i> Add Strip</button>
+            <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
+          </div>
         </Step>
 
         <Step isActive={this.state.currentStep === 1} key={1}>
