@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import classNames from 'classnames'
 
 import Step from 'views/Step.jsx'
 import StepHeader from 'views/StepHeader.jsx'
@@ -18,7 +19,8 @@ export default class Wizard extends React.Component {
   componentWillMount () {
     this.state = {
       currentStep: 0,
-      totalSteps: 3
+      totalSteps: 3,
+      stripsExpand: false
     }
   }
 
@@ -59,6 +61,16 @@ export default class Wizard extends React.Component {
     console.log(this.props.board.get('strips'))
   }
 
+  onToggleStripsExpand () {
+    console.log('expando', this.state.stripsExpand ? 'hide' : 'show' )
+    if (this.state.stripsExpand)
+      $('.panel-collapse.collapse').collapse('hide')
+    else
+      $('.panel-collapse.collapse').collapse('show')
+
+    this.setState({ stripsExpand: !this.state.stripsExpand })
+  }
+
   render () {
     let board = this.props.board
 
@@ -67,6 +79,11 @@ export default class Wizard extends React.Component {
         <StripPanel id={key} strip={strip} key={key} removeStrip={this.removeStrip.bind(this)}></StripPanel>
       )
     })
+
+    let expandClass = classNames('fa', {
+      'fa-plus': !this.state.stripsExpand,
+      'fa-minus': this.state.stripsExpand
+    });
 
     return (
       <menu className="wizard" type="toolbar">
@@ -91,7 +108,7 @@ export default class Wizard extends React.Component {
             </fieldset>
 
             <fieldset>
-              <legend>Board Strips</legend>
+              <legend>Board Strips <button type="button" className="btn btn-link pull-right" onClick={this.onToggleStripsExpand.bind(this)}><i className={expandClass} aria-hidden="true"></i></button></legend>
 
               {Strips}
             </fieldset>
