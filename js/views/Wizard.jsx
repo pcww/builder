@@ -71,6 +71,10 @@ export default class Wizard extends React.Component {
     this.setState({ stripsExpand: !this.state.stripsExpand })
   }
 
+  onSubmitOrder () {
+    window.alert('Order Submitted!')
+  }
+
   render () {
     let board = this.props.board
 
@@ -93,58 +97,83 @@ export default class Wizard extends React.Component {
           onPrevious={this.onPrevious.bind(this)}>
         </StepHeader>
 
-        <Step isActive={this.state.currentStep === 0} key={0}>
-          <div className="step-content">
-            <fieldset>
-              <legend>Board Length</legend>
+        <div id="stepContainer">
+          <Step isActive={this.state.currentStep === 0} key={0}>
+            <div className="step-content">
+              <fieldset>
+                <legend>Board Length</legend>
 
-              <input
-                type="range"
-                max="48"
-                min="8"
-                step="2"
-                defaultValue={board.get('width')}
-                onChange={this.onStripLengthChanged.bind(this)} />
+                <input
+                  type="range"
+                  max="48"
+                  min="8"
+                  step="2"
+                  defaultValue={board.get('width')}
+                  onChange={this.onStripLengthChanged.bind(this)} />
+              </fieldset>
+
+              <fieldset>
+                <legend>Board Strips <button type="button" className="btn btn-link pull-right" onClick={this.onToggleStripsExpand.bind(this)}><i className={expandClass} aria-hidden="true"></i></button></legend>
+
+                {Strips}
+              </fieldset>
+            </div>
+
+            <div className="controls">
+              <button type="button" className="btn btn-sm btn-primary" onClick={this.addStrip.bind(this)}><i className="fa fa-plus-circle"></i> Add Strip</button>
+              &nbsp;
+              <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
+            </div>
+          </Step>
+
+          <Step isActive={this.state.currentStep === 1} key={1}>
+            <fieldset>
+              <legend>Handle</legend>
+              <span>&hellip;</span>
             </fieldset>
 
             <fieldset>
-              <legend>Board Strips <button type="button" className="btn btn-link pull-right" onClick={this.onToggleStripsExpand.bind(this)}><i className={expandClass} aria-hidden="true"></i></button></legend>
-
-              {Strips}
+              <legend>Edge</legend>
+              <span>&hellip;</span>
             </fieldset>
-          </div>
 
-          <div className="controls">
-            <button type="button" className="btn btn-sm btn-primary" onClick={this.addStrip.bind(this)}><i className="fa fa-plus-circle"></i> Add Strip</button>
-            <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
-          </div>
-        </Step>
+            <fieldset>
+              <legend>Groove</legend>
+              <span>&hellip;</span>
+            </fieldset>
 
-        <Step isActive={this.state.currentStep === 1} key={1}>
-          <fieldset>
-            <legend>Handle</legend>
-            <span>&hellip;</span>
-          </fieldset>
+            <fieldset>
+              <legend>Feet</legend>
+              <span>&hellip;</span>
+            </fieldset>
 
-          <fieldset>
-            <legend>Edge</legend>
-            <span>&hellip;</span>
-          </fieldset>
+            <div className="controls">
+              <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
+              &nbsp;
+              <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
+            </div>
+          </Step>
 
-          <fieldset>
-            <legend>Groove</legend>
-            <span>&hellip;</span>
-          </fieldset>
+          <Step isActive={this.state.currentStep === 2} key={2}>
+            Order Summary
+            <hr/>
 
-          <fieldset>
-            <legend>Feet</legend>
-            <span>&hellip;</span>
-          </fieldset>
-        </Step>
+            <pre>Order details...</pre>
 
-        <Step isActive={this.state.currentStep === 2} key={2}>
-          Order Summary
-        </Step>
+            <br/>
+
+            <div className="controls">
+              <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
+              &nbsp;
+              <button type="button" className="btn btn-sm btn-primary" onClick={this.onSubmitOrder.bind(this)}><i className="fa fa-envelope-o" aria-hidden="true"></i> Submit Order</button>
+            </div>
+          </Step>
+        </div>
+
+        <div className="stepControls">
+          <p>[Refactor controls here?]</p>
+        </div>
+
       </menu>
     )
   }

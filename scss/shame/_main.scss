@@ -120,18 +120,36 @@ menu[type="toolbar"] {
 
 }
 
-section[type="step"] {
+#stepContainer {
+  /* margin-bottom: 4vw; */
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 91.8vh;
+  top: 4.2vh;
+  /* bottom: -180px; */
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-section[type="step"] {
-  &.step-3 {
-    left: 150%;
-    right: -150%;
-  }
+// Slide panels
+form.step {
+  transition: left 1s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 50vw;
+  width: 100%;
+}
 
+form.step.current {
+  left: 0;
+}
+
+.stepControls {
+  position: absolute;
+  bottom: 0;
+  background-color: black;
+  width: 100%;
+  height: 4vh;
+  color: white;
+  text-align: center;
 }

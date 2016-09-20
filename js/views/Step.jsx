@@ -4,7 +4,7 @@ import classNames from 'classnames'
 export default class Step extends React.Component {
   render () {
     let classes = classNames('step', {
-      hidden: !this.props.isActive
+      current: this.props.isActive
     });
 
     return (
