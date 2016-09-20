@@ -7,6 +7,7 @@ import WoodPicker from 'views/WoodPicker.jsx'
 export default class StripPanel extends React.Component {
   onSizeChange (event) {
     this.props.strip.set('size', event.currentTarget.value)
+    this.forceUpdate()
   }
 
   render () {
