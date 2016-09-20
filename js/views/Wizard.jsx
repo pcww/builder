@@ -6,6 +6,15 @@ import StepHeader from 'views/StepHeader.jsx'
 import StripPanel from 'views/StripPanel.jsx'
 
 export default class Wizard extends React.Component {
+  constructor(props) {
+      super(props)
+      this.stepHeadings = {
+        '1': 'Build',
+        '2': 'Accessorize',
+        '3': 'Summary'
+      }
+  }
+
   componentWillMount () {
     this.state = {
       currentStep: 0,
@@ -62,7 +71,7 @@ export default class Wizard extends React.Component {
     return (
       <menu className="wizard" type="toolbar">
         <StepHeader
-          heading={'Step ' + (this.state.currentStep + 1)}
+          heading={'Step ' + (this.state.currentStep + 1) + ': ' + this.stepHeadings[this.state.currentStep + 1]}
           onNext={this.onNext.bind(this)}
           onPrevious={this.onPrevious.bind(this)}>
         </StepHeader>
@@ -70,7 +79,7 @@ export default class Wizard extends React.Component {
         <Step isActive={this.state.currentStep === 0} key={0}>
           <div className="step-content">
             <fieldset>
-              <legend>Strip Length</legend>
+              <legend>Board Length</legend>
 
               <input
                 type="range"
@@ -82,7 +91,7 @@ export default class Wizard extends React.Component {
             </fieldset>
 
             <fieldset>
-              <legend>Strips</legend>
+              <legend>Board Strips</legend>
 
               {Strips}
             </fieldset>
