@@ -18,7 +18,23 @@ export default class Wizard extends React.Component {
   }
 
   componentDidMount () {
-    Sortable.create(document.querySelector('.sortable-list'), {
+    this.initializeSortable()
+  }
+
+  componentWillMount () {
+    this.state = {
+      currentStep: 0,
+      totalSteps: 3,
+      stripsExpand: false
+    }
+  }
+
+  initializeSortable () {
+    if (this.sortable) {
+      this.sortable.destroy()
+    }
+
+    this.sortable = Sortable.create(document.querySelector('.sortable-list'), {
       animation: 150,
       handle: '.drag-handle',
       onSort: (event) => {
@@ -33,14 +49,6 @@ export default class Wizard extends React.Component {
         strips.reset(stripsArray)
       }
     })
-  }
-
-  componentWillMount () {
-    this.state = {
-      currentStep: 0,
-      totalSteps: 3,
-      stripsExpand: false
-    }
   }
 
   onNext () {
@@ -70,14 +78,14 @@ export default class Wizard extends React.Component {
   addStrip () {
     this.props.board.get('strips').add({ "wood": "maple", "size": "large"})
     this.forceUpdate()
-    console.log(this.props.board.get('strips'))
+    this.initializeSortable()
   }
 
   removeStrip (strip) {
     this.props.board.get('strips').remove(strip)
     this.props.board.set('redraw', true)
     this.forceUpdate()
-    console.log(this.props.board.get('strips'))
+    this.initializeSortable()
   }
 
   onToggleStripsExpand () {
@@ -99,8 +107,8 @@ export default class Wizard extends React.Component {
 
     let Strips = board.get('strips').map((strip, key) => {
       return (
-        <li key={key}>
-          <StripPanel id={key} strip={strip} key={key} removeStrip={this.removeStrip.bind(this)}></StripPanel>
+        <li key={strip.cid}>
+          <StripPanel strip={strip} removeStrip={this.removeStrip.bind(this)}></StripPanel>
         </li>
       )
     })
