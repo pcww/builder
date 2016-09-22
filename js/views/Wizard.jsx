@@ -97,7 +97,7 @@ export default class Wizard extends React.Component {
           onPrevious={this.onPrevious.bind(this)}>
         </StepHeader>
 
-        <div id="stepContainer">
+        <div className="steps">
           <Step isActive={this.state.currentStep === 0} key={0}>
             <div className="step-content">
               <fieldset>
@@ -119,7 +119,7 @@ export default class Wizard extends React.Component {
               </fieldset>
             </div>
 
-            <div className="controls">
+            <div className="step-controls controls">
               <button type="button" className="btn btn-sm btn-primary" onClick={this.addStrip.bind(this)}><i className="fa fa-plus-circle"></i> Add Strip</button>
               &nbsp;
               <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
@@ -127,27 +127,29 @@ export default class Wizard extends React.Component {
           </Step>
 
           <Step isActive={this.state.currentStep === 1} key={1}>
-            <fieldset>
-              <legend>Handle</legend>
-              <span>&hellip;</span>
-            </fieldset>
+            <div className="step-content">
+              <fieldset>
+                <legend>Handle</legend>
+                <span>&hellip;</span>
+              </fieldset>
 
-            <fieldset>
-              <legend>Edge</legend>
-              <span>&hellip;</span>
-            </fieldset>
+              <fieldset>
+                <legend>Edge</legend>
+                <span>&hellip;</span>
+              </fieldset>
 
-            <fieldset>
-              <legend>Groove</legend>
-              <span>&hellip;</span>
-            </fieldset>
+              <fieldset>
+                <legend>Groove</legend>
+                <span>&hellip;</span>
+              </fieldset>
 
-            <fieldset>
-              <legend>Feet</legend>
-              <span>&hellip;</span>
-            </fieldset>
+              <fieldset>
+                <legend>Feet</legend>
+                <span>&hellip;</span>
+              </fieldset>
+            </div>
 
-            <div className="controls">
+            <div className="step-controls controls">
               <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
               &nbsp;
               <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
@@ -155,14 +157,16 @@ export default class Wizard extends React.Component {
           </Step>
 
           <Step isActive={this.state.currentStep === 2} key={2}>
-            Order Summary
-            <hr/>
+            <div className="step-content">
+              Order Summary
+              <hr/>
 
-            <pre>Order details...</pre>
+              <pre>Order details...</pre>
 
-            <br/>
+              <br/>
+            </div>
 
-            <div className="controls">
+            <div className="step-controls controls">
               <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
               &nbsp;
               <button type="button" className="btn btn-sm btn-primary" onClick={this.onSubmitOrder.bind(this)}><i className="fa fa-envelope-o" aria-hidden="true"></i> Submit Order</button>
@@ -170,9 +174,6 @@ export default class Wizard extends React.Component {
           </Step>
         </div>
 
-        <div className="stepControls">
-          <p>[Refactor controls here?]</p>
-        </div>
 
       </menu>
     )
