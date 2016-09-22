@@ -68,11 +68,11 @@ module.exports = {
     }),
     new Webpack.ProvidePlugin({
       $: 'jquery',
-      jQuery: "jquery",
+      jQuery: 'jquery',
       _: 'lodash'
     }),
     new Webpack.ResolverPlugin(
-        new Webpack.ResolverPlugin.DirectoryDescriptionFilePlugin(".bower.json", ["main"])
+      new Webpack.ResolverPlugin.DirectoryDescriptionFilePlugin(".bower.json", ["main"])
     )
   ],
 
@@ -83,7 +83,6 @@ module.exports = {
       models: path.resolve(__dirname, 'js', 'models'),
       three: path.resolve(__dirname, 'bower_components', 'three.js', 'examples', 'js'),
       views: path.resolve(__dirname, 'js', 'views')
-      // jquery: path.resolve(__dirname, 'bower_components', 'jquery', 'src', 'jquery')
     }
   },
 
