@@ -20,7 +20,18 @@ export default class Wizard extends React.Component {
   componentDidMount () {
     Sortable.create(document.querySelector('.sortable-list'), {
       animation: 150,
-      handle: '.drag-handle'
+      handle: '.drag-handle',
+      onSort: (event) => {
+        let newIndex = event.newIndex
+        let oldIndex = event.oldIndex
+        let strips = this.props.board.get('strips')
+        let strip = strips.remove(strips.at(oldIndex))
+        let stripsArray = strips.toJSON()
+
+        stripsArray.splice(newIndex, 0, strip)
+
+        strips.reset(stripsArray)
+      }
     })
   }
 
