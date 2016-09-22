@@ -14,5 +14,4 @@ export default class Strips extends BaseCollection {
   // initialize () {
   //   this._bindEvents()
   // }
-
 }
