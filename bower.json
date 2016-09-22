@@ -22,6 +22,7 @@
     "jquery": "^2.2.2",
     "lodash": "^4.12.0",
     "three.js": "threejs#*",
-    "bootstrap-flat": "^3.3.4"
+    "bootstrap-flat": "^3.3.4",
+    "Sortable": "sortablejs#^1.4.2"
   }
 }

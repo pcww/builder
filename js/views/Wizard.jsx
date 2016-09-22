@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import classNames from 'classnames'
+import Sortable from '../../bower_components/Sortable/Sortable.min.js'
 
 import Step from 'views/Step.jsx'
 import StepHeader from 'views/StepHeader.jsx'
@@ -8,12 +9,30 @@ import StripPanel from 'views/StripPanel.jsx'
 
 export default class Wizard extends React.Component {
   constructor(props) {
-      super(props)
-      this.stepHeadings = {
-        '1': 'Build',
-        '2': 'Accessorize',
-        '3': 'Summary'
+    super(props)
+    this.stepHeadings = {
+      '1': 'Build',
+      '2': 'Accessorize',
+      '3': 'Summary'
+    }
+  }
+
+  componentDidMount () {
+    Sortable.create(document.querySelector('.sortable-list'), {
+      animation: 150,
+      handle: '.drag-handle',
+      onSort: (event) => {
+        let newIndex = event.newIndex
+        let oldIndex = event.oldIndex
+        let strips = this.props.board.get('strips')
+        let strip = strips.remove(strips.at(oldIndex))
+        let stripsArray = strips.toJSON()
+
+        stripsArray.splice(newIndex, 0, strip)
+
+        strips.reset(stripsArray)
       }
+    })
   }
 
   componentWillMount () {
@@ -80,7 +99,9 @@ export default class Wizard extends React.Component {
 
     let Strips = board.get('strips').map((strip, key) => {
       return (
-        <StripPanel id={key} strip={strip} key={key} removeStrip={this.removeStrip.bind(this)}></StripPanel>
+        <li key={key}>
+          <StripPanel id={key} strip={strip} key={key} removeStrip={this.removeStrip.bind(this)}></StripPanel>
+        </li>
       )
     })
 
@@ -115,7 +136,7 @@ export default class Wizard extends React.Component {
               <fieldset>
                 <legend>Board Strips <button type="button" className="btn btn-link pull-right" onClick={this.onToggleStripsExpand.bind(this)}><i className={expandClass} aria-hidden="true"></i></button></legend>
 
-                {Strips}
+                <ol className="sortable-list">{Strips}</ol>
               </fieldset>
             </div>
 
