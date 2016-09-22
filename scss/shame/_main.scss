@@ -1,3 +1,8 @@
+// Units in rems
+$step-header-height: 6;
+$step-controls-height: 6;
+
+
 section[type="overlay"] {
   font-weight: 100;
   font-size: 3rem;
@@ -41,6 +46,7 @@ menu[type="toolbar"] {
 
   header {
     padding: .5rem 2rem;
+    height: #{$step-header-height}rem;
     overflow: auto;
     background-color: black;
     color: white;
@@ -123,8 +129,8 @@ menu[type="toolbar"] {
 .steps {
   position: absolute;
   width: 100%;
-  height: 95.7vh;
-  top: 4.2vh;
+  height: calc(100vh - #{$step-header-height}rem);
+  top: #{$step-header-height}rem;
 
   .step-container {
     overflow: hidden;
@@ -145,18 +151,18 @@ menu[type="toolbar"] {
       width: 100%;
 
       .step-content {
-        height: 91.7vh;
+        height: calc(100vh - #{$step-header-height + $step-controls-height}rem);
         padding: 2rem;
         overflow-x: hidden;
         overflow-y: auto;
       }
 
       .step-controls {
-        padding: 1rem;
+        padding: 1.5rem;
         width: 100%;
-        height: 4vh;
+        height: #{$step-controls-height}rem;
         position: absolute;
-        bottom: -4vh;
+        bottom: -#{$step-controls-height}rem;
         color: white;
         background-color: black;
         text-align: center;
