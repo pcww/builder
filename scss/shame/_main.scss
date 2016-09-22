@@ -77,11 +77,11 @@ menu[type="toolbar"] {
 
 
 .container {
-  padding-top:50px;
+  padding-top: 5rem;
 }
 
 .dropdown-menu {
-  padding:10px;
+  padding: 1rem;
 }
 
 #strip-list {
@@ -120,36 +120,47 @@ menu[type="toolbar"] {
 
 }
 
-#stepContainer {
-  /* margin-bottom: 4vw; */
+.steps {
   position: absolute;
   width: 100%;
-  height: 91.8vh;
+  height: 95.7vh;
   top: 4.2vh;
-  /* bottom: -180px; */
-  overflow-y: auto;
-  overflow-x: hidden;
-}
 
-// Slide panels
-form.step {
-  transition: left 1s ease-in-out;
-  position: absolute;
-  top: 0;
-  left: 50vw;
-  width: 100%;
-}
+  .step-container {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 50vw;
+    width: 100%;
+    height: 100%;
+    transition: left 0.5s ease-in-out;
 
-form.step.current {
-  left: 0;
-}
+    &.current {
+      left: 0;
+    }
 
-.stepControls {
-  position: absolute;
-  bottom: 0;
-  background-color: black;
-  width: 100%;
-  height: 4vh;
-  color: white;
-  text-align: center;
+    form.step {
+      position: absolute;
+      padding: 0;
+      width: 100%;
+
+      .step-content {
+        height: 91.7vh;
+        padding: 2rem;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+      .step-controls {
+        padding: 1rem;
+        width: 100%;
+        height: 4vh;
+        position: absolute;
+        bottom: -4vh;
+        color: white;
+        background-color: black;
+        text-align: center;
+      }
+    }
+  }
 }

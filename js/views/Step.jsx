@@ -3,14 +3,16 @@ import classNames from 'classnames'
 
 export default class Step extends React.Component {
   render () {
-    let classes = classNames('step', {
+    let classes = classNames('step-container', {
       current: this.props.isActive
     });
 
     return (
-      <form className={classes}>
-        {this.props.children}
-      </form>
+      <div className={classes}>
+        <form className="step">
+          {this.props.children}
+        </form>
+      </div>
     )
   }
 }
