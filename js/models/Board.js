@@ -14,8 +14,7 @@ let sizes = {
   large: 1
 }
 
-
-
+let maxWidth = 13
 
 
 export default class Board extends BaseModel {
