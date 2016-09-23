@@ -21,7 +21,7 @@
     "font-awesome": "fontawesome#^4.6.1",
     "jquery": "^2.2.2",
     "lodash": "^4.12.0",
-    "three.js": "threejs#*",
+    "three.js": "threejs#r79",
     "bootstrap-flat": "^3.3.4",
     "Sortable": "sortablejs#^1.4.2"
   }
