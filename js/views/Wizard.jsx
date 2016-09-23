@@ -122,7 +122,7 @@ export default class Wizard extends React.Component {
     let Strips = board.get('strips').map((strip, key) => {
       return (
         <li key={strip.cid}>
-          <StripPanel strip={strip} removeStrip={this.removeStrip.bind(this)}></StripPanel>
+          <StripPanel id={key} strip={strip} removeStrip={this.removeStrip.bind(this)}></StripPanel>
         </li>
       )
     })
