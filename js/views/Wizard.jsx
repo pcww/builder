@@ -7,6 +7,8 @@ import Step from 'views/Step.jsx'
 import StepHeader from 'views/StepHeader.jsx'
 import StripPanel from 'views/StripPanel.jsx'
 
+import accessories from '../accessories.json'
+
 export default class Wizard extends React.Component {
   constructor(props) {
     super(props)
@@ -25,7 +27,9 @@ export default class Wizard extends React.Component {
     this.state = {
       currentStep: 0,
       totalSteps: 3,
-      stripsExpand: false
+      stripsExpand: false,
+      handleName: accessories.handles[this.props.board.get('handle')].name,
+      handleDescription: accessories.handles[this.props.board.get('handle')].description,
     }
   }
 
@@ -98,6 +102,16 @@ export default class Wizard extends React.Component {
     this.setState({ stripsExpand: !this.state.stripsExpand })
   }
 
+  onHandleChange (event) {
+    this.props.board.set('handle', event.currentTarget.value)
+
+    this.setState({
+      handleName: accessories.handles[event.currentTarget.value].name,
+      handleDescription: accessories.handles[event.currentTarget.value].description
+    })
+    // this.forceUpdate()
+  }
+
   onSubmitOrder () {
     window.alert('Order Submitted!')
   }
@@ -159,7 +173,63 @@ export default class Wizard extends React.Component {
             <div className="step-content">
               <fieldset>
                 <legend>Handle</legend>
-                <span>&hellip;</span>
+
+                <div className="media">
+                  <div className="media-left">
+                    <img className="media-object swatch" src={'/assets/handles/' + board.get('handle') + '.jpg'} alt="..."/>
+                  </div>
+                  <div className="media-body">
+                    <div className="row">
+                      <div className="col-xs-6">
+                        <h4 className="media-heading">{this.state.handleName}</h4>
+                        <p>{this.state.handleDescription}</p>
+                      </div>
+                      <div className="col-xs-6">
+
+                        <div className="radio">
+                          <label>
+                            <input type="radio" name="handleOption" id="handle-shaped" value="none" onChange={this.onHandleChange.bind(this)} checked={board.get('handle') === 'none' || !board.get('handle')}/>
+                            None
+                          </label>
+                        </div>
+                        <div className="radio">
+                          <label>
+                            <input type="radio" name="handleOption" id="handle-shaped" value="shaped" onChange={this.onHandleChange.bind(this)} checked={board.get('handle') === 'shaped'}/>
+                            Shaped
+                          </label>
+                        </div>
+                        <div className="radio">
+                          <label>
+                            <input type="radio" name="handleOption" id="handle-stainless" value="stainless" onChange={this.onHandleChange.bind(this)} checked={board.get('handle') === 'stainless'}/>
+                            Stainless
+                          </label>
+                        </div>
+                        <div className="radio">
+                          <label>
+                            <input type="radio" name="handleOption" id="handle-dado" value="dado" onChange={this.onHandleChange.bind(this)} checked={board.get('handle') === 'dado'}/>
+                            Dado
+                          </label>
+                        </div>
+                        <div className="radio">
+                          <label>
+                            <input type="radio" name="handleOption" id="handle-turned" value="turned" onChange={this.onHandleChange.bind(this)} checked={board.get('handle') === 'turned'}/>
+                            Turned
+                          </label>
+                        </div>
+                        <div className="radio">
+                          <label>
+                            <input type="radio" name="handleOption" id="handle-elk-horn" value="elk-horn" onChange={this.onHandleChange.bind(this)} checked={board.get('handle') === 'elk-horn'}/>
+                            Elk Horn
+                          </label>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
               </fieldset>
 
               <fieldset>
