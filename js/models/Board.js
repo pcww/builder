@@ -73,7 +73,8 @@ export default class Board extends BaseModel {
       length: 0,
       name: 'test',
       strips: new StripsCollection,
-      width: 0
+      width: 0,
+      handle: 'none'
     }
   }
 
