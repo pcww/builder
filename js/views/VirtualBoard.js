@@ -175,8 +175,7 @@ export default class VirtualBoard {
         }
 
         let geometry = new THREE.BoxGeometry(dimensions.x, dimensions.y, dimensions.z)
-        let mesh
-        //
+
         // if (strip.get('mesh')) {
         //   mesh = strip.get('mesh')
         //   mesh.geometry = geometry
@@ -187,9 +186,16 @@ export default class VirtualBoard {
         //   strip.set('mesh', mesh)
         // }
 
-        mesh = new THREE.Mesh(geometry, boxMaterial)
+        let mesh = new THREE.Mesh(geometry, boxMaterial)
 
         mesh.position.z = currentZ
+
+        if (strip.get('moving')) {
+          mesh.position.y = 1
+
+        } else {
+          mesh.position.y = 0
+        }
 
         currentZ += (dimensions.z / 2)
 

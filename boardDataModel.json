@@ -13,7 +13,7 @@
   "feet": {
     "type": "screw" // ["screw", "suction"]
   },
-  "handle": false, // ["shaped", "stainless", "dado", "turned", "elk horn"]
+  "handle": false, // ["none", "shaped", "stainless", "dado", "turned", "elk-horn"]
   "groove": {
     "location": false // ["bottom", "top"]
   },
