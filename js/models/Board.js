@@ -26,8 +26,8 @@ export default class Board extends BaseModel {
   //     })
   //   })
   //
-  //   this.listenTo(this.get('strips'), 'change:size', this._updateLength)
-  //   this.listenTo(this, 'sync', this._updateLength)
+  //   this.listenTo(this.get('strips'), 'change:size', this._updateWidth)
+  //   this.listenTo(this, 'sync', this._updateWidth)
   // }
 
 
@@ -36,12 +36,12 @@ export default class Board extends BaseModel {
       this._rerenderStrips()
     })
 
-    this.listenTo(this.get('strips'), 'change:size', this._updateLength)
+    this.listenTo(this.get('strips'), 'change:size', this._updateWidth)
     this.get('strips').on('change add remove', () => {
       this._rerenderStrips()
-      this._updateLength()
+      this._updateWidth()
     })
-    this.listenTo(this, 'sync', this._updateLength)
+    this.listenTo(this, 'sync', this._updateWidth)
   }
 
   _rerenderStrips() {
@@ -52,19 +52,26 @@ export default class Board extends BaseModel {
     this.set('redraw', true)
   }
 
-  _updateLength () {
-    let length = 0
-    console.log('_updateLength', this.get('strips').length)
+  _updateWidth () {
+    let width = 0
+    console.log('_updateWidth', this.get('strips').width)
     this.get('strips').forEach(strip => {
-      length += sizes[strip.get('size')]
+      width += sizes[strip.get('size')]
     })
 
-    this.set('length', length)
+    console.log("width: ", width)
+
+    if (width > maxWidth) {
+      // throw error somehow
+      console.log("testing max width")
+    } else {
+      this.set('width', width)
+    }
   }
 
   constructor (data, options) {
     super(data, options)
-    this._updateLength()
+    this._updateWidth()
     this._bindEvents()
   }
 
