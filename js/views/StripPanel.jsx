@@ -26,7 +26,7 @@ export default class StripPanel extends React.Component {
               <fieldset>
                 <legend>Wood Type</legend>
 
-                <WoodPicker strip={this.props.strip} updateState={this.setState.bind(this)}/>
+                <WoodPicker strip={this.props.strip}/>
               </fieldset>
 
               <fieldset>

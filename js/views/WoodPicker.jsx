@@ -7,8 +7,9 @@ export default class WoodPicker extends React.Component {
   onChangeWood (event) {
     let value = event.currentTarget.id
 
-    this.props.updateState({ wood: value })
     this.props.strip.set('wood', value)
+    //we were calling passed in updateState func that did setState({wood: value}), but since the parent (StripPanel) doesnt use that state param itself, it's sort of pointless. Just call forceUpdate()
+    this.forceUpdate()
   }
 
   render () {
@@ -30,7 +31,7 @@ export default class WoodPicker extends React.Component {
         <div className="dropdown">
           <a id="preview" className={previewClasses} data-toggle="dropdown"></a>
           <span id="color-name">{woodObj.name}</span><br/>
-          <a className="dropdown-toggle btn btn-sm btn-default" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Change Wood</a>
+          <a className="dropdown-toggle btn btn-sm btn-primary" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Change Wood</a>
           <ul className="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
             {Woods}
           </ul>

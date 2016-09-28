@@ -31,15 +31,53 @@
     }
   },
 
-  "edge": {
+  "edges": {
+    "small-round": {
+      "name": "Small Round",
+      "description": "A lightly rounded (1/8\") edge."
+    },
 
+    "large-round": {
+      "name": "Large Round",
+      "description": "A more rounded (1/4\") edge."
+    },
+
+    "bead": {
+      "name": "Bead",
+      "description": "A beaded edge."
+    },
+
+    "chamfer": {
+      "name": "Chamfer",
+      "description": "An angled (chamfered) edge."
+    },
+
+    "cove": {
+      "name": "Cove",
+      "description": "A cove style edge."
+    }
   },
 
-  "groove": {
-
+  "grooves": {
+    "false": {
+      "name": "No Groove",
+      "description": "Board will be flat with no routed groove."
+    },
+    "true": {
+      "name": "Routed Groove",
+      "description": "A routed 'juice groove' will be added for maximum drip-catching efficiency."
+    }
   },
 
   "feet": {
+    "screw": {
+      "name": "Screw-In",
+      "description": "Permanent rubber screw-in feet keep board steadily in place."
+    },
 
+    "suction": {
+      "name": "Suction Cup",
+      "description": "Four low-profile suction cup feet placed under the board. Non-destructive feet allow for dual sided use."
+    }
   }
 }
