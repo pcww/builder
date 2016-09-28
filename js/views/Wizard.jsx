@@ -24,6 +24,11 @@ export default class Wizard extends React.Component {
 
   componentDidMount () {
     this.initializeSortable()
+
+    // Bootstrap Grossness
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip({container: 'body'})
+    })
   }
 
   componentWillMount () {
