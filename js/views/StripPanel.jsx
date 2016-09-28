@@ -5,13 +5,6 @@ import StripHeader from 'views/StripHeader.jsx'
 import WoodPicker from 'views/WoodPicker.jsx'
 
 export default class StripPanel extends React.Component {
-  componentDidMount () {
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip({container: 'body'})
-    })
-  }
-
-
   onSizeChange (event) {
     this.props.strip.set('size', event.currentTarget.value)
     this.forceUpdate()
