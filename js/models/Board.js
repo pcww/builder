@@ -2,10 +2,6 @@ import Backbone from 'backbone'
 import BaseModel from 'models/Base'
 import StripsCollection from 'collections/Strips'
 
-
-
-
-
 let sizes = {
   xxsmall: 0.25,
   xsmall: 0.375,
@@ -15,7 +11,6 @@ let sizes = {
 }
 
 let maxWidth = 13
-
 
 export default class Board extends BaseModel {
   // _bindEvents () {
@@ -62,9 +57,11 @@ export default class Board extends BaseModel {
 
     if (width > maxWidth) {
       // throw error somehow
-      console.log("testing max width")
+      this.get('strips').pop();
+      console.log("Max Width Achieved")
     } else {
       this.set('width', width)
+      console.log("New Width: ", width)
     }
   }
 
