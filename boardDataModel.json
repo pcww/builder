@@ -14,9 +14,7 @@
     "type": "screw" // ["screw", "suction"]
   },
   "handle": false, // ["none", "shaped", "stainless", "dado", "turned", "elk-horn"]
-  "groove": {
-    "location": false // ["bottom", "top"]
-  },
+  "groove": false // [true, false],
   "length": "{calculated}",
   "strips": [
     // strip

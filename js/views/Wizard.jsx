@@ -6,30 +6,36 @@ import Sortable from '../../bower_components/Sortable/Sortable.min.js'
 import Step from 'views/Step.jsx'
 import StepHeader from 'views/StepHeader.jsx'
 import StripPanel from 'views/StripPanel.jsx'
-
-import accessories from '../accessories.json'
+import HandlePicker from 'views/HandlePicker.jsx'
+import EdgePicker from 'views/EdgePicker.jsx'
+import GroovePicker from 'views/GroovePicker.jsx'
+import FeetPicker from 'views/FeetPicker.jsx'
 
 export default class Wizard extends React.Component {
   constructor(props) {
     super(props)
     this.stepHeadings = {
-      '1': 'Build',
-      '2': 'Accessorize',
-      '3': 'Summary'
+      '1': 'Design',
+      '2': 'Endcaps',
+      '3': 'Accessorize',
+      '4': 'Board Summary'
     }
   }
 
   componentDidMount () {
     this.initializeSortable()
+
+    // Bootstrap Grossness
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip({container: 'body'})
+    })
   }
 
   componentWillMount () {
     this.state = {
       currentStep: 0,
-      totalSteps: 3,
-      stripsExpand: false,
-      handleName: accessories.handles[this.props.board.get('handle')].name,
-      handleDescription: accessories.handles[this.props.board.get('handle')].description,
+      totalSteps: 4,
+      stripsExpand: false
     }
   }
 
@@ -102,16 +108,6 @@ export default class Wizard extends React.Component {
     this.setState({ stripsExpand: !this.state.stripsExpand })
   }
 
-  onHandleChange (event) {
-    this.props.board.set('handle', event.currentTarget.value)
-
-    this.setState({
-      handleName: accessories.handles[event.currentTarget.value].name,
-      handleDescription: accessories.handles[event.currentTarget.value].description
-    })
-    // this.forceUpdate()
-  }
-
   onSubmitOrder () {
     window.alert('Order Submitted!')
   }
@@ -122,7 +118,7 @@ export default class Wizard extends React.Component {
     let Strips = board.get('strips').map((strip, key) => {
       return (
         <li key={strip.cid}>
-          <StripPanel strip={strip} removeStrip={this.removeStrip.bind(this)}></StripPanel>
+          <StripPanel id={key} strip={strip} removeStrip={this.removeStrip.bind(this)}></StripPanel>
         </li>
       )
     })
@@ -172,79 +168,8 @@ export default class Wizard extends React.Component {
           <Step isActive={this.state.currentStep === 1} key={1}>
             <div className="step-content">
               <fieldset>
-                <legend>Handle</legend>
-
-                <div className="media">
-                  <div className="media-left">
-                    <img className="media-object swatch" src={'/assets/handles/' + board.get('handle') + '.jpg'} alt="..."/>
-                  </div>
-                  <div className="media-body">
-                    <div className="row">
-                      <div className="col-xs-6">
-                        <h4 className="media-heading">{this.state.handleName}</h4>
-                        <p>{this.state.handleDescription}</p>
-                      </div>
-                      <div className="col-xs-6">
-
-                        <div className="radio">
-                          <label>
-                            <input type="radio" name="handleOption" id="handle-shaped" value="none" onChange={this.onHandleChange.bind(this)} checked={board.get('handle') === 'none' || !board.get('handle')}/>
-                            None
-                          </label>
-                        </div>
-                        <div className="radio">
-                          <label>
-                            <input type="radio" name="handleOption" id="handle-shaped" value="shaped" onChange={this.onHandleChange.bind(this)} checked={board.get('handle') === 'shaped'}/>
-                            Shaped
-                          </label>
-                        </div>
-                        <div className="radio">
-                          <label>
-                            <input type="radio" name="handleOption" id="handle-stainless" value="stainless" onChange={this.onHandleChange.bind(this)} checked={board.get('handle') === 'stainless'}/>
-                            Stainless
-                          </label>
-                        </div>
-                        <div className="radio">
-                          <label>
-                            <input type="radio" name="handleOption" id="handle-dado" value="dado" onChange={this.onHandleChange.bind(this)} checked={board.get('handle') === 'dado'}/>
-                            Dado
-                          </label>
-                        </div>
-                        <div className="radio">
-                          <label>
-                            <input type="radio" name="handleOption" id="handle-turned" value="turned" onChange={this.onHandleChange.bind(this)} checked={board.get('handle') === 'turned'}/>
-                            Turned
-                          </label>
-                        </div>
-                        <div className="radio">
-                          <label>
-                            <input type="radio" name="handleOption" id="handle-elk-horn" value="elk-horn" onChange={this.onHandleChange.bind(this)} checked={board.get('handle') === 'elk-horn'}/>
-                            Elk Horn
-                          </label>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-
-              </fieldset>
-
-              <fieldset>
-                <legend>Edge</legend>
-                <span>&hellip;</span>
-              </fieldset>
-
-              <fieldset>
-                <legend>Groove</legend>
-                <span>&hellip;</span>
-              </fieldset>
-
-              <fieldset>
-                <legend>Feet</legend>
-                <span>&hellip;</span>
+                <legend>Buttons & Nut Covers</legend>
+                &hellip;
               </fieldset>
             </div>
 
@@ -256,6 +181,36 @@ export default class Wizard extends React.Component {
           </Step>
 
           <Step isActive={this.state.currentStep === 2} key={2}>
+            <div className="step-content">
+              <fieldset>
+                <legend>Handle</legend>
+                <HandlePicker board={board}></HandlePicker>
+              </fieldset>
+
+              <fieldset>
+                <legend>Edge</legend>
+                <EdgePicker board={board}></EdgePicker>
+              </fieldset>
+
+              <fieldset>
+                <legend>Juice Groove</legend>
+                <GroovePicker board={board}></GroovePicker>
+              </fieldset>
+
+              <fieldset>
+                <legend>Feet</legend>
+                <FeetPicker board={board}></FeetPicker>
+              </fieldset>
+            </div>
+
+            <div className="step-controls controls">
+              <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
+              &nbsp;
+              <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
+            </div>
+          </Step>
+
+          <Step isActive={this.state.currentStep === 3} key={3}>
             <div className="step-content">
               Order Summary
               <hr/>
