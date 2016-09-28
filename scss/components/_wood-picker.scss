@@ -1,16 +1,23 @@
 .wood-picker {
   .dropdown-menu {
     flex-wrap: wrap;
-    max-height: 23.5rem;
-    overflow: auto;
+    height: 26rem;
+    overflow: hidden;
+    width: 29rem;
 
     .swatch {
-      margin: .25rem;
+      margin: 0 -1.75rem -1.05rem 0;
     }
   }
 
   &.open > .dropdown-menu {
     display: flex;
+  }
+
+  .color-name {
+    font-weight: 100;
+    font-size: 2.5rem;
+    letter-spacing: 0.2rem;
   }
 }
 
