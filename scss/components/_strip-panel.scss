@@ -3,6 +3,16 @@
     margin-bottom: .5rem;
     position: relative;
 
+    .panel-title a {
+      font-weight: 300;
+      font-size: 1.7rem;
+      letter-spacing: 0.1rem;
+
+      &:hover, &:focus {
+        text-decoration: none;
+      }
+    }
+
     .remove-strip {
       // position: absolute;
       // right: 5.5rem;

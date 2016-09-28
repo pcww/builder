@@ -26,13 +26,13 @@ export default class StripPanel extends React.Component {
               <fieldset>
                 <legend>Wood Type</legend>
 
-                <WoodPicker strip={this.props.strip} updateState={this.setState.bind(this)}/>
+                <WoodPicker strip={this.props.strip}/>
               </fieldset>
 
               <fieldset>
                 <legend>Strip Width</legend>
 
-                <label className="radio-inline">
+                <label className="radio-inline" data-toggle="tooltip" title="Extra-Extra Small">
                   <input
                     checked={this.props.strip.get('size') === 'xxsmall'}
                     id={radioGroupPrefix + '-size-1'}
@@ -40,10 +40,10 @@ export default class StripPanel extends React.Component {
                     type="radio"
                     value="xxsmall"
                     onChange={this.onSizeChange.bind(this)} />
-                  Extra Extra Small
+                  XXS
                 </label>
 
-                <label className="radio-inline">
+                <label className="radio-inline" data-toggle="tooltip" title="Extra Small">
                   <input
                     checked={this.props.strip.get('size') === 'xsmall'}
                     id={radioGroupPrefix + '-size-2'}
@@ -51,10 +51,10 @@ export default class StripPanel extends React.Component {
                     type="radio"
                     value="xsmall"
                     onChange={this.onSizeChange.bind(this)} />
-                  Extra Small
+                  XS
                 </label>
 
-                <label className="radio-inline">
+                <label className="radio-inline" data-toggle="tooltip" title="Small">
                   <input
                     checked={this.props.strip.get('size') === 'small'}
                     id={radioGroupPrefix + '-size-3'}
@@ -62,10 +62,10 @@ export default class StripPanel extends React.Component {
                     type="radio"
                     value="small"
                     onChange={this.onSizeChange.bind(this)} />
-                  Small
+                  S
                 </label>
 
-                <label className="radio-inline">
+                <label className="radio-inline" data-toggle="tooltip" title="Medium">
                   <input
                     checked={this.props.strip.get('size') === 'medium'}
                     id={radioGroupPrefix + '-size-4'}
@@ -73,10 +73,10 @@ export default class StripPanel extends React.Component {
                     type="radio"
                     value="medium"
                     onChange={this.onSizeChange.bind(this)} />
-                  Medium
+                  M
                 </label>
 
-                <label className="radio-inline">
+                <label className="radio-inline" data-toggle="tooltip" title="Large">
                   <input
                     checked={this.props.strip.get('size') === 'large'}
                     id={radioGroupPrefix + '-size-5'}
@@ -84,7 +84,7 @@ export default class StripPanel extends React.Component {
                     type="radio"
                     value="large"
                     onChange={this.onSizeChange.bind(this)} />
-                  Large
+                  L
                 </label>
               </fieldset>
 
