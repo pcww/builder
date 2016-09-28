@@ -32,6 +32,7 @@
   margin-right: 1rem;
   float: left;
 
+  cursor: pointer;
 }
 
 .swatch-mini {
@@ -45,6 +46,6 @@
 }
 
 .swatch-clickable:hover {
-  border-color: #000;
+  border-color: #62bd91;
   cursor: pointer;
 }

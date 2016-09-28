@@ -22,7 +22,7 @@ export default class WoodPicker extends React.Component {
       let classes = ['swatch', 'swatch-clickable', wood.safeName].join(' ')
 
       return (
-        <li className={classes} id={wood.safeName} key={index} title={wood.name} onClick={this.onChangeWood.bind(this)} />
+        <li className={classes} id={wood.safeName} key={index} title={wood.name} onClick={this.onChangeWood.bind(this)} data-toggle="tooltip" title={wood.name}/>
       )
     })
 
