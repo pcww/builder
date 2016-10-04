@@ -11,6 +11,7 @@ export default class StripPanel extends React.Component {
   }
 
   render () {
+    let headingTarget = 'heading-' + this.props.id
     let collapseTarget = 'collapse-' + this.props.id
     let radioGroupPrefix = 'strip-' + this.props.id
     let radioGroupName = radioGroupPrefix + '-wood-size'
@@ -20,7 +21,7 @@ export default class StripPanel extends React.Component {
       <li className="panel panel-default">
         <StripHeader id={this.props.id} strip={this.props.strip} />
 
-        <div id={collapseTarget} className={"panel-collapse collapse " + panelBodyClass} role="tabpanel" aria-labelledby="headingOne">
+        <div id={collapseTarget} className={"panel-collapse collapse " + panelBodyClass} role="tabpanel" aria-labelledby={headingTarget}>
           <div className="panel-body">
             <fieldset>
               <legend>Wood Type</legend>
