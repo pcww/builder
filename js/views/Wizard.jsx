@@ -11,7 +11,13 @@ import EdgePicker from 'views/EdgePicker.jsx'
 import GroovePicker from 'views/GroovePicker.jsx'
 import FeetPicker from 'views/FeetPicker.jsx'
 
+import constants from '../constants.json'
+
 export default class Wizard extends React.Component {
+  static get constants() {
+    return wizardConstants
+  }
+
   constructor(props) {
     super(props)
     this.stepHeadings = {
@@ -20,6 +26,7 @@ export default class Wizard extends React.Component {
       '3': 'Accessorize',
       '4': 'Board Summary'
     }
+
   }
 
   componentDidMount () {
@@ -57,6 +64,7 @@ export default class Wizard extends React.Component {
         stripsArray.splice(newIndex, 0, strip)
 
         strips.reset(stripsArray)
+        this.setState({})
       }
     })
   }
@@ -117,9 +125,7 @@ export default class Wizard extends React.Component {
 
     let Strips = board.get('strips').map((strip, key) => {
       return (
-        <li key={strip.cid}>
-          <StripPanel id={key} strip={strip} removeStrip={this.removeStrip.bind(this)}></StripPanel>
-        </li>
+        <StripPanel key={strip.cid} id={key} strip={strip} canRemoveStrip={!!(this.props.board.get('strips').length > constants.MINIMUM_NUMBER_STRIPS)} removeStrip={this.removeStrip.bind(this)}></StripPanel>
       )
     })
 
@@ -154,7 +160,7 @@ export default class Wizard extends React.Component {
               <fieldset>
                 <legend>Board Strips <button type="button" className="btn btn-link pull-right" onClick={this.onToggleStripsExpand.bind(this)}><i className={expandClass} aria-hidden="true"></i></button></legend>
 
-                <ol className="sortable-list">{Strips}</ol>
+                <ol id="strip-list" className="sortable-list panel-group" role="tablist" aria-multiselectable="true">{Strips}</ol>
               </fieldset>
             </div>
 
