@@ -8,7 +8,7 @@ export default class WoodPicker extends React.Component {
     let value = event.currentTarget.id
 
     this.props.strip.set('wood', value)
-    //we were calling passed in updateState func that did setState({wood: value}), but since the parent (StripPanel) doesnt use that state param itself, it's sort of pointless. Just call forceUpdate()
+    this.props.updateState({}) // using the passed in updateState forces this compoentn and the StripPanel parent to re-render.
     this.forceUpdate()
   }
 
