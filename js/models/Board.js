@@ -38,7 +38,15 @@ export default class Board extends BaseModel {
     this.listenTo(this, 'sync', this._updateWidth)
   }
 
-  _rerenderStrips() {
+  _currentWidth () {
+    let width = 0;
+    this.get('strips').forEach(strip => {
+      width += sizes[strip.get('size')]
+    })
+    return width
+  }
+
+  _rerenderStrips () {
     console.log('_rerenderStrips', this.get('strips').length)
     // this.get('strips').forEach(strip => {
     //   strip.set('rendered', false, {silent: true})
@@ -49,9 +57,9 @@ export default class Board extends BaseModel {
   _updateWidth () {
     let width = 0
     console.log('_updateWidth', this.get('strips').width)
-    this.get('strips').forEach(strip => {
-      width += sizes[strip.get('size')]
-    })
+
+    // Current Width
+    width = this._currentWidth()
 
     console.log("width: ", width)
 
