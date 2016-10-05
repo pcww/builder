@@ -83,59 +83,60 @@
 
   "endcaps": {
     "button": {
-      "name": "Button",
+      "name": "Buttons",
       "description": "Flat 1/8\" stainless endcaps in your choice of color."
     },
     "nutcover": {
-      "name": "Nut Cover",
-      "description": "1\" hefty threaded nut-covers in stainless steel (only)."
+      "name": "Nut Covers",
+      "description": "1\" hefty threaded nut-covers in stainless steel."
     }
   },
 
   "endcap-colors": {
     "stainless": {
-      "name": "Stainless",
-      "color": "#eee"
+      "name": "Stainless Steel"
     },
     "black": {
-      "name": "Black",
-      "color": "#000"
+      "name": "Black"
     },
     "white": {
-      "name": "White",
-      "color": "#fff"
+      "name": "White"
     },
     "red": {
-      "name": "Red",
-      "color": "#f00"
+      "name": "Red"
     },
     "orange": {
-      "name": "Orange",
-      "color": "#ffa500"
+      "name": "Orange"
     },
     "yellow": {
-      "name": "Yellow",
-      "color": "#ffff00"
+      "name": "Yellow"
     },
     "green": {
-      "name": "Green",
-      "color": "#004225"
+      "name": "Green"
     },
     "cyan": {
-      "name": "Cyan",
-      "color": "#66ccff"
+      "name": "Cyan"
     },
     "blue": {
-      "name": "Blue",
-      "color": "#003278"
+      "name": "Blue"
     },
     "purple": {
-      "name": "Purple",
-      "color": "#800080"
+      "name": "Purple"
+    }
+  },
+
+  "endcaps-branding": {
+    "none": {
+      "name": "No Branding",
+      "description": "Your endcaps will be devoid of any fancy logos."
     },
-    "brown": {
-      "name": "Brown",
-      "color": "#a52a2a"
+    "pineclifflogo": {
+      "name": "PineCliff Logo",
+      "description": "Show your support with a PineCliff Woodworks logo emblazoned on one of the endcaps."
+    },
+    "pcwartlogo": {
+      "name": "PCW Art Logo",
+      "description": "Show your inner fanboy with the new PCW Art logo on one of your endcaps."
     }
   }
 }

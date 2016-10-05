@@ -31,21 +31,16 @@ export default class Wizard extends React.Component {
 
   }
 
-  componentDidMount () {
-    this.initializeSortable()
-
-    // Bootstrap Grossness
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip({container: 'body'})
-    })
-  }
-
   componentWillMount () {
     this.state = {
       currentStep: 0,
       totalSteps: 4,
       stripsExpand: false
     }
+  }
+
+  componentDidMount () {
+    this.initializeSortable()
   }
 
   initializeSortable () {
@@ -216,10 +211,7 @@ export default class Wizard extends React.Component {
 
           <Step isActive={this.state.currentStep === 1} key={1}>
             <div className="step-content">
-              <fieldset>
-                <legend>Endcap Type</legend>
-                <EndcapPicker board={board}></EndcapPicker>
-              </fieldset>
+              <EndcapPicker board={board}></EndcapPicker>
             </div>
 
             <div className="step-controls controls">

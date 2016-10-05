@@ -8,13 +8,13 @@ export default class WoodPicker extends React.Component {
     let value = event.currentTarget.id
 
     this.props.strip.set('wood', value)
-    this.props.updateState({}) // using the passed in updateState forces this compoentn and the StripPanel parent to re-render.
+    this.props.updateState({}) // using the passed in updateState forces this component and the StripPanel parent to re-render.
     this.forceUpdate()
   }
 
   render () {
     let currentWood = this.props.strip.get('wood')
-    let previewClasses = ['swatch', currentWood].join(' ')
+    let previewClasses = ['swatch', 'swatch-big', currentWood].join(' ')
     let woodObj = woods[currentWood] || 'Unknown'
 
     let Woods = Object.keys(woods).map((key, index) => {
@@ -22,7 +22,7 @@ export default class WoodPicker extends React.Component {
       let classes = ['swatch', 'swatch-clickable', wood.safeName].join(' ')
 
       return (
-        <li className={classes} id={wood.safeName} key={index} title={wood.name} onClick={this.onChangeWood.bind(this)} data-toggle="tooltip" title={wood.name}/>
+        <li className={classes} id={wood.safeName} key={index} title={wood.name} onClick={this.onChangeWood.bind(this)} data-toggle="tooltip"/>
       )
     })
 

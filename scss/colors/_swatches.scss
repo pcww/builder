@@ -1,0 +1,86 @@
+.color-swatch {
+  background-size: cover;
+  border-radius: 2em 0em 2em 0em;
+  border-width: .2rem;
+  border-style: solid;
+  height: 7rem;
+  width: 7rem;
+  margin: 0.2em 0.1em;
+  float: left;
+  cursor: pointer;
+  position: relative;
+
+  .fa {
+    opacity: 0;
+    transition: opacity .4s ease-in-out;
+
+    position: relative;
+    top: 2rem;
+    left: 2rem;
+    background-color: white;
+
+    color: #000;
+    border-radius: 2em;
+    height: 2.8rem;
+    width: 2.8rem;
+    text-align: center;
+  }
+
+  &.selected {
+    .fa {
+      opacity: 1;
+    }
+  }
+
+  &.disabled {
+    opacity: .3;
+    cursor: not-allowed;
+  }
+
+    &.color-stainless {
+    // background-color: silver;
+    background-image: url('/assets/misc/stainless.jpg');
+    border-color: silver;
+  }
+  &.color-black {
+    background-color: #000;
+    border-color: #000;
+  }
+  &.color-white {
+    background-color: #fff;
+    border-color: #fff;
+  }
+  &.color-red {
+    background-color: #f00;
+    border-color: #f00;
+  }
+  &.color-orange {
+    background-color: #ffa500;
+    border-color: #ffa500;
+  }
+  &.color-yellow {
+    background-color: #ffff00;
+    border-color: #ffff00;
+  }
+  &.color-green {
+    background-color: #004225;
+    border-color: #004225;
+  }
+  &.color-cyan {
+    background-color: #66ccff;
+    border-color: #66ccff;
+  }
+  &.color-blue {
+    background-color: #003278;
+    border-color: #003278;
+  }
+  &.color-purple {
+    background-color: #800080;
+    border-color: #800080;
+  }
+  &.color-brown {
+    background-color: #a52a2a;
+    border-color: #a52a2a;
+  }
+
+}
