@@ -79,5 +79,63 @@
       "name": "Suction Cup",
       "description": "Four low-profile suction cup feet placed under the board. Non-destructive feet allow for dual sided use."
     }
+  },
+
+  "endcaps": {
+    "button": {
+      "name": "Button",
+      "description": "Flat 1/8\" stainless endcaps in your choice of color."
+    },
+    "nutcover": {
+      "name": "Nut Cover",
+      "description": "1\" hefty threaded nut-covers in stainless steel (only)."
+    }
+  },
+
+  "endcap-colors": {
+    "stainless": {
+      "name": "Stainless",
+      "color": "#eee"
+    },
+    "black": {
+      "name": "Black",
+      "color": "#000"
+    },
+    "white": {
+      "name": "White",
+      "color": "#fff"
+    },
+    "red": {
+      "name": "Red",
+      "color": "#f00"
+    },
+    "orange": {
+      "name": "Orange",
+      "color": "#ffa500"
+    },
+    "yellow": {
+      "name": "Yellow",
+      "color": "#ffff00"
+    },
+    "green": {
+      "name": "Green",
+      "color": "#004225"
+    },
+    "cyan": {
+      "name": "Cyan",
+      "color": "#66ccff"
+    },
+    "blue": {
+      "name": "Blue",
+      "color": "#003278"
+    },
+    "purple": {
+      "name": "Purple",
+      "color": "#800080"
+    },
+    "brown": {
+      "name": "Brown",
+      "color": "#a52a2a"
+    }
   }
 }
