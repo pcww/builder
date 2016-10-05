@@ -6,6 +6,7 @@ import Sortable from '../../bower_components/Sortable/Sortable.min.js'
 import Step from 'views/Step.jsx'
 import StepHeader from 'views/StepHeader.jsx'
 import StripPanel from 'views/StripPanel.jsx'
+import EndcapPicker from 'views/EndcapPicker.jsx'
 import HandlePicker from 'views/HandlePicker.jsx'
 import EdgePicker from 'views/EdgePicker.jsx'
 import GroovePicker from 'views/GroovePicker.jsx'
@@ -174,8 +175,8 @@ export default class Wizard extends React.Component {
           <Step isActive={this.state.currentStep === 1} key={1}>
             <div className="step-content">
               <fieldset>
-                <legend>Buttons & Nut Covers</legend>
-                &hellip;
+                <legend>Endcap Type</legend>
+                <EndcapPicker board={board}></EndcapPicker>
               </fieldset>
             </div>
 
