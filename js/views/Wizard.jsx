@@ -130,7 +130,12 @@ export default class Wizard extends React.Component {
   }
 
   addStrip () {
-    this.props.board.get('strips').add({ "wood": "maple", "size": "large"})
+    let strips = this.props.board.get('strips')
+    strips.add({
+      id: strips.length,
+      size: 'large',
+      wood: 'maple'
+    })
     this.forceUpdate()
     this.initializeSortable()
   }
