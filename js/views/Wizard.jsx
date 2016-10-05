@@ -64,27 +64,25 @@ export default class Wizard extends React.Component {
         })
       },
       onMove: (event) => {
-        let draggedStrip = event.dragged
-        let draggedRect = event.draggedRect
-        let relatedStrip = event.related
-        let relatedRect = event.relatedRect
         let strips = this.props.board.get('strips')
         let stripsArray = strips.toJSON()
-        let strip = _.findWhere(stripsArray, {id: parseInt(draggedStrip.getAttribute('data-id'))})
-        let stripIndex = _.indexOf(stripsArray, strip)
 
-        stripsArray = _.without(stripsArray, strip)
+        // Dragged strip details
+        let draggedRect = event.draggedRect
+        let draggedStrip = event.dragged
+        let draggedStripId = parseInt(draggedStrip.getAttribute('data-id'))
+        let draggedStripModel = _.findWhere(stripsArray, {id: draggedStripId})
+        let draggedStripIndex = _.indexOf(stripsArray, draggedStripModel)
 
-        if (draggedRect.top < relatedRect.bottom) {
-          console.log('moved down')
-          stripsArray.splice(stripIndex + 1, 0, strip)
-        }
+        // Related strip details
+        let relatedRect = event.relatedRect
+        let relatedStrip = event.related
+        let relatedStripId = parseInt(relatedStrip.getAttribute('data-id'))
+        let relatedStripModel = _.findWhere(stripsArray, {id: relatedStripId})
+        let relatedStripIndex = _.indexOf(stripsArray, relatedStripModel)
 
-        if (draggedRect.bottom > relatedRect.top) {
-          console.log('moved up')
-          stripsArray.splice(stripIndex - 1, 0, strip)
-        }
-
+        stripsArray = _.without(stripsArray, draggedStripModel)
+        stripsArray.splice(relatedStripIndex, 0, draggedStripModel)
         strips.reset(stripsArray)
 
         this.setState({})
