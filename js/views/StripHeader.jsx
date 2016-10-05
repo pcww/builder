@@ -15,8 +15,9 @@ export default class StripPanel extends React.Component {
     return (
       <div className="panel-heading" role="tab" id={headingTarget}>
         <h4 className="panel-title">
+          <i className="fa drag-handle fa-bars" aria-hidden="true"></i>
+
           <a role="button" data-toggle="collapse" data-parent="#strip-list" href={collapseTargetId} aria-expanded="true" aria-controls={collapseTarget}>
-            <i className="fa drag-handle fa-bars" aria-hidden="true"></i>
             {woodObj.name}
             <div className={classes}></div>
           </a>

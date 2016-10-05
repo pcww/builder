@@ -15,13 +15,13 @@ export default class StripPanel extends React.Component {
     let collapseTarget = 'collapse-' + this.props.id
     let radioGroupPrefix = 'strip-' + this.props.id
     let radioGroupName = radioGroupPrefix + '-wood-size'
-    let panelBodyClass = this.props.id === 0 ? 'in' : ''
+//    let panelBodyClass = this.props.id === 0 ? 'in' : ''
 
     return (
-      <li className="panel panel-default">
-        <StripHeader id={this.props.id} strip={this.props.strip} />
+      <div>
+        <StripHeader data-id={this.props.strip.get('data-id')} id={this.props.id} strip={this.props.strip} />
 
-        <div id={collapseTarget} className={"panel-collapse collapse " + panelBodyClass} role="tabpanel" aria-labelledby={headingTarget}>
+        <div id={collapseTarget} className="panel-collapse collapse" role="tabpanel" aria-labelledby={headingTarget}>
           <div className="panel-body">
             <fieldset>
               <legend>Wood Type</legend>
@@ -93,7 +93,7 @@ export default class StripPanel extends React.Component {
 
           </div>
         </div>
-      </li>
+      </div>
     )
   }
 }

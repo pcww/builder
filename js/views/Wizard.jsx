@@ -1,3 +1,4 @@
+import _ from 'underscore'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import classNames from 'classnames'
@@ -54,18 +55,57 @@ export default class Wizard extends React.Component {
 
     this.sortable = Sortable.create(document.querySelector('.sortable-list'), {
       animation: 150,
+      delay: 0,
       handle: '.drag-handle',
-      onSort: (event) => {
-        let newIndex = event.newIndex
-        let oldIndex = event.oldIndex
+      onEnd: (event) => {
         let strips = this.props.board.get('strips')
-        let strip = strips.remove(strips.at(oldIndex))
+
+        strips.forEach((strip) => {
+          strip.set('moving', false)
+        })
+      },
+      onMove: (event) => {
+        let strips = this.props.board.get('strips')
         let stripsArray = strips.toJSON()
 
-        stripsArray.splice(newIndex, 0, strip)
+        // Dragged strip details
+        let draggedRect = event.draggedRect
+        let draggedStrip = event.dragged
+        let draggedStripId = parseInt(draggedStrip.getAttribute('data-id'))
+        let draggedStripModel = _.findWhere(stripsArray, {id: draggedStripId})
+        let draggedStripIndex = _.indexOf(stripsArray, draggedStripModel)
 
+        // Related strip details
+        let relatedRect = event.relatedRect
+        let relatedStrip = event.related
+        let relatedStripId = parseInt(relatedStrip.getAttribute('data-id'))
+        let relatedStripModel = _.findWhere(stripsArray, {id: relatedStripId})
+        let relatedStripIndex = _.indexOf(stripsArray, relatedStripModel)
+
+        stripsArray = _.without(stripsArray, draggedStripModel)
+        stripsArray.splice(relatedStripIndex, 0, draggedStripModel)
         strips.reset(stripsArray)
+
         this.setState({})
+      },
+//      onSort: (event) => {
+//        let newIndex = event.newIndex
+//        let oldIndex = event.oldIndex
+//        let strips = this.props.board.get('strips')
+//        let strip = strips.remove(strips.at(oldIndex))
+//        let stripsArray = strips.toJSON()
+//
+//        stripsArray.splice(newIndex, 0, strip)
+//
+//        strips.reset(stripsArray)
+//        this.setState({})
+//      },
+      onStart: (event) => {
+        let oldIndex = event.oldIndex
+        let strips = this.props.board.get('strips')
+        let strip = strips.at(oldIndex)
+
+        strip.set('moving', true)
       }
     })
   }
@@ -126,7 +166,9 @@ export default class Wizard extends React.Component {
 
     let Strips = board.get('strips').map((strip, key) => {
       return (
-        <StripPanel key={strip.cid} id={key} strip={strip} canRemoveStrip={!!(this.props.board.get('strips').length > constants.MINIMUM_NUMBER_STRIPS)} removeStrip={this.removeStrip.bind(this)}></StripPanel>
+        <li className="panel panel-default" data-id={strip.get('id')} key={strip.get('id')}>
+          <StripPanel key={strip.cid} id={key} strip={strip} canRemoveStrip={!!(this.props.board.get('strips').length > constants.MINIMUM_NUMBER_STRIPS)} removeStrip={this.removeStrip.bind(this)}></StripPanel>
+        </li>
       )
     })
 
