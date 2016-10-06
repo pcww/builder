@@ -1,0 +1,9 @@
+.board-layout {
+  align-content: stretch;
+  display: flex;
+  height: 2rem;
+
+  > * {
+    background-size: cover;
+  }
+}
