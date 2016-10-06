@@ -1,3 +1,4 @@
+import _ from 'underscore'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import classNames from 'classnames'
@@ -6,12 +7,21 @@ import Sortable from '../../bower_components/Sortable/Sortable.min.js'
 import Step from 'views/Step.jsx'
 import StepHeader from 'views/StepHeader.jsx'
 import StripPanel from 'views/StripPanel.jsx'
+import EndcapPicker from 'views/EndcapPicker.jsx'
 import HandlePicker from 'views/HandlePicker.jsx'
 import EdgePicker from 'views/EdgePicker.jsx'
 import GroovePicker from 'views/GroovePicker.jsx'
 import FeetPicker from 'views/FeetPicker.jsx'
 
+import SummaryStep from 'views/SummaryStep.jsx'
+
+import constants from '../constants.json'
+
 export default class Wizard extends React.Component {
+  static get constants() {
+    return wizardConstants
+  }
+
   constructor(props) {
     super(props)
     this.stepHeadings = {
@@ -23,15 +33,6 @@ export default class Wizard extends React.Component {
     this.maxWidth = 13
   }
 
-  componentDidMount () {
-    this.initializeSortable()
-
-    // Bootstrap Grossness
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip({container: 'body'})
-    })
-  }
-
   componentWillMount () {
     this.state = {
       currentStep: 0,
@@ -41,6 +42,10 @@ export default class Wizard extends React.Component {
     }
   }
 
+  componentDidMount () {
+    this.initializeSortable()
+  }
+
   initializeSortable () {
     if (this.sortable) {
       this.sortable.destroy()
@@ -48,17 +53,45 @@ export default class Wizard extends React.Component {
 
     this.sortable = Sortable.create(document.querySelector('.sortable-list'), {
       animation: 150,
+      delay: 0,
       handle: '.drag-handle',
-      onSort: (event) => {
-        let newIndex = event.newIndex
-        let oldIndex = event.oldIndex
+      onEnd: (event) => {
         let strips = this.props.board.get('strips')
-        let strip = strips.remove(strips.at(oldIndex))
+
+        strips.forEach((strip) => {
+          strip.set('moving', false)
+        })
+      },
+      onMove: (event) => {
+        let strips = this.props.board.get('strips')
         let stripsArray = strips.toJSON()
 
-        stripsArray.splice(newIndex, 0, strip)
+        // Dragged strip details
+        let draggedRect = event.draggedRect
+        let draggedStrip = event.dragged
+        let draggedStripId = parseInt(draggedStrip.getAttribute('data-id'))
+        let draggedStripModel = _.findWhere(stripsArray, {id: draggedStripId})
+        let draggedStripIndex = _.indexOf(stripsArray, draggedStripModel)
 
+        // Related strip details
+        let relatedRect = event.relatedRect
+        let relatedStrip = event.related
+        let relatedStripId = parseInt(relatedStrip.getAttribute('data-id'))
+        let relatedStripModel = _.findWhere(stripsArray, {id: relatedStripId})
+        let relatedStripIndex = _.indexOf(stripsArray, relatedStripModel)
+
+        stripsArray = _.without(stripsArray, draggedStripModel)
+        stripsArray.splice(relatedStripIndex, 0, draggedStripModel)
         strips.reset(stripsArray)
+
+        this.setState({})
+      },
+      onStart: (event) => {
+        let oldIndex = event.oldIndex
+        let strips = this.props.board.get('strips')
+        let strip = strips.at(oldIndex)
+
+        strip.set('moving', true)
       }
     })
   }
@@ -95,8 +128,12 @@ export default class Wizard extends React.Component {
   }
 
   addStrip () {
-    console.log('addStrip()')
-    this.props.board.get('strips').add({ "wood": "maple", "size": "medium"})
+    let strips = this.props.board.get('strips')
+    strips.add({
+      id: strips.length,
+      size: 'large',
+      wood: 'maple'
+    })
     this.forceUpdate()
     this.initializeSortable()
     this.updateMaxedWidth()
@@ -129,8 +166,8 @@ export default class Wizard extends React.Component {
 
     let Strips = board.get('strips').map((strip, key) => {
       return (
-        <li key={strip.cid}>
-          <StripPanel id={key} strip={strip} removeStrip={this.removeStrip.bind(this)}></StripPanel>
+        <li className="panel panel-default" data-id={strip.get('id')} key={strip.get('id')}>
+          <StripPanel key={strip.cid} id={key} strip={strip} canRemoveStrip={!!(this.props.board.get('strips').length > constants.MINIMUM_NUMBER_STRIPS)} removeStrip={this.removeStrip.bind(this)}></StripPanel>
         </li>
       )
     })
@@ -166,7 +203,7 @@ export default class Wizard extends React.Component {
               <fieldset>
                 <legend>Board Strips <button type="button" className="btn btn-link pull-right" onClick={this.onToggleStripsExpand.bind(this)}><i className={expandClass} aria-hidden="true"></i></button></legend>
 
-                <ol className="sortable-list">{Strips}</ol>
+                <ol id="strip-list" className="sortable-list panel-group" role="tablist" aria-multiselectable="true">{Strips}</ol>
               </fieldset>
             </div>
 
@@ -188,10 +225,7 @@ export default class Wizard extends React.Component {
 
           <Step isActive={this.state.currentStep === 1} key={1}>
             <div className="step-content">
-              <fieldset>
-                <legend>Buttons & Nut Covers</legend>
-                &hellip;
-              </fieldset>
+              <EndcapPicker board={board}></EndcapPicker>
             </div>
 
             <div className="step-controls controls">
@@ -232,14 +266,7 @@ export default class Wizard extends React.Component {
           </Step>
 
           <Step isActive={this.state.currentStep === 3} key={3}>
-            <div className="step-content">
-              Order Summary
-              <hr/>
-
-              <pre>Order details...</pre>
-
-              <br/>
-            </div>
+            <SummaryStep board={board}></SummaryStep>
 
             <div className="step-controls controls">
               <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
@@ -248,8 +275,6 @@ export default class Wizard extends React.Component {
             </div>
           </Step>
         </div>
-
-
       </menu>
     )
   }

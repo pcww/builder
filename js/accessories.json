@@ -79,5 +79,64 @@
       "name": "Suction Cup",
       "description": "Four low-profile suction cup feet placed under the board. Non-destructive feet allow for dual sided use."
     }
+  },
+
+  "endcaps": {
+    "button": {
+      "name": "Buttons",
+      "description": "Flat 1/8\" stainless endcaps in your choice of color."
+    },
+    "nutcover": {
+      "name": "Nut Covers",
+      "description": "1\" hefty threaded nut-covers in stainless steel."
+    }
+  },
+
+  "endcap-colors": {
+    "stainless": {
+      "name": "Stainless Steel"
+    },
+    "black": {
+      "name": "Black"
+    },
+    "white": {
+      "name": "White"
+    },
+    "red": {
+      "name": "Red"
+    },
+    "orange": {
+      "name": "Orange"
+    },
+    "yellow": {
+      "name": "Yellow"
+    },
+    "green": {
+      "name": "Green"
+    },
+    "cyan": {
+      "name": "Cyan"
+    },
+    "blue": {
+      "name": "Blue"
+    },
+    "purple": {
+      "name": "Purple"
+    }
+  },
+
+  "endcaps-branding": {
+    "none": {
+      "name": "No Branding",
+      "description": "Your endcaps will be devoid of any fancy logos."
+    },
+    "pineclifflogo": {
+      "name": "PineCliff Logo",
+      "description": "Show your support with a PineCliff Woodworks logo emblazoned on one of the endcaps."
+    },
+    "pcwartlogo": {
+      "name": "PCW Art Logo",
+      "description": "Show your inner fanboy with the new PCW Art logo on one of your endcaps."
+    }
   }
 }

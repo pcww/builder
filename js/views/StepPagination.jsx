@@ -7,7 +7,7 @@ export default class StepPagination extends React.Component {
 
   render () {
     return (
-      <nav class="fuckit">
+      <nav className="fuckit">
         <button className="btn btn-default previous" onClick={this.handleClick}>
           <i className="fa fa-chevron-circle-left"></i>
           Back
