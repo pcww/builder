@@ -13,6 +13,8 @@ import EdgePicker from 'views/EdgePicker.jsx'
 import GroovePicker from 'views/GroovePicker.jsx'
 import FeetPicker from 'views/FeetPicker.jsx'
 
+import SummaryStep from 'views/SummaryStep.jsx'
+
 import constants from '../constants.json'
 
 export default class Wizard extends React.Component {
@@ -28,7 +30,6 @@ export default class Wizard extends React.Component {
       '3': 'Accessorize',
       '4': 'Board Summary'
     }
-
   }
 
   componentWillMount () {
@@ -83,18 +84,6 @@ export default class Wizard extends React.Component {
 
         this.setState({})
       },
-//      onSort: (event) => {
-//        let newIndex = event.newIndex
-//        let oldIndex = event.oldIndex
-//        let strips = this.props.board.get('strips')
-//        let strip = strips.remove(strips.at(oldIndex))
-//        let stripsArray = strips.toJSON()
-//
-//        stripsArray.splice(newIndex, 0, strip)
-//
-//        strips.reset(stripsArray)
-//        this.setState({})
-//      },
       onStart: (event) => {
         let oldIndex = event.oldIndex
         let strips = this.props.board.get('strips')
@@ -257,14 +246,7 @@ export default class Wizard extends React.Component {
           </Step>
 
           <Step isActive={this.state.currentStep === 3} key={3}>
-            <div className="step-content">
-              Order Summary
-              <hr/>
-
-              <pre>Order details...</pre>
-
-              <br/>
-            </div>
+            <SummaryStep board={board}></SummaryStep>
 
             <div className="step-controls controls">
               <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
@@ -273,8 +255,6 @@ export default class Wizard extends React.Component {
             </div>
           </Step>
         </div>
-
-
       </menu>
     )
   }
