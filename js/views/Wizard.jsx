@@ -122,9 +122,7 @@ export default class Wizard extends React.Component {
   }
 
   updateMaxedWidth () {
-    board = this.props.board
-    console.log('updateMaxedWidth()', board._currentWidth(), this.maxWidth)
-    this.setState({ maxedWidth: (board._currentWidth() > this.maxWidth) })
+    this.setState({ maxedWidth: (this.props.board._currentWidth() > this.maxWidth) })
   }
 
   addStrip () {
