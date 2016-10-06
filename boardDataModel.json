@@ -1,5 +1,7 @@
 // hera
 {
+  "name": "Hera",
+  "template": false, // [true, false] whether this is a PCW "god board template"
   "brand": {
     "placement": "top left" // ["bottom", "left", "right", "top"]
   },
@@ -8,7 +10,8 @@
   },
   "endcaps": {
     "color": "nickel", // ["black", "nickel", "white"]
-    "type": "nut cover" // ["button", "nut cover"]
+    "type": "nut cover", // ["button", "nut cover"]
+    "branding": "pineclifflogo" // ["pineclifflogo", "pcwartlogo", "none"]
   },
   "feet": {
     "type": "screw" // ["screw", "suction"]

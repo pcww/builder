@@ -28,7 +28,7 @@ export default class EdgePicker extends React.Component {
     return (
       <div className="media">
         <div className="media-left">
-          <img className="media-object swatch" src={'/assets/edges/' + edge + '.jpg'} alt="..."/>
+          <img className="media-object swatch swatch-big" src={'/assets/edges/' + edge + '.jpg'} alt="..."/>
         </div>
         <div className="media-body">
           <div className="row">

@@ -17,7 +17,7 @@ export default class Builder extends React.Component {
   componentWillMount () {
     this.request = this.state.board.fetch()
     .done(() => {
-      this.setState({loaded: true})
+      setTimeout(() => {this.setState({loaded: true})}, 1000)
     })
   }
 
@@ -36,7 +36,13 @@ export default class Builder extends React.Component {
     }
 
     return (
-      <main><div className="loading">Loading that sexy board data...</div></main>
+      <main>
+        <div className="loading">
+          <img src="/assets/misc/pcw-logo.png"/>
+          <p>Gathering up some lumber...</p>
+          <img src="/assets/misc/loading.gif"/>
+        </div>
+      </main>
     )
 
   }

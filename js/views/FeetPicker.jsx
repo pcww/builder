@@ -18,7 +18,7 @@ export default class FeetPicker extends React.Component {
     return (
       <div className="media">
         <div className="media-left">
-          <img className="media-object swatch" src={'/assets/feet/' + feet + '.jpg'} alt="..."/>
+          <img className="media-object swatch swatch-big" src={'/assets/feet/' + feet + '.jpg'} alt="..."/>
         </div>
         <div className="media-body">
           <div className="row">

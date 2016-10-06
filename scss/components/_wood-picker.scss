@@ -35,8 +35,13 @@
   cursor: pointer;
 }
 
+.swatch-big {
+  height: 10rem;
+  width: 10rem;
+  border-radius: 5rem;
+}
+
 .swatch-mini {
-  background-: cover;
   border-width: .1rem;
   display: inline-block;
   float: right;

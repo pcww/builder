@@ -18,7 +18,7 @@ export default class HandlePicker extends React.Component {
     return (
       <div className="media">
         <div className="media-left">
-          <img className="media-object swatch" src={'/assets/handles/' + handle + '.jpg'} alt="..."/>
+          <img className="media-object swatch swatch-big" src={'/assets/handles/' + handle + '.jpg'} alt="..."/>
         </div>
         <div className="media-body">
           <div className="row">
