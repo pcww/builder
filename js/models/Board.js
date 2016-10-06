@@ -61,16 +61,8 @@ export default class Board extends BaseModel {
     // Current Width
     width = this._currentWidth()
 
+    this.set('width', width)
     console.log("width: ", width)
-
-    if (width > maxWidth) {
-      // throw error somehow
-      this.get('strips').pop();
-      console.log("Max Width Achieved")
-    } else {
-      this.set('width', width)
-      console.log("New Width: ", width)
-    }
   }
 
   constructor (data, options) {
