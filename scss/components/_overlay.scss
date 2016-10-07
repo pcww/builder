@@ -1,0 +1,61 @@
+section[type="overlay"] {
+  font-weight: 100;
+  font-size: 3rem;
+  pointer-events: none;
+  width: 70vw;
+  height: 100vh;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  .dimensions {
+    position: absolute;
+    left: 0.5rem;
+    top: .5rem;
+    font-size: 2.0rem;
+  }
+
+  .cost {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 8.5rem;
+    width: 100%;
+    background-color: rgba(245, 245, 245, 0.7);
+    margin: 0;
+  }
+
+
+  .background-picker {
+    position: absolute;
+
+    background-color: transparent;
+    border: 0;
+
+    bottom: 5rem;
+    right: -7rem;
+
+    transform: scale(.6);
+    pointer-events: all;
+    transition: all 0.5s ease-in-out;
+
+    &:hover {
+      transform: scale(1);
+      bottom: 9rem;
+      right: 2rem;
+
+      .panel-heading {
+        opacity: 1;
+      }
+    }
+
+    .panel-heading {
+      background-color: rgba(0,0,0,0.1);
+      border-radius: 1rem 1rem 1rem 1rem;
+      border: 0;
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+    }
+  }
+}
