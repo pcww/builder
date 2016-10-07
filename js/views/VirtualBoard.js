@@ -112,7 +112,8 @@ export default class VirtualBoard {
     this.controls.enableDamping = true
     this.controls.dampingFactor = 0.25
 
-    this.renderer.setClearColor('white', 1)
+    // this.renderer.setClearColor('white', 1)
+    this.renderer.setClearColor( 0x000000, 0 )
 
     if (!!window.debug) {
       this.scene.add(buildAxes(1000))
