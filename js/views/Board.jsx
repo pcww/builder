@@ -57,12 +57,19 @@ export default class Builder extends React.Component {
       overlay = (
         <section type="overlay">
           <div className="dimensions badge">Dimensions {length}" x {width}"</div>
+
           <div className="cost well text-center">Board Cost: <span className="label label-success">$297.36</span></div>
+
           <div className="background-picker panel panel-default">
             <div className="panel-heading">select a background</div>
             <div className="panel-body">
               {Backgrounds}
             </div>
+          </div>
+
+          <div className="idea-zone well well-sm">
+            <i className="fa fa-2x fa-lightbulb-o" aria-hidden="true"></i>
+            <a href="http://pinecliffwoodworks.com/gallery/" target="_blank">Need an idea? Visit the Gallery!</a>
           </div>
         </section>
       )
