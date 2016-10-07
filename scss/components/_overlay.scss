@@ -58,4 +58,45 @@ section[type="overlay"] {
       transition: all 0.5s ease-in-out;
     }
   }
+
+  .idea-zone {
+    position: absolute;
+    width: 7.5rem;
+
+    pointer-events: all;
+    transition: all .5s ease-in-out;
+    transform: scale(.5);
+    left: 0;
+    bottom: 6.5rem;
+    opacity: .7;
+
+    overflow: hidden;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+
+    a {
+      white-space: nowrap;
+      position: absolute;
+      top: 2rem;
+      opacity: 0;
+      margin-left: 2rem;
+      color: #62bd91;
+    }
+
+    &:hover {
+      width: 50rem;
+      bottom: 8rem;
+      left: 2rem;
+      transform: scale(1);
+      opacity: 1;
+
+      a {
+        opacity: 1;
+      }
+
+      .fa {
+        color: #62bd91;
+      }
+    }
+  }
 }
