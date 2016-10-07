@@ -100,9 +100,10 @@ export default class VirtualBoard {
 
     this.controls.enableKeys = false
 
-    this.camera.position.z = 20
-    this.camera.position.x = -40
-    this.camera.position.y = 20
+    this.camera.position.x = -29.19
+    this.camera.position.y = 29.98
+    this.camera.position.z = 25.47
+    // -29.191713152566408, y: 29.98114709809336, z: 25.474981882246105 // nice starting angle
     this.camera.lookAt(0, 0, 0)
 
     // Limit zooming (keeping in mind near/far camera planes)
@@ -142,6 +143,8 @@ export default class VirtualBoard {
   }
 
   render () {
+    // console.log('camera: ', this.camera.position);
+
     let strips = this.board.get('strips')
     let currentZ = 0
     let redraw = this.board.get('redraw')
