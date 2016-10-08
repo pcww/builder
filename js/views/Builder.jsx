@@ -31,7 +31,7 @@ export default class Builder extends React.Component {
   render () {
     let woodKeys = Object.keys(woods)
     let randomWood = woodKeys[(Math.floor(Math.random() * woodKeys.length)+0)]
-    let classes = classNames(randomWood)
+    let classes = classNames('vignette', randomWood)
 
     if (this.state.loaded) {
       return (
@@ -46,7 +46,7 @@ export default class Builder extends React.Component {
       <main className={classes}>
         <div className="loading">
           <img src="/assets/misc/pcw-logo.png"/>
-          <p>Gathering up some lumber...</p>
+          <p>Gathering up some lumber&hellip;</p>
           <img src="/assets/misc/loading-ring.svg" />
         </div>
       </main>

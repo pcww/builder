@@ -1,9 +1,7 @@
 'use strict'
 
 
-
-
-
 module.exports = {
-  app: require('../webpack.config')
+  local: require('../webpack.config'),
+  production: require('../webpack.production.config')
 }
