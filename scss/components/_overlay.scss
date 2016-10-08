@@ -38,7 +38,7 @@ section[type="overlay"] {
 
     transform: scale(.6);
     pointer-events: all;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
 
     &:hover {
       transform: scale(1);
@@ -64,7 +64,7 @@ section[type="overlay"] {
     width: 7.5rem;
 
     pointer-events: all;
-    transition: all .5s ease-in-out;
+    transition: all .3s ease-in-out;
     transform: scale(.5);
     left: 0;
     bottom: 6.5rem;

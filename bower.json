@@ -1,8 +1,9 @@
 {
-  "name": "trezy.com",
-  "description": "",
+  "name": "pcw-builder",
+  "version": "1.0.0",
   "main": "js/App.js",
   "authors": [
+    "Brian Herold <bmherold@gmail.com>",
     "Trezy <tre@trezy.com>"
   ],
   "license": "ISC",

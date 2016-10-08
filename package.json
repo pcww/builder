@@ -1,10 +1,17 @@
 {
-  "name": "trezy.com",
+  "name": "pcw-builder",
   "version": "1.0.0",
-  "description": "",
+  "description": "Board Builder Tool for PineCliff Woodworks",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pcww/builder.git"
+  },
   "main": "js/index.js",
   "scripts": {},
-  "author": "",
+  "contributors": [
+    "Brian Herold <bmherold@gmail.com>",
+    "Trezy <tre@trezy.com>"
+  ],
   "license": "ISC",
   "engines": {
     "node": ">=5"
@@ -26,18 +33,22 @@
     "bower-webpack-plugin": "^0.1.9",
     "connect-livereload": "^0.5.4",
     "connect-pushstate": "^1.0.0",
+    "copy-webpack-plugin": "^3.0.1",
     "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "grunt": "^0.4.5",
     "grunt-connect-proxy": "^0.2.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-connect": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-sass": "^1.1.0",
     "grunt-sass-globbing": "^1.5.1",
+    "grunt-ssh-deploy": "^0.4.1",
     "grunt-webpack": "^1.0.11",
     "handlebars": "^4.0.5",
-    "handlebars-loader": "^1.2.0",
+    "html-webpack-plugin": "^2.22.0",
     "json-loader": "^0.5.4",
     "load-grunt-config": "^0.19.1",
     "node-sass": "^3.4.2",
