@@ -13,17 +13,6 @@ let sizes = {
 let maxWidth = 13
 
 export default class Board extends BaseModel {
-  // _bindEvents () {
-  //   this.listenTo(this, 'change:width', () => {
-  //     this.get('strips').forEach(strip => {
-  //       strip.set('rendered', false)
-  //     })
-  //   })
-  //
-  //   this.listenTo(this.get('strips'), 'change:size', this._updateWidth)
-  //   this.listenTo(this, 'sync', this._updateWidth)
-  // }
-
   _bindEvents () {
     this.listenTo(this, 'sync', this._updateLength)
     this.listenTo(this, 'change:width', this._rerenderStrips)
@@ -47,9 +36,6 @@ export default class Board extends BaseModel {
   }
 
   _rerenderStrips() {
-    // this.get('strips').forEach(strip => {
-    //   strip.set('rendered', false, {silent: true})
-    // })
     this.set('redraw', true)
   }
 
