@@ -1,5 +1,5 @@
 {
-  "name": "pcw-builder",
+  "name": "pcww-builder",
   "version": "1.0.0",
   "description": "Board Builder Tool for PineCliff Woodworks",
   "repository": {
@@ -7,7 +7,9 @@
     "url": "https://github.com/pcww/builder.git"
   },
   "main": "js/index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "$(npm bin)/grunt"
+  },
   "contributors": [
     "Brian Herold <bmherold@gmail.com>",
     "Trezy <tre@trezy.com>"
@@ -37,7 +39,7 @@
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
-    "grunt": "^0.4.5",
+    "grunt": "^1.0.1",
     "grunt-connect-proxy": "^0.2.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-connect": "^1.0.1",
