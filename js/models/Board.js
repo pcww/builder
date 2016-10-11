@@ -40,14 +40,7 @@ export default class Board extends BaseModel {
   }
 
   _updateWidth () {
-    let width = 0
-    console.log('_updateWidth', this.get('strips').width)
-
-    // Current Width
-    width = this._currentWidth()
-
-    this.set('width', width)
-    console.log("width: ", width)
+    this.set('width', this._currentWidth())
   }
 
   constructor (data, options) {
