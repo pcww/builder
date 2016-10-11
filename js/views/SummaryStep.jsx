@@ -73,15 +73,8 @@ export default class Wizard extends React.Component {
 
   getFeet () {
     let board = this.props.board
-    let feet = ''
 
-    if (board.get('feet').type === 'suction') {
-      feet = 'Suction Cups'
-    } else {
-      feet = 'Screw In'
-    }
-
-    return feet + ' Feet'
+    return accessories.feet[board.get('feet').type].name
   }
 
   getHandle () {
