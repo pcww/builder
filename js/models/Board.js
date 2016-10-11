@@ -2,7 +2,7 @@ import Backbone from 'backbone'
 import BaseModel from 'models/Base'
 import StripsCollection from 'collections/Strips'
 import constants from '../constants.json'
-``
+
 let sizes = constants.SIZES
 
 export default class Board extends BaseModel {
