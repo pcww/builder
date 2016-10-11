@@ -30,7 +30,7 @@ export default class Wizard extends React.Component {
       '3': 'Accessorize',
       '4': 'Board Summary'
     }
-    this.maxWidth = 13
+    this.minWidth = 13
   }
 
   componentWillMount () {
@@ -118,11 +118,11 @@ export default class Wizard extends React.Component {
 
   onStripLengthChanged (event) {
     this.props.board.set('width', event.currentTarget.value)
-    this.updatePeakedWidth()
+    this.minWidthFlag()
   }
 
-  updatePeakedWidth () {
-    this.setState({ peakedWidth: (this.props.board._currentWidth() > this.maxWidth) })
+  minWidthFlag () {
+    this.setState({ peakedWidth: (this.props.board._currentWidth() < this.minWidth) })
   }
 
   addStrip () {
@@ -134,7 +134,7 @@ export default class Wizard extends React.Component {
     })
     this.forceUpdate()
     this.initializeSortable()
-    this.updatePeakedWidth()
+    this.minWidthFlag()
   }
 
   removeStrip (strip) {
@@ -142,7 +142,7 @@ export default class Wizard extends React.Component {
     this.props.board.set('redraw', true)
     this.forceUpdate()
     this.initializeSortable()
-    this.updatePeakedWidth()
+    this.minWidthFlag()
   }
 
   onToggleStripsExpand () {
@@ -215,7 +215,7 @@ export default class Wizard extends React.Component {
               <div className="warning">
                 <span>
                   {this.state.peakedWidth ?
-                  "Warning: the maximum width reached (" + currentWidth+ "\")" :
+                  "Warning: board below minimum width (" + currentWidth + "\")" :
                   "" }
                 </span>
               </div>
