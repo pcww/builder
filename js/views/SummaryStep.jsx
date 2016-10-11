@@ -1,16 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import constants from '../constants.json'
-
-
-
-
+import accessories from '../accessories.json'
 
 let sizes = constants.SIZES
-
-
-
-
 
 export default class Wizard extends React.Component {
   getDimensions () {
@@ -21,121 +14,28 @@ export default class Wizard extends React.Component {
 
   getEdge () {
     let board = this.props.board
-    let edge = ''
 
-    switch (board.get('edge').profile) {
-      case 'Bead':
-        edge = 'Bead'
-        break
-      case 'chamfer':
-        edge = 'Chamfer'
-        break
-      case 'cove':
-        edge = 'Cove'
-        break
-      case 'large-round':
-        edge = 'Large Round'
-        break
-      case 'small-round':
-        edge = 'Small Round'
-        break
-    }
-
-    return edge += ' Edge'
+    return accessories.edges[board.get('edge').profile].name
   }
 
   getEndcaps () {
     let board = this.props.board
-    let endcaps = ''
+    let color = accessories['endcap-colors'][board.get('endcaps').color].name
+    let type = accessories['endcaps'][board.get('endcaps').type].name
 
-    if (board.get('endcaps').branding !== 'none') {
-      endcaps += 'Branded '
-    }
-
-    if (board.get('endcaps').type === 'button') {
-      let color = board.get('endcaps').color
-
-      switch (color) {
-        case 'black':
-          endcaps += 'Black '
-          break
-        case 'blue':
-          endcaps += 'Blue '
-          break
-        case 'cyan':
-          endcaps += 'Cyan '
-          break
-        case 'green':
-          endcaps += 'Green '
-          break
-        case 'orange':
-          endcaps += 'Orange '
-          break
-        case 'purple':
-          endcaps += 'Purple '
-          break
-        case 'red':
-          endcaps += 'Red '
-          break
-        case 'white':
-          endcaps += 'White '
-          break
-        case 'yellow':
-          endcaps += 'Yellow '
-          break
-        case 'stainless':
-          endcaps += 'Stainless Steel '
-          break
-      }
-
-      endcaps += 'Buttons'
-
-    } else {
-      endcaps += 'Nut Covers'
-    }
-
-    return endcaps
+    return color + ' ' + type
   }
 
   getFeet () {
     let board = this.props.board
-    let feet = ''
 
-    if (board.get('feet').type === 'suction') {
-      feet = 'Suction Cups'
-    } else {
-      feet = 'Screw In'
-    }
-
-    return feet + ' Feet'
+    return accessories.feet[board.get('feet').type].name
   }
 
   getHandle () {
     let board = this.props.board
-    let handle = ''
 
-    switch (board.get('handle')) {
-      case 'dado':
-        handle = 'Dado'
-        break
-      case 'elk-horn':
-        handle = 'Elk Horn'
-        break
-      case 'none':
-        handle = 'None'
-        break
-      case 'shaped':
-        handle = 'Shaped'
-        break
-      case 'stainless':
-        handle = 'Stainless'
-        break
-      case 'turned':
-        handle = 'Turned'
-        break
-    }
-
-    return handle += ' Handle'
+    return accessories.handles[board.get('handle')].name
   }
 
   getLayout () {
