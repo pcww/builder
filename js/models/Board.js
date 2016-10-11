@@ -1,16 +1,9 @@
 import Backbone from 'backbone'
 import BaseModel from 'models/Base'
 import StripsCollection from 'collections/Strips'
-
-let sizes = {
-  xxsmall: 0.25,
-  xsmall: 0.375,
-  small: 0.5,
-  medium: 0.625,
-  large: 1
-}
-
-let maxWidth = 13
+import constants from '../constants.json'
+``
+let sizes = constants.SIZES
 
 export default class Board extends BaseModel {
   _bindEvents () {
