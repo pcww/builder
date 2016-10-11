@@ -1,3 +1,7 @@
 module.exports = function(grunt) {
-  return grunt.file.readJSON('secret.json');
+  try {
+    return grunt.file.readJSON('secret.json') || {}
+  } catch (error) {
+    return {}
+  }
 }
