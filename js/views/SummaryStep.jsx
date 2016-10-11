@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import constants from '../constants.json'
+import accessories from '../accessories.json'
 
 
 
@@ -21,27 +22,8 @@ export default class Wizard extends React.Component {
 
   getEdge () {
     let board = this.props.board
-    let edge = ''
 
-    switch (board.get('edge').profile) {
-      case 'Bead':
-        edge = 'Bead'
-        break
-      case 'chamfer':
-        edge = 'Chamfer'
-        break
-      case 'cove':
-        edge = 'Cove'
-        break
-      case 'large-round':
-        edge = 'Large Round'
-        break
-      case 'small-round':
-        edge = 'Small Round'
-        break
-    }
-
-    return edge += ' Edge'
+    return accessories.edges[board.get('edge').profile].name
   }
 
   getEndcaps () {
