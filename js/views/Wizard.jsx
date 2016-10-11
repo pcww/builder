@@ -196,7 +196,7 @@ export default class Wizard extends React.Component {
                   max="48"
                   min="8"
                   step="2"
-                  defaultValue={board.get('width')}
+                  defaultValue={board.get('length')}
                   onChange={this.onStripLengthChanged.bind(this)} />
               </fieldset>
 

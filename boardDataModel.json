@@ -18,7 +18,7 @@
   },
   "handle": false, // ["none", "shaped", "stainless", "dado", "turned", "elk-horn"]
   "groove": false // [true, false],
-  "length": "{calculated}",
+  "width": "{calculated}",
   "strips": [
     // strip
     {
@@ -110,5 +110,5 @@
       "wood": "purpleheart"
     }
   ],
-  "width": 24
+  "length": 24
 }
