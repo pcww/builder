@@ -36,7 +36,7 @@ export default class Wizard extends React.Component {
   componentWillMount () {
     this.state = {
       currentStep: 0,
-      maxedWidth: false,
+      peakedWidth: false,
       stripsExpand: false,
       totalSteps: 4
     }
@@ -118,11 +118,11 @@ export default class Wizard extends React.Component {
 
   onStripLengthChanged (event) {
     this.props.board.set('width', event.currentTarget.value)
-    this.updateMaxedWidth()
+    this.updatePeakedWidth()
   }
 
-  updateMaxedWidth () {
-    this.setState({ maxedWidth: (this.props.board._currentWidth() > this.maxWidth) })
+  updatePeakedWidth () {
+    this.setState({ peakedWidth: (this.props.board._currentWidth() > this.maxWidth) })
   }
 
   addStrip () {
@@ -134,7 +134,7 @@ export default class Wizard extends React.Component {
     })
     this.forceUpdate()
     this.initializeSortable()
-    this.updateMaxedWidth()
+    this.updatePeakedWidth()
   }
 
   removeStrip (strip) {
@@ -142,7 +142,7 @@ export default class Wizard extends React.Component {
     this.props.board.set('redraw', true)
     this.forceUpdate()
     this.initializeSortable()
-    this.updateMaxedWidth()
+    this.updatePeakedWidth()
   }
 
   onToggleStripsExpand () {
@@ -212,7 +212,7 @@ export default class Wizard extends React.Component {
 
               <div className="warning">
                 <span>
-                  {this.state.maxedWidth ?
+                  {this.state.peakedWidth ?
                   "Warning: the maximum width reached" :
                   "" }
                 </span>
