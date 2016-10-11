@@ -175,6 +175,8 @@ export default class Wizard extends React.Component {
       'fa-minus': this.state.stripsExpand
     });
 
+    let currentWidth = this.props.board._currentWidth()
+
     return (
       <menu className="wizard" type="toolbar">
         <StepHeader
@@ -213,7 +215,7 @@ export default class Wizard extends React.Component {
               <div className="warning">
                 <span>
                   {this.state.peakedWidth ?
-                  "Warning: the maximum width reached" :
+                  "Warning: the maximum width reached (" + currentWidth+ "\")" :
                   "" }
                 </span>
               </div>
