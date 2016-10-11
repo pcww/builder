@@ -3,15 +3,7 @@ import ReactDOM from 'react-dom'
 import constants from '../constants.json'
 import accessories from '../accessories.json'
 
-
-
-
-
 let sizes = constants.SIZES
-
-
-
-
 
 export default class Wizard extends React.Component {
   getDimensions () {
@@ -94,30 +86,8 @@ export default class Wizard extends React.Component {
 
   getHandle () {
     let board = this.props.board
-    let handle = ''
 
-    switch (board.get('handle')) {
-      case 'dado':
-        handle = 'Dado'
-        break
-      case 'elk-horn':
-        handle = 'Elk Horn'
-        break
-      case 'none':
-        handle = 'None'
-        break
-      case 'shaped':
-        handle = 'Shaped'
-        break
-      case 'stainless':
-        handle = 'Stainless'
-        break
-      case 'turned':
-        handle = 'Turned'
-        break
-    }
-
-    return handle += ' Handle'
+    return accessories.handles[board.get('handle')].name
   }
 
   getLayout () {
