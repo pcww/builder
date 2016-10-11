@@ -20,55 +20,10 @@ export default class Wizard extends React.Component {
 
   getEndcaps () {
     let board = this.props.board
-    let endcaps = ''
+    let color = accessories['endcap-colors'][board.get('endcaps').color].name
+    let type = accessories['endcaps'][board.get('endcaps').type].name
 
-    if (board.get('endcaps').branding !== 'none') {
-      endcaps += 'Branded '
-    }
-
-    if (board.get('endcaps').type === 'button') {
-      let color = board.get('endcaps').color
-
-      switch (color) {
-        case 'black':
-          endcaps += 'Black '
-          break
-        case 'blue':
-          endcaps += 'Blue '
-          break
-        case 'cyan':
-          endcaps += 'Cyan '
-          break
-        case 'green':
-          endcaps += 'Green '
-          break
-        case 'orange':
-          endcaps += 'Orange '
-          break
-        case 'purple':
-          endcaps += 'Purple '
-          break
-        case 'red':
-          endcaps += 'Red '
-          break
-        case 'white':
-          endcaps += 'White '
-          break
-        case 'yellow':
-          endcaps += 'Yellow '
-          break
-        case 'stainless':
-          endcaps += 'Stainless Steel '
-          break
-      }
-
-      endcaps += 'Buttons'
-
-    } else {
-      endcaps += 'Nut Covers'
-    }
-
-    return endcaps
+    return color + ' ' + type
   }
 
   getFeet () {
