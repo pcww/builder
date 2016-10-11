@@ -7,12 +7,22 @@ module.exports = {
 
   build: [
     'clean',
-    'buildCSS',
+    // 'buildCSS',
     'buildJS'
   ],
 
+  deploy: [
+    'clean',
+    'webpack:production',
+    'ssh_deploy:production'
+  ],
+
+  rollback: [
+    'ssh_rollback:production'
+  ],
+
   buildJS: [
-    'webpack'
+    'webpack:local'
   ],
 
   buildCSS: [

@@ -29,7 +29,6 @@ export default class EndcapPicker extends React.Component {
   }
 
   onBrandingChange (event) {
-    debugger;
     let currentVals = this.props.board.get('endcaps')
     let branding = event.currentTarget.value
 

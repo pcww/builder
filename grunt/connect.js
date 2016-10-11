@@ -2,18 +2,22 @@
 
 let serveStatic = require('serve-static')
 let Webpack = require('webpack')
-
+// let opt = require('optimist')
 let config = require('../config')
 let webpackConfig = require('../webpack.config')
 let compiler = Webpack(webpackConfig)
 
 
-
-
+// let base = opt.argv['root'] || 'dist'
+// let base = 'build'
+// console.log('hosting files from', base)
 
 module.exports = {
   app: {
     options: {
+      base: 'dist',
+      port: process.env.PORT || config.server.port,
+
       middleware: function (connect, options) {
         let middlewares = [
           require('webpack-dev-middleware')(compiler, {
@@ -35,8 +39,8 @@ module.exports = {
         })
 
         return middlewares
-      },
-      port: process.env.PORT || config.server.port
+      }
+
     }
   }
 }

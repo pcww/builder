@@ -1,5 +1,7 @@
 ### Project ###
 dist/
+secret.json
+deploy.tgz
 
 # Created by https://www.gitignore.io
 
