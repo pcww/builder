@@ -44,11 +44,11 @@ export default class Board extends BaseModel {
 
   get defaults () {
     return {
+      handle: 'none',
       length: 0,
       name: 'test',
       strips: new StripsCollection,
-      width: 0,
-      handle: 'none'
+      width: 0
     }
   }
 
