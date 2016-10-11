@@ -1,3 +1,4 @@
+import constants from '../constants.json'
 import Backbone from 'backbone'
 import THREE from 'three.js'
 window.THREE = THREE
@@ -7,13 +8,7 @@ require('three/controls/OrbitControls')
 
 
 
-let sizes = {
-  xxsmall: 0.25,
-  xsmall: 0.375,
-  small: 0.5,
-  medium: 0.625,
-  large: 1
-}
+let sizes = constants.SIZES
 
 
 

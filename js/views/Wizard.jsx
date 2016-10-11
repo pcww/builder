@@ -30,7 +30,7 @@ export default class Wizard extends React.Component {
       '3': 'Accessorize',
       '4': 'Board Summary'
     }
-    this.minWidth = 13
+    this.maxWidth = constants.MINIMUM_WIDTH
   }
 
   componentWillMount () {

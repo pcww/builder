@@ -1,3 +1,11 @@
 {
-  "MINIMUM_NUMBER_STRIPS": 15
+  "MINIMUM_NUMBER_STRIPS": 15,
+  "MINIMUM_WIDTH": 13,
+  "SIZES": {
+    "xxsmall": 0.25,
+    "xsmall": 0.375,
+    "small": 0.5,
+    "medium": 0.625,
+    "large": 1
+  }
 }
