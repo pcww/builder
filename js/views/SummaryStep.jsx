@@ -1,17 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import constants from '../constants.json'
 
 
 
 
 
-let sizes = {
-  xxsmall: 0.25,
-  xsmall: 0.375,
-  small: 0.5,
-  medium: 0.625,
-  large: 1
-}
+let sizes = constants.SIZES
 
 
 
