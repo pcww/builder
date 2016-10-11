@@ -1,3 +1,6 @@
+@import 'helpers/variables';
+
+
 @import 'components/board-layout';
 @import 'components/loading';
 @import 'components/sortable';
@@ -6,3 +9,4 @@
 @import 'components/virtual-board';
 @import 'components/wizard';
 @import 'components/wood-picker';
+@import 'components/overlay';

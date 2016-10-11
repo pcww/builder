@@ -1,3 +1,31 @@
+$background-prefix: '/assets/backgrounds/';
+
+@keyframes sliding-background {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -1000px 0;
+    }
+}
+
 .virtual-board {
   width: 70vw;
+  background-repeat: repeat;
+  background-position: 0 0;
+  animation: sliding-background 50s linear infinite;
+
+  $background-image-count: 11;
+  @for $i from 1 to $background-image-count {
+    &.background-#{$i} {
+      background-image: url("#{$background-prefix}subtle-pattern-#{$i}.jpg");
+    }
+  }
+
+  .swatch {
+    &.selected {
+      border-color: #62bd91;
+    }
+  }
+
 }
