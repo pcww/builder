@@ -20,7 +20,7 @@ module.exports = {
   output: {
     filename: 'app.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '',
+    publicPath: '/',
     sourceMapFilename: 'app.js.map'
   },
 
@@ -35,10 +35,6 @@ module.exports = {
           'sass?outputStyle=expanded'
         ]
       },
-      // {
-      //   test: /\.scss$/,
-      //   loader: ExtractTextPlugin.extract('css!sass')
-      // },
       {
         test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif)(\?\S*)?$/,
         loader: 'url?limit=100000&name=[name].[ext]'
@@ -52,10 +48,6 @@ module.exports = {
         test: /\.json$/,
         loaders: ['json']
       }
-      // {
-      //   test: /\.html$/,
-      //   loader: 'html'
-      // }
     ]
   },
 
@@ -79,12 +71,11 @@ module.exports = {
     new Webpack.ResolverPlugin(
       new Webpack.ResolverPlugin.DirectoryDescriptionFilePlugin(".bower.json", ["main"])
     ),
-    // new ExtractTextPlugin('/app.css', { allChunks: true }),
     new HtmlWebpackPlugin({
-      title: 'LOCAL Pine Cliff Woodworks - Board Builder',
-      template: 'templates/index.ejs'
-    }),
-    new Webpack.optimize.DedupePlugin()
+      title: 'LOCAL PineCliff Woodworks - Board Builder',
+      template: 'templates/index.ejs',
+      inject: false
+    })
   ],
 
   resolve: {
