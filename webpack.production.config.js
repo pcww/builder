@@ -12,8 +12,6 @@ module.exports = {
   devtool: 'source-map',
 
   entry: [
-    'webpack/hot/dev-server',
-    'webpack-hot-middleware/client',
     path.resolve(__dirname, 'js', 'bootstrap.js')
   ],
 
@@ -26,15 +24,6 @@ module.exports = {
 
   module: {
     loaders: [
-      // {
-      //   test: /\.scss$/,
-      //   include: /scss/,
-      //   loaders: [
-      //     'style',
-      //     'css',
-      //     'sass?outputStyle=expanded'
-      //   ]
-      // },
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract('css!sass')
@@ -46,7 +35,7 @@ module.exports = {
       {
         test: /\.js|\.jsx$/,
         exclude: /(node_modules|bower_components)/,
-        loaders: ['react-hot', 'babel']
+        loaders: ['babel']
       },
       {
         test: /\.json$/,
@@ -57,7 +46,6 @@ module.exports = {
 
   plugins: [
     new Webpack.optimize.OccurenceOrderPlugin(),
-    new Webpack.HotModuleReplacementPlugin(),
     new Webpack.NoErrorsPlugin(),
     new BowerWebpackPlugin({
       excludes: [
@@ -78,7 +66,8 @@ module.exports = {
     new ExtractTextPlugin('/app.css', { allChunks: true }),
     new HtmlWebpackPlugin({
       title: 'Pine Cliff Woodworks - Board Builder',
-      template: 'templates/index.ejs'
+      template: 'templates/index.ejs',
+      inject: false
     })
   ],
 
