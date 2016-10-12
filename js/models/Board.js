@@ -8,6 +8,7 @@ let sizes = constants.SIZES
 export default class Board extends BaseModel {
   _bindEvents () {
     this.listenTo(this, 'sync', this._updateWidth)
+    this.listenTo(this, 'change:length', this._rerenderStrips)
     this.listenTo(this, 'change:width', this._rerenderStrips)
 
     let strips = this.get('strips')
@@ -33,6 +34,10 @@ export default class Board extends BaseModel {
     this.set('redraw', true)
   }
 
+  _updateLength (length) {
+    this.set('length', length)
+  }
+
   _updateWidth () {
     this.set('width', this._currentWidth())
   }
@@ -40,6 +45,7 @@ export default class Board extends BaseModel {
   constructor (data, options) {
     super(data, options)
     this._updateWidth()
+    this._updateLength(24)
     this._bindEvents()
   }
 
