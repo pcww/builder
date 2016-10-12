@@ -14,6 +14,7 @@ export default class Builder extends React.Component {
       loaded: false
     }
 
+    this.state.board.set("length", 24)
     window.board = this.state.board
   }
 
