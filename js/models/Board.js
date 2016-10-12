@@ -34,9 +34,9 @@ export default class Board extends BaseModel {
     this.set('redraw', true)
   }
 
-  _updateLength (length) {
-    this.set('length', length)
-  }
+  // _updateLength (length) {
+  //   this.set('length', length)
+  // }
 
   _updateWidth () {
     this.set('width', this._currentWidth())
@@ -45,7 +45,7 @@ export default class Board extends BaseModel {
   constructor (data, options) {
     super(data, options)
     this._updateWidth()
-    this._updateLength(24)
+    // this._updateLength(24)
     this._bindEvents()
   }
 
