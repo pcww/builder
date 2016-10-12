@@ -16,7 +16,7 @@
   "groove": {
     "location": false
   },
-  "length": "{calculated}",
+  "width": "{calculated}",
   "strips": [
     {
       "size": "xsmall",
@@ -107,5 +107,5 @@
       "wood": "purpleheart"
     }
   ],
-  "width": 24
+  "length": 24
 }
