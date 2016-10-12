@@ -30,8 +30,8 @@ export default class Builder extends React.Component {
 
   render () {
     let woodKeys = Object.keys(woods)
-    let randomWood = woodKeys[(Math.floor(Math.random() * woodKeys.length)+0)]
-    let classes = classNames('vignette', randomWood)
+    let randomWood = woodKeys[(Math.floor(Math.random() * woodKeys.length-1))]
+    let classes = classNames('vignette', randomWood, 'lowres')
 
     if (this.state.loaded) {
       return (
