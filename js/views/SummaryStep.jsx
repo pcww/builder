@@ -6,36 +6,105 @@ import accessories from '../accessories.json'
 let sizes = constants.SIZES
 
 export default class Wizard extends React.Component {
-  getDimensions () {
-    let board = this.props.board
-
-    return `${board.get('width')}" x ${board.get('length')}"`
-  }
-
   getEdge () {
     let board = this.props.board
+    let edge = board.get('edge').profile
+    let name = accessories.edges[edge].name
+    let description = accessories.edges[edge].description
 
-    return accessories.edges[board.get('edge').profile].name
+    return (
+      <div className="media">
+        <div className="media-left">
+          <img className="media-object swatch" src={'/assets/edges/' + edge + '.jpg'}/>
+        </div>
+
+        <div className="media-body">
+          <h4 className="media-heading">
+            {name}
+          </h4>
+
+          <p>
+            {description}
+          </p>
+        </div>
+      </div>
+    )
   }
 
   getEndcaps () {
     let board = this.props.board
-    let color = accessories['endcap-colors'][board.get('endcaps').color].name
-    let type = accessories['endcaps'][board.get('endcaps').type].name
+    let endcaps = board.get('endcaps')
+    let color = accessories['endcap-colors'][endcaps.color].name
+    let description = accessories['endcaps'][endcaps.type].description
+    let type = accessories['endcaps'][endcaps.type].name
 
-    return color + ' ' + type
+    let name = `${color} ${type}`
+
+    return (
+      <div className="media">
+        <div className="media-left">
+          <img className="media-object swatch" src={'/assets/endcaps/' + endcaps.type + '.jpg'}/>
+        </div>
+
+        <div className="media-body">
+          <h4 className="media-heading">
+            {name}
+          </h4>
+
+          <p>
+            {description}
+          </p>
+        </div>
+      </div>
+    )
   }
 
   getFeet () {
     let board = this.props.board
+    let type = board.get('feet').type
+    let feet = accessories.feet[type]
 
-    return accessories.feet[board.get('feet').type].name
+    return (
+      <div className="media">
+        <div className="media-left">
+          <img className="media-object swatch" src={'/assets/feet/' + type + '.jpg'}/>
+        </div>
+
+        <div className="media-body">
+          <h4 className="media-heading">
+            {feet.name}
+          </h4>
+
+          <p>
+            {feet.description}
+          </p>
+        </div>
+      </div>
+    )
   }
 
   getHandle () {
     let board = this.props.board
+    let type = board.get('handle')
+    let handle = accessories.handles[type]
 
-    return accessories.handles[board.get('handle')].name
+    return (
+      <div className="media">
+        <div className="media-left">
+          <img className="media-object swatch" src={'/assets/handles/' + type + '.jpg'}/>
+        </div>
+
+        <div className="media-body">
+          <h4 className="media-heading">
+            {handle.name}
+          </h4>
+
+          <p>
+            {handle.description}
+          </p>
+        </div>
+      </div>
+    )
   }
 
   getLayout () {
@@ -62,11 +131,6 @@ export default class Wizard extends React.Component {
         <fieldset>
           <legend>Layout</legend>
           {this.getLayout()}
-        </fieldset>
-
-        <fieldset>
-          <legend>Board Dimensions</legend>
-          {this.getDimensions()}
         </fieldset>
 
         <fieldset>
