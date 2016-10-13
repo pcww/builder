@@ -125,6 +125,13 @@ export default class Wizard extends React.Component {
     )
   }
 
+  getCustom () {
+    let placeholderText = "If have any additional requests, we would love to hear them!"
+    return (
+      <textarea className="customText" rows="4" placeholder={placeholderText} />
+    )
+  }
+
   render () {
     return (
       <div className="step-content">
@@ -151,6 +158,11 @@ export default class Wizard extends React.Component {
         <fieldset>
           <legend>Handle</legend>
           {this.getHandle()}
+        </fieldset>
+
+        <fieldset>
+          <legend>Custom Requests</legend>
+          {this.getCustom()}
         </fieldset>
       </div>
     )
