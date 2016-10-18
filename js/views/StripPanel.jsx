@@ -14,6 +14,7 @@ export default class StripPanel extends React.Component {
     let headingTarget = 'heading-' + this.props.id
     let collapseTarget = 'collapse-' + this.props.id
     let radioGroupPrefix = 'strip-' + this.props.id
+    let endGrainRadioGroupName = radioGroupPrefix + '-end-grain'
     let radioGroupName = radioGroupPrefix + '-wood-size'
 //    let panelBodyClass = this.props.id === 0 ? 'in' : ''
 
@@ -27,6 +28,28 @@ export default class StripPanel extends React.Component {
               <legend>Wood Type</legend>
 
               <WoodPicker strip={this.props.strip} updateState={this.setState.bind(this)}/>
+            </fieldset>
+
+            <fieldset>
+              <legend>End Grain</legend>
+
+              <label className="radio-inline" data-toggle="tooltip" title="Extra-Extra Small &mdash; 1/4&quot;">
+                <input
+                  id={radioGroupPrefix + '-end-grain-yes'}
+                  name={endGrainRadioGroupName}
+                  type="radio"
+                  value="yes" />
+                Yes
+              </label>
+
+              <label className="radio-inline" data-toggle="tooltip" title="Extra-Extra Small &mdash; 1/4&quot;">
+                <input
+                  id={radioGroupPrefix + '-end-grain-yes'}
+                  name={endGrainRadioGroupName}
+                  type="radio"
+                  value="no" />
+                No
+              </label>
             </fieldset>
 
             <fieldset>
