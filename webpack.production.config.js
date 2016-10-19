@@ -67,6 +67,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Pine Cliff Woodworks - Board Builder',
       template: 'templates/index.ejs',
+      favicon: 'assets/favicon.png',
       inject: false
     })
   ],
