@@ -10,13 +10,19 @@ export default class StripPanel extends React.Component {
     this.forceUpdate()
   }
 
+  onEndGrainSelection (event) {
+    this.props.strip.set('endGrain', event.currentTarget.value)
+    this.forceUpdate()
+  }
+
   render () {
     let headingTarget = 'heading-' + this.props.id
     let collapseTarget = 'collapse-' + this.props.id
     let radioGroupPrefix = 'strip-' + this.props.id
     let endGrainRadioGroupName = radioGroupPrefix + '-end-grain'
     let radioGroupName = radioGroupPrefix + '-wood-size'
-//    let panelBodyClass = this.props.id === 0 ? 'in' : ''
+
+    console.log("End Grain Selection: ", endGrainRadioGroupName, ":",  this.props.strip.get('endGrain'))
 
     return (
       <div>
@@ -33,21 +39,25 @@ export default class StripPanel extends React.Component {
             <fieldset>
               <legend>End Grain</legend>
 
-              <label className="radio-inline" data-toggle="tooltip" title="Extra-Extra Small &mdash; 1/4&quot;">
+              <label className="radio-inline" data-toggle="tooltip" title="End Grain Selected">
                 <input
+                  checked={this.props.strip.get('endGrain')}
                   id={radioGroupPrefix + '-end-grain-yes'}
                   name={endGrainRadioGroupName}
                   type="radio"
-                  value="yes" />
+                  value="true"
+                  onChange={this.onEndGrainSelection.bind(this)} />
                 Yes
               </label>
 
-              <label className="radio-inline" data-toggle="tooltip" title="Extra-Extra Small &mdash; 1/4&quot;">
+              <label className="radio-inline" data-toggle="tooltip" title="End Grain Deselected">
                 <input
-                  id={radioGroupPrefix + '-end-grain-yes'}
+                  checked={!this.props.strip.get('endGrain')}
+                  id={radioGroupPrefix + '-end-grain-no'}
                   name={endGrainRadioGroupName}
                   type="radio"
-                  value="no" />
+                  value="false"
+                  onChange={this.onEndGrainSelection.bind(this)} />
                 No
               </label>
             </fieldset>
