@@ -122,6 +122,7 @@ export default class Wizard extends React.Component {
     let strips = this.props.board.get('strips')
     strips.add({
       id: strips.length,
+      endGrain: false,
       size: 'large',
       wood: 'maple'
     })
