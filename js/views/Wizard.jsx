@@ -118,7 +118,7 @@ export default class Wizard extends React.Component {
 
   onStripLengthChanged (event) {
     this.props.board.set('length', event.currentTarget.value)
-    console.log("_onStripLengthChanged", this.props.board, ":", event.currentTarget.value)
+    console.log("_onStripLengthChanged", this.props.board.toJSON(), ":", event.currentTarget.value)
     this.minWidthFlag()
   }
 
