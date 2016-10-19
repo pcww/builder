@@ -1,6 +1,6 @@
 // Hera Board
 // Used to keep track of a complete board data model and document some property usage. Notes should likely be moved to the Board Backbone model.
-{
+let HeraExampleBoard = {
   "name": "Hera",
   "template": false, // [true, false] whether this is a PCW "god board template"
   "brand": { // NOT CURRENTLY USED ANYWHERE! - REMOVE? (Brian, 10/19/2016)
