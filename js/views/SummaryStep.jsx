@@ -126,9 +126,9 @@ export default class Wizard extends React.Component {
   }
 
   getCustom () {
-    let placeholderText = "If have any additional requests, we would love to hear them!"
+    let placeholderText = "(Optional) If you have any additional requests, we would love to hear them!"
     return (
-      <textarea className="customText" rows="4" placeholder={placeholderText} />
+      <textarea className="customText form-control" rows="4" placeholder={placeholderText} />
     )
   }
 
