@@ -74,6 +74,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'LOCAL PineCliff Woodworks - Board Builder',
       template: 'templates/index.ejs',
+      favicon: 'assets/favicon.png',
       inject: false
     })
   ],
