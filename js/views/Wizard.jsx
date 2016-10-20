@@ -36,7 +36,8 @@ export default class Wizard extends React.Component {
     this.state = {
       currentStep: 0,
       totalSteps: 4,
-      stripsExpand: false
+      stripsExpand: false,
+      allEndGrain: false
     }
   }
 
@@ -151,6 +152,30 @@ export default class Wizard extends React.Component {
     window.alert('Order Submitted!')
   }
 
+  checkAllEndGrainSelection (state) {
+    console.log("checkAllEndGrainSelection", ":", state)
+    this.props.board.get('strips').forEach((strip) => {
+      if (strip.endGrain !== state) {
+        return false
+      }
+    })
+   return true
+  }
+
+  setAllEndGrainSelection (state) {
+    console.log("setAllEndGrainSelection", ":", state)
+    this.props.board.get('strips').forEach((strip) => {
+      strip.set('endGrain', state)
+    })
+    this.onUpdateEndGrain()
+    console.log("state (allEndGrain): ", this.state.endGrain)
+  }
+
+  onUpdateEndGrain () {
+    console.log("state (allEndGrain): ", this.checkAllEndGrainSelection (true))
+    this.setState({allEndGrain: this.checkAllEndGrainSelection (true)})
+  }
+
   render () {
     let board = this.props.board
 
@@ -188,6 +213,33 @@ export default class Wizard extends React.Component {
                   step="2"
                   defaultValue={board.get('width')}
                   onChange={this.onStripLengthChanged.bind(this)} />
+              </fieldset>
+
+              <fieldset>
+                <legend>End Grain Selection</legend>
+
+              <label className="radio-inline" data-toggle="tooltip" title="End Grain Selected">
+                <input
+                  checked={this.state.endGrain}
+                  id="selectAllEndGrain"
+                  name="allEndGrainRadioGroupName"
+                  type="radio"
+                  value="true"
+                  onChange={this.setAllEndGrainSelection.bind(this, true)} />
+                Yes
+              </label>
+
+              <label className="radio-inline" data-toggle="tooltip" title="End Grain Selected">
+                <input
+                  checked={!this.state.endGrain}
+                  id="deselectAllEndGrain"
+                  name="allEndGrainRadioGroupName"
+                  type="radio"
+                  value="false"
+                  onChange={this.setAllEndGrainSelection.bind(this, false)} />
+                No
+              </label>
+
               </fieldset>
 
               <fieldset>
