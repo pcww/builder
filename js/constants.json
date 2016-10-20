@@ -1,5 +1,6 @@
 {
   "MINIMUM_NUMBER_STRIPS": 15,
+  "MINIMUM_WIDTH": 13,
   "SIZES": {
     "xxsmall": 0.25,
     "xsmall": 0.375,

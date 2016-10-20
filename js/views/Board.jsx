@@ -14,6 +14,7 @@ export default class Builder extends React.Component {
   componentDidMount () {
     // Init Three.js board
     window.vboard = new VirtualBoard(this.props.board, '.virtual-board')
+    console.log("_componentDidMount", this.props.board.toJSON(), this.props.board.get('length'))
     window.addEventListener('resize', onWindowResize, false)
     function onWindowResize() {
       window.vboard.resize()
