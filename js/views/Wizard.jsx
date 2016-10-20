@@ -30,13 +30,15 @@ export default class Wizard extends React.Component {
       '3': 'Accessorize',
       '4': 'Board Summary'
     }
+    this.minWidth = constants.MINIMUM_WIDTH
   }
 
   componentWillMount () {
     this.state = {
       currentStep: 0,
-      totalSteps: 4,
-      stripsExpand: false
+      peakedWidth: false,
+      stripsExpand: false,
+      totalSteps: 4
     }
   }
 
@@ -115,7 +117,14 @@ export default class Wizard extends React.Component {
   }
 
   onStripLengthChanged (event) {
-    this.props.board.set('width', event.currentTarget.value)
+    this.props.board.set('length', event.currentTarget.value)
+    console.log("_onStripLengthChanged", this.props.board.toJSON(), ":", event.currentTarget.value)
+    this.minWidthFlag()
+  }
+
+  minWidthFlag () {
+    this.setState({ peakedWidth: (this.props.board._currentWidth() < this.minWidth) })
+    console.log("peakedWidth: ", this.state.peakedWidth)
   }
 
   addStrip () {
@@ -127,6 +136,7 @@ export default class Wizard extends React.Component {
     })
     this.forceUpdate()
     this.initializeSortable()
+    this.minWidthFlag()
   }
 
   removeStrip (strip) {
@@ -134,6 +144,7 @@ export default class Wizard extends React.Component {
     this.props.board.set('redraw', true)
     this.forceUpdate()
     this.initializeSortable()
+    this.minWidthFlag()
   }
 
   onToggleStripsExpand () {
@@ -152,11 +163,12 @@ export default class Wizard extends React.Component {
 
   render () {
     let board = this.props.board
+    let canRemoveStrip = !!(this.props.board.get('strips').length > constants.MINIMUM_NUMBER_STRIPS)
 
     let Strips = board.get('strips').map((strip, key) => {
       return (
         <li className="panel panel-default" data-id={strip.get('id')} key={strip.get('id')}>
-          <StripPanel key={strip.cid} id={key} strip={strip} canRemoveStrip={!!(this.props.board.get('strips').length > constants.MINIMUM_NUMBER_STRIPS)} removeStrip={this.removeStrip.bind(this)}></StripPanel>
+          <StripPanel key={strip.cid} id={key} strip={strip} canRemoveStrip={canRemoveStrip} removeStrip={this.removeStrip.bind(this)}></StripPanel>
         </li>
       )
     })
@@ -165,6 +177,8 @@ export default class Wizard extends React.Component {
       'fa-plus': !this.state.stripsExpand,
       'fa-minus': this.state.stripsExpand
     });
+
+    let currentWidth = this.props.board._currentWidth()
 
     return (
       <menu className="wizard" type="toolbar">
@@ -185,7 +199,7 @@ export default class Wizard extends React.Component {
                   max="48"
                   min="8"
                   step="2"
-                  defaultValue={board.get('width')}
+                  defaultValue={board.get('length')}
                   onChange={this.onStripLengthChanged.bind(this)} />
               </fieldset>
 
@@ -200,7 +214,16 @@ export default class Wizard extends React.Component {
               <button type="button" className="btn btn-sm btn-primary" onClick={this.addStrip.bind(this)}><i className="fa fa-plus-circle"></i> Add Strip</button>
               &nbsp;
               <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
+
+              <div className="warning">
+                <span>
+                  {this.state.peakedWidth ?
+                  "Warning: board below minimum width (" + currentWidth + "\")" :
+                  "" }
+                </span>
+              </div>
             </div>
+
           </Step>
 
           <Step isActive={this.state.currentStep === 1} key={1}>
