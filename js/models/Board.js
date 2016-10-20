@@ -66,11 +66,6 @@ export default class Board extends BaseModel {
 
     this.get('strips').reset(response.strips)
 
-    // Swap length and width temporarily until API is updated
-    //TODO: REMOVE ME WHEN API IS UPDATED!
-    response.length  = response.width
-    response.width = 0
-
     delete response.strips
 
     return response
