@@ -1,8 +1,9 @@
-// hera
-{
+// Hera Board
+// Used to keep track of a complete board data model and document some property usage. Notes should likely be moved to the Board Backbone model.
+let HeraExampleBoard = {
   "name": "Hera",
   "template": false, // [true, false] whether this is a PCW "god board template"
-  "brand": {
+  "brand": { // NOT CURRENTLY USED ANYWHERE! - REMOVE? (Brian, 10/19/2016)
     "placement": "top left" // ["bottom", "left", "right", "top"]
   },
   "edge": {
@@ -18,97 +19,119 @@
   },
   "handle": false, // ["none", "shaped", "stainless", "dado", "turned", "elk-horn"]
   "groove": false // [true, false],
-  "length": "{calculated}",
+  "width": "{calculated}",
   "strips": [
     // strip
     {
       "size": "xsmall",
-      "wood": "purpleheart"
+      "wood": "purpleheart",
+      "endGrain": false
     },
     {
       "size": "small",
-      "wood": "oakred"
+      "wood": "oakred",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "medium",
-      "wood": "maple"
+      "wood": "maple",
+      "endGrain": false
     },
     {
       "size": "small",
-      "wood": "oakred"
+      "wood": "oakred",
+      "endGrain": false
     },
     {
       "size": "xsmall",
-      "wood": "purpleheart"
+      "wood": "purpleheart",
+      "endGrain": false
     }
   ],
-  "width": 24
+  "length": 24
 }

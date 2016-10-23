@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom'
 
 import Builder from 'views/Builder.jsx'
 
-let hash = window.location.hash.match(/#\/\?id=(\d+)/)
+let hash = window.location.hash.match(/#\?id=(\d+)/)
 let boardId = hash && hash.length > 1 ? hash[1] : 1
 
 ReactDOM.render(
