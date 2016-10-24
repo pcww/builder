@@ -35,7 +35,8 @@ export default class Wizard extends React.Component {
 
   componentWillMount () {
     this.state = {
-      allEndGrain: false,
+      allGrain: false,
+      allGrainAligned: false,
       currentStep: 0,
       peakedWidth: false,
       stripsExpand: false,
@@ -93,6 +94,7 @@ export default class Wizard extends React.Component {
         let strip = strips.at(oldIndex)
 
         strip.set('moving', true)
+        strip.set('endGrain', 'end-grain-no')
       }
     })
   }
@@ -163,27 +165,60 @@ export default class Wizard extends React.Component {
     window.alert('Order Submitted!')
   }
 
-  setAllEndGrainSelection (state) {
-    console.log("setAllEndGrainSelection", ":", state)
+  onGrainSelectAll (state) {
+    // - Update all board strips = true
+    this.selectAllEndGrain(state)
 
-    // Sets all strips to the selected state of all end grains
-    this.props.board.get('strips').forEach((strip) => {
-      strip.set('endGrain', state)
+    // - Update allGrain = state
+    // - Update allGrainAligned = true
+    this.setState({
+      allGrain: state,
+      allGrainAligned: true
     })
-
-    // Updates the Wizard's state accordingly
-    this.setState({allEndGrain: state})
   }
 
+  selectAllEndGrain (state) {
+    let endGrain = state ? 'end-grain-yes' : 'end-grain-no'
+    this.props.board.get('strips').forEach((strip) => {
+      strip.set('endGrain', endGrain)
+    })
+  }
+
+  checkGrainAlignment () {
+    console.log('checkGrainAlignment: ', this.state.allGrainAligned)
+    let lastStrip = this.props.board.get('strips')
+
+    // let match = lastStrip[0].get('endGrain')
+    let match
+
+    let result = true
+    this.props.board.get('strips').forEach((strip) => {
+      console.log(strip.get('id'), strip.get('endGrain'), match)
+      // Fun fact: giving an input a value of "false" actually leaves it as a string
+      match = strip.get('endGrain')
+    })
+
+    this.props.board.get('strips').forEach((strip) => {
+      console.log(strip.get('id'), strip.get('endGrain'), match)
+      // Fun fact: giving an input a value of "false" actually leaves it as a string
+      if (strip.get('endGrain') != match) {
+        result = false
+      }
+    })
+
+    this.setState({allGrainAligned: result})
+    console.log('checkGrainAlignment(final): ', this.state.allGrainAligned)
+  }
 
   render () {
+    console.log("Current State: \n", "allGrain: ", this.state.allGrain, " allGrainAligned: ", this.state.allGrainAligned)
     let board = this.props.board
     let canRemoveStrip = !!(this.props.board.get('strips').length > constants.MINIMUM_NUMBER_STRIPS)
 
     let Strips = board.get('strips').map((strip, key) => {
       return (
         <li className="panel panel-default" data-id={strip.get('id')} key={strip.get('id')}>
-          <StripPanel key={strip.cid} id={key} strip={strip} canRemoveStrip={canRemoveStrip} removeStrip={this.removeStrip.bind(this)}></StripPanel>
+          <StripPanel key={strip.cid} id={key} strip={strip} canRemoveStrip={canRemoveStrip} removeStrip={this.removeStrip.bind(this)} checkGrainAlignment={this.checkGrainAlignment.bind(this)}></StripPanel>
         </li>
       )
     })
@@ -222,23 +257,23 @@ export default class Wizard extends React.Component {
                 <legend>End Grain Selection</legend>
                 <label className="radio-inline" data-toggle="tooltip" title="End Grain Selected">
                   <input
-                    checked={this.state.allEndGrain}
+                    checked={this.state.allGrain && this.state.allGrainAligned}
                     id="selectAllEndGrain"
                     name="allEndGrainRadioGroupName"
                     type="radio"
-                    value="true"
-                    onChange={this.setAllEndGrainSelection.bind(this, true)} />
+                    value="all-end-grain-yes"
+                    onClick={this.onGrainSelectAll.bind(this, true)} />
                   Yes
                 </label>
 
                 <label className="radio-inline" data-toggle="tooltip" title="End Grain Selected">
                   <input
-                    checked={!this.state.allEndGrain}
+                    checked={!this.state.allGrain && this.state.allGrainAligned}
                     id="deselectAllEndGrain"
                     name="allEndGrainRadioGroupName"
                     type="radio"
-                    value="false"
-                    onChange={this.setAllEndGrainSelection.bind(this, false)} />
+                    value="all-end-grain-yes"
+                    onClick={this.onGrainSelectAll.bind(this, false)} />
                   No
                 </label>
               </fieldset>

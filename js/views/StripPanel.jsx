@@ -10,8 +10,9 @@ export default class StripPanel extends React.Component {
     this.forceUpdate()
   }
 
-  onEndGrainSelection (event) {
+  onGrainSelection (event) {
     this.props.strip.set('endGrain', event.currentTarget.value)
+    this.props.checkGrainAlignment()
     this.forceUpdate()
   }
 
@@ -41,23 +42,23 @@ export default class StripPanel extends React.Component {
 
               <label className="radio-inline" data-toggle="tooltip" title="End Grain Selected">
                 <input
-                  checked={this.props.strip.get('endGrain')}
+                  checked={this.props.strip.get('endGrain') === 'end-grain-yes'}
                   id={radioGroupPrefix + '-end-grain-yes'}
                   name={endGrainRadioGroupName}
                   type="radio"
-                  value="true"
-                  onChange={this.onEndGrainSelection.bind(this)} />
+                  value="end-grain-yes"
+                  onChange={this.onGrainSelection.bind(this)} />
                 Yes
               </label>
 
               <label className="radio-inline" data-toggle="tooltip" title="End Grain Deselected">
                 <input
-                  checked={!this.props.strip.get('endGrain')}
+                  checked={this.props.strip.get('endGrain') === 'end-grain-no'}
                   id={radioGroupPrefix + '-end-grain-no'}
                   name={endGrainRadioGroupName}
                   type="radio"
-                  value="false"
-                  onChange={this.onEndGrainSelection.bind(this)} />
+                  value="end-grain-no"
+                  onChange={this.onGrainSelection.bind(this)} />
                 No
               </label>
             </fieldset>
