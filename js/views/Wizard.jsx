@@ -166,11 +166,8 @@ export default class Wizard extends React.Component {
   }
 
   onGrainSelectAll (state) {
-    // - Update all board strips = true
     this.selectAllEndGrain(state)
 
-    // - Update allGrain = state
-    // - Update allGrainAligned = true
     this.setState({
       allGrain: state,
       allGrainAligned: true
@@ -185,28 +182,18 @@ export default class Wizard extends React.Component {
   }
 
   checkGrainAlignment () {
-    console.log('checkGrainAlignment: ', this.state.allGrainAligned)
-    let lastStrip = this.props.board.get('strips')
-
-    // let match = lastStrip[0].get('endGrain')
-    let match
-
+    let strips = this.props.board.get('strips')
+    let match = strips.pop().get('endGrain')
     let result = true
-    this.props.board.get('strips').forEach((strip) => {
-      console.log(strip.get('id'), strip.get('endGrain'), match)
-      // Fun fact: giving an input a value of "false" actually leaves it as a string
-      match = strip.get('endGrain')
-    })
 
-    this.props.board.get('strips').forEach((strip) => {
-      console.log(strip.get('id'), strip.get('endGrain'), match)
-      // Fun fact: giving an input a value of "false" actually leaves it as a string
-      if (strip.get('endGrain') != match) {
+    strips.forEach((strip) => {
+      if (strip.get('endGrain') !== match) {
         result = false
       }
     })
 
     this.setState({allGrainAligned: result})
+    console.log('checkGrainAlignment(match): ', match)
     console.log('checkGrainAlignment(final): ', this.state.allGrainAligned)
   }
 
