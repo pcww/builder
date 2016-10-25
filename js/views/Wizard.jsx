@@ -183,22 +183,18 @@ export default class Wizard extends React.Component {
 
   checkGrainAlignment () {
     let strips = this.props.board.get('strips')
-    let match = strips.pop().get('endGrain')
-    let result = true
 
-    strips.forEach((strip) => {
-      if (strip.get('endGrain') !== match) {
-        result = false
-      }
+    let values = strips.map((strip) => {
+      return strip.get('endGrain')
     })
 
+    let uniqueValues = _.uniq(values)
+    let result = uniqueValues.length < 2
+
     this.setState({allGrainAligned: result})
-    console.log('checkGrainAlignment(match): ', match)
-    console.log('checkGrainAlignment(final): ', this.state.allGrainAligned)
   }
 
   render () {
-    console.log("Current State: \n", "allGrain: ", this.state.allGrain, " allGrainAligned: ", this.state.allGrainAligned)
     let board = this.props.board
     let canRemoveStrip = !!(this.props.board.get('strips').length > constants.MINIMUM_NUMBER_STRIPS)
 
