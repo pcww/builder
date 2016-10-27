@@ -184,11 +184,12 @@ export default class Wizard extends React.Component {
   checkGrainAlignment () {
     let strips = this.props.board.get('strips')
 
-    let values = strips.map((strip) => {
-      return strip.get('endGrain')
-    })
+    let uniqueValues = _.chain(strips)
+                        .map((strip) => { return strip.get('endGrain') })
+                        .uniq()
+                        .value()
 
-    let uniqueValues = _.uniq(values)
+    console.log("Unique values: ", uniqueValues)
     let result = uniqueValues.length < 2
 
     this.setState({allGrainAligned: result})
