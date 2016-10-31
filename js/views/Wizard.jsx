@@ -132,8 +132,7 @@ export default class Wizard extends React.Component {
     strips.add({
       id: strips.length,
       size: 'large',
-      wood: 'maple',
-      endGrain: 'end-grain-no'
+      wood: 'maple'
     })
     this.forceUpdate()
     this.initializeSortable()
