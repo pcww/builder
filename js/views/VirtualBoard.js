@@ -138,8 +138,6 @@ export default class VirtualBoard {
   }
 
   render () {
-    // console.log('camera: ', this.camera.position);
-
     let strips = this.board.get('strips')
     let currentZ = 0
     let redraw = this.board.get('redraw')

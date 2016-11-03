@@ -29,7 +29,6 @@ export default class Board extends BaseModel {
     this.get('strips').forEach(strip => {
       width += sizes[strip.get('size')]
     })
-    console.log("width: ", width)
     return width
   }
 
@@ -66,6 +65,7 @@ export default class Board extends BaseModel {
   parse (response, xhr) {
     response.strips.forEach((strip, index) => {
       strip.id = index
+      strip.endGrain = "end-grain-no"
     })
 
     this.get('strips').reset(response.strips)

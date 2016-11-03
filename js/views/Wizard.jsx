@@ -35,6 +35,8 @@ export default class Wizard extends React.Component {
 
   componentWillMount () {
     this.state = {
+      allGrain: false,
+      allGrainAligned: false,
       currentStep: 0,
       peakedWidth: false,
       stripsExpand: false,
@@ -92,6 +94,7 @@ export default class Wizard extends React.Component {
         let strip = strips.at(oldIndex)
 
         strip.set('moving', true)
+        strip.set('endGrain', 'end-grain-no')
       }
     })
   }
@@ -118,19 +121,18 @@ export default class Wizard extends React.Component {
 
   onStripLengthChanged (event) {
     this.props.board.set('length', event.currentTarget.value)
-    console.log("_onStripLengthChanged", this.props.board.toJSON(), ":", event.currentTarget.value)
     this.minWidthFlag()
   }
 
   minWidthFlag () {
     this.setState({ peakedWidth: (this.props.board._currentWidth() < this.minWidth) })
-    console.log("peakedWidth: ", this.state.peakedWidth)
   }
 
   addStrip () {
     let strips = this.props.board.get('strips')
     strips.add({
       id: strips.length,
+      endGrain: 'end-grain-no',
       size: 'large',
       wood: 'maple'
     })
@@ -148,17 +150,46 @@ export default class Wizard extends React.Component {
   }
 
   onToggleStripsExpand () {
-    console.log('expando', this.state.stripsExpand ? 'hide' : 'show' )
-    if (this.state.stripsExpand)
+    if (this.state.stripsExpand) {
       $('.panel-collapse.collapse').collapse('hide')
-    else
+    } else {
       $('.panel-collapse.collapse').collapse('show')
+    }
 
     this.setState({ stripsExpand: !this.state.stripsExpand })
   }
 
   onSubmitOrder () {
     window.alert('Order Submitted!')
+  }
+
+  onGrainSelectAll (state) {
+    this.selectAllEndGrain(state)
+
+    this.setState({
+      allGrain: state,
+      allGrainAligned: true
+    })
+  }
+
+  selectAllEndGrain (state) {
+    let endGrain = state ? 'end-grain-yes' : 'end-grain-no'
+    this.props.board.get('strips').forEach((strip) => {
+      strip.set('endGrain', endGrain)
+    })
+  }
+
+  checkGrainAlignment () {
+    let strips = this.props.board.get('strips')
+
+    let values = strips.map((strip) => {
+      return strip.get('endGrain')
+    })
+
+    let uniqueValues = _.uniq(values)
+    let result = uniqueValues.length < 2
+
+    this.setState({allGrainAligned: result})
   }
 
   render () {
@@ -168,7 +199,7 @@ export default class Wizard extends React.Component {
     let Strips = board.get('strips').map((strip, key) => {
       return (
         <li className="panel panel-default" data-id={strip.get('id')} key={strip.get('id')}>
-          <StripPanel key={strip.cid} id={key} strip={strip} canRemoveStrip={canRemoveStrip} removeStrip={this.removeStrip.bind(this)}></StripPanel>
+          <StripPanel key={strip.cid} id={key} strip={strip} canRemoveStrip={canRemoveStrip} removeStrip={this.removeStrip.bind(this)} checkGrainAlignment={this.checkGrainAlignment.bind(this)}></StripPanel>
         </li>
       )
     })
@@ -203,6 +234,31 @@ export default class Wizard extends React.Component {
                   step="2"
                   defaultValue={board.get('length')}
                   onChange={this.onStripLengthChanged.bind(this)} />
+              </fieldset>
+
+              <fieldset>
+                <legend>End Grain Selection</legend>
+                <label className="radio-inline" data-toggle="tooltip" title="End Grain Selected">
+                  <input
+                    checked={this.state.allGrain && this.state.allGrainAligned}
+                    id="selectAllEndGrain"
+                    name="allEndGrainRadioGroupName"
+                    type="radio"
+                    value="all-end-grain-yes"
+                    onClick={this.onGrainSelectAll.bind(this, true)} />
+                  Yes
+                </label>
+
+                <label className="radio-inline" data-toggle="tooltip" title="End Grain Selected">
+                  <input
+                    checked={!this.state.allGrain && this.state.allGrainAligned}
+                    id="deselectAllEndGrain"
+                    name="allEndGrainRadioGroupName"
+                    type="radio"
+                    value="all-end-grain-yes"
+                    onClick={this.onGrainSelectAll.bind(this, false)} />
+                  No
+                </label>
               </fieldset>
 
               <fieldset>
