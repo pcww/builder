@@ -13,7 +13,7 @@ let queryParams = {}
 location.search.replace('?', '').split('&').forEach(item => {
   let itemSplit = item.split('=')
 
-  queryParams[itemSplit[0]] = itemSplit[1]
+  queryParams[itemSplit[0]] = itemSplit[1].toLowerCase() === 'false' ? false : itemSplit[1]
 })
 
 if (queryParams.verify) {
