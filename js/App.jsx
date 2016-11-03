@@ -6,11 +6,29 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import Builder from 'views/Builder.jsx'
+import Verification from 'views/Verification.jsx'
 
-let hash = window.location.hash.match(/#\?id=(\d+)/)
-let boardId = hash && hash.length > 1 ? hash[1] : 1
+let queryParams = {}
 
-ReactDOM.render(
-  <Builder id={boardId} preview="false"/>, 
-  document.querySelector('div[role="application"]')
-);
+location.search.replace('?', '').split('&').forEach(item => {
+  let itemSplit = item.split('=')
+
+  queryParams[itemSplit[0]] = itemSplit[1]
+})
+
+if (queryParams.verify) {
+  ReactDOM.render(
+    <Verification id={queryParams.order} hash={queryParams.hash} verify="false" />,
+    document.querySelector('div[role="application"]')
+  )
+} else if (queryParams.hash) {
+  ReactDOM.render(
+    <Builder id={queryParams.order} hash={queryParams.hash} preview="true" />,
+    document.querySelector('div[role="application"]')
+  )
+} else {
+  ReactDOM.render(
+    <Builder id={queryParams.id || 1} />,
+    document.querySelector('div[role="application"]')
+  )
+}
