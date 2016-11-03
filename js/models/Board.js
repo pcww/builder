@@ -26,7 +26,6 @@ export default class Board extends BaseModel {
     this.get('strips').forEach(strip => {
       width += sizes[strip.get('size')]
     })
-    console.log("width: ", width)
     return width
   }
 

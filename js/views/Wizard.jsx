@@ -121,13 +121,11 @@ export default class Wizard extends React.Component {
 
   onStripLengthChanged (event) {
     this.props.board.set('length', event.currentTarget.value)
-    console.log("_onStripLengthChanged", this.props.board.toJSON(), ":", event.currentTarget.value)
     this.minWidthFlag()
   }
 
   minWidthFlag () {
     this.setState({ peakedWidth: (this.props.board._currentWidth() < this.minWidth) })
-    console.log("peakedWidth: ", this.state.peakedWidth)
   }
 
   addStrip () {
@@ -152,11 +150,11 @@ export default class Wizard extends React.Component {
   }
 
   onToggleStripsExpand () {
-    console.log('expando', this.state.stripsExpand ? 'hide' : 'show' )
-    if (this.state.stripsExpand)
+    if (this.state.stripsExpand) {
       $('.panel-collapse.collapse').collapse('hide')
-    else
+    } else {
       $('.panel-collapse.collapse').collapse('show')
+    }
 
     this.setState({ stripsExpand: !this.state.stripsExpand })
   }
