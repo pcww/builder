@@ -76,6 +76,7 @@ export default class Board extends BaseModel {
   }
 
   url () {
-    return this.urlRoot + (this.id ? '/board/' + this.id : '/board')
+    let createdFromId = this.get('createdFromId')
+    return this.urlRoot + (createdFromId ? '/board/' + createdFromId : '/board')
   }
 }
