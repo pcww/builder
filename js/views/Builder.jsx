@@ -10,7 +10,7 @@ export default class Builder extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      board: new BoardModel({ id: this.props.id }),
+      board: new BoardModel({ createdFromId: this.props.id }),
       loaded: false
     }
 
