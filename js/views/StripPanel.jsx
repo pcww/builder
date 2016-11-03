@@ -23,8 +23,6 @@ export default class StripPanel extends React.Component {
     let endGrainRadioGroupName = radioGroupPrefix + '-end-grain'
     let radioGroupName = radioGroupPrefix + '-wood-size'
 
-    console.log("End Grain Selection: ", endGrainRadioGroupName, ":",  this.props.strip.get('endGrain'))
-
     return (
       <div>
         <StripHeader data-id={this.props.strip.get('data-id')} id={this.props.id} strip={this.props.strip} />
