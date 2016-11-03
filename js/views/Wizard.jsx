@@ -179,6 +179,8 @@ export default class Wizard extends React.Component {
     });
 
     let currentWidth = this.props.board._currentWidth()
+    let currentWidthText = this.state.peakedWidth ?  "Width: " + currentWidth + "\""   : ""
+    let minimumWidthText = this.state.peakedWidth ?  " | Min Width: " + this.minWidth + "\""  : ""
 
     return (
       <menu className="wizard" type="toolbar">
@@ -216,10 +218,11 @@ export default class Wizard extends React.Component {
               <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
 
               <div className="warning">
-                <span>
-                  {this.state.peakedWidth ?
-                  "Warning: board below minimum width (" + currentWidth + "\")" :
-                  "" }
+                <span className="current">
+                  {currentWidthText}
+                </span>
+                <span className="minimum">
+                  {minimumWidthText}
                 </span>
               </div>
             </div>
