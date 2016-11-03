@@ -19,6 +19,9 @@ export default class Board extends BaseModel {
       this._rerenderStrips()
       this._updateWidth()
     })
+    this.listenToOnce(strips, 'change add remove', () => {
+      this.set('medusa', true)
+    })
   }
 
   _currentWidth () {
@@ -53,6 +56,7 @@ export default class Board extends BaseModel {
     return {
       handle: 'none',
       length: 0,
+      medusa: false,
       name: 'test',
       strips: new StripsCollection,
       width: 0
