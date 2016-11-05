@@ -63,19 +63,19 @@ export default class Wizard extends React.Component {
         })
       },
       onMove: (event) => {
+        let p0 = performance.now()
         let strips = this.props.board.get('strips')
         let stripsArray = strips.toJSON()
 
         // Dragged strip details
-        let draggedRect = event.draggedRect
         let draggedStrip = event.dragged
+        console.log("draggedStrip", draggedStrip)
         let draggedStripId = parseInt(draggedStrip.getAttribute('data-id'))
         let draggedStripModel = _.findWhere(stripsArray, {id: draggedStripId})
-        let draggedStripIndex = _.indexOf(stripsArray, draggedStripModel)
 
         // Related strip details
-        let relatedRect = event.relatedRect
         let relatedStrip = event.related
+        console.log("relatedStrip: ", event.related)
         let relatedStripId = parseInt(relatedStrip.getAttribute('data-id'))
         let relatedStripModel = _.findWhere(stripsArray, {id: relatedStripId})
         let relatedStripIndex = _.indexOf(stripsArray, relatedStripModel)
@@ -85,6 +85,8 @@ export default class Wizard extends React.Component {
         strips.reset(stripsArray)
 
         this.setState({})
+        let p1 = performance.now()
+        console.log("Time elapsed for move: ", p1-p0)
       },
       onStart: (event) => {
         let oldIndex = event.oldIndex
