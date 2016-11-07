@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import classNames from 'classnames'
+import PortalTooltip from 'react-portal-tooltip'
 
 import accessories from '../accessories.json'
 
@@ -35,6 +36,11 @@ export default class EndcapPicker extends React.Component {
     this.props.board.set('endcaps', Object.assign(currentVals, { branding: branding }))
     this.forceUpdate()
   }
+
+  showEndcapTooltip () {
+    true
+  }
+
 
   render () {
     let board = this.props.board
@@ -88,9 +94,16 @@ export default class EndcapPicker extends React.Component {
         <fieldset>
           <legend>Endcap Type</legend>
           <div className="media">
-            <div className="media-left">
+            <div className="media-left" id="endcap">
               <img className="media-object swatch swatch-big" src={'/assets/endcaps/' + endcapType + '.jpg'} alt="..."/>
             </div>
+
+            <PortalTooltip active={this.showEndcapTooltip()} parent="#endcap" position="left" arrow="center">
+              <div>
+                <p>This is the content of the tooltip</p>
+              </div>
+            </PortalTooltip>
+
             <div className="media-body">
               {endcapType}
               <div className="row">
