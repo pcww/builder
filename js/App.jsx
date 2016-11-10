@@ -8,7 +8,9 @@ import ReactDOM from 'react-dom'
 import Builder from 'views/Builder.jsx'
 import Verification from 'views/Verification.jsx'
 
+let component
 let queryParams = {}
+let renderTarget = document.querySelector('div[role="application"]')
 
 location.search.replace('?', '').split('&').forEach(item => {
   let itemSplit = item.split('=')
@@ -24,18 +26,16 @@ location.search.replace('?', '').split('&').forEach(item => {
 })
 
 if (queryParams.verify) {
-  ReactDOM.render(
-    <Verification id={queryParams.order} hash={queryParams.hash} verify="false" />,
-    document.querySelector('div[role="application"]')
-  )
+  component = <Verification id={queryParams.order} hash={queryParams.hash} verify="true" />
+
 } else if (queryParams.hash) {
-  ReactDOM.render(
-    <Builder id={queryParams.order} hash={queryParams.hash} preview="true" />,
-    document.querySelector('div[role="application"]')
-  )
+  component = <Builder id={queryParams.order} hash={queryParams.hash} preview="true" />
+
 } else {
-  ReactDOM.render(
-    <Builder id={queryParams.id || 1} />,
-    document.querySelector('div[role="application"]')
-  )
+  component = <Builder id={queryParams.id || 1} />
 }
+
+ReactDOM.render(
+  component,
+  renderTarget
+)
