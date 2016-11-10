@@ -41,25 +41,41 @@ export default class Verification extends React.Component {
     })
   }
 
+  errorState () {
+    return <p>Sorry, we failed to verify your order. Please try again later or send us an email at <a href="mailto:tech@pinecliffwoodworks.com">tech@pinecliffwoodworks.com</a>.</p>
+  }
+
+  loadedState () {
+    return <p>{order.get('name')}, we're verifying your order!</p>
+  }
+
+  loadingState () {
+    return <p>Retrieving your order details...</p>
+  }
+
+  verifiedState () {
+    return <p>Thanks, {order.get('name')}, your order has been verified!</p>
+  }
+
   render () {
     let message
     let order = this.state.order
 
     switch (this.state.state) {
       case 'loading':
-        message = 'Retrieving your order details...'
+        message = this.loadingState()
         break
 
       case 'loaded':
-        message = order.get('name') + ', we\'re verifying your order!'
+        message = this.loadedState()
         break
 
       case 'error':
-        message = 'Sorry, we failed to verify your order. Please try again later or send us an email at <a href="mailto:tech@pinecliffwoodworks.com">tech@pinecliffwoodworks.com</a>.'
+        message = this.errorState()
         break
 
       case 'verified':
-        message = 'Thanks, ' + order.get('name') + ', your order has been verified!'
+        message = this.verifiedState()
         break
     }
 
