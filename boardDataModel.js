@@ -25,112 +25,112 @@ let HeraExampleBoard = {
     {
       "size": "xsmall",
       "wood": "purpleheart",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "small",
       "wood": "oakred",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "medium",
       "wood": "maple",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "small",
       "wood": "oakred",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     },
     {
       "size": "xsmall",
       "wood": "purpleheart",
-      "endGrain": false
+      "endGrain": "end-grain-no"
     }
   ],
   "length": 24
