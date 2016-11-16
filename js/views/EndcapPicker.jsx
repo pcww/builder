@@ -2,12 +2,45 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import classNames from 'classnames'
 import PortalTooltip from 'react-portal-tooltip'
+import Modal from 'react-modal'
 
 import accessories from '../accessories.json'
 
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
 export default class EndcapPicker extends React.Component {
+  componentWillMount () {
+    this.modalIsOpen = true
+  }
+
+  // Modal Setup
+  openModal () {
+    console.log("Made it here")
+    this.modalIsOpen = true
+  }
+
+  afterOpenModal () {
+    // references are now sync'd and can be accessed.
+    this.refs.subtitle.style.color = '#f00';
+  }
+
+  closeModal () {
+    this.modalIsOpen = false
+  }
+
+  // End Modal Setup
+
   onEndcapChange (event) {
     let currentVals = this.props.board.get('endcaps')
 
@@ -94,9 +127,29 @@ export default class EndcapPicker extends React.Component {
         <fieldset>
           <legend>Endcap Type</legend>
           <div className="media">
-            <div className="media-left" id="endcap">
+            <div className="media-left" id="endcap" onClick="this.openModal()">
               <img className="media-object swatch swatch-big" src={'/assets/endcaps/' + endcapType + '.jpg'} alt="..."/>
             </div>
+
+            <Modal
+              isOpen={this.modalIsOpen}
+              onAfterOpen={this.afterOpenModal}
+              onRequestClose={this.closeModal}
+              style={customStyles}
+              contentLabel="Example Modal"
+            >
+
+              <h2 ref="subtitle">Hello</h2>
+              <button onClick={this.closeModal}>close</button>
+              <div>I am a modal</div>
+              <form>
+                <input />
+                <button>tab navigation</button>
+                <button>stays</button>
+                <button>inside</button>
+                <button>the modal</button>
+              </form>
+            </Modal>
 
             <PortalTooltip active={this.showEndcapTooltip()} parent="#endcap" position="left" arrow="center">
               <div>
