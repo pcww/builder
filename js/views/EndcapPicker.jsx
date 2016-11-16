@@ -94,11 +94,11 @@ export default class EndcapPicker extends React.Component {
             <div className="media-body">
               {endcapType}
               <div className="row">
-                <div className="col-xs-6">
+                <div className="col-md-12 col-lg-6">
                   <h4 className="media-heading">{endcapName}</h4>
                   <p className="small">{endcapDescription}</p>
                 </div>
-                <div className="col-xs-6">
+                <div className="col-md-12 col-lg-6">
                   <div className="radio">
                     <label>
                       <input type="radio" name="endcapOption" id="endcap-button" value="button" onChange={this.onEndcapChange.bind(this)} checked={endcapType === 'button'}/>
@@ -136,11 +136,11 @@ export default class EndcapPicker extends React.Component {
             <div className="media-body">
               {endcapBranding}
               <div className="row">
-                <div className="col-xs-6">
+                <div className="col-md-12 col-lg-6">
                   <h4 className="media-heading">{brandingName}</h4>
                   <p className="small">{brandingDescription}</p>
                 </div>
-                <div className="col-xs-6">
+                <div className="col-md-12 col-lg-6">
                   <div className="radio">
                     <label>
                       <input type="radio" name="endcapBrandingOption" id="endcap-button" value="none" onChange={this.onBrandingChange.bind(this)} checked={endcapBranding === 'none'}/>
