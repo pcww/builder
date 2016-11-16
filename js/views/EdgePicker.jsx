@@ -32,11 +32,11 @@ export default class EdgePicker extends React.Component {
         </div>
         <div className="media-body">
           <div className="row">
-            <div className="col-md-12 col-lg-6">
+            <div className="col-xs-12">
               <h4 className="media-heading">{edgeName}</h4>
               <p>{edgeDescription}</p>
             </div>
-            <div className="col-md-12 col-lg-6">
+            <div className="col-xs-12">
               {EdgeRadios}
             </div>
           </div>
