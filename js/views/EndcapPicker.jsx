@@ -147,18 +147,20 @@ export default class EndcapPicker extends React.Component {
 
             <Modal
               isOpen={this.state.modalIsOpen}
-              onAfterOpen={this.afterOpenModal}
+              onAfterOpen={this.afterOpenModal.bind(this)}
               onRequestClose={this.closeModal.bind(this)}
               style={customStyles}
               contentLabel="Example Modal"
             >
 
-              <header class="modal-header">
-                <h2 ref="subtitle">Endcap Types</h2>
-                <span onClick={this.closeModal.bind(this)}><i className="fa fa-times"></i></span>
-              </header>
+              <div className="imageModal">
+                <header className="imageModal-header">
+                  <h2 ref="subtitle">Endcap Types</h2>
+                  <span onClick={this.closeModal.bind(this)}><i className="fa fa-times"></i></span>
+                </header>
 
-              <img className="modal-image" src={'/assets/endcaps/' + modalImages[index] + '.jpg'} alt="..."/>
+                <img className="imageModal-image" src={'/assets/endcaps/' + modalImages[index] + '.jpg'} alt="..."/>
+              </div>
             </Modal>
 
             <div className="media-body">
