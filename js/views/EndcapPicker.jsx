@@ -35,11 +35,6 @@ export default class EndcapPicker extends React.Component {
     })
   }
 
-  afterOpenModal () {
-    // references are now sync'd and can be accessed.
-    this.refs.subtitle.style.color = '#f00';
-  }
-
   closeModal () {
     this.setState({
       modalIsOpen: false
@@ -147,7 +142,6 @@ export default class EndcapPicker extends React.Component {
 
             <Modal
               isOpen={this.state.modalIsOpen}
-              onAfterOpen={this.afterOpenModal.bind(this)}
               onRequestClose={this.closeModal.bind(this)}
               style={customStyles}
               contentLabel="Example Modal"
@@ -156,7 +150,7 @@ export default class EndcapPicker extends React.Component {
               <div className="imageModal">
                 <header className="imageModal-header">
                   <h2 ref="subtitle">Endcap Types</h2>
-                  <span onClick={this.closeModal.bind(this)}><i className="fa fa-times"></i></span>
+                  <span className="imageModal-closeButton" onClick={this.closeModal.bind(this)}><i className="fa fa-times"></i></span>
                 </header>
 
                 <img className="imageModal-image" src={'/assets/endcaps/' + modalImages[index] + '.jpg'} alt="..."/>
