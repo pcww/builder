@@ -1,10 +1,32 @@
 .imageModal {
   .imageModal-header {
     display: flex;
+
+    .imageModal-closeButton {
+      border: 1px solid $cod-gray;
+      height: 3rem;
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      width: 3rem;
+
+      &:hover {
+        background-color: $bondi-blue;
+        color: #000;
+      }
+
+      i {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        color: inherit;
+      }
+    }
   }
 
   .imageModal-image {
-    width: 500px;
-    height: 400px;
+    width: 800px;
+    height: 600px;
   }
 }
