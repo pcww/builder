@@ -22,11 +22,11 @@ export default class GroovePicker extends React.Component {
         </div>
         <div className="media-body">
           <div className="row">
-            <div className="col-md-12 col-lg-6">
+            <div className="col-xs-12">
               <h4 className="media-heading">{grooveName}</h4>
               <p>{grooveDescription}</p>
             </div>
-            <div className="col-md-12 col-lg-6">
+            <div className="col-xs-12">
 
               <div className="radio">
                 <label>
