@@ -129,6 +129,13 @@ export default class EndcapPicker extends React.Component {
     let brandingName = accessories['endcaps-branding'][endcapBranding].name
     let brandingDescription = accessories['endcaps-branding'][endcapBranding].description
 
+    let modalImages = [
+      'unsplash1',
+      'unsplash2',
+      'unsplash3'
+    ]
+    let index = 0
+
     return (
       <div id="endcap-picker">
         <fieldset>
@@ -146,16 +153,12 @@ export default class EndcapPicker extends React.Component {
               contentLabel="Example Modal"
             >
 
-              <h2 ref="subtitle">Testing Modal</h2>
-              <button onClick={this.closeModal.bind(this)}>close</button>
-              <div>I am a modal</div>
-              <form>
-                <input />
-                <button>tab navigation</button>
-                <button>stays</button>
-                <button>inside</button>
-                <button>the modal</button>
-              </form>
+              <header class="modal-header">
+                <h2 ref="subtitle">Endcap Types</h2>
+                <span onClick={this.closeModal.bind(this)}><i className="fa fa-times"></i></span>
+              </header>
+
+              <img className="modal-image" src={'/assets/endcaps/' + modalImages[index] + '.jpg'} alt="..."/>
             </Modal>
 
             <div className="media-body">
