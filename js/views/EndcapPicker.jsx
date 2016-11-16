@@ -19,15 +19,20 @@ const customStyles = {
 };
 
 export default class EndcapPicker extends React.Component {
-  componentWillMount () {
-    this.modalIsOpen = false
+  constructor(props) {
+    super(props)
+    this.state = {
+      modalIsOpen: false
+    }
   }
+
+  componentWillMount () { }
 
   // Modal Setup
   openModal () {
-    console.log("Made it here")
-    this.modalIsOpen = true
-    this.forceUpdate()
+    this.setState({
+      modalIsOpen: true
+    })
   }
 
   afterOpenModal () {
@@ -36,8 +41,9 @@ export default class EndcapPicker extends React.Component {
   }
 
   closeModal () {
-    this.modalIsOpen = false
-    this.forceUpdate()
+    this.setState({
+      modalIsOpen: false
+    })
   }
 
   // End Modal Setup
@@ -71,8 +77,8 @@ export default class EndcapPicker extends React.Component {
     this.forceUpdate()
   }
 
-  showEndcapTooltip () {
-    true
+  showEndcapModal () {
+    return true
   }
 
 
@@ -128,20 +134,20 @@ export default class EndcapPicker extends React.Component {
         <fieldset>
           <legend>Endcap Type</legend>
           <div className="media">
-            <div className="media-left" onClick="this.openModal()">
+            <div className="media-left" onClick={this.openModal.bind(this)}>
               <img className="media-object swatch swatch-big" src={'/assets/endcaps/' + endcapType + '.jpg'} alt="..."/>
             </div>
 
             <Modal
-              isOpen={this.modalIsOpen}
+              isOpen={this.state.modalIsOpen}
               onAfterOpen={this.afterOpenModal}
-              onRequestClose={this.closeModal}
+              onRequestClose={this.closeModal.bind(this)}
               style={customStyles}
               contentLabel="Example Modal"
             >
 
               <h2 ref="subtitle">Testing Modal</h2>
-              <button onClick={this.closeModal}>close</button>
+              <button onClick={this.closeModal.bind(this)}>close</button>
               <div>I am a modal</div>
               <form>
                 <input />
