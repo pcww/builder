@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import classNames from 'classnames'
-import PortalTooltip from 'react-portal-tooltip'
 import Modal from 'react-modal'
 
 import accessories from '../accessories.json'
@@ -21,13 +20,14 @@ const customStyles = {
 
 export default class EndcapPicker extends React.Component {
   componentWillMount () {
-    this.modalIsOpen = true
+    this.modalIsOpen = false
   }
 
   // Modal Setup
   openModal () {
     console.log("Made it here")
     this.modalIsOpen = true
+    this.forceUpdate()
   }
 
   afterOpenModal () {
@@ -37,6 +37,7 @@ export default class EndcapPicker extends React.Component {
 
   closeModal () {
     this.modalIsOpen = false
+    this.forceUpdate()
   }
 
   // End Modal Setup
@@ -127,7 +128,7 @@ export default class EndcapPicker extends React.Component {
         <fieldset>
           <legend>Endcap Type</legend>
           <div className="media">
-            <div className="media-left" id="endcap" onClick="this.openModal()">
+            <div className="media-left" onClick="this.openModal()">
               <img className="media-object swatch swatch-big" src={'/assets/endcaps/' + endcapType + '.jpg'} alt="..."/>
             </div>
 
@@ -139,7 +140,7 @@ export default class EndcapPicker extends React.Component {
               contentLabel="Example Modal"
             >
 
-              <h2 ref="subtitle">Hello</h2>
+              <h2 ref="subtitle">Testing Modal</h2>
               <button onClick={this.closeModal}>close</button>
               <div>I am a modal</div>
               <form>
@@ -150,12 +151,6 @@ export default class EndcapPicker extends React.Component {
                 <button>the modal</button>
               </form>
             </Modal>
-
-            <PortalTooltip active={this.showEndcapTooltip()} parent="#endcap" position="left" arrow="center">
-              <div>
-                <p>This is the content of the tooltip</p>
-              </div>
-            </PortalTooltip>
 
             <div className="media-body">
               {endcapType}
