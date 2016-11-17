@@ -1,6 +1,8 @@
 import React from 'react'
-
+import classNames from 'classnames'
 import OrderModel from 'models/Order'
+
+import woods from '../woods.json'
 
 export default class Verification extends React.Component {
   constructor (props) {
@@ -32,6 +34,16 @@ export default class Verification extends React.Component {
 
       if (!verified) {
         order.verify()
+        .done(() => {
+          this.setState({
+            state: verified ? 'verified' : 'loaded'
+          })
+        })
+        .error(() => {
+          this.setState({
+            state: 'error'
+          })
+        })
       }
     })
     .error(() => {
@@ -42,24 +54,49 @@ export default class Verification extends React.Component {
   }
 
   errorState () {
-    return <p>Sorry, we failed to verify your order. Please try again later or send us an email at <a href="mailto:tech@pinecliffwoodworks.com">tech@pinecliffwoodworks.com</a>.</p>
+    return (
+      <div className="loading">
+        <img src="/assets/misc/pcw-logo.png"/>
+        <p>Sorry, there was a problem verifying your order. Please try again later or email us at <a href="mailto:tech@pinecliffwoodworks.com">tech@pinecliffwoodworks.com</a>.</p>
+      </div>
+    )
   }
 
   loadedState () {
-    return <p>{order.get('name')}, we're verifying your order!</p>
+    return (
+      <div className="loading">
+        <img src="/assets/misc/pcw-logo.png"/>
+        <p>{order.get('name')}, we're verifying your order!</p>
+        <img src="/assets/misc/loading-ring.svg" />
+      </div>
+    )
   }
 
   loadingState () {
-    return <p>Retrieving your order details...</p>
+    return (
+      <div className="loading">
+        <img src="/assets/misc/pcw-logo.png"/>
+        <p>Retrieving your order details...</p>
+        <img src="/assets/misc/loading-ring.svg" />
+      </div>
+    )
   }
 
   verifiedState () {
-    return <p>Thanks, {order.get('name')}, your order has been verified!</p>
+    return (
+      <div className="loading">
+        <img src="/assets/misc/pcw-logo.png"/>
+        <p>Thanks, {order.get('name')}, your order has been verified!</p>
+      </div>
+    )
   }
 
   render () {
+    let classes = classNames('vignette', randomWood, 'lowres')
     let message
     let order = this.state.order
+    let woodKeys = Object.keys(woods)
+    let randomWood = woodKeys[(Math.floor(Math.random() * woodKeys.length-1))]
 
     switch (this.state.state) {
       case 'loading':
@@ -79,8 +116,17 @@ export default class Verification extends React.Component {
         break
     }
 
+    if (this.state.loaded) {
+      return (
+        <main>
+          <Board board={this.state.board} overlay />
+          <Wizard board={this.state.board} />
+        </main>
+      )
+    }
+
     return (
-      <main>
+      <main className={classes}>
         {message}
       </main>
     )
