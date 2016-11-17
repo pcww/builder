@@ -1,12 +1,77 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import classNames from 'classnames'
+import Modal from 'react-modal'
 
 import accessories from '../accessories.json'
 
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    padding               : '1.5rem',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
+const modalImages = [
+  'unsplash1',
+  'unsplash2',
+  'unsplash3'
+]
+
 export default class EndcapPicker extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      modalIsOpen: false,
+      imageIndex: 0
+    }
+  }
+
+  componentWillMount () { }
+
+  // Modal Setup
+  openModal () {
+    this.setState({
+      modalIsOpen: true
+    })
+  }
+
+  closeModal () {
+    this.setState({
+      modalIsOpen: false
+    })
+  }
+
+  previousImage () {
+    let newImageIndex = parseInt(this.state.imageIndex)
+    newImageIndex -= 1
+    newImageIndex += modalImages.length
+    newImageIndex %= modalImages.length
+
+    this.setState({
+      imageIndex: newImageIndex
+    })
+  }
+
+  nextImage () {
+    let newImageIndex = parseInt(this.state.imageIndex)
+    newImageIndex += 1
+    newImageIndex %= modalImages.length
+
+    this.setState({
+      imageIndex: newImageIndex
+    })
+  }
+
+  // End Modal Setup
+
   onEndcapChange (event) {
     let currentVals = this.props.board.get('endcaps')
 
@@ -35,6 +100,11 @@ export default class EndcapPicker extends React.Component {
     this.props.board.set('endcaps', Object.assign(currentVals, { branding: branding }))
     this.forceUpdate()
   }
+
+  showEndcapModal () {
+    return true
+  }
+
 
   render () {
     let board = this.props.board
@@ -88,9 +158,45 @@ export default class EndcapPicker extends React.Component {
         <fieldset>
           <legend>Endcap Type</legend>
           <div className="media">
-            <div className="media-left">
+            <div className="media-left" onClick={this.openModal.bind(this)}>
               <img className="media-object swatch swatch-big" src={'/assets/endcaps/' + endcapType + '.jpg'} alt="..."/>
             </div>
+
+            <Modal
+              isOpen={this.state.modalIsOpen}
+              onRequestClose={this.closeModal.bind(this)}
+              style={customStyles}
+              contentLabel="Example Modal"
+            >
+
+              <div className="imageModal">
+                <header className="imageModal-header">
+                  <h2 ref="subtitle">Endcap Types</h2>
+                  <span className="imageModal-buttons imageModal-header-closeButton" onClick={this.closeModal.bind(this)}>
+                    <i className="fa fa-times"></i>
+                  </span>
+                </header>
+
+                <div className="imageModal-contents">
+                  <div className="imageModal-buttons imageModal-buttons-nav" onClick={this.previousImage.bind(this)}>
+                    <i className="fa fa-chevron-left"></i>
+                  </div>
+
+                  <img className="imageModal-image"
+                    src={'/assets/endcaps/' + modalImages[this.state.imageIndex] + '.jpg'}
+                    alt="..." onClick={this.nextImage.bind(this)} />
+
+                  <div className="imageModal-buttons imageModal-buttons-nav" onClick={this.nextImage.bind(this)}>
+                    <i className="fa fa-chevron-right"></i>
+                  </div>
+                </div>
+
+                <div className="imageModal-footer">
+                  <span className="caption">This is a caption</span>
+                </div>
+              </div>
+            </Modal>
+
             <div className="media-body">
               <div className="row">
                 <div className="col-xs-12">

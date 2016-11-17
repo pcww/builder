@@ -1,0 +1,64 @@
+.imageModal {
+
+  .imageModal-buttons {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    &:hover {
+      background-color: $bondi-blue;
+      color: #000;
+    }
+
+    .fa {
+      align-items: center;
+      color: inherit;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .imageModal-buttons-nav {
+    border: 1px solid $cod-gray;
+    height: 9rem;
+    margin: 0.5rem;
+    width: 2rem;
+  }
+
+  .imageModal-header-closeButton {
+    border: 1px solid $cod-gray;
+    height: 3rem;
+    width: 3rem;
+    margin: 1rem;
+  }
+
+  .imageModal-header {
+    display: flex;
+    margin-left: 4rem;
+
+    .imageModal-header-closeButton {
+      position: absolute;
+      right: 0.5rem;
+      top: 0.5rem;
+    }
+  }
+
+  .imageModal-contents {
+    align-content: space-between;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    .imageModal-image {
+      height: 600px;
+      width: 800px;
+    }
+  }
+
+  .imageModal-footer {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem;
+  }
+}
