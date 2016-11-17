@@ -153,7 +153,11 @@ export default class EndcapPicker extends React.Component {
                   <span className="imageModal-closeButton" onClick={this.closeModal.bind(this)}><i className="fa fa-times"></i></span>
                 </header>
 
-                <img className="imageModal-image" src={'/assets/endcaps/' + modalImages[index] + '.jpg'} alt="..."/>
+                <div className="imageModal-image-wrapper">
+                  <span><i className="fa fa-chevron-left"></i></span>
+                  <img className="imageModal-image" src={'/assets/endcaps/' + modalImages[this.state.imageIndex] + '.jpg'} alt="..." onClick={this.nextImage.bind(this)} />
+                  <span><i className="fa fa-chevron-right"></i></span>
+                </div>
               </div>
             </Modal>
 
