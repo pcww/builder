@@ -18,11 +18,18 @@ const customStyles = {
   }
 };
 
+const modalImages = [
+  'unsplash1',
+  'unsplash2',
+  'unsplash3'
+]
+
 export default class EndcapPicker extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      imageIndex: 0
     }
   }
 
@@ -38,6 +45,28 @@ export default class EndcapPicker extends React.Component {
   closeModal () {
     this.setState({
       modalIsOpen: false
+    })
+  }
+
+  previousImage () {
+    let newImageIndex = parseInt(this.state.imageIndex)
+    newImageIndex -= 1
+    newImageIndex += modalImages.length
+    newImageIndex %= modalImages.length
+    console.log("index: ", newImageIndex)
+
+    this.setState({
+      imageIndex: newImageIndex
+    })
+  }
+
+  nextImage () {
+    let newImageIndex = parseInt(this.state.imageIndex)
+    newImageIndex += 1
+    newImageIndex %= modalImages.length
+
+    this.setState({
+      imageIndex: newImageIndex
     })
   }
 
@@ -124,13 +153,6 @@ export default class EndcapPicker extends React.Component {
     let brandingName = accessories['endcaps-branding'][endcapBranding].name
     let brandingDescription = accessories['endcaps-branding'][endcapBranding].description
 
-    let modalImages = [
-      'unsplash1',
-      'unsplash2',
-      'unsplash3'
-    ]
-    let index = 0
-
     return (
       <div id="endcap-picker">
         <fieldset>
@@ -154,9 +176,9 @@ export default class EndcapPicker extends React.Component {
                 </header>
 
                 <div className="imageModal-image-wrapper">
-                  <span><i className="fa fa-chevron-left"></i></span>
+                  <span onClick={this.previousImage.bind(this)}><i className="fa fa-chevron-left"></i></span>
                   <img className="imageModal-image" src={'/assets/endcaps/' + modalImages[this.state.imageIndex] + '.jpg'} alt="..." onClick={this.nextImage.bind(this)} />
-                  <span><i className="fa fa-chevron-right"></i></span>
+                  <span onClick={this.nextImage.bind(this)}><i className="fa fa-chevron-right"></i></span>
                 </div>
               </div>
             </Modal>
