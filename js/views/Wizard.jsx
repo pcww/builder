@@ -160,7 +160,11 @@ export default class Wizard extends React.Component {
   }
 
   onSubmitOrder () {
-    window.alert('Order Submitted!')
+    this.setState({
+      modalIsOpen: true
+    })
+
+    console.log('Order Submitted!')
   }
 
   onGrainSelectAll (state) {
@@ -333,7 +337,7 @@ export default class Wizard extends React.Component {
             <div className="step-controls controls">
               <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
               &nbsp;
-              <button type="button" className="btn btn-sm btn-primary" onClick={this.onSubmitOrder.bind(this)}><i className="fa fa-envelope-o" aria-hidden="true"></i> Submit Order</button>
+              <button type="button" className="btn btn-sm btn-primary" onClick={this.props.onSubmit}><i className="fa fa-envelope-o" aria-hidden="true"></i> Submit Order</button>
             </div>
           </Step>
         </div>
