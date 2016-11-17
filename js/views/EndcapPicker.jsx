@@ -53,7 +53,6 @@ export default class EndcapPicker extends React.Component {
     newImageIndex -= 1
     newImageIndex += modalImages.length
     newImageIndex %= modalImages.length
-    console.log("index: ", newImageIndex)
 
     this.setState({
       imageIndex: newImageIndex
