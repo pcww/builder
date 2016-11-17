@@ -47,15 +47,15 @@ export default class Wizard extends React.Component {
         </div>
 
         <div className="media-body">
-          <h4 className="media-heading">
-            {name}
-          </h4>
+        <h4 className="media-heading">
+          {name}
+        </h4>
 
-          <p>
-            {description}
-          </p>
-        </div>
+        <p>
+          {description}
+        </p>
       </div>
+    </div>
     )
   }
 
