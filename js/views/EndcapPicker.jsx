@@ -14,6 +14,7 @@ const customStyles = {
     right                 : 'auto',
     bottom                : 'auto',
     marginRight           : '-50%',
+    padding               : '1.5rem',
     transform             : 'translate(-50%, -50%)'
   }
 };
@@ -171,13 +172,27 @@ export default class EndcapPicker extends React.Component {
               <div className="imageModal">
                 <header className="imageModal-header">
                   <h2 ref="subtitle">Endcap Types</h2>
-                  <span className="imageModal-closeButton" onClick={this.closeModal.bind(this)}><i className="fa fa-times"></i></span>
+                  <span className="imageModal-buttons imageModal-header-closeButton" onClick={this.closeModal.bind(this)}>
+                    <i className="fa fa-times"></i>
+                  </span>
                 </header>
 
-                <div className="imageModal-image-wrapper">
-                  <span onClick={this.previousImage.bind(this)}><i className="fa fa-chevron-left"></i></span>
-                  <img className="imageModal-image" src={'/assets/endcaps/' + modalImages[this.state.imageIndex] + '.jpg'} alt="..." onClick={this.nextImage.bind(this)} />
-                  <span onClick={this.nextImage.bind(this)}><i className="fa fa-chevron-right"></i></span>
+                <div className="imageModal-contents">
+                  <div className="imageModal-buttons imageModal-buttons-nav" onClick={this.previousImage.bind(this)}>
+                    <i className="fa fa-chevron-left"></i>
+                  </div>
+
+                  <img className="imageModal-image"
+                    src={'/assets/endcaps/' + modalImages[this.state.imageIndex] + '.jpg'}
+                    alt="..." onClick={this.nextImage.bind(this)} />
+
+                  <div className="imageModal-buttons imageModal-buttons-nav" onClick={this.nextImage.bind(this)}>
+                    <i className="fa fa-chevron-right"></i>
+                  </div>
+                </div>
+
+                <div className="imageModal-footer">
+                  <span className="caption">This is a caption</span>
                 </div>
               </div>
             </Modal>
