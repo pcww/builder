@@ -201,6 +201,7 @@ export default class Wizard extends React.Component {
 
   render () {
     let board = this.props.board
+    let order = this.props.order
     let canRemoveStrip = !!(this.props.board.get('strips').length > constants.MINIMUM_NUMBER_STRIPS)
 
     let Strips = board.get('strips').map((strip, key) => {
@@ -232,7 +233,7 @@ export default class Wizard extends React.Component {
 
           <div className="steps">
             <Step isActive={true} key={1}>
-              <SummaryStep board={board}></SummaryStep>
+              <SummaryStep board={board} order={order}></SummaryStep>
             </Step>
           </div>
         </menu>
@@ -396,7 +397,7 @@ export default class Wizard extends React.Component {
             </Step>
 
             <Step isActive={this.state.currentStep === 3} key={3}>
-              <SummaryStep board={board}></SummaryStep>
+              <SummaryStep board={board} order={order}></SummaryStep>
 
               <div className="step-controls controls">
                 <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
