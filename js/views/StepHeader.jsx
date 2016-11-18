@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import classNames from 'classnames'
 
 export default class StepHeader extends React.Component {
   render () {
@@ -15,12 +16,16 @@ export default class StepHeader extends React.Component {
       </a>
     )
 
+    let classes = classNames('pull-right', {
+      'hidden': this.props.preview
+    })
+    
     return (
       <header>
         <h3>
           {this.props.heading}
 
-          <span className="pull-right">
+          <span className={classes}>
             {previousButton}&nbsp;
             {nextButton}
           </span>
