@@ -127,7 +127,7 @@ export default class Wizard extends React.Component {
 
   getCustom () {
     let placeholderText = "(Optional) If you have any additional requests, we would love to hear them!"
-    let value = (this.props.order) ? this.props.order.get('notes') : false
+    let value = (this.props.order) ? this.props.order.get('notes') : ''
     return (
       <textarea className="customText form-control" rows="4" placeholder={placeholderText} defaultValue={value}></textarea>
     )
