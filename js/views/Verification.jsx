@@ -56,8 +56,11 @@ export default class Verification extends React.Component {
   errorState () {
     return (
       <div className="loading">
-        <img src="/assets/misc/pcw-logo.png"/>
+        <div>
+          <img src="/assets/misc/pcw-logo.png"/>
+        </div>
         <p>Sorry, there was a problem verifying your order. Please try again later or email us at <a href="mailto:tech@pinecliffwoodworks.com">tech@pinecliffwoodworks.com</a>.</p>
+        <div></div>
       </div>
     )
   }
@@ -65,9 +68,13 @@ export default class Verification extends React.Component {
   loadedState () {
     return (
       <div className="loading">
-        <img src="/assets/misc/pcw-logo.png"/>
+        <div>
+          <img src="/assets/misc/pcw-logo.png"/>
+        </div>
         <p>{order.get('name')}, we're verifying your order!</p>
-        <img src="/assets/misc/loading-ring.svg" />
+        <div>
+          <img src="/assets/misc/loading-ring.svg" />
+        </div>
       </div>
     )
   }
@@ -75,9 +82,13 @@ export default class Verification extends React.Component {
   loadingState () {
     return (
       <div className="loading">
-        <img src="/assets/misc/pcw-logo.png"/>
+        <div>
+          <img src="/assets/misc/pcw-logo.png"/>
+        </div>
         <p>Retrieving your order details...</p>
-        <img src="/assets/misc/loading-ring.svg" />
+        <div>
+          <img src="/assets/misc/loading-ring.svg" />
+        </div>
       </div>
     )
   }
@@ -85,8 +96,16 @@ export default class Verification extends React.Component {
   verifiedState () {
     return (
       <div className="loading">
-        <img src="/assets/misc/pcw-logo.png"/>
-        <p>Thanks, {order.get('name')}, your order has been verified!</p>
+        <div>
+          <img src="/assets/misc/pcw-logo.png"/>
+        </div>
+        <div className="message">
+          <p>Thanks, {order.get('name')}, your order has been verified!</p>
+          <small>Check your email for your order details.</small>
+        </div>
+        <div>
+          <i className="fa fa-check fa-5x"></i>
+        </div>
       </div>
     )
   }
