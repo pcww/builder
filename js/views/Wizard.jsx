@@ -24,7 +24,7 @@ export default class Wizard extends React.Component {
 
   constructor(props) {
     super(props)
-    console.log(this.props.preview)
+    console.log('preview mode? ', this.props.preview)
     this.stepHeadings = {
       '1': 'Design',
       '2': 'Endcaps',
@@ -46,7 +46,9 @@ export default class Wizard extends React.Component {
   }
 
   componentDidMount () {
-    this.initializeSortable()
+    if (!this.props.preview) {
+      this.initializeSortable()
+    }
   }
 
   initializeSortable () {
@@ -218,7 +220,7 @@ export default class Wizard extends React.Component {
     let currentWidthText = this.state.peakedWidth ?  "Width: " + currentWidth + "\""   : ""
     let minimumWidthText = this.state.peakedWidth ?  " | Min Width: " + this.minWidth + "\""  : ""
 
-    if (this.props.review) {
+    if (this.props.preview) {
       return (
         <menu className="wizard" type="toolbar">
           <StepHeader
