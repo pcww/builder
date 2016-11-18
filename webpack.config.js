@@ -28,7 +28,7 @@ module.exports = {
     loaders: [
       {
         test: /\.scss$/,
-        include: /scss/,
+        // include: /scss/, //remove me?
         loaders: [
           'style',
           'css',

@@ -94,6 +94,12 @@
     }
   }
 
+  &.preview {
+    .step-content {
+      height: calc(100vh - #{$step-header-height}rem) !important;
+    }
+  }
+
   .warning {
     margin-top: 0.5rem;
 
