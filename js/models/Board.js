@@ -53,6 +53,7 @@ export default class Board extends BaseModel {
 
   get defaults () {
     return {
+      createdFromId: 1,
       handle: 'none',
       length: 0,
       medusa: false,
@@ -63,14 +64,21 @@ export default class Board extends BaseModel {
   }
 
   parse (response, xhr) {
-    response.strips.forEach((strip, index) => {
-      strip.id = index
-      strip.endGrain = "end-grain-no"
-    })
+    if (response.board_id) {
+      response.id = response.board_id
+      delete response.board_id
+    }
 
-    this.get('strips').reset(response.strips)
+    if (response.strips) {
+      response.strips.forEach((strip, index) => {
+        strip.id = index
+        strip.endGrain = "end-grain-no"
+      })
 
-    delete response.strips
+      this.get('strips').reset(response.strips)
+
+      delete response.strips
+    }
 
     return response
   }

@@ -34,6 +34,9 @@ export default class Builder extends React.Component {
       showModal: false
     }
 
+    this.closeModal = this.closeModal.bind(this)
+    this.openModal = this.openModal.bind(this)
+
     window.board = this.state.board
   }
 
@@ -64,9 +67,9 @@ export default class Builder extends React.Component {
         <main>
           <Board board={this.state.board} overlay />
 
-          <Wizard board={this.state.board} onSubmit={this.openModal.bind(this)} />
+          <Wizard board={this.state.board} onSubmit={this.openModal} />
 
-          <SubmitOrderModal show={this.state.showModal} onHide={this.closeModal.bind(this)}/>
+          <SubmitOrderModal board={this.state.board} show={this.state.showModal} close={this.closeModal}/>
         </main>
       )
     }
