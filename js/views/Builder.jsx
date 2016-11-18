@@ -3,7 +3,7 @@ import BoardModel from 'models/Board'
 import Board from 'views/Board.jsx'
 import Wizard from 'views/Wizard.jsx'
 import classNames from 'classnames'
-import { Modal } from 'react-bootstrap';
+import SubmitOrderModal from 'views/SubmitOrderModal.jsx';
 
 import woods from '../woods.json'
 
@@ -48,12 +48,6 @@ export default class Builder extends React.Component {
     this.request.abort()
   }
 
-  getInitialState () {
-    return {
-      showModal: false
-    }
-  }
-
   openModal () {
     this.setState({
       showModal: true
@@ -72,15 +66,7 @@ export default class Builder extends React.Component {
 
           <Wizard board={this.state.board} onSubmit={this.openModal.bind(this)} />
 
-          <Modal show={this.state.showModal} onHide={this.closeModal.bind(this)}>
-            <Modal.Header closeButton>
-              <Modal.Title>Submit Order</Modal.Title>
-            </Modal.Header>
-
-            <Modal.Body>
-              <p>Woohoo!</p>
-            </Modal.Body>
-          </Modal>
+          <SubmitOrderModal show={this.state.showModal} onHide={this.closeModal.bind(this)}/>
         </main>
       )
     }
