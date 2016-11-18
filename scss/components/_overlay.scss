@@ -99,4 +99,56 @@ section[type="overlay"] {
       }
     }
   }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+  }
+
+
+
+  .order-summary-message {
+    pointer-events: all;
+    position: absolute;
+    top: 7rem;
+    left: 5rem;
+    right: 5rem;
+
+    span {
+      padding-left: 2.3rem;
+      font-size: 3.4rem;
+      position: absolute;
+    }
+
+    .close {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+    }
+  }
+
+}
+
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+.bounce {
+  animation: bounce 2s infinite;
 }
