@@ -3,7 +3,7 @@ import BoardModel from 'models/Board'
 import Board from 'views/Board.jsx'
 import Wizard from 'views/Wizard.jsx'
 import classNames from 'classnames'
-import Modal from 'react-modal'
+import { Modal } from 'react-bootstrap';
 
 import woods from '../woods.json'
 
@@ -21,9 +21,9 @@ const customStyles = {
 
 export default class Builder extends React.Component {
   closeModal () {
-    this.state = {
+    this.setState({
       showModal: false
-    }
+    })
   }
 
   constructor (props) {
@@ -48,6 +48,12 @@ export default class Builder extends React.Component {
     this.request.abort()
   }
 
+  getInitialState () {
+    return {
+      showModal: false
+    }
+  }
+
   openModal () {
     this.setState({
       showModal: true
@@ -63,25 +69,17 @@ export default class Builder extends React.Component {
       return (
         <main>
           <Board board={this.state.board} overlay />
+
           <Wizard board={this.state.board} onSubmit={this.openModal.bind(this)} />
-          <Modal
-            isOpen={this.state.showModal}
-            onRequestClose={this.closeModal.bind(this)}
-            contentLabel="Example Modal"
-            style={customStyles}
-          >
-            <div className="imageModal">
-              <header className="imageModal-header">
-                <h2 ref="subtitle">Endcap Types</h2>
-                <span className="imageModal-buttons imageModal-header-closeButton">
-                  <i className="fa fa-times"></i>
-                </span>
-              </header>
 
-              <div className="imageModal-contents">
+          <Modal show={this.state.showModal} onHide={this.closeModal.bind(this)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Submit Order</Modal.Title>
+            </Modal.Header>
 
-              </div>
-            </div>
+            <Modal.Body>
+              <p>Woohoo!</p>
+            </Modal.Body>
           </Modal>
         </main>
       )
