@@ -26,17 +26,15 @@ export default class Verification extends React.Component {
 
     this.request = order.fetch()
     .done(() => {
-      let verified = order.get('verified')
-
       this.setState({
-        state: verified ? 'verified' : 'loaded'
+        state: order.get('verified') ? 'verified' : 'loaded'
       })
 
       if (!verified) {
         order.verify()
         .done(() => {
           this.setState({
-            state: verified ? 'verified' : 'loaded'
+            state: order.get('verified') ? 'verified' : 'loaded'
           })
         })
         .error(() => {

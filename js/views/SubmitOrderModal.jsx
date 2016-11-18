@@ -13,7 +13,9 @@ export default class Step extends React.Component {
       city: '',
       email: '',
       name: '',
-      order: new OrderModel,
+      order: new OrderModel({
+        board: this.props.board
+      }),
       phone: '',
       state: '',
       zip: ''
@@ -80,19 +82,46 @@ export default class Step extends React.Component {
 
   onSubmit () {
     let order = this.state.order
+    let board = order.get('board')
 
-    order.set({
-      address1: this.state.address1,
-      address2: this.state.address2,
-      city: this.state.city,
-      email: this.state.email,
-      name: this.state.name,
-      phone: this.state.phone,
-      state: this.state.state,
-      zip: this.state.zip
+    let promise = new Promise((resolve, reject) => {
+      board.save({}, {
+        error: reject,
+        success: resolve,
+        url: board.urlRoot + '/board'
+      })
     })
 
-    console.log(order.toJSON())
+    promise.then(() => {
+      console.log('Board saved!')
+
+      return new Promise((resolve, reject) => {
+        order.save({
+          address: {
+            address1: this.state.address1,
+            address2: this.state.address2,
+            city: this.state.city,
+            state: this.state.state,
+            zip: this.state.zip
+          },
+          board_id: board.get('id'),
+          email: this.state.email,
+          name: this.state.name,
+          notes: '',
+          order_date: new Date().toISOString(),
+          phone: this.state.phone,
+        }, {
+          error: reject,
+          success: resolve,
+          url: board.urlRoot + '/order'
+        })
+      })
+    })
+
+    promise.then(() => {
+      console.log('Order saved!')
+      console.log('Woohoo!')
+    })
   }
 
   render () {
