@@ -36,10 +36,6 @@ export default class Board extends BaseModel {
     this.set('redraw', true)
   }
 
-  // _updateLength (length) {
-  //   this.set('length', length)
-  // }
-
   _updateWidth () {
     this.set('width', this._currentWidth())
   }

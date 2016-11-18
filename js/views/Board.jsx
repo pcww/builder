@@ -36,12 +36,16 @@ export default class Builder extends React.Component {
 
   render () {
     let overlay
+    let boardInfo
+    let boardLogo
 
     let virtualBoardClasses = classNames('virtual-board', 'background-'+this.state.backgroundIndex)
 
     let board = this.props.board
     let length = board.get('length')
     let width = board.get('width')
+    let name = board.get('name')
+    let logo_url = board.get('logo_url')
 
     let numberOfBackgroundOptions = 6
 
@@ -89,11 +93,25 @@ export default class Builder extends React.Component {
           </div>
         </section>
       )
+
+      if (logo_url) {
+        boardLogo = (
+          <div className="board-logo"><img src={logo_url} alt={name}/></div>
+        )
+      }
+
+      boardInfo = (
+        <div className="board-info">
+          <h1>{name}</h1>
+          {boardLogo}
+        </div>
+      )
     }
 
     return (
       <div className={virtualBoardClasses}>
         {overlay}
+        {boardInfo}
       </div>
     )
   }
