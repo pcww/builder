@@ -1,29 +1,48 @@
 .loading {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  height: 50rem;
-  width: 50rem;
+  background-color: #fff;
   border: 1.1rem solid #62bd91;
-  box-shadow: 0rem 0rem 1.6rem 0.6rem rgba(0, 0, 0, 0.2);
   border-radius: 25rem;
+  box-shadow: 0rem 0rem 1.6rem 0.6rem rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  height: 50rem;
+  left: 50%;
   margin-left: -25rem;
   margin-top: -25rem;
+  overflow: hidden;
+  padding: 2rem 0;
+  position: absolute;
   text-align: center;
-  flex-direction: column;
-  padding-top: 4rem;
-  background-color: #fff;
+  top: 50%;
+  width: 50rem;
 
-  p {
-    text-align: center;
-    font-weight: 100;
-    font-size: 2.6rem;
-    margin: 2.6rem 3rem 1.6rem 3rem;
-    border-top: 1px solid #eee;
+  .message {
     border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    font-size: 2.7rem;
+    font-weight: 100;
+    margin: 2rem 3rem;
     padding: 1em 0;
+    text-align: center;
+
+    p {
+      font-weight: 200;
+    }
+
+    small {
+      font-size: 70%;
+    }
   }
 
-  img {
+  i {
+    color: #62bd91;
+  }
+
+  > :last-child {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
   }
 }

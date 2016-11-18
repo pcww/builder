@@ -90,9 +90,15 @@ export default class Builder extends React.Component {
     return (
       <main className={classes}>
         <div className="loading">
-          <img src="/assets/misc/pcw-logo.png"/>
-          <p>Gathering up some lumber&hellip;</p>
-          <img src="/assets/misc/loading-ring.svg" />
+          <div>
+            <img src="/assets/misc/pcw-logo.png"/>
+          </div>
+          <div className="message">
+            <p>Gathering up some lumber&hellip;</p>
+          </div>
+          <div>
+            <img src="/assets/misc/loading-ring.svg" />
+          </div>
         </div>
       </main>
     )
