@@ -24,6 +24,7 @@ export default class Wizard extends React.Component {
 
   constructor(props) {
     super(props)
+    console.log(this.props.preview)
     this.stepHeadings = {
       '1': 'Design',
       '2': 'Endcaps',
@@ -217,131 +218,192 @@ export default class Wizard extends React.Component {
     let currentWidthText = this.state.peakedWidth ?  "Width: " + currentWidth + "\""   : ""
     let minimumWidthText = this.state.peakedWidth ?  " | Min Width: " + this.minWidth + "\""  : ""
 
-    return (
-      <menu className="wizard" type="toolbar">
-        <StepHeader
-          heading={'Step ' + (this.state.currentStep + 1) + ': ' + this.stepHeadings[this.state.currentStep + 1]}
-          onNext={this.onNext.bind(this)}
-          onPrevious={this.onPrevious.bind(this)}>
-        </StepHeader>
+    if (this.props.review) {
+      return (
+        <menu className="wizard" type="toolbar">
+          <StepHeader
+            heading={'Sumary'}
+            onNext={this.onNext.bind(this)}
+            onPrevious={this.onPrevious.bind(this)}>
+          </StepHeader>
 
-        <div className="steps">
-          <Step isActive={this.state.currentStep === 0} key={0}>
-            <div className="step-content">
-              <fieldset>
-                <legend>Board Length</legend>
+          <div className="steps">
+            <Step isActive={true} key={1}>
+              <SummaryStep board={board}></SummaryStep>
+            </Step>
+          </div>
+        </menu>
+      )
 
-                <input
-                  type="range"
-                  max="48"
-                  min="8"
-                  step="2"
-                  defaultValue={board.get('length')}
-                  onChange={this.onStripLengthChanged.bind(this)} />
-              </fieldset>
+    } else {
+      return (
+        <menu className="wizard" type="toolbar">
+          <StepHeader
+            heading={'Step ' + (this.state.currentStep + 1) + ': ' + this.stepHeadings[this.state.currentStep + 1]}
+            onNext={this.onNext.bind(this)}
+            onPrevious={this.onPrevious.bind(this)}>
+          </StepHeader>
 
-              <fieldset>
-                <legend>End Grain Selection</legend>
-                <label className="radio-inline" data-toggle="tooltip" title="End Grain Selected">
+          <div className="steps">
+            <Step isActive={this.state.currentStep === 0} key={0}>
+              <div className="step-content">
+                <fieldset>
+                  <legend>Board Length</legend>
+
                   <input
-                    checked={this.state.allGrain && this.state.allGrainAligned}
-                    id="selectAllEndGrain"
-                    name="allEndGrainRadioGroupName"
-                    type="radio"
-                    value="all-end-grain-yes"
-                    onClick={this.onGrainSelectAll.bind(this, true)} />
-                  Yes
-                </label>
+                    type="range"
+                    max="48"
+                    min="8"
+                    step="2"
+                    defaultValue={board.get('length')}
+                    onChange={this.onStripLengthChanged.bind(this)} />
+                </fieldset>
 
-                <label className="radio-inline" data-toggle="tooltip" title="End Grain Selected">
-                  <input
-                    checked={!this.state.allGrain && this.state.allGrainAligned}
-                    id="deselectAllEndGrain"
-                    name="allEndGrainRadioGroupName"
-                    type="radio"
-                    value="all-end-grain-yes"
-                    onClick={this.onGrainSelectAll.bind(this, false)} />
-                  No
-                </label>
-              </fieldset>
+                <fieldset>
+                  <legend>End Grain Selection</legend>
+                  <label className="radio-inline" data-toggle="tooltip" title="End Grain Selected">
+                    <input
+                      checked={this.state.allGrain && this.state.allGrainAligned}
+                      id="selectAllEndGrain"
+                      name="allEndGrainRadioGroupName"
+                      type="radio"
+                      value="all-end-grain-yes"
+                      onClick={this.onGrainSelectAll.bind(this, true)} />
+                    Yes
+                  </label>
 
-              <fieldset>
-                <legend>Board Strips <button type="button" className="btn btn-link pull-right" onClick={this.onToggleStripsExpand.bind(this)}><i className={expandClass} aria-hidden="true"></i></button></legend>
+                  <label className="radio-inline" data-toggle="tooltip" title="End Grain Selected">
+                    <input
+                      checked={!this.state.allGrain && this.state.allGrainAligned}
+                      id="deselectAllEndGrain"
+                      name="allEndGrainRadioGroupName"
+                      type="radio"
+                      value="all-end-grain-yes"
+                      onClick={this.onGrainSelectAll.bind(this, false)} />
+                    No
+                  </label>
+                </fieldset>
 
-                <ol id="strip-list" className="sortable-list panel-group" role="tablist" aria-multiselectable="true">{Strips}</ol>
-              </fieldset>
-            </div>
+                <fieldset>
+                  <legend>Board Strips <button type="button" className="btn btn-link pull-right" onClick={this.onToggleStripsExpand.bind(this)}><i className={expandClass} aria-hidden="true"></i></button></legend>
 
-            <div className="step-controls controls">
-              <button type="button" className="btn btn-sm btn-primary" onClick={this.addStrip.bind(this)}><i className="fa fa-plus-circle"></i> Add Strip</button>
-              &nbsp;
-              <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
-
-              <div className="warning">
-                <span className="current">
-                  {currentWidthText}
-                </span>
-                <span className="minimum">
-                  {minimumWidthText}
-                </span>
+                  <ol id="strip-list" className="sortable-list panel-group" role="tablist" aria-multiselectable="true">{Strips}</ol>
+                </fieldset>
               </div>
-            </div>
 
-          </Step>
+              <div className="step-controls controls">
+                <button type="button" className="btn btn-sm btn-primary" onClick={this.addStrip.bind(this)}><i className="fa fa-plus-circle"></i> Add Strip</button>
+                &nbsp;
+                <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
 
-          <Step isActive={this.state.currentStep === 1} key={1}>
-            <div className="step-content">
-              <EndcapPicker board={board}></EndcapPicker>
-            </div>
+                <div className="warning">
+                  <span className="current">
+                    {currentWidthText}
+                  </span>
+                  <span className="minimum">
+                    {minimumWidthText}
+                  </span>
+                </div>
+              </div>
 
-            <div className="step-controls controls">
-              <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
-              &nbsp;
-              <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
-            </div>
-          </Step>
+            </Step>
 
-          <Step isActive={this.state.currentStep === 2} key={2}>
-            <div className="step-content">
-              <fieldset>
-                <legend>Handle</legend>
-                <HandlePicker board={board}></HandlePicker>
-              </fieldset>
+            <Step isActive={this.state.currentStep === 1} key={1}>
+              <div className="step-content">
+                <EndcapPicker board={board}></EndcapPicker>
+              </div>
 
-              <fieldset>
-                <legend>Edge</legend>
-                <EdgePicker board={board}></EdgePicker>
-              </fieldset>
+              <div className="step-controls controls">
+                <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
+                &nbsp;
+                <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
+              </div>
+            </Step>
 
-              <fieldset>
-                <legend>Juice Groove</legend>
-                <GroovePicker board={board}></GroovePicker>
-              </fieldset>
+            <Step isActive={this.state.currentStep === 2} key={2}>
+              <div className="step-content">
+                <fieldset>
+                  <legend>Handle</legend>
+                  <HandlePicker board={board}></HandlePicker>
+                </fieldset>
 
-              <fieldset>
-                <legend>Feet</legend>
-                <FeetPicker board={board}></FeetPicker>
-              </fieldset>
-            </div>
+                <fieldset>
+                  <legend>Edge</legend>
+                  <EdgePicker board={board}></EdgePicker>
+                </fieldset>
 
-            <div className="step-controls controls">
-              <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
-              &nbsp;
-              <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
-            </div>
-          </Step>
+                <fieldset>
+                  <legend>Juice Groove</legend>
+                  <GroovePicker board={board}></GroovePicker>
+                </fieldset>
 
-          <Step isActive={this.state.currentStep === 3} key={3}>
-            <SummaryStep board={board}></SummaryStep>
+                <fieldset>
+                  <legend>Feet</legend>
+                  <FeetPicker board={board}></FeetPicker>
+                </fieldset>
+              </div>
 
-            <div className="step-controls controls">
-              <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
-              &nbsp;
-              <button type="button" className="btn btn-sm btn-primary" onClick={this.props.onSubmit}><i className="fa fa-envelope-o" aria-hidden="true"></i> Submit Order</button>
-            </div>
-          </Step>
-        </div>
-      </menu>
-    )
+              <div className="step-controls controls">
+                <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
+                &nbsp;
+                <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
+              </div>
+            </Step>
+
+            <Step isActive={this.state.currentStep === 1} key={1}>
+              <div className="step-content">
+                <EndcapPicker board={board}></EndcapPicker>
+              </div>
+
+              <div className="step-controls controls">
+                <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
+                &nbsp;
+                <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
+              </div>
+            </Step>
+
+            <Step isActive={this.state.currentStep === 2} key={2}>
+              <div className="step-content">
+                <fieldset>
+                  <legend>Handle</legend>
+                  <HandlePicker board={board}></HandlePicker>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Edge</legend>
+                  <EdgePicker board={board}></EdgePicker>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Juice Groove</legend>
+                  <GroovePicker board={board}></GroovePicker>
+                </fieldset>
+
+                <fieldset>
+                  <legend>Feet</legend>
+                  <FeetPicker board={board}></FeetPicker>
+                </fieldset>
+              </div>
+
+              <div className="step-controls controls">
+                <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
+                &nbsp;
+                <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
+              </div>
+            </Step>
+
+            <Step isActive={this.state.currentStep === 3} key={3}>
+              <SummaryStep board={board}></SummaryStep>
+
+              <div className="step-controls controls">
+                <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
+                &nbsp;
+                <button type="button" className="btn btn-sm btn-primary" onClick={this.onSubmitOrder.bind(this)}><i className="fa fa-envelope-o" aria-hidden="true"></i> Submit Order</button>
+              </div>
+            </Step>
+          </div>
+        </menu>
+      )
+    }
   }
 }

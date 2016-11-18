@@ -63,7 +63,7 @@ export default class Builder extends React.Component {
       return (
         <main>
           <Board board={this.state.board} overlay />
-          <Wizard board={this.state.board} onSubmit={this.openModal.bind(this)} />
+          <Wizard board={this.state.board} onSubmit={this.openModal.bind(this)} preview={this.props.preview} />
           <Modal
             isOpen={this.state.showModal}
             onRequestClose={this.closeModal.bind(this)}
