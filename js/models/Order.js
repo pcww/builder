@@ -26,6 +26,9 @@ export default class Order extends BaseModel {
       data: JSON.stringify(data),
       method: 'post',
       processData: false,
+      success: (response) => {
+        this.set(response)
+      },
       url: this.urlRoot + '/order-verify'
     })
   }

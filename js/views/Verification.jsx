@@ -8,9 +8,6 @@ export default class Verification extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      error: false,
-      loaded: false,
-      verified: false,
       order: new OrderModel({
         id: this.props.id,
         hash: this.props.hash
@@ -30,7 +27,7 @@ export default class Verification extends React.Component {
         state: order.get('verified') ? 'verified' : 'loaded'
       })
 
-      if (!verified) {
+      if (!order.get('verified')) {
         order.verify()
         .done(() => {
           this.setState({
