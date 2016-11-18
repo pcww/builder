@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import OrderModel from 'models/Order'
 import { Col, ControlLabel, FormControl, FormGroup, Grid, Modal, Row } from 'react-bootstrap'
 
-export default class Step extends React.Component {
+export default class SubmitOrderModal extends React.Component {
   constructor (props) {
     super(props)
 
@@ -121,6 +121,8 @@ export default class Step extends React.Component {
     promise.then(() => {
       console.log('Order saved!')
       console.log('Woohoo!')
+      alert('Board Order Submitted!')
+      this.props.close()
     })
   }
 

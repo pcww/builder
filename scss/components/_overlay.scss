@@ -12,7 +12,7 @@ section[type="overlay"] {
   .dimensions {
     position: absolute;
     left: 0.5rem;
-    top: .5rem;
+    top: 0.5rem;
     font-size: 2.0rem;
   }
 
@@ -151,4 +151,37 @@ section[type="overlay"] {
 
 .bounce {
   animation: bounce 2s infinite;
+}
+
+
+.board-info {
+  z-index: 1;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 20rem;
+  width: 17rem;
+  border-radius: 1rem;
+  text-align: center;
+  top: 5rem;
+  left: 2rem;
+
+  h1 {
+    font-weight: 100;
+    position: relative;
+    top: 15rem;
+    left: 0rem;
+    font-size: 2.5rem;
+    opacity: 1.5;
+    color: white;
+    text-transform: uppercase;
+  }
+
+  .board-logo {
+    width: 16rem;
+    opacity: 0.7;
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    z-index: 0;
+  }
 }
