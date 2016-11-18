@@ -1,5 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
+import OrderModel from 'models/Order'
 import { Col, ControlLabel, FormControl, FormGroup, Grid, Modal, Row } from 'react-bootstrap'
 
 export default class Step extends React.Component {
@@ -12,14 +13,86 @@ export default class Step extends React.Component {
       city: '',
       email: '',
       name: '',
+      order: new OrderModel,
       phone: '',
       state: '',
       zip: ''
     }
+
+    this.handleAddress1Change = this.handleAddress1Change.bind(this)
+    this.handleAddress2Change = this.handleAddress2Change.bind(this)
+    this.handleCityChange = this.handleCityChange.bind(this)
+    this.handleEmailChange = this.handleEmailChange.bind(this)
+    this.handleNameChange = this.handleNameChange.bind(this)
+    this.handlePhoneChange = this.handlePhoneChange.bind(this)
+    this.handleStateChange = this.handleStateChange.bind(this)
+    this.handleZipChange = this.handleZipChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
-  saveOrder () {
-    alert('Saving order!')
+  handleAddress1Change (event) {
+    this.setState({
+      address1: event.target.value
+    })
+  }
+
+  handleAddress2Change (event) {
+    this.setState({
+      address2: event.target.value
+    })
+  }
+
+  handleCityChange (event) {
+    this.setState({
+      city: event.target.value
+    })
+  }
+
+  handleEmailChange (event) {
+    this.setState({
+      email: event.target.value
+    })
+  }
+
+  handleNameChange (event) {
+    this.setState({
+      name: event.target.value
+    })
+  }
+
+  handlePhoneChange (event) {
+    this.setState({
+      phone: event.target.value
+    })
+  }
+
+  handleStateChange (event) {
+    this.setState({
+      state: event.target.value
+    })
+  }
+
+  handleZipChange (event) {
+    this.setState({
+      zip: event.target.value
+    })
+  }
+
+  onSubmit () {
+    let order = this.state.order
+
+    order.set({
+      address1: this.state.address1,
+      address2: this.state.address2,
+      city: this.state.city,
+      email: this.state.email,
+      name: this.state.name,
+      phone: this.state.phone,
+      state: this.state.state,
+      zip: this.state.zip
+    })
+
+    console.log(order.toJSON())
   }
 
   render () {
@@ -42,6 +115,7 @@ export default class Step extends React.Component {
                   <FormControl
                     type="text"
                     value={this.state.name}
+                    onChange={this.handleNameChange}
                     />
                 </FormGroup>
               </Col>
@@ -54,6 +128,7 @@ export default class Step extends React.Component {
                   <FormControl
                     type="phone"
                     value={this.state.phone}
+                    onChange={this.handlePhoneChange}
                     />
                 </FormGroup>
               </Col>
@@ -64,6 +139,7 @@ export default class Step extends React.Component {
                   <FormControl
                     type="email"
                     value={this.state.email}
+                    onChange={this.handleEmailChange}
                     />
                 </FormGroup>
               </Col>
@@ -76,6 +152,7 @@ export default class Step extends React.Component {
                   <FormControl
                     type="text"
                     value={this.state.address1}
+                    onChange={this.handleAddress1Change}
                     />
                 </FormGroup>
               </Col>
@@ -87,6 +164,7 @@ export default class Step extends React.Component {
                   <FormControl
                     type="text"
                     value={this.state.address2}
+                    onChange={this.handleAddress2Change}
                     />
                 </FormGroup>
               </Col>
@@ -99,6 +177,7 @@ export default class Step extends React.Component {
                   <FormControl
                     type="text"
                     value={this.state.city}
+                    onChange={this.handleCityChange}
                     />
                 </FormGroup>
               </Col>
@@ -109,6 +188,7 @@ export default class Step extends React.Component {
                   <FormControl
                     type="text"
                     value={this.state.state}
+                    onChange={this.handleStateChange}
                     />
                 </FormGroup>
               </Col>
@@ -119,6 +199,7 @@ export default class Step extends React.Component {
                   <FormControl
                     type="text"
                     value={this.state.zip}
+                    onChange={this.handleZipChange}
                     />
                 </FormGroup>
               </Col>
@@ -126,7 +207,7 @@ export default class Step extends React.Component {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <button className="btn btn-primary" onClick={this.saveOrder}>Submit</button>
+          <button className="btn btn-primary" onClick={this.onSubmit}>Submit</button>
         </Modal.Footer>
       </Modal>
     )
