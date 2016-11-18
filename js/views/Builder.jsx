@@ -85,7 +85,7 @@ export default class Builder extends React.Component {
     if (this.state.loaded) {
       return (
         <main>
-          <Board board={this.state.board} overlay />
+          <Board board={this.state.board} overlay preview={this.props.preview} />
           <Wizard board={this.state.board} onSubmit={this.openModal.bind(this)} preview={this.props.preview} />
           <Modal
             isOpen={this.state.showModal}

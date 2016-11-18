@@ -222,11 +222,12 @@ export default class Wizard extends React.Component {
 
     if (this.props.preview) {
       return (
-        <menu className="wizard" type="toolbar">
+        <menu className="wizard preview" type="toolbar">
           <StepHeader
-            heading={'Sumary'}
+            heading={'Order Sumary'}
             onNext={this.onNext.bind(this)}
-            onPrevious={this.onPrevious.bind(this)}>
+            onPrevious={this.onPrevious.bind(this)}
+            preview={this.props.preview}>
           </StepHeader>
 
           <div className="steps">
