@@ -1,5 +1,6 @@
 import React from 'react'
 import BoardModel from 'models/Board'
+import OrderModel from 'models/Order'
 import Board from 'views/Board.jsx'
 import Wizard from 'views/Wizard.jsx'
 import classNames from 'classnames'
@@ -30,6 +31,7 @@ export default class Builder extends React.Component {
     super(props)
     this.state = {
       board: new BoardModel({ createdFromId: this.props.id }),
+      order: false,
       loaded: false,
       showModal: false
     }
@@ -38,9 +40,30 @@ export default class Builder extends React.Component {
   }
 
   componentWillMount () {
-    this.request = this.state.board.fetch()
-    .done(() => {
+    let promise = new Promise((resolve, reject) => {
+      if (this.props.order) {
+        this.state.order = new OrderModel({
+          id: this.props.order,
+          hash: this.props.hash
+        })
+        this.state.order.fetch({ success: resolve, error: reject })
+      } else {
+        resolve()
+      }
+    })
+    .then(() => {
+      if (this.state.order) {
+        this.state.board.set('createdFromId', this.state.order.get('board_id'))
+      }
+      return new Promise((resolve, reject) => {
+        this.state.board.fetch({ success: resolve , error: reject })
+      })
+    })
+    .then(() => {
       setTimeout(() => {this.setState({loaded: true})}, 1000)
+    })
+    .catch(() => {
+      this.setState({ error: true })
     })
   }
 
@@ -83,6 +106,24 @@ export default class Builder extends React.Component {
               </div>
             </div>
           </Modal>
+        </main>
+      )
+    }
+
+    if (this.state.error) {
+      return (
+        <main className={classes}>
+          <div className="loading">
+            <div>
+              <img src="/assets/misc/pcw-logo.png"/>
+            </div>
+            <div className="message">
+              <p>Sorry, we couldn't load your board details.</p>
+            </div>
+            <div>
+              <i className="fa fa-exclamation-triangle fa-4x"></i>
+            </div>
+          </div>
         </main>
       )
     }
