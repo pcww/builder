@@ -112,11 +112,12 @@ export default class Verification extends React.Component {
   }
 
   render () {
-    let classes = classNames('vignette', randomWood, 'lowres')
     let message
     let order = this.state.order
     let woodKeys = Object.keys(woods)
     let randomWood = woodKeys[(Math.floor(Math.random() * woodKeys.length-1))]
+
+    let classes = classNames('vignette', randomWood, 'lowres')
 
     switch (this.state.state) {
       case 'loading':
