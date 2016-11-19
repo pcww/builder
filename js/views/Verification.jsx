@@ -54,7 +54,9 @@ export default class Verification extends React.Component {
         <div>
           <img src="/assets/misc/pcw-logo.png"/>
         </div>
-        <p>Sorry, there was a problem verifying your order. Please try again later or email us at <a href="mailto:tech@pinecliffwoodworks.com">tech@pinecliffwoodworks.com</a>.</p>
+        <div className="message">
+          <p>Sorry, there was a problem verifying your order. Please try again later or email us at <a href="mailto:tech@pinecliffwoodworks.com">tech@pinecliffwoodworks.com</a>.</p>
+        </div>
         <div></div>
       </div>
     )
@@ -66,7 +68,9 @@ export default class Verification extends React.Component {
         <div>
           <img src="/assets/misc/pcw-logo.png"/>
         </div>
-        <p>{order.get('name')}, we're verifying your order!</p>
+        <div className="message">
+          <p>{order.get('name')}, we're verifying your order!</p>
+        </div>
         <div>
           <img src="/assets/misc/loading-ring.svg" />
         </div>
@@ -80,7 +84,9 @@ export default class Verification extends React.Component {
         <div>
           <img src="/assets/misc/pcw-logo.png"/>
         </div>
-        <p>Retrieving your order details...</p>
+        <div className="message">
+          <p>Retrieving your order details...</p>
+        </div>
         <div>
           <img src="/assets/misc/loading-ring.svg" />
         </div>
