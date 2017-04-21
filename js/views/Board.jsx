@@ -30,10 +30,6 @@ export default class Builder extends React.Component {
     this.setState({backgroundIndex: event.currentTarget.id})
   }
 
-  onHideSummaryMessage (event) {
-    this.setState({ hideOrderSummaryMessage: true })
-  }
-
   render () {
     let overlay
     let boardInfo
@@ -62,10 +58,6 @@ export default class Builder extends React.Component {
     })
 
     if (this.props.overlay) {
-      let orderSummaryClasses = classNames('order-summary-message', 'well', {
-        hidden: !this.props.preview || this.state.hideOrderSummaryMessage
-      })
-
       overlay = (
         <section type="overlay">
           <div className="dimensions badge">Dimensions {length}" x {width}"</div>
@@ -82,14 +74,6 @@ export default class Builder extends React.Component {
           <div className="idea-zone well well-sm">
             <i className="fa fa-2x fa-lightbulb-o" aria-hidden="true"></i>
             <a href="http://pinecliffwoodworks.com/gallery/" target="_blank">Need an idea&#63; Visit the Gallery!</a>
-          </div>
-
-          <div className={orderSummaryClasses}>
-            <i className="fa fa-thumbs-o-up fa-3x bounce" aria-hidden="true"></i>
-            <span>Your order is being lovingly cared for. We will contact you soon with details!</span>
-            <button type="button" className="close btn btn-link" onClick={this.onHideSummaryMessage.bind(this)}>
-              <i className="fa fa-times" aria-hidden="true"></i>
-            </button>
           </div>
         </section>
       )

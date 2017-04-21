@@ -5,6 +5,7 @@ import Board from 'views/Board.jsx'
 import Wizard from 'views/Wizard.jsx'
 import classNames from 'classnames'
 import SubmitOrderModal from 'views/SubmitOrderModal.jsx';
+import OrderProcessingModal from 'views/OrderProcessingModal.jsx';
 
 import woods from '../woods.json'
 
@@ -80,10 +81,20 @@ export default class Builder extends React.Component {
     })
   }
 
+
+
   render () {
     let woodKeys = Object.keys(woods)
     let randomWood = woodKeys[(Math.floor(Math.random() * woodKeys.length-1))]
     let classes = classNames('vignette', randomWood, 'lowres')
+    let orderProcessingModal
+
+    // if (this.props.preview) {
+    //   orderProcessingModal = (
+    //
+    //   )
+    // }
+
 
     if (this.state.loaded) {
       return (
@@ -91,7 +102,9 @@ export default class Builder extends React.Component {
           <Board board={this.state.board} overlay preview={this.props.preview}/>
           <Wizard board={this.state.board} order={this.state.order} onSubmit={this.openModal} preview={this.props.preview}/>
           <SubmitOrderModal board={this.state.board} show={this.state.showModal} close={this.closeModal}/>
+          <OrderProcessingModal/>
         </main>
+
       )
     }
 
