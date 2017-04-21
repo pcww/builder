@@ -111,29 +111,6 @@ section[type="overlay"] {
       transform: translateY(-15px);
     }
   }
-
-
-
-  .order-summary-message {
-    pointer-events: all;
-    position: absolute;
-    top: 7rem;
-    left: 5rem;
-    right: 5rem;
-
-    span {
-      padding-left: 2.3rem;
-      font-size: 3.4rem;
-      position: absolute;
-    }
-
-    .close {
-      position: absolute;
-      top: 0.5rem;
-      right: 0.5rem;
-    }
-  }
-
 }
 
 
