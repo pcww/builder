@@ -51,13 +51,15 @@ export default class Verification extends React.Component {
   errorState () {
     return (
       <div className="loading">
-        <div>
-          <img src="/assets/misc/pcw-logo.png"/>
+        <div className="frontface">
+          <div>
+            <img src="/assets/misc/pcw-logo.png"/>
+          </div>
+          <div className="message">
+            <p>Sorry, there was a problem verifying your order. Please try again later or email us at <a href="mailto:tech@pinecliffwoodworks.com">tech@pinecliffwoodworks.com</a>.</p>
+          </div>
+          <div></div>
         </div>
-        <div className="message">
-          <p>Sorry, there was a problem verifying your order. Please try again later or email us at <a href="mailto:tech@pinecliffwoodworks.com">tech@pinecliffwoodworks.com</a>.</p>
-        </div>
-        <div></div>
       </div>
     )
   }
@@ -65,14 +67,16 @@ export default class Verification extends React.Component {
   loadedState () {
     return (
       <div className="loading">
-        <div>
-          <img src="/assets/misc/pcw-logo.png"/>
-        </div>
-        <div className="message">
-          <p>{order.get('name')}, we're verifying your order!</p>
-        </div>
-        <div>
-          <img src="/assets/misc/loading-ring.svg" />
+        <div className="frontface">
+          <div>
+            <img src="/assets/misc/pcw-logo.png"/>
+          </div>
+          <div className="message">
+            <p>{order.get('name')}, we're verifying your order!</p>
+          </div>
+          <div>
+            <img src="/assets/misc/loading-ring.svg" />
+          </div>
         </div>
       </div>
     )
@@ -81,14 +85,16 @@ export default class Verification extends React.Component {
   loadingState () {
     return (
       <div className="loading">
-        <div>
-          <img src="/assets/misc/pcw-logo.png"/>
-        </div>
-        <div className="message">
-          <p>Retrieving your order details...</p>
-        </div>
-        <div>
-          <img src="/assets/misc/loading-ring.svg" />
+        <div className="frontface">
+          <div>
+            <img src="/assets/misc/pcw-logo.png"/>
+          </div>
+          <div className="message">
+            <p>Retrieving your order details...</p>
+          </div>
+          <div>
+            <img src="/assets/misc/loading-ring.svg" />
+          </div>
         </div>
       </div>
     )
@@ -97,15 +103,36 @@ export default class Verification extends React.Component {
   verifiedState () {
     return (
       <div className="loading">
-        <div>
-          <img src="/assets/misc/pcw-logo.png"/>
+        <div className="frontface">
+          <div>
+            <img src="/assets/misc/pcw-logo.png"/>
+          </div>
+          <div className="message">
+            <p>Thanks, {order.get('name')}, your order has been verified!</p>
+            <small>Check your email for your order details.</small>
+          </div>
+          <div>
+            <i className="fa fa-check fa-5x"></i>
+          </div>
         </div>
-        <div className="message">
-          <p>Thanks, {order.get('name')}, your order has been verified!</p>
-          <small>Check your email for your order details.</small>
-        </div>
-        <div>
-          <i className="fa fa-check fa-5x"></i>
+
+        <div className="backface">
+          <div>
+            <img src="/assets/misc/pcw-logo.png"/>
+          </div>
+          <div className="message">
+            <p>Thanks, {order.get('name')}, your order has been verified!</p>
+
+            <div>
+              <a href="http://facebook.com">
+                <i className="fa fa-fw fa-facebook"></i>
+              </a>
+
+              <a href="http://twitter.com">
+                <i className="fa fa-fw fa-twitter"></i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     )
