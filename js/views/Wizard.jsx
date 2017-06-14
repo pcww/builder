@@ -36,8 +36,6 @@ export default class Wizard extends React.Component {
 
   componentWillMount () {
     this.state = {
-      allGrain: false,
-      allGrainAligned: false,
       currentStep: 0,
       peakedWidth: false,
       stripsExpand: false,
@@ -97,7 +95,6 @@ export default class Wizard extends React.Component {
         let strip = strips.at(oldIndex)
 
         strip.set('moving', true)
-        strip.set('endGrain', 'end-grain-no')
       }
     })
   }
@@ -135,7 +132,6 @@ export default class Wizard extends React.Component {
     let strips = this.props.board.get('strips')
     strips.add({
       id: strips.length,
-      endGrain: 'end-grain-no',
       size: 'large',
       wood: 'maple'
     })
@@ -170,35 +166,6 @@ export default class Wizard extends React.Component {
     console.log('Order Submitted!')
   }
 
-  onGrainSelectAll (state) {
-    this.selectAllEndGrain(state)
-
-    this.setState({
-      allGrain: state,
-      allGrainAligned: true
-    })
-  }
-
-  selectAllEndGrain (state) {
-    let endGrain = state ? 'end-grain-yes' : 'end-grain-no'
-    this.props.board.get('strips').forEach((strip) => {
-      strip.set('endGrain', endGrain)
-    })
-  }
-
-  checkGrainAlignment () {
-    let strips = this.props.board.get('strips')
-
-    let values = strips.map((strip) => {
-      return strip.get('endGrain')
-    })
-
-    let uniqueValues = _.uniq(values)
-    let result = uniqueValues.length < 2
-
-    this.setState({allGrainAligned: result})
-  }
-
   render () {
     let board = this.props.board
     let order = this.props.order
@@ -207,7 +174,7 @@ export default class Wizard extends React.Component {
     let Strips = board.get('strips').map((strip, key) => {
       return (
         <li className="panel panel-default" data-id={strip.get('id')} key={strip.get('id')}>
-          <StripPanel key={strip.cid} id={key} strip={strip} canRemoveStrip={canRemoveStrip} removeStrip={this.removeStrip.bind(this)} checkGrainAlignment={this.checkGrainAlignment.bind(this)}></StripPanel>
+          <StripPanel key={strip.cid} id={key} strip={strip} canRemoveStrip={canRemoveStrip} removeStrip={this.removeStrip.bind(this)}></StripPanel>
         </li>
       )
     })
@@ -264,31 +231,6 @@ export default class Wizard extends React.Component {
                 </fieldset>
 
                 <fieldset>
-                  <legend>End Grain Selection</legend>
-                  <label className="radio-inline" data-toggle="tooltip" title="End Grain Selected">
-                    <input
-                      checked={this.state.allGrain && this.state.allGrainAligned}
-                      id="selectAllEndGrain"
-                      name="allEndGrainRadioGroupName"
-                      type="radio"
-                      value="all-end-grain-yes"
-                      onClick={this.onGrainSelectAll.bind(this, true)} />
-                    Yes
-                  </label>
-
-                  <label className="radio-inline" data-toggle="tooltip" title="End Grain Selected">
-                    <input
-                      checked={!this.state.allGrain && this.state.allGrainAligned}
-                      id="deselectAllEndGrain"
-                      name="allEndGrainRadioGroupName"
-                      type="radio"
-                      value="all-end-grain-yes"
-                      onClick={this.onGrainSelectAll.bind(this, false)} />
-                    No
-                  </label>
-                </fieldset>
-
-                <fieldset>
                   <legend>Board Strips <button type="button" className="btn btn-link pull-right" onClick={this.onToggleStripsExpand.bind(this)}><i className={expandClass} aria-hidden="true"></i></button></legend>
 
                   <ol id="strip-list" className="sortable-list panel-group" role="tablist" aria-multiselectable="true">{Strips}</ol>
@@ -324,47 +266,6 @@ export default class Wizard extends React.Component {
               </div>
             </Step>
 
-            <Step isActive={this.state.currentStep === 2} key={2}>
-              <div className="step-content">
-                <fieldset>
-                  <legend>Handle</legend>
-                  <HandlePicker board={board}></HandlePicker>
-                </fieldset>
-
-                <fieldset>
-                  <legend>Edge</legend>
-                  <EdgePicker board={board}></EdgePicker>
-                </fieldset>
-
-                <fieldset>
-                  <legend>Juice Groove</legend>
-                  <GroovePicker board={board}></GroovePicker>
-                </fieldset>
-
-                <fieldset>
-                  <legend>Feet</legend>
-                  <FeetPicker board={board}></FeetPicker>
-                </fieldset>
-              </div>
-
-              <div className="step-controls controls">
-                <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
-                &nbsp;
-                <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
-              </div>
-            </Step>
-
-            <Step isActive={this.state.currentStep === 1} key={1}>
-              <div className="step-content">
-                <EndcapPicker board={board}></EndcapPicker>
-              </div>
-
-              <div className="step-controls controls">
-                <button type="button" className="btn btn-sm btn-primary" onClick={this.onPrevious.bind(this)}><i className="fa fa-arrow-left"></i> Previous Step</button>
-                &nbsp;
-                <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}><i className="fa fa-arrow-right"></i> Next Step</button>
-              </div>
-            </Step>
 
             <Step isActive={this.state.currentStep === 2} key={2}>
               <div className="step-content">
