@@ -1,0 +1,56 @@
+.flippy-thingy {
+  align-content: center;
+  display: flex;
+  position: relative;
+
+  a {
+    display: inline-block;
+  }
+
+  .flippy1,
+  .flippy2 {
+    animation-delay: 2s;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    backface-visibility: hidden;
+    bottom: 0;
+    display: block;
+    left: 0;
+//    padding: 2rem 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .flippy1 {
+    animation-name: flippy1;
+  }
+
+  .flippy2 {
+    animation-name: flippy2;
+  }
+}
+
+
+
+
+
+@keyframes flippy1 {
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes flippy2 {
+  from {
+    transform: rotateY(180deg);
+  }
+
+  to {
+    transform: rotateY(0deg);
+  }
+}

@@ -51,15 +51,13 @@ export default class Verification extends React.Component {
   errorState () {
     return (
       <div className="loading">
-        <div className="frontface">
-          <div>
-            <img src="/assets/misc/pcw-logo.png"/>
-          </div>
-          <div className="message">
-            <p>Sorry, there was a problem verifying your order. Please try again later or email us at <a href="mailto:tech@pinecliffwoodworks.com">tech@pinecliffwoodworks.com</a>.</p>
-          </div>
-          <div></div>
+        <div>
+          <img src="/assets/misc/pcw-logo.png"/>
         </div>
+        <div className="message">
+          <p>Sorry, there was a problem verifying your order. Please try again later or email us at <a href="mailto:tech@pinecliffwoodworks.com">tech@pinecliffwoodworks.com</a>.</p>
+        </div>
+        <div></div>
       </div>
     )
   }
@@ -107,29 +105,24 @@ export default class Verification extends React.Component {
           <div>
             <img src="/assets/misc/pcw-logo.png"/>
           </div>
+
           <div className="message">
             <p>Thanks, {order.get('name')}, your order has been verified!</p>
             <small>Check your email for your order details.</small>
           </div>
-          <div>
-            <i className="fa fa-check fa-5x"></i>
-          </div>
-        </div>
 
-        <div className="backface">
-          <div>
-            <img src="/assets/misc/pcw-logo.png"/>
-          </div>
-          <div className="message">
-            <p>Thanks, {order.get('name')}, your order has been verified!</p>
+          <div className="flippy-thingy">
+            <div className="flippy1">
+              <i className="fa fa-check fa-5x"></i>
+            </div>
 
-            <div>
+            <div className="flippy2">
               <a href="http://facebook.com">
-                <i className="fa fa-fw fa-facebook"></i>
+                <i className="fa fa-fw fa-facebook fa-3x"></i>
               </a>
 
               <a href="http://twitter.com">
-                <i className="fa fa-fw fa-twitter"></i>
+                <i className="fa fa-fw fa-twitter fa-3x"></i>
               </a>
             </div>
           </div>
