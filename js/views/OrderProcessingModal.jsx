@@ -7,7 +7,11 @@ export default class OrderProcessingModal extends React.Component {
     super(props)
 
     this.state = {
-      showModal: true
+      showModal: !!this.props.order
+    }
+
+    if (this.props.order) {
+      console.log('showing OrderProcessingModal with order:', this.props.order)
     }
   }
 
@@ -28,13 +32,15 @@ export default class OrderProcessingModal extends React.Component {
         <Modal.Body>
           <div className="order-summary-message text-center">
             <table>
-              <tr>
-                <td><i className="fa fa-thumbs-o-up fa-3x bounce" aria-hidden="true"></i></td>
-                <td>
-                  <h4>Your order is being lovingly cared for.</h4>
-                  <h5>We will contact you soon with details!</h5>
-                </td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td><i className="fa fa-thumbs-o-up fa-3x bounce" aria-hidden="true"></i></td>
+                  <td>
+                    <h4>Your order is being lovingly cared for.</h4>
+                    <h5>We will contact you soon with details!</h5>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <br/>

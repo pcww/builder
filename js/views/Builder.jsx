@@ -102,7 +102,7 @@ export default class Builder extends React.Component {
           <Board board={this.state.board} overlay preview={this.props.preview}/>
           <Wizard board={this.state.board} order={this.state.order} onSubmit={this.openModal} preview={this.props.preview}/>
           <SubmitOrderModal board={this.state.board} show={this.state.showModal} close={this.closeModal}/>
-          <OrderProcessingModal/>
+          <OrderProcessingModal order={this.state.order} />
         </main>
 
       )
