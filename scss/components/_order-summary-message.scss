@@ -1,0 +1,13 @@
+.order-summary-message {
+    table {
+      margin: 0 auto;
+
+      td {
+        vertical-align: middle;
+      }
+
+      td:first-child {
+        padding: 1rem;
+      }
+    }
+}
