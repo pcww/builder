@@ -31,16 +31,6 @@
     animation-fill-mode: both;
   }
 
-  .frontface {
-    animation-name: loading-frontface;
-    transform: rotateY(0deg);
-  }
-
-  .backface {
-    animation-name: loading-backface;
-    transform: rotateY(180deg);
-  }
-
   .message {
     border-bottom: 1px solid #eee;
     border-top: 1px solid #eee;
@@ -61,13 +51,5 @@
 
   i {
     color: #62bd91;
-  }
-
-  > :last-child {
-    align-self: stretch;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: center;
   }
 }
