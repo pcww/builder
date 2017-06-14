@@ -10,17 +10,10 @@ export default class StripPanel extends React.Component {
     this.forceUpdate()
   }
 
-  onGrainSelection (event) {
-    this.props.strip.set('endGrain', event.currentTarget.value)
-    this.props.checkGrainAlignment()
-    this.forceUpdate()
-  }
-
   render () {
     let headingTarget = 'heading-' + this.props.id
     let collapseTarget = 'collapse-' + this.props.id
     let radioGroupPrefix = 'strip-' + this.props.id
-    let endGrainRadioGroupName = radioGroupPrefix + '-end-grain'
     let radioGroupName = radioGroupPrefix + '-wood-size'
 
     return (
@@ -33,32 +26,6 @@ export default class StripPanel extends React.Component {
               <legend>Wood Type</legend>
 
               <WoodPicker strip={this.props.strip} updateState={this.setState.bind(this)}/>
-            </fieldset>
-
-            <fieldset>
-              <legend>End Grain</legend>
-
-              <label className="radio-inline" data-toggle="tooltip" title="End Grain Selected">
-                <input
-                  checked={this.props.strip.get('endGrain') === 'end-grain-yes'}
-                  id={radioGroupPrefix + '-end-grain-yes'}
-                  name={endGrainRadioGroupName}
-                  type="radio"
-                  value="end-grain-yes"
-                  onChange={this.onGrainSelection.bind(this)} />
-                Yes
-              </label>
-
-              <label className="radio-inline" data-toggle="tooltip" title="End Grain Deselected">
-                <input
-                  checked={this.props.strip.get('endGrain') === 'end-grain-no'}
-                  id={radioGroupPrefix + '-end-grain-no'}
-                  name={endGrainRadioGroupName}
-                  type="radio"
-                  value="end-grain-no"
-                  onChange={this.onGrainSelection.bind(this)} />
-                No
-              </label>
             </fieldset>
 
             <fieldset>

@@ -107,6 +107,30 @@ export default class Wizard extends React.Component {
     )
   }
 
+  getGroove () {
+    let board = this.props.board
+    let type = board.get('groove')
+    let groove = accessories.grooves[type]
+
+    return (
+      <div className="media">
+        <div className="media-left">
+          <img className="media-object swatch" src={'/assets/grooves/' + type + '.jpg'}/>
+        </div>
+
+        <div className="media-body">
+          <h4 className="media-heading">
+            {groove.name}
+          </h4>
+
+          <p>
+            {groove.description}
+          </p>
+        </div>
+      </div>
+    )
+  }
+
   getLayout () {
     let Strips = board.get('strips').map((strip, key) => {
       let styles = {
@@ -142,23 +166,28 @@ export default class Wizard extends React.Component {
         </fieldset>
 
         <fieldset>
-          <legend>Edge</legend>
-          {this.getEdge()}
-        </fieldset>
-
-        <fieldset>
           <legend>Endcaps</legend>
           {this.getEndcaps()}
         </fieldset>
 
         <fieldset>
-          <legend>Feet</legend>
-          {this.getFeet()}
+          <legend>Handle</legend>
+          {this.getHandle()}
         </fieldset>
 
         <fieldset>
-          <legend>Handle</legend>
-          {this.getHandle()}
+          <legend>Edge</legend>
+          {this.getEdge()}
+        </fieldset>
+
+        <fieldset>
+          <legend>Groove</legend>
+          {this.getGroove()}
+        </fieldset>
+
+        <fieldset>
+          <legend>Feet</legend>
+          {this.getFeet()}
         </fieldset>
 
         <fieldset>

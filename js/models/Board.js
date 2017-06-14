@@ -68,7 +68,6 @@ export default class Board extends BaseModel {
     if (response.strips) {
       response.strips.forEach((strip, index) => {
         strip.id = index
-        strip.endGrain = "end-grain-no"
       })
 
       this.get('strips').reset(response.strips)
