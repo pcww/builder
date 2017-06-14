@@ -28,13 +28,13 @@ location.search.replace('?', '').split('&').forEach(item => {
 console.log('queryParams: ', queryParams)
 
 if (queryParams.verify) {
-  component = <Verification id={queryParams.order} hash={queryParams.hash} verify="true" />
+  component = <Verification id={queryParams.order} hash={queryParams.hash} verify={true} />
 
 } else if (queryParams.hash) {
-  component = <Builder order={queryParams.order} hash={queryParams.hash} preview="true" />
+  component = <Builder order={queryParams.order} hash={queryParams.hash} preview={true} />
 
 } else {
-  component = <Builder id={queryParams.id || 1} />
+  component = <Builder id={queryParams.id || 1} preview={true} />
 }
 
 ReactDOM.render(
