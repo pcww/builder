@@ -3,11 +3,23 @@ import BoardModel from 'models/Board'
 import VirtualBoard from 'views/VirtualBoard.js'
 import classNames from 'classnames'
 
+let backgroundUrls = [
+  '/assets/backgrounds/subtle-pattern-6.jpg',
+  '/assets/backgrounds/pexels-photo-207301.jpg',
+  '/assets/backgrounds/pexels-photo-349609.jpg',
+  '/assets/backgrounds/wood-pattern-ground-parquet-floor.jpg',
+  '/assets/backgrounds/pexels-photo-167698.jpg',
+  '/assets/backgrounds/pexels-photo-301692.jpg',
+]
+
 export default class Builder extends React.Component {
   constructor (props) {
     super(props)
+
+    this.onChangeBackground = this.onChangeBackground.bind(this)
+
     this.state = {
-      backgroundIndex: 6
+      background: backgroundUrls[0]
     }
   }
 
@@ -27,7 +39,7 @@ export default class Builder extends React.Component {
   }
 
   onChangeBackground (event) {
-    this.setState({backgroundIndex: event.currentTarget.id})
+    this.setState({background: event.currentTarget.getAttribute('data-background')})
   }
 
   render () {
@@ -35,7 +47,7 @@ export default class Builder extends React.Component {
     let boardInfo
     let boardLogo
 
-    let virtualBoardClasses = classNames('virtual-board', 'background-'+this.state.backgroundIndex)
+    let virtualBoardClasses = classNames('virtual-board')
 
     let board = this.props.board
     let length = board.get('length')
@@ -43,17 +55,21 @@ export default class Builder extends React.Component {
     let name = board.get('name')
     let logo_url = board.get('logo_url')
 
-    let numberOfBackgroundOptions = 6
-
-    let Backgrounds = Array.from(Array(numberOfBackgroundOptions).keys()).map((i) => {
-      let index = i+1
-      let backgroundUrl = `/assets/backgrounds/subtle-pattern-${index}.jpg`
+    let Backgrounds = backgroundUrls.map((backgroundUrl, index) => {
       let classes = classNames('swatch', 'swatch-clickable', {
-        'selected': this.state.backgroundIndex == index
-      });
+        selected: this.state.background === backgroundUrl
+      })
 
       return (
-        <div key={index} className={classes} id={index} onClick={this.onChangeBackground.bind(this)}><img src={backgroundUrl}/></div>
+        <div
+          className={classes}
+          data-background={backgroundUrl}
+          id={index}
+          key={index}
+          onClick={this.onChangeBackground}
+          style={{
+            backgroundImage: `url(${backgroundUrl})`
+          }} />
       )
     })
 
@@ -92,8 +108,16 @@ export default class Builder extends React.Component {
       )
     }
 
+    let styles = {
+      backgroundImage: `url(${this.state.background})`
+    }
+
+    console.log(styles)
+
     return (
-      <div className={virtualBoardClasses}>
+      <div
+        className={virtualBoardClasses}
+        style={styles}>
         {overlay}
         {boardInfo}
       </div>

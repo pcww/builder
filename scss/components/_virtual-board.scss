@@ -11,9 +11,11 @@ $background-prefix: '/assets/backgrounds/';
 
 .virtual-board {
   width: 70vw;
-  background-repeat: repeat;
-  background-position: 0 0;
-  animation: sliding-background 50s linear infinite;
+//  background-repeat: repeat;
+//  background-position: 0 0;
+//  animation: sliding-background 50s linear infinite;
+  background-position: center;
+  background-size: cover;
 
   $background-image-count: 11;
   @for $i from 1 to $background-image-count {
@@ -23,9 +25,10 @@ $background-prefix: '/assets/backgrounds/';
   }
 
   .swatch {
+    background-size: cover;
+
     &.selected {
       border-color: #62bd91;
     }
   }
-
 }
