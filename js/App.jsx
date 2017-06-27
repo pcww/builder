@@ -28,13 +28,16 @@ location.search.replace('?', '').split('&').forEach(item => {
 console.log('queryParams: ', queryParams)
 
 if (queryParams.verify) {
+  // Verify from email
   component = <Verification id={queryParams.order} hash={queryParams.hash} verify={true} />
 
 } else if (queryParams.hash) {
+  // Preview wuth order - displays dialog box "order's on the way bro"
   component = <Builder order={queryParams.order} hash={queryParams.hash} preview={true} />
 
 } else {
-  component = <Builder id={queryParams.id || 1} preview={true} />
+  // share link ingress (from facebook/twitter) - basic readonly preview mode
+  component = <Builder id={queryParams.id || 1} preview={queryParams.preview} />
 }
 
 ReactDOM.render(

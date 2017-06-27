@@ -6,7 +6,7 @@ export default class Order extends BaseModel {
   }
 
   getShareLink () {
-    return `http://builder.pinecliffwoodworks.com/?id=${encodeURIComponent(this.get('board_id'))}`
+    return `http://builder.pinecliffwoodworks.com/?id=${encodeURIComponent(this.get('board_id'))}&preview=true`
   }
 
   getTweetLink () {

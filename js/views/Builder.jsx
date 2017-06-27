@@ -84,8 +84,10 @@ export default class Builder extends React.Component {
 
 
   render () {
-    let woodKeys = Object.keys(woods)
-    let randomWood = woodKeys[(Math.floor(Math.random() * woodKeys.length-1))]
+    let genericWoodKeys = _.map(woods, function(woods, key){ if (!woods.mosaic && !woods.endgrain) { return key } })
+    let randomWoodIndex = Math.round(Math.random()*genericWoodKeys.length) + 1
+    let randomWood = genericWoodKeys[randomWoodIndex]
+    console.log('Random Wood Index: ', randomWoodIndex, randomWood, genericWoodKeys)
     let classes = classNames('vignette', randomWood, 'lowres')
     let orderProcessingModal
 
