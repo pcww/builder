@@ -65,16 +65,14 @@ export default class Verification extends React.Component {
   loadedState () {
     return (
       <div className="loading">
-        <div className="frontface">
-          <div>
-            <img src="/assets/misc/pcw-logo.png"/>
-          </div>
-          <div className="message">
-            <p>{order.get('name')}, we're verifying your order!</p>
-          </div>
-          <div>
-            <img src="/assets/misc/loading-ring.svg" />
-          </div>
+        <div>
+          <img src="/assets/misc/pcw-logo.png"/>
+        </div>
+        <div className="message">
+          <p>{order.get('name')}, we're verifying your order!</p>
+        </div>
+        <div>
+          <img src="/assets/misc/loading-ring.svg" />
         </div>
       </div>
     )
@@ -83,16 +81,14 @@ export default class Verification extends React.Component {
   loadingState () {
     return (
       <div className="loading">
-        <div className="frontface">
-          <div>
-            <img src="/assets/misc/pcw-logo.png"/>
-          </div>
-          <div className="message">
-            <p>Retrieving your order details...</p>
-          </div>
-          <div>
-            <img src="/assets/misc/loading-ring.svg" />
-          </div>
+        <div>
+          <img src="/assets/misc/pcw-logo.png"/>
+        </div>
+        <div className="message">
+          <p>Retrieving your order details...</p>
+        </div>
+        <div>
+          <img src="/assets/misc/loading-ring.svg" />
         </div>
       </div>
     )
@@ -101,30 +97,28 @@ export default class Verification extends React.Component {
   verifiedState () {
     return (
       <div className="loading">
-        <div className="frontface">
-          <div>
-            <img src="/assets/misc/pcw-logo.png"/>
+        <div>
+          <img src="/assets/misc/pcw-logo.png"/>
+        </div>
+
+        <div className="message">
+          <p>Thanks, {order.get('name')}, your order has been verified!</p>
+          <small>Check your email for your order details.</small>
+        </div>
+
+        <div className="flippy-thingy">
+          <div className="flippy1">
+            <i className="fa fa-check fa-5x"></i>
           </div>
 
-          <div className="message">
-            <p>Thanks, {order.get('name')}, your order has been verified!</p>
-            <small>Check your email for your order details.</small>
-          </div>
+          <div className="flippy2">
+            <a href={order.getFacebookLink()}>
+              <i className="fa fa-fw fa-facebook fa-3x"></i>
+            </a>
 
-          <div className="flippy-thingy">
-            <div className="flippy1">
-              <i className="fa fa-check fa-5x"></i>
-            </div>
-
-            <div className="flippy2">
-              <a href={order.getFacebookLink()}>
-                <i className="fa fa-fw fa-facebook fa-3x"></i>
-              </a>
-
-              <a href={order.getTweetLink()} target="_blank">
-                <i className="fa fa-fw fa-twitter fa-3x"></i>
-              </a>
-            </div>
+            <a href={order.getTweetLink()} target="_blank">
+              <i className="fa fa-fw fa-twitter fa-3x"></i>
+            </a>
           </div>
         </div>
       </div>
