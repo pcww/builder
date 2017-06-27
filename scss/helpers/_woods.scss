@@ -177,3 +177,13 @@
     background-image: url(../assets/woods/zembrano-lowres.jpg);
   }
 }
+
+.walnut-endgrain {
+  background-image: url(../assets/woods/walnut-endgrain.jpg);
+  &.swatch {
+    background-image: url(../assets/woods/walnut-endgrain-swatch.jpg);
+  }
+  &.lowres {
+    background-image: url(../assets/woods/walnut-endgrain-lowres.jpg);
+  }
+}
