@@ -21,4 +21,26 @@
     font-size: 2.5rem;
     letter-spacing: 0.2rem;
   }
+
+  .wood-tabs {
+    position: absolute;
+    z-index: 100;
+    background-color: white;
+    border: 1px solid #666;
+    padding: 2.5rem 0.9rem 0.9rem 0.9rem;
+    width: 26rem;
+    left: 0.1rem;
+    margin-top: 0.5rem;
+
+    .close {
+      position: absolute;
+      top: 0.2rem;
+      right: 0.3rem;
+    }
+
+    .wood-swatches {
+      padding-top: 1rem;
+    }
+  }
+
 }
