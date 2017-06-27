@@ -160,5 +160,9 @@ section[type="overlay"] {
     top: 0rem;
     left: 0rem;
     z-index: 0;
+
+    img {
+      max-width: 100%;
+    }
   }
 }
