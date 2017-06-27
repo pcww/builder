@@ -12,6 +12,15 @@ export default class WoodPicker extends React.Component {
     })
   }
 
+  componentWillUpdate (nextProps, nextState) {
+    if (nextState.showWoods) {
+      // Set a global event listener to handle closing popup on clicks outside the popup
+      document.addEventListener('click', this._handleForeignClick)
+    } else {
+      document.removeEventListener('click', this._handleForeignClick)
+    }
+  }
+
   constructor (props) {
     super(props)
     this.state = {
@@ -19,8 +28,24 @@ export default class WoodPicker extends React.Component {
     }
 
     this.toggleChangeWoods = this.toggleChangeWoods.bind(this)
+    this._handleForeignClick = this._handleForeignClick.bind(this)
+
   }
 
+
+  // Then make sure to handle that listener appropriately, BRIAN.
+  _handleForeignClick (event) {
+    // `this.el` should be equivalent to the element or container that you want to be remain clickable
+    let targetIsThis = (event.target === this.elTab) || this.elTab.contains(event.target)
+
+    // `this.state.open` should be modified to match whatever property you're using to determine openness
+    if (!targetIsThis && this.state.showWoods) {
+      event.stopPropagation()
+
+      // Do something to close the thing here.
+      this.toggleChangeWoods()
+    }
+  }
 
 
   onChangeWood (event) {
@@ -72,7 +97,9 @@ export default class WoodPicker extends React.Component {
       })
 
       WoodTabs = (
-        <div className="wood-tabs">
+        <div
+          className="wood-tabs"
+          ref={ elTab => this.elTab = elTab }>
           <a className="fa fa-window-close close" onClick={this.toggleChangeWoods}></a>
           <Tabs defaultActiveKey={1} id="wood-tabs-bootstrap">
             <Tab eventKey={1} title="Basic">
@@ -93,8 +120,6 @@ export default class WoodPicker extends React.Component {
           </Tabs>
         </div>
         )
-
-
     }
 
 
