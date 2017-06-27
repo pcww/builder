@@ -87,5 +87,96 @@
   "zembrano": {
     "name": "Zembrano",
     "safeName": "zembrano"
+  },
+
+  "endgrain-walnut": {
+    "name": "Walnut Endgrain",
+    "safeName": "endgrain-walnut",
+    "endgrain": true
+  },
+
+  "mosaic-cosmicllama": {
+    "name": "Cosmic Llama",
+    "safeName": "mosaic-cosmicllama",
+    "mosaic": true
+  },
+
+  "mosaic-dayolddonut": {
+    "name": "Day Old Donut",
+    "safeName": "mosaic-dayolddonut",
+    "mosaic": true
+  },
+
+  "mosaic-flannelledlilly": {
+    "name": "Flannelled Lilly",
+    "safeName": "mosaic-flannelledlilly",
+    "mosaic": true
+  },
+
+  "mosaic-fluffyalbatross": {
+    "name": "Fluffy Albatross",
+    "safeName": "mosaic-fluffyalbatross",
+    "mosaic": true
+  },
+
+  "mosaic-ivoryjive": {
+    "name": "Ivory Jive",
+    "safeName": "mosaic-ivoryjive",
+    "mosaic": true
+  },
+
+  "mosaic-maroontuna": {
+    "name": "Maroon Tuna",
+    "safeName": "mosaic-maroontuna",
+    "mosaic": true
+  },
+
+  "mosaic-moldypeach": {
+    "name": "Moldy Peach",
+    "safeName": "mosaic-moldypeach",
+    "mosaic": true
+  },
+
+  "mosaic-muskymoose": {
+    "name": "Musky Moose",
+    "safeName": "mosaic-muskymoose",
+    "mosaic": true
+  },
+
+  "mosaic-oliveostrich": {
+    "name": "Olive Ostrich",
+    "safeName": "mosaic-oliveostrich",
+    "mosaic": true
+  },
+
+  "mosaic-plummypickle": {
+    "name": "Plummy Pickle",
+    "safeName": "mosaic-plummypickle",
+    "mosaic": true
+  },
+
+  "mosaic-redeclipse": {
+    "name": "Red Eclipse",
+    "safeName": "mosaic-redeclipse",
+    "mosaic": true
+  },
+
+  "mosaic-rustypineapple": {
+    "name": "Rusty Pineapple",
+    "safeName": "mosaic-rustypineapple",
+    "mosaic": true
+  },
+
+  "mosaic-siennabacon": {
+    "name": "Sienna Bacon",
+    "safeName": "mosaic-siennabacon",
+    "mosaic": true
+  },
+
+  "mosaic-whiterabbit": {
+    "name": "White Rabbit",
+    "safeName": "mosaic-whiterabbit",
+    "mosaic": true
   }
+
 }
