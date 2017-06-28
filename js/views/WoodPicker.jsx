@@ -69,8 +69,6 @@ export default class WoodPicker extends React.Component {
       let endgrainWoods = _.filter(woods, (wood) => { return wood.endgrain })
       let mosaicWoods = _.filter(woods, (wood) => { return wood.mosaic })
 
-      console.log('genericWoods: ', genericWoods)
-
       let GenericWoods = _.map(genericWoods, (wood, index) => {
         let classes = ['swatch', 'swatch-clickable', wood.safeName].join(' ')
         console.log('')

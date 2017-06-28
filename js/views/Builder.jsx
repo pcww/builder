@@ -87,7 +87,6 @@ export default class Builder extends React.Component {
     let genericWoodKeys = _.chain(woods).filter(function(wood, key){ return !wood.mosaic && !wood.endgrain }).map(function(wood) { return wood.safeName }).value()
     let randomWoodIndex = Math.round(Math.random()*genericWoodKeys.length)
     let randomWood = genericWoodKeys[randomWoodIndex]
-    console.log('Random Wood Index: ', randomWoodIndex, randomWood, genericWoodKeys)
     let classes = classNames('vignette', randomWood, 'lowres')
     let orderProcessingModal
 
@@ -101,12 +100,20 @@ export default class Builder extends React.Component {
     if (this.state.loaded) {
       return (
         <main>
-          <Board board={this.state.board} overlay preview={this.props.preview}/>
-          <Wizard board={this.state.board} order={this.state.order} onSubmit={this.openModal} preview={this.props.preview}/>
+          <Board
+            board={this.state.board}
+            image={this.props.image}
+            overlay
+            preview={this.props.preview}/>
+          <Wizard
+            board={this.state.board}
+            order={this.state.order}
+            onSubmit={this.openModal}
+            preview={this.props.preview}
+            step={this.props.step}/>
           <SubmitOrderModal board={this.state.board} show={this.state.showModal} close={this.closeModal}/>
           <OrderProcessingModal order={this.state.order} />
         </main>
-
       )
     }
 

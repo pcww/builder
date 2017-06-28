@@ -12,7 +12,51 @@ let backgroundUrls = [
   '/assets/backgrounds/pexels-photo-301692.jpg',
 ]
 
-export default class Builder extends React.Component {
+export default class Board extends React.Component {
+  _generateBackgrounds () {
+    return backgroundUrls.map((backgroundUrl, index) => {
+      let classes = classNames('swatch', 'swatch-clickable', {
+        selected: this.state.background === backgroundUrl
+      })
+
+      return (
+        <div
+          className={classes}
+          data-background={backgroundUrl}
+          id={index}
+          key={index}
+          onClick={this.onChangeBackground}
+          style={{
+            backgroundImage: `url(${backgroundUrl})`
+          }} />
+      )
+    })
+  }
+
+  _generateOverlay (width, length, logo_url, name) {
+    return (
+      <section type="overlay">
+        <div className="dimensions badge">Dimensions {length}" x {width}"</div>
+
+        <div className="cost well text-center">Board Cost: <span className="label label-success">$297.36</span></div>
+
+        {!this.props.image && (
+          <div className="background-picker panel panel-default">
+            <div className="panel-heading">select a background</div>
+            <div className="panel-body">
+              {this._generateBackgrounds()}
+            </div>
+          </div>
+        )}
+
+        <div className="idea-zone well well-sm">
+          <i className="fa fa-2x fa-lightbulb-o" aria-hidden="true"></i>
+          <a href="http://pinecliffwoodworks.com/gallery/" target="_blank">Need an idea&#63; Visit the Gallery!</a>
+        </div>
+      </section>
+    )
+  }
+
   constructor (props) {
     super(props)
 
@@ -25,6 +69,10 @@ export default class Builder extends React.Component {
 
   componentDidMount () {
     // Init Three.js board
+    if (this.props.image) {
+      return
+    }
+
     window.vboard = new VirtualBoard(this.props.board, '.virtual-board')
     window.addEventListener('resize', onWindowResize, false)
     function onWindowResize() {
@@ -43,81 +91,44 @@ export default class Builder extends React.Component {
   }
 
   render () {
-    let overlay
+    let { board } = this.props
+    let backgroundUrl
     let boardInfo
     let boardLogo
-
-    let virtualBoardClasses = classNames('virtual-board')
-
-    let board = this.props.board
     let length = board.get('length')
     let width = board.get('width')
     let name = board.get('name')
     let logo_url = board.get('logo_url')
 
-    let Backgrounds = backgroundUrls.map((backgroundUrl, index) => {
-      let classes = classNames('swatch', 'swatch-clickable', {
-        selected: this.state.background === backgroundUrl
-      })
+    let overlay = this._generateOverlay(width, length, logo_url, name)
 
-      return (
-        <div
-          className={classes}
-          data-background={backgroundUrl}
-          id={index}
-          key={index}
-          onClick={this.onChangeBackground}
-          style={{
-            backgroundImage: `url(${backgroundUrl})`
-          }} />
-      )
-    })
+    if (this.props.image) {
+      backgroundUrl = decodeURIComponent(this.props.image)
+    } else {
+      backgroundUrl = this.state.background
+    }
 
-    if (this.props.overlay) {
-      overlay = (
-        <section type="overlay">
-          <div className="dimensions badge">Dimensions {length}" x {width}"</div>
-
-          <div className="cost well text-center">Board Cost: <span className="label label-success">$297.36</span></div>
-
-          <div className="background-picker panel panel-default">
-            <div className="panel-heading">select a background</div>
-            <div className="panel-body">
-              {Backgrounds}
-            </div>
-          </div>
-
-          <div className="idea-zone well well-sm">
-            <i className="fa fa-2x fa-lightbulb-o" aria-hidden="true"></i>
-            <a href="http://pinecliffwoodworks.com/gallery/" target="_blank">Need an idea&#63; Visit the Gallery!</a>
-          </div>
-        </section>
-      )
-
-      if (logo_url) {
-        boardLogo = (
-          <div className="board-logo"><img src={logo_url} alt={name}/></div>
-        )
-      }
-
-      boardInfo = (
-        <div className="board-info">
-          <h1>{name}</h1>
-          {boardLogo}
+    if (logo_url) {
+      boardLogo = (
+        <div className="board-logo">
+          <img src={logo_url} alt={name}/>
         </div>
       )
     }
 
-    let styles = {
-      backgroundImage: `url(${this.state.background})`
-    }
-
-    console.log(styles)
+    boardInfo = (
+      <div className="board-info">
+        <h1>{name}</h1>
+        {boardLogo}
+      </div>
+    )
 
     return (
       <div
-        className={virtualBoardClasses}
-        style={styles}>
+        className="virtual-board"
+        style={{
+          backgroundImage: `url(${backgroundUrl})`
+        }}>
         {overlay}
         {boardInfo}
       </div>

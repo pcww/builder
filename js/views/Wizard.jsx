@@ -24,19 +24,26 @@ export default class Wizard extends React.Component {
 
   constructor(props) {
     super(props)
-    console.log('preview mode? ', this.props.preview)
+
+    let currentStep
+
     this.stepHeadings = {
       '1': 'Design',
       '2': 'Endcaps',
       '3': 'Accessorize',
       '4': 'Board Summary'
     }
-    this.minWidth = constants.MINIMUM_WIDTH
-  }
 
-  componentWillMount () {
+    this.minWidth = constants.MINIMUM_WIDTH
+
+    if (props.step && (props.step > 0) && (props.step <= 4)) {
+      currentStep = props.step - 1
+    } else {
+      currentStep = 0
+    }
+
     this.state = {
-      currentStep: 0,
+      currentStep,
       peakedWidth: false,
       stripsExpand: false,
       totalSteps: 4

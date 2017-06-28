@@ -17,13 +17,6 @@ $background-prefix: '/assets/backgrounds/';
   background-position: center;
   background-size: cover;
 
-  $background-image-count: 11;
-  @for $i from 1 to $background-image-count {
-    &.background-#{$i} {
-      background-image: url("#{$background-prefix}subtle-pattern-#{$i}.jpg");
-    }
-  }
-
   .swatch {
     background-size: cover;
 

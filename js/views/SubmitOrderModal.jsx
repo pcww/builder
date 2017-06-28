@@ -120,7 +120,6 @@ export default class SubmitOrderModal extends React.Component {
 
     promise.then(() => {
       console.log('Order saved!')
-      console.log('Woohoo!')
       alert('Board Order Submitted!')
       this.props.close()
     })
