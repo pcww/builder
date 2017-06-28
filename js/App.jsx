@@ -25,8 +25,6 @@ location.search.replace('?', '').split('&').forEach(item => {
   }
 })
 
-console.log('queryParams: ', queryParams)
-
 if (queryParams.verify) {
   // Verify from email
   component = <Verification id={queryParams.order} hash={queryParams.hash} verify={true} />
@@ -37,7 +35,11 @@ if (queryParams.verify) {
 
 } else {
   // share link ingress (from facebook/twitter) - basic readonly preview mode
-  component = <Builder id={queryParams.id || 1} preview={queryParams.preview} />
+  let step = parseInt(queryParams.step)
+  if (!step) {
+    step = 0
+  }
+  component = <Builder id={queryParams.id || 1} preview={queryParams.preview} step={step} />
 }
 
 ReactDOM.render(

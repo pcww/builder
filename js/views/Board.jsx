@@ -112,8 +112,6 @@ export default class Builder extends React.Component {
       backgroundImage: `url(${this.state.background})`
     }
 
-    console.log(styles)
-
     return (
       <div
         className={virtualBoardClasses}
