@@ -39,7 +39,7 @@ if (queryParams.verify) {
   if (!step) {
     step = 0
   }
-  component = <Builder id={queryParams.id || 1} preview={queryParams.preview} step={step} />
+  component = <Builder id={queryParams.id || 1} image={queryParams.image} preview={queryParams.preview} step={step} />
 }
 
 ReactDOM.render(

@@ -100,7 +100,11 @@ export default class Builder extends React.Component {
     if (this.state.loaded) {
       return (
         <main>
-          <Board board={this.state.board} overlay preview={this.props.preview}/>
+          <Board
+            board={this.state.board}
+            image={this.props.image}
+            overlay
+            preview={this.props.preview}/>
           <Wizard
             board={this.state.board}
             order={this.state.order}
@@ -110,7 +114,6 @@ export default class Builder extends React.Component {
           <SubmitOrderModal board={this.state.board} show={this.state.showModal} close={this.closeModal}/>
           <OrderProcessingModal order={this.state.order} />
         </main>
-
       )
     }
 
