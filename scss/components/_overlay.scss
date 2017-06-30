@@ -24,6 +24,7 @@ section[type="overlay"] {
     width: 100%;
     background-color: rgba(245, 245, 245, 0.7);
     margin: 0;
+    display: none; /* remove when we bring cost back in */
   }
 
 
@@ -33,7 +34,7 @@ section[type="overlay"] {
     background-color: transparent;
     border: 0;
 
-    bottom: 5rem;
+    bottom: -4rem;
     right: -7rem;
 
     transform: scale(.6);
@@ -67,7 +68,7 @@ section[type="overlay"] {
     transition: all .3s ease-in-out;
     transform: scale(.5);
     left: 0;
-    bottom: 6.5rem;
+    bottom: -2.5rem;
     opacity: .7;
 
     overflow: hidden;
