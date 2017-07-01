@@ -119,7 +119,7 @@ export default class EndcapPicker extends React.Component {
     let Colors = Object.keys(accessories['endcap-colors']).map((key, index) => {
       let isDisabled = key !== 'stainless' && endcapType === 'nutcover'
       let color = accessories['endcap-colors'][key]
-      let classes = classNames('color-swatch', 'color-'+key, {
+      let classes = classNames('color-swatch', 'endcap-color-swatch', 'color-'+key, {
         'swatch-clickable': !isDisabled,
         'selected': key === endcapColor,
         'disabled': isDisabled
