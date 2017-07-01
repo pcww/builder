@@ -7,20 +7,24 @@ let sizes = constants.SIZES
 
 export default class Board extends BaseModel {
   _bindEvents () {
-    this.listenTo(this, 'sync', this._updateWidth)
+    let strips = this.get('strips')
+
+    this.listenTo(this, 'sync', () => {
+      this._updateWidth()
+
+      this.listenToOnce(strips, 'change add remove', () => {
+        this.set('medusa', true)
+      })
+    })
+
     this.listenTo(this, 'change:length', this._rerenderStrips)
     this.listenTo(this, 'change:width', this._rerenderStrips)
-
-    let strips = this.get('strips')
 
     this.listenTo(strips, 'reset', this._rerenderStrips)
     this.listenTo(strips, 'change:size', this._updateWidth)
     this.listenTo(strips, 'change add remove', () => {
       this._rerenderStrips()
       this._updateWidth()
-    })
-    this.listenToOnce(strips, 'change add remove', () => {
-      this.set('medusa', true)
     })
   }
 
