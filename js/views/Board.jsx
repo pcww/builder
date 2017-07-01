@@ -99,6 +99,7 @@ export default class Board extends React.Component {
     let width = board.get('width')
     let name = board.get('name')
     let logo_url = board.get('logo_url')
+    let isMedusa = board.get('medusa')
 
     let overlay = this._generateOverlay(width, length, logo_url, name)
 
@@ -111,14 +112,14 @@ export default class Board extends React.Component {
     if (logo_url) {
       boardLogo = (
         <div className="board-logo">
-          <img src={logo_url} alt={name}/>
+          <img src={isMedusa ? '//builder.pinecliffwoodworks.com/assets/god-logos/medusa.png' : logo_url} alt={name}/>
         </div>
       )
     }
 
     boardInfo = (
       <div className="board-info">
-        <h1>{name}</h1>
+        <h1>{isMedusa ? 'Medusa' : name}</h1>
         {boardLogo}
       </div>
     )
