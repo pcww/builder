@@ -13,6 +13,7 @@ let HeraExampleBoard = {
     "color": "nickel", // ["black", "nickel", "white"]
     "type": "nut cover", // ["button", "nut cover"]
     "branding": "pineclifflogo" // ["pineclifflogo", "pcwartlogo", "none"]
+    "chooseapattern": false // will be the selected pattern's filename if chosen
   },
   "feet": {
     "type": "screw" // ["screw", "suction"]

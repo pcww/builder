@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import Modal from 'react-modal'
 
 import accessories from '../accessories.json'
+import EndcapPatternPicker from 'views/EndcapPatternPicker.jsx'
 
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
@@ -112,6 +113,7 @@ export default class EndcapPicker extends React.Component {
     let endcapType = endcap.type
     let endcapColor = endcap.color
     let endcapBranding = endcap.branding
+    let endcapSelectedPattern = endcap.chooseapattern || false
 
     let endcapName = accessories.endcaps[endcapType].name
     let endcapDescription = accessories.endcaps[endcapType].description
@@ -259,13 +261,22 @@ export default class EndcapPicker extends React.Component {
                   </div>
                   <div className="radio">
                     <label>
-                      <input type="radio" name="endcapBrandingOption" id="endcap-nutcover" value="pcwartlogo" onChange={this.onBrandingChange.bind(this)} checked={endcapBranding === 'pcwartlogo'}/>
+                      <input type="radio" name="endcapBrandingOption" id="endcap-button" value="pcwartlogo" onChange={this.onBrandingChange.bind(this)} checked={endcapBranding === 'pcwartlogo'}/>
                       {accessories['endcaps-branding']['pcwartlogo'].name}
+                    </label>
+                  </div>
+                  <div className="radio">
+                    <label>
+                      <input type="radio" name="endcapBrandingOption" id="endcap-button" value="chooseapattern" onChange={this.onBrandingChange.bind(this)} checked={endcapBranding === 'chooseapattern'}/>
+                      {accessories['endcaps-branding']['chooseapattern'].name}
                     </label>
                   </div>
                 </div>
               </div>
             </div>
+
+            { endcapBranding === 'chooseapattern' ? (<div><EndcapPatternPicker board={board} updateState={this.setState.bind(this)}/></div>) : null }
+
           </div>
         </fieldset>
       </div>

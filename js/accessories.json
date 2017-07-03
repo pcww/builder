@@ -214,7 +214,7 @@
   "endcaps-branding": {
     "none": {
       "name": "No Branding",
-      "description": "Your endcaps will be devoid of any fancy logos."
+      "description": "Your endcaps will be blank and devoid of any fancy logos."
     },
     "pineclifflogo": {
       "name": "PineCliff Logo",
@@ -223,6 +223,10 @@
     "pcwartlogo": {
       "name": "PCW Art Logo",
       "description": "Show your inner fanboy with the new PCW Art logo on one of your endcaps."
+    },
+    "chooseapattern": {
+      "name": "Choose a Pattern",
+      "description": "Select a logo or pattern from a curated list of custom images."
     }
   }
 }
