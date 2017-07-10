@@ -1,6 +1,7 @@
 .wizard {
   height: 100vh;
   width: 30vw;
+  min-width: 35rem; /* concession for now to keep menu from looking like ass on small h-rez screens */
 
   background-color: #efefef;
   display: flex;

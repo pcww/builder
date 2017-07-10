@@ -37,50 +37,141 @@
     cursor: not-allowed;
   }
 
-    &.color-stainless {
+  &.endcap-color-swatch {
+    border-color: #555;
+  }
+
+  &.color-stainless {
     // background-color: silver;
     background-image: url('/assets/misc/stainless.jpg');
     border-color: silver;
   }
-  &.color-black {
-    background-color: #000;
-    border-color: #000;
+  &.color-stainless {
+    background-image: url('/assets/endcap-colors/stainless.jpg');
   }
-  &.color-white {
-    background-color: #fff;
-    border-color: #fff;
+  &.color-satin-oregano {
+    background-image: url('/assets/endcap-colors/satin-oregano.jpg');
   }
-  &.color-red {
-    background-color: #f00;
-    border-color: #f00;
+  &.color-satin-strawflower {
+    background-image: url('/assets/endcap-colors/satin-strawflower.jpg');
   }
-  &.color-orange {
-    background-color: #ffa500;
-    border-color: #ffa500;
+  &.color-satin-summer-squash {
+    background-image: url('/assets/endcap-colors/satin-summer-squash.jpg');
   }
-  &.color-yellow {
-    background-color: #ffff00;
-    border-color: #ffff00;
+  &.color-aged-bronze {
+    background-image: url('/assets/endcap-colors/aged-bronze.jpg');
   }
-  &.color-green {
-    background-color: #004225;
-    border-color: #004225;
+  &.color-classic-bronze {
+    background-image: url('/assets/endcap-colors/classic-bronze.jpg');
   }
-  &.color-cyan {
-    background-color: #66ccff;
-    border-color: #66ccff;
+  &.color-satin-nutmeg {
+    background-image: url('/assets/endcap-colors/satin-nutmeg.jpg');
   }
-  &.color-blue {
-    background-color: #003278;
-    border-color: #003278;
+  &.color-satin-cinnamon {
+    background-image: url('/assets/endcap-colors/satin-cinnamon.jpg');
   }
-  &.color-purple {
-    background-color: #800080;
-    border-color: #800080;
+  &.color-metallic-copper {
+    background-image: url('/assets/endcap-colors/metallic-copper.jpg');
   }
-  &.color-brown {
-    background-color: #a52a2a;
-    border-color: #a52a2a;
+  &.color-satin-poppy-red {
+    background-image: url('/assets/endcap-colors/satin-poppy-red.jpg');
   }
+  &.color-satin-fire-orange {
+    background-image: url('/assets/endcap-colors/satin-fire-orange.jpg');
+  }
+  &.color-colonial-red {
+    background-image: url('/assets/endcap-colors/colonial-red.jpg');
+  }
+  &.color-satin-claret-wine {
+    background-image: url('/assets/endcap-colors/satin-claret-wine.jpg');
+  }
+  &.color-satin-aubergine {
+    background-image: url('/assets/endcap-colors/satin-aubergine.jpg');
+  }
+  &.color-satin-magenta {
+    background-image: url('/assets/endcap-colors/satin-magenta.jpg');
+  }
+  &.color-satin-sweet-pea {
+    background-image: url('/assets/endcap-colors/satin-sweet-pea.jpg');
+  }
+  &.color-hammered-ivory {
+    background-image: url('/assets/endcap-colors/hammered-ivory.jpg');
+  }
+  &.color-satin-blossom-white {
+    background-image: url('/assets/endcap-colors/satin-blossom-white.jpg');
+  }
+  &.color-dark-aged-bronze {
+    background-image: url('/assets/endcap-colors/dark-aged-bronze.jpg');
+  }
+  &.color-flat-grey {
+    background-image: url('/assets/endcap-colors/flat-grey.jpg');
+  }
+  &.color-flat-black {
+    background-image: url('/assets/endcap-colors/flat-black.jpg');
+  }
+  &.color-satin-slate-blue {
+    background-image: url('/assets/endcap-colors/satin-slate-blue.jpg');
+  }
+  &.color-satin-french-lilac {
+    background-image: url('/assets/endcap-colors/satin-french-lilac.jpg');
+  }
+  &.color-satin-wildflower-blue {
+    background-image: url('/assets/endcap-colors/satin-wildflower-blue.jpg');
+  }
+  &.color-satin-aqua {
+    background-image: url('/assets/endcap-colors/satin-aqua.jpg');
+  }
+  &.color-satin-classic-navy {
+    background-image: url('/assets/endcap-colors/satin-classic-navy.jpg');
+  }
+  &.color-satin-club-green {
+    background-image: url('/assets/endcap-colors/satin-club-green.jpg');
+  }
+  &.color-semi-gloss-hunter-green {
+    background-image: url('/assets/endcap-colors/semi-gloss-hunter-green.jpg');
+  }
+  &.color-satin-leafy-green {
+    background-image: url('/assets/endcap-colors/satin-leafy-green.jpg');
+  }
+  // &.color-black {
+  //   background-color: #000;
+  //   border-color: #000;
+  // }
+  // &.color-white {
+  //   background-color: #fff;
+  //   border-color: #fff;
+  // }
+  // &.color-red {
+  //   background-color: #f00;
+  //   border-color: #f00;
+  // }
+  // &.color-orange {
+  //   background-color: #ffa500;
+  //   border-color: #ffa500;
+  // }
+  // &.color-yellow {
+  //   background-color: #ffff00;
+  //   border-color: #ffff00;
+  // }
+  // &.color-green {
+  //   background-color: #004225;
+  //   border-color: #004225;
+  // }
+  // &.color-cyan {
+  //   background-color: #66ccff;
+  //   border-color: #66ccff;
+  // }
+  // &.color-blue {
+  //   background-color: #003278;
+  //   border-color: #003278;
+  // }
+  // &.color-purple {
+  //   background-color: #800080;
+  //   border-color: #800080;
+  // }
+  // &.color-brown {
+  //   background-color: #a52a2a;
+  //   border-color: #a52a2a;
+  // }
 
 }

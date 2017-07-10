@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Tabs, Tab } from 'react-bootstrap'
+import { Tabs, Tab, Tooltip, OverlayTrigger } from 'react-bootstrap'
 
 import woods from '../woods.json'
 
@@ -71,26 +71,34 @@ export default class WoodPicker extends React.Component {
 
       let GenericWoods = _.map(genericWoods, (wood, index) => {
         let classes = ['swatch', 'swatch-clickable', wood.safeName].join(' ')
-        console.log('')
+        let tooltip = <Tooltip id="tooltip">{wood.name}</Tooltip>
 
         return (
-          <li className={classes} id={wood.safeName} key={index} title={wood.name} onClick={this.onChangeWood.bind(this)} data-toggle="tooltip"/>
+          <OverlayTrigger key={index} placement="top" overlay={tooltip}>
+            <li className={classes} id={wood.safeName}  onClick={this.onChangeWood.bind(this)}/>
+          </OverlayTrigger>
         )
       })
 
       let EndgrainWoods = _.map(endgrainWoods, (wood, index) => {
         let classes = ['swatch', 'swatch-clickable', wood.safeName].join(' ')
+        let tooltip = <Tooltip id="tooltip">{wood.name}</Tooltip>
 
         return (
-          <li className={classes} id={wood.safeName} key={index} title={wood.name} onClick={this.onChangeWood.bind(this)} data-toggle="tooltip"/>
+          <OverlayTrigger key={index} placement="top" overlay={tooltip}>
+            <li className={classes} id={wood.safeName}  onClick={this.onChangeWood.bind(this)}/>
+          </OverlayTrigger>
         )
       })
 
       let MosaicWoods = _.map(mosaicWoods, (wood, index) => {
         let classes = ['swatch', 'swatch-clickable', wood.safeName].join(' ')
+        let tooltip = <Tooltip id="tooltip">{wood.name}</Tooltip>
 
         return (
-          <li className={classes} id={wood.safeName} key={index} title={wood.name} onClick={this.onChangeWood.bind(this)} data-toggle="tooltip"/>
+          <OverlayTrigger key={index} placement="top" overlay={tooltip}>
+            <li className={classes} id={wood.safeName}  onClick={this.onChangeWood.bind(this)}/>
+          </OverlayTrigger>
         )
       })
 

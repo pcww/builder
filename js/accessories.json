@@ -94,41 +94,127 @@
 
   "endcap-colors": {
     "stainless": {
-      "name": "Stainless Steel"
+      "name": "Stainless Steel",
+      "code": "stainless"
     },
-    "black": {
-      "name": "Black"
+    "satin-oregano": {
+      "name": "Satin Oregano",
+      "code": "249069"
     },
-    "white": {
-      "name": "White"
+    "satin-strawflower": {
+      "name": "Satin Strawflower",
+      "code": "249065"
     },
-    "red": {
-      "name": "Red"
+    "satin-summer-squash": {
+      "name": "Satin Summer Squash",
+      "code": "249064"
     },
-    "orange": {
-      "name": "Orange"
+    "aged-bronze": {
+      "name": "Aged Bronze",
+      "code": "202719"
     },
-    "yellow": {
-      "name": "Yellow"
+    "classic-bronze": {
+      "name": "Classic Bronze",
+      "code": "202642"
     },
-    "green": {
-      "name": "Green"
+    "satin-nutmeg": {
+      "name": "Satin Nutmeg",
+      "code": "259070"
     },
-    "cyan": {
-      "name": "Cyan"
+    "satin-cinnamon": {
+      "name": "Satin Cinnamon",
+      "code": "249084"
     },
-    "blue": {
-      "name": "Blue"
+    "metallic-copper": {
+      "name": "Metallic Copper",
+      "code": "1937830"
     },
-    "purple": {
-      "name": "Purple"
+    "satin-poppy-red": {
+      "name": "Satin Poppy Red",
+      "code": "277994"
+    },
+    "satin-fire-orange": {
+      "name": "Satin Fire Orange",
+      "code": "263149"
+    },
+    "colonial-red": {
+      "name": "Colonial Red",
+      "code": "249082"
+    },
+    "satin-claret-wine": {
+      "name": "Satin Claret Wine",
+      "code": "249083"
+    },
+    "satin-aubergine": {
+      "name": "Satin Aubergine",
+      "code": "257419"
+    },
+    "satin-magenta": {
+      "name": "Satin Magenta",
+      "code": "283188"
+    },
+    "satin-sweet-pea": {
+      "name": "Satin Sweet Pea",
+      "code": "249063"
+    },
+    "hammered-ivory": {
+      "name": "Hammered Ivory",
+      "code": "250898"
+    },
+    "satin-blossom-white": {
+      "name": "Satin Blossom White",
+      "code": "249843"
+    },
+    "dark-aged-bronze": {
+      "name": "Dark Aged Bronze",
+      "code": "202646"
+    },
+    "flat-grey": {
+      "name": "Flat Grey",
+      "code": "249088"
+    },
+    "flat-black": {
+      "name": "Flat Black",
+      "code": "249127"
+    },
+    "satin-slate-blue": {
+      "name": "Satin Slate Blue",
+      "code": "249066"
+    },
+    "satin-french-lilac": {
+      "name": "Satin French Lilac",
+      "code": "249079"
+    },
+    "satin-wildflower-blue": {
+      "name": "Satin Wildflower Blue",
+      "code": "249062"
+    },
+    "satin-aqua": {
+      "name": "Satin Aqua",
+      "code": "249085"
+    },
+    "satin-classic-navy": {
+      "name": "Satin Classic Navy",
+      "code": "300115"
+    },
+    "satin-club-green": {
+      "name": "Satin Club Green",
+      "code": "249074"
+    },
+    "semi-gloss-hunter-green": {
+      "name": "Semi-Gloss Hunter Green",
+      "code": "249853"
+    },
+    "satin-leafy-green": {
+      "name": "Satin Leafy Green",
+      "code": "249072"
     }
   },
 
   "endcaps-branding": {
     "none": {
       "name": "No Branding",
-      "description": "Your endcaps will be devoid of any fancy logos."
+      "description": "Your endcaps will be blank and devoid of any fancy logos."
     },
     "pineclifflogo": {
       "name": "PineCliff Logo",
@@ -137,6 +223,10 @@
     "pcwartlogo": {
       "name": "PCW Art Logo",
       "description": "Show your inner fanboy with the new PCW Art logo on one of your endcaps."
+    },
+    "chooseapattern": {
+      "name": "Choose a Pattern",
+      "description": "Select a logo or pattern from a curated list of custom images."
     }
   }
 }
