@@ -115,7 +115,7 @@ export default class Wizard extends React.Component {
     return (
       <div className="media">
         <div className="media-left">
-          <img className="media-object swatch" src={'/assets/grooves/' + type + '.jpg'}/>
+          <img className="media-object swatch" src={'/assets/grooves/' + type + '.png'}/>
         </div>
 
         <div className="media-body">
