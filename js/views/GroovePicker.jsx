@@ -1,14 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import { Modal } from 'react-bootstrap'
+
 import accessories from '../accessories.json'
 
 export default class GroovePicker extends React.Component {
-
   constructor (props) {
     super(props)
 
     this.handleClick = this.handleClick.bind(this)
+
+    this.state = {
+      modalIsOpen: false
+    }
   }
 
   handleClick (event) {
@@ -28,9 +33,24 @@ export default class GroovePicker extends React.Component {
 
     return (
       <div className="media">
-        <div className="media-left">
+        <div className="media-left" onClick={() => this.setState({ modalIsOpen: true })}>
           <img className="media-object swatch swatch-big" src={'/assets/grooves/' + groove + '.png'} alt="..."/>
         </div>
+
+        <Modal show={this.state.modalIsOpen} onHide={() => this.setState({ modalIsOpen: false })}>
+          <Modal.Header closeButton>
+            <Modal.Title>{name}</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body style={{ textAlign: 'center' }}>
+            <img style={{ maxWidth: '100%' }} src={'/assets/grooves/' + groove + '.jpg'} alt="..."/>
+          </Modal.Body>
+
+          <Modal.Footer>
+            <p>{description}</p>
+          </Modal.Footer>
+        </Modal>
+
         <div className="media-body">
           <div className="row">
             <div className="col-xs-12">
