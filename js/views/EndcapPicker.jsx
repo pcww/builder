@@ -6,7 +6,7 @@ import Modal from 'react-modal'
 import accessories from '../accessories.json'
 import EndcapPatternPicker from 'views/EndcapPatternPicker.jsx'
 
-import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Collapse, OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const customStyles = {
   content : {
@@ -154,6 +154,12 @@ export default class EndcapPicker extends React.Component {
 
     let brandingName = accessories['endcaps-branding'][endcapBranding].name
     let brandingDescription = accessories['endcaps-branding'][endcapBranding].description
+    let chooseapatternPath = this.props.board.get('endcaps').chooseapattern
+    let brandingImagePath = (endcapBranding === 'chooseapattern') ?
+      (chooseapatternPath ?
+        `/assets/endcap-designs/${chooseapatternPath}` :
+        '/assets/branding/chooseapattern.jpg') :
+      `/assets/branding/${endcapBranding}.jpg`
 
     return (
       <div id="endcap-picker">
@@ -238,7 +244,7 @@ export default class EndcapPicker extends React.Component {
           <legend>Choose Endcap Branding</legend>
           <div className="media">
             <div className="media-left">
-              <img className="media-object swatch swatch-big" src={'/assets/branding/' + endcapBranding + '.jpg'} alt="..."/>
+              <img className="media-object swatch swatch-big" src={brandingImagePath} alt="Selected Endcap Pattern"/>
             </div>
             <div className="media-body">
               <div className="row">
@@ -270,12 +276,17 @@ export default class EndcapPicker extends React.Component {
                       <input type="radio" name="endcapBrandingOption" id="endcap-button" value="chooseapattern" onChange={this.onBrandingChange.bind(this)} checked={endcapBranding === 'chooseapattern'}/>
                       {accessories['endcaps-branding']['chooseapattern'].name}
                     </label>
+
                   </div>
                 </div>
               </div>
             </div>
 
-            { endcapBranding === 'chooseapattern' ? (<div><EndcapPatternPicker board={board} updateState={this.setState.bind(this)}/></div>) : null }
+            <Collapse in={endcapBranding === 'chooseapattern'}>
+              <div>
+                { endcapBranding === 'chooseapattern' ? (<EndcapPatternPicker board={this.props.board} updateState={this.setState.bind(this)}/>) : null }
+              </div>
+            </Collapse>
 
           </div>
         </fieldset>
