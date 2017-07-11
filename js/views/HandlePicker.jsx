@@ -10,7 +10,7 @@ export default class HandlePicker extends React.Component {
     super(props)
 
     this.state = {
-      modalOpen: false
+      modalIsOpen: false
     }
   }
 
