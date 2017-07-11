@@ -90,13 +90,6 @@ export default class Builder extends React.Component {
     let classes = classNames('vignette', randomWood, 'lowres')
     let orderProcessingModal
 
-    // if (this.props.preview) {
-    //   orderProcessingModal = (
-    //
-    //   )
-    // }
-
-
     if (this.state.loaded) {
       return (
         <main>
