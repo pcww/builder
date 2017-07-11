@@ -59,13 +59,17 @@
   },
 
   "grooves": {
-    "false": {
+    "inner": {
+      "name": "Inner Groove",
+      "description": "If your board uses different wood types around the edges, we'll make sure your juice groove is contained inside those strips."
+    },
+    "outer": {
+      "name": "Outer Groove",
+      "description": "We'll run your juice groove all the way to the edge of the cutting board."
+    },
+    "none": {
       "name": "No Groove",
       "description": "Board will be flat with no routed groove."
-    },
-    "true": {
-      "name": "Routed Groove",
-      "description": "A routed 'juice groove' will be added for maximum drip-catching efficiency."
     }
   },
 

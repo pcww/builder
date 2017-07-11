@@ -69,6 +69,13 @@ export default class Board extends BaseModel {
       delete response.board_id
     }
 
+    if (response.groove === true) {
+      response.groove = 'outer'
+
+    } else {
+      response.groove = 'none'
+    }
+
     if (response.strips) {
       response.strips.forEach((strip, index) => {
         strip.id = index
