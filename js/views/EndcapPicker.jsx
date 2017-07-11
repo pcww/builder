@@ -29,6 +29,7 @@ export default class EndcapPicker extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      brandingModalIsOpen: false,
       modalIsOpen: false,
       imageIndex: 0
     }
@@ -220,9 +221,24 @@ export default class EndcapPicker extends React.Component {
         <fieldset>
           <legend>Choose Endcap Branding</legend>
           <div className="media">
-            <div className="media-left">
+            <div className="media-left" onClick={() => this.setState({ brandingModalIsOpen: true })}>
               <img className="media-object swatch swatch-big" src={brandingImagePath} alt="Selected Endcap Pattern"/>
             </div>
+
+            <Modal show={this.state.brandingModalIsOpen} onHide={() => this.setState({ brandingModalIsOpen: false })}>
+              <Modal.Header closeButton>
+                <Modal.Title>{brandingName}</Modal.Title>
+              </Modal.Header>
+
+              <Modal.Body style={{ textAlign: 'center' }}>
+                <img style={{ maxWidth: '100%' }} src={brandingImagePath} alt="..."/>
+              </Modal.Body>
+
+              <Modal.Footer>
+                <p>{brandingDescription}</p>
+              </Modal.Footer>
+            </Modal>
+
             <div className="media-body">
               <div className="row">
                 <div className="col-xs-12">
