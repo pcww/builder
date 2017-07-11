@@ -1,9 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import { Modal } from 'react-bootstrap'
+
 import accessories from '../accessories.json'
 
 export default class HandlePicker extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      modalIsOpen: false
+    }
+  }
+
   onHandleChange (event) {
     this.props.board.set('handle', event.currentTarget.value)
     this.forceUpdate()
@@ -17,9 +27,24 @@ export default class HandlePicker extends React.Component {
 
     return (
       <div className="media">
-        <div className="media-left">
+        <div className="media-left" onClick={() => handle !== 'none' ? this.setState({ modalIsOpen: true }) : null}>
           <img className="media-object swatch swatch-big" src={'/assets/handles/' + handle + '.jpg'} alt="..."/>
         </div>
+
+        <Modal show={this.state.modalIsOpen} onHide={() => this.setState({ modalIsOpen: false })}>
+          <Modal.Header closeButton>
+            <Modal.Title>{handleName}</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body style={{ textAlign: 'center' }}>
+            <img style={{ maxWidth: '100%' }} src={'/assets/handles/' + handle + '-large.jpg'} alt="..."/>
+          </Modal.Body>
+
+          <Modal.Footer>
+            <p>{handleDescription}</p>
+          </Modal.Footer>
+        </Modal>
+
         <div className="media-body">
           <div className="row">
             <div className="col-xs-12">

@@ -1,12 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import classNames from 'classnames'
-import Modal from 'react-modal'
 
 import accessories from '../accessories.json'
 import EndcapPatternPicker from 'views/EndcapPatternPicker.jsx'
 
-import { Collapse, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Collapse, OverlayTrigger, Tooltip, Modal } from 'react-bootstrap'
 
 const customStyles = {
   content : {
@@ -30,6 +29,7 @@ export default class EndcapPicker extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      brandingModalIsOpen: false,
       modalIsOpen: false,
       imageIndex: 0
     }
@@ -170,39 +170,18 @@ export default class EndcapPicker extends React.Component {
               <img className="media-object swatch swatch-big" src={'/assets/endcaps/' + endcapType + '.jpg'} alt="..."/>
             </div>
 
-            <Modal
-              isOpen={this.state.modalIsOpen}
-              onRequestClose={this.closeModal.bind(this)}
-              style={customStyles}
-              contentLabel="Example Modal"
-            >
+            <Modal show={this.state.modalIsOpen} onHide={this.closeModal.bind(this)}>
+              <Modal.Header closeButton>
+                <Modal.Title>{endcapName}</Modal.Title>
+              </Modal.Header>
 
-              <div className="imageModal">
-                <header className="imageModal-header">
-                  <h2 ref="subtitle">Endcap Types</h2>
-                  <span className="imageModal-buttons imageModal-header-closeButton" onClick={this.closeModal.bind(this)}>
-                    <i className="fa fa-times"></i>
-                  </span>
-                </header>
+              <Modal.Body style={{ textAlign: 'center' }}>
+                <img style={{ maxWidth: '100%' }} src={'/assets/endcaps/' + endcapType + '-large.jpg'} alt="..."/>
+              </Modal.Body>
 
-                <div className="imageModal-contents">
-                  <div className="imageModal-buttons imageModal-buttons-nav" onClick={this.previousImage.bind(this)}>
-                    <i className="fa fa-chevron-left"></i>
-                  </div>
-
-                  <img className="imageModal-image"
-                    src={'/assets/endcaps/' + modalImages[this.state.imageIndex] + '.jpg'}
-                    alt="..." onClick={this.nextImage.bind(this)} />
-
-                  <div className="imageModal-buttons imageModal-buttons-nav" onClick={this.nextImage.bind(this)}>
-                    <i className="fa fa-chevron-right"></i>
-                  </div>
-                </div>
-
-                <div className="imageModal-footer">
-                  <span className="caption">This is a caption</span>
-                </div>
-              </div>
+              <Modal.Footer>
+                <p>{endcapDescription}</p>
+              </Modal.Footer>
             </Modal>
 
             <div className="media-body">
@@ -230,7 +209,6 @@ export default class EndcapPicker extends React.Component {
           </div>
         </fieldset>
 
-
         <hr/>
 
         <fieldset>
@@ -243,9 +221,24 @@ export default class EndcapPicker extends React.Component {
         <fieldset>
           <legend>Choose Endcap Branding</legend>
           <div className="media">
-            <div className="media-left">
+            <div className="media-left" onClick={() => this.setState({ brandingModalIsOpen: true })}>
               <img className="media-object swatch swatch-big" src={brandingImagePath} alt="Selected Endcap Pattern"/>
             </div>
+
+            <Modal show={this.state.brandingModalIsOpen} onHide={() => this.setState({ brandingModalIsOpen: false })}>
+              <Modal.Header closeButton>
+                <Modal.Title>{brandingName}</Modal.Title>
+              </Modal.Header>
+
+              <Modal.Body style={{ textAlign: 'center' }}>
+                <img style={{ maxWidth: '100%' }} src={brandingImagePath} alt="..."/>
+              </Modal.Body>
+
+              <Modal.Footer>
+                <p>{brandingDescription}</p>
+              </Modal.Footer>
+            </Modal>
+
             <div className="media-body">
               <div className="row">
                 <div className="col-xs-12">
