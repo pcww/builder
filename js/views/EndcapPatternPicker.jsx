@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Tabs, Tab } from 'react-bootstrap'
+import { Button, Collapse, Tabs, Tab } from 'react-bootstrap'
 import EndcapLogosModel from 'models/EndcapLogos'
 
 import woods from '../woods.json'
@@ -10,22 +10,27 @@ export default class EndcapPatternPicker extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      showWoods: false,
       logos: new EndcapLogosModel(),
       loaded: false,
+      showPicker: true
     }
 
     this.mounted = false
-    this.toggleChangeWoods = this.toggleChangeWoods.bind(this)
-    // this._handleForeignClick = this._handleForeignClick.bind(this)
+    this.selectPattern = this.selectPattern.bind(this)
     this.request = null
 
   }
 
-  toggleChangeWoods () {
-    this.setState({
-      showWoods: !this.state.showWoods
-    })
+  selectPattern (event) {
+    let value = event.currentTarget.getAttribute('data-pattern')
+    let currentVals = this.props.board.get('endcaps')
+
+    this.props.board.set('endcaps', Object.assign(currentVals, { chooseapattern: value }))
+
+    this.setState({showPicker: false})
+
+    this.props.updateState({}) // using the passed in updateState forces this component and the parent to re-render.
+    this.forceUpdate()
   }
 
   componentWillMount () {
@@ -45,6 +50,7 @@ export default class EndcapPatternPicker extends React.Component {
 
   componentDidMount() {
     this.mounted = true
+    // console.log('props: ', this.props)
   }
 
   componentWillUnmount () {
@@ -53,101 +59,52 @@ export default class EndcapPatternPicker extends React.Component {
 
   }
 
-  // componentWillUpdate (nextProps, nextState) {
-  //   if (nextState.showWoods) {
-  //     // Set a global event listener to handle closing popup on clicks outside the popup
-  //     document.addEventListener('click', this._handleForeignClick)
-  //   } else {
-  //     document.removeEventListener('click', this._handleForeignClick)
-  //   }
-  // }
-  //
-  // // Then make sure to handle that listener appropriately, BRIAN.
-  // _handleForeignClick (event) {
-  //   // `this.el` should be equivalent to the element or container that you want to be remain clickable
-  //   let targetIsThis = (event.target === this.elTab) || this.elTab.contains(event.target)
-  //
-  //   // `this.state.open` should be modified to match whatever property you're using to determine openness
-  //   if (!targetIsThis && this.state.showWoods) {
-  //     event.stopPropagation()
-  //
-  //     // Do something to close the thing here.
-  //     this.toggleChangeWoods()
-  //   }
-  // }
-  //
-  //
-  // onChangePattern (event) {
-  //   let value = event.currentTarget.id
-  //
-  //   this.props.board.set('endcaps', Object.assign(currentVals, { chooseapattern: value }))
-  //   this.props.updateState({}) // using the passed in updateState forces this component and the StripPanel parent to re-render.
-  //   // this.toggleModal()
-  //   this.forceUpdate()
-  // }
-
   render () {
-    // let currentWood = this.props.strip.get('wood')
-    // let previewClasses = ['swatch', 'swatch-big', currentWood].join(' ')
-    // let woodObj = woods[currentWood] || 'Unknown'
-    // let WoodTabs = null
-    //
-    // if (this.state.showWoods) {
-    //
-    //   let genericWoods = _.filter(woods, (wood) => { return !wood.endgrain && !wood.mosaic })
-    //
-    //   let GenericWoods = _.map(genericWoods, (wood, index) => {
-    //     let classes = ['swatch', 'swatch-clickable', wood.safeName].join(' ')
-    //     console.log('')
-    //
-    //     return (
-    //       <li className={classes} id={wood.safeName} key={index} title={wood.name} onClick={this.onChangePattern.bind(this)} data-toggle="tooltip"/>
-    //     )
-    //   })
-    //
-    //   WoodTabs = (
-    //     <div
-    //       className="wood-tabs"
-    //       ref={ elTab => this.elTab = elTab }>
-    //       <a className="fa fa-window-close close" onClick={this.toggleChangeWoods}></a>
-    //       <Tabs defaultActiveKey={1} id="wood-tabs-bootstrap">
-    //         <Tab eventKey={1} title="Basic">
-    //           <ul className="wood-swatches">
-    //             {GenericWoods}
-    //           </ul>
-    //         </Tab>
-    //         <Tab eventKey={2} title="Mosaic">
-    //           <ul className="wood-swatches">
-    //             {MosaicWoods}
-    //           </ul>
-    //         </Tab>
-    //         <Tab eventKey={3} title="Endgrain">
-    //           <ul className="wood-swatches">
-    //             {EndgrainWoods}
-    //           </ul>
-    //         </Tab>
-    //       </Tabs>
-    //     </div>
-    //     )
-    // }
-
     if (!this.state.loaded) {
-      return (<div>Loading...</div>)
+      return (<div id='endcap-pattern-picker' className="text-center"><i className="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i></div>)
 
     } else {
+      // console.log('EndcapLogos --------------->' , JSON.stringify(this.state.logos))
+      let PatternPicker = Object.keys(this.state.logos.attributes).map((folderName, index) => {
+        let classes = ['swatch', 'swatch-clickable'].join(' ')
 
-      return (<div><pre>{JSON.stringify(this.state.logos, null, 2) }</pre></div>)
+        let FolderPatterns = this.state.logos.get(folderName).map((fileName, index2) => {
+          let inlineStyles = {
+            backgroundImage: `url('/assets/endcap-designs/${folderName}/${fileName}')`
+          }
 
-      // return (
-      //   <div className="wood-picker">
-      //     <div>
-      //       <a id="preview" className={previewClasses} data-toggle="dropdown"></a>
-      //       <span className="color-name">{woodObj.name}</span><br/>
-      //       <a className="btn btn-sm btn-primary" onClick={this.toggleChangeWoods}>Change Wood</a>
-      //       { this.state.showWoods ? WoodTabs : null }
-      //     </div>
-      //   </div>
-      // )
+          return (
+            <li key={`${index}-${index2}`} className={classes} style={inlineStyles} data-pattern={`${folderName}/${fileName}`} onClick={this.selectPattern}></li>
+          )
+        })
+
+        return (
+          <section key={'pattern-section-'+index} className="clearfix">
+            <h4>{folderName}</h4>
+            <ul>
+              {FolderPatterns}
+            </ul>
+          </section>
+        )
+
+      })
+
+      return (
+        <div>
+          <div id='endcap-pattern-picker'>
+            <Collapse in={!this.state.showPicker}>
+              <div className="text-center">
+                <Button onClick={ ()=> this.setState({ showPicker: !this.state.showPicker })} bsStyle="primary" bsSize="small">Change Pattern</Button>
+              </div>
+            </Collapse>
+            <Collapse in={this.state.showPicker}>
+              <div>
+                {PatternPicker}
+              </div>
+            </Collapse>
+          </div>
+        </div>
+      )
 
     }
 
