@@ -30,7 +30,7 @@ if (queryParams.verify) {
   component = <Verification id={queryParams.order} hash={queryParams.hash} verify={true} />
 
 } else if (queryParams.hash) {
-  // Preview wuth order - displays dialog box "order's on the way bro"
+  // Preview with order - displays dialog box "order's on the way bro"
   component = <Builder order={queryParams.order} hash={queryParams.hash} preview={true} />
 
 } else {

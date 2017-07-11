@@ -34,7 +34,8 @@ export default class Builder extends React.Component {
       board: new BoardModel({ createdFromId: this.props.id }),
       order: false,
       loaded: false,
-      showModal: false
+      showModal: false,
+      orderComplete: false
     }
 
     this.closeModal = this.closeModal.bind(this)
@@ -81,6 +82,12 @@ export default class Builder extends React.Component {
     })
   }
 
+  orderComplete () {
+    this.setState({
+      orderComplete: true
+    })
+  }
+
 
 
   render () {
@@ -90,13 +97,6 @@ export default class Builder extends React.Component {
     let classes = classNames('vignette', randomWood, 'lowres')
     let orderProcessingModal
 
-    // if (this.props.preview) {
-    //   orderProcessingModal = (
-    //
-    //   )
-    // }
-
-
     if (this.state.loaded) {
       return (
         <main>
@@ -104,14 +104,14 @@ export default class Builder extends React.Component {
             board={this.state.board}
             image={this.props.image}
             overlay
-            preview={this.props.preview}/>
+            preview={this.props.preview || this.state.orderComplete}/>
           <Wizard
             board={this.state.board}
             order={this.state.order}
             onSubmit={this.openModal}
-            preview={this.props.preview}
+            preview={this.props.preview || this.state.orderComplete}
             step={this.props.step}/>
-          <SubmitOrderModal board={this.state.board} show={this.state.showModal} close={this.closeModal}/>
+          <SubmitOrderModal board={this.state.board} show={this.state.showModal} close={this.closeModal} complete={this.orderComplete.bind(this)}/>
           <OrderProcessingModal order={this.state.order} />
         </main>
       )

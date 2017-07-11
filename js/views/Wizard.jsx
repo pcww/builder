@@ -165,14 +165,6 @@ export default class Wizard extends React.Component {
     this.setState({ stripsExpand: !this.state.stripsExpand })
   }
 
-  onSubmitOrder () {
-    this.setState({
-      modalIsOpen: true
-    })
-
-    console.log('Order Submitted!')
-  }
-
   render () {
     let board = this.props.board
     let order = this.props.order
