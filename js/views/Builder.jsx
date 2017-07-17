@@ -5,6 +5,7 @@ import Board from 'views/Board.jsx'
 import Wizard from 'views/Wizard.jsx'
 import classNames from 'classnames'
 import SubmitOrderModal from 'views/SubmitOrderModal.jsx';
+import MaterialsListModal from 'views/MaterialsListModal.jsx';
 import OrderProcessingModal from 'views/OrderProcessingModal.jsx';
 
 import woods from '../woods.json'
@@ -95,7 +96,6 @@ export default class Builder extends React.Component {
     let randomWoodIndex = Math.round(Math.random()*genericWoodKeys.length)
     let randomWood = genericWoodKeys[randomWoodIndex]
     let classes = classNames('vignette', randomWood, 'lowres')
-    let orderProcessingModal
 
     if (this.state.loaded) {
       return (
@@ -103,6 +103,7 @@ export default class Builder extends React.Component {
           <Board
             board={this.state.board}
             image={this.props.image}
+
             overlay
             preview={this.props.preview || this.state.orderComplete}/>
           <Wizard
@@ -112,7 +113,9 @@ export default class Builder extends React.Component {
             preview={this.props.preview || this.state.orderComplete}
             step={this.props.step}/>
           <SubmitOrderModal board={this.state.board} show={this.state.showModal} close={this.closeModal} complete={this.orderComplete.bind(this)}/>
-          <OrderProcessingModal order={this.state.order} />
+          <MaterialsListModal
+            board={this.state.board}
+            jasonMode={this.props.jasonMode}/>
         </main>
       )
     }

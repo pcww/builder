@@ -250,7 +250,6 @@ export default class Wizard extends React.Component {
                   </span>
                 </div>
               </div>
-
             </Step>
 
             <Step isActive={this.state.currentStep === 1} key={1}>
