@@ -202,6 +202,16 @@ export default class Wizard extends React.Component {
               <p>Boards will typically be delivered 2 - 4 months from the date your order is placed.</p>
             </div>
           </div>
+
+          <div className="media">
+            <div className="media-body">
+              <h4 className="media-heading">
+                Pricing
+              </h4>
+
+              <p>Prices will vary depending on board size. Plese see <a href="/assets/Pricelist.pdf">this price table</a> to get an idea of hoe much your board will cost.</p>
+            </div>
+          </div>
         </fieldset>
 
         <fieldset>
