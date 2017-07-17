@@ -18,7 +18,7 @@ export default class MaterialsListModal extends React.Component {
   render () {
     return (
       <Modal show={this.state.showModal} backdrop="static">
-        <Modal.Header closeButton={this.state.showCloseButton}>
+        <Modal.Header closeButton>
           <Modal.Title>Materials List</Modal.Title>
         </Modal.Header>
 
