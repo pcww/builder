@@ -191,6 +191,20 @@ export default class Wizard extends React.Component {
         </fieldset>
 
         <fieldset>
+          <legend>Purchase Information</legend>
+
+          <div className="media">
+            <div className="media-body">
+              <h4 className="media-heading">
+                Lead Time
+              </h4>
+
+              <p>Boards will typically be delivered 2 - 4 months from the date your order is placed.</p>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
           <legend>Custom Requests</legend>
           {this.getCustom()}
         </fieldset>
