@@ -209,7 +209,7 @@ export default class Wizard extends React.Component {
                 Pricing
               </h4>
 
-              <p>Prices will vary depending on board size. Please see <a href="/assets/Pricelist.pdf"><i className="fa fa-file-pdf-o" /> this price table</a> to get an idea of how much your board will cost.</p>
+              <p>Prices will vary depending on board size. Please see <a href="/assets/Pricelist.pdf" target="_blank"><i className="fa fa-file-pdf-o" /> this price table</a> to get an idea of how much your board will cost.</p>
             </div>
           </div>
         </fieldset>
