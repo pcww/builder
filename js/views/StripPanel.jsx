@@ -100,7 +100,6 @@ export default class StripPanel extends React.Component {
 
             <hr/>
             <button type="button" className="btn btn-link remove-strip" disabled={!this.props.canRemoveStrip} onClick={this.props.removeStrip.bind(this, this.props.strip)}>remove strip</button>
-
           </div>
         </div>
       </div>

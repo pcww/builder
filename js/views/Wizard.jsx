@@ -44,7 +44,6 @@ export default class Wizard extends React.Component {
 
     this.state = {
       currentStep,
-      peakedWidth: false,
       stripsExpand: false,
       totalSteps: 4
     }
@@ -128,11 +127,6 @@ export default class Wizard extends React.Component {
 
   onStripLengthChanged (event) {
     this.props.board.set('length', event.currentTarget.value)
-    this.minWidthFlag()
-  }
-
-  minWidthFlag () {
-    this.setState({ peakedWidth: (this.props.board._currentWidth() < this.minWidth) })
   }
 
   addStrip () {
@@ -144,7 +138,6 @@ export default class Wizard extends React.Component {
     })
     this.forceUpdate()
     this.initializeSortable()
-    this.minWidthFlag()
   }
 
   removeStrip (strip) {
@@ -152,7 +145,6 @@ export default class Wizard extends React.Component {
     this.props.board.set('redraw', true)
     this.forceUpdate()
     this.initializeSortable()
-    this.minWidthFlag()
   }
 
   onToggleStripsExpand () {
@@ -168,7 +160,7 @@ export default class Wizard extends React.Component {
   render () {
     let board = this.props.board
     let order = this.props.order
-    let canRemoveStrip = !!(this.props.board.get('strips').length > constants.MINIMUM_NUMBER_STRIPS)
+    let canRemoveStrip = this.props.board.get('strips').length > 1
 
     let Strips = board.get('strips').map((strip, key) => {
       return (
@@ -182,10 +174,6 @@ export default class Wizard extends React.Component {
       'fa-plus': !this.state.stripsExpand,
       'fa-minus': this.state.stripsExpand
     });
-
-    let currentWidth = this.props.board._currentWidth()
-    let currentWidthText = this.state.peakedWidth ?  "Width: " + currentWidth + "\""   : ""
-    let minimumWidthText = this.state.peakedWidth ?  " | Min Width: " + this.minWidth + "\""  : ""
 
     if (this.props.preview) {
       return (
@@ -240,15 +228,6 @@ export default class Wizard extends React.Component {
                 <button type="button" className="btn btn-sm btn-primary" onClick={this.addStrip.bind(this)}><i className="fa fa-plus-circle"></i> Add Strip</button>
                 &nbsp;
                 <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}>Next Step <i className="fa fa-arrow-right"></i></button>
-
-                <div className="warning">
-                  <span className="current">
-                    {currentWidthText}
-                  </span>
-                  <span className="minimum">
-                    {minimumWidthText}
-                  </span>
-                </div>
               </div>
             </Step>
 
