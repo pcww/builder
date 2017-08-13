@@ -10,6 +10,50 @@ require('three/controls/OrbitControls')
 
 let sizes = constants.SIZES
 
+const faces = {
+  left: [
+    new THREE.Vector2(0.00, .50),
+    new THREE.Vector2(0.03, .50),
+    new THREE.Vector2(0.03, .81),
+    new THREE.Vector2(0.00, .81),
+  ],
+
+  right: [
+    new THREE.Vector2(0.96, 0.50),
+    new THREE.Vector2(1.00, 0.50),
+    new THREE.Vector2(1.00, 0.81),
+    new THREE.Vector2(0.96, 0.81),
+  ],
+
+  back: [
+    new THREE.Vector2(0.03, 0.00),
+    new THREE.Vector2(0.96, 0.00),
+    new THREE.Vector2(0.96, 0.31),
+    new THREE.Vector2(0.03, 0.31),
+  ],
+
+  top: [
+    new THREE.Vector2(0.03, 0.31),
+    new THREE.Vector2(0.96, 0.31),
+    new THREE.Vector2(0.96, 0.50),
+    new THREE.Vector2(0.03, 0.50),
+  ],
+
+  front: [
+    new THREE.Vector2(0.03, 0.50),
+    new THREE.Vector2(0.96, 0.50),
+    new THREE.Vector2(0.96, 0.81),
+    new THREE.Vector2(0.03, 0.81),
+  ],
+
+  bottom: [
+    new THREE.Vector2(0.03, 0.81),
+    new THREE.Vector2(0.96, 0.81),
+    new THREE.Vector2(0.96, 1.00),
+    new THREE.Vector2(0.03, 1.00),
+  ],
+}
+
 
 
 
@@ -156,7 +200,7 @@ export default class VirtualBoard {
 
         } else {
           boxMaterial = this.materials[strip.get('wood')] = new THREE.MeshLambertMaterial({
-            map: new THREE.TextureLoader().load(`/assets/woods/${strip.get('wood')}.jpg`),
+            map: new THREE.TextureLoader().load(`/assets/woods/${strip.get('wood')}-texture.png`),
             wireframe: !!window.debug
           })
         }
@@ -171,7 +215,7 @@ export default class VirtualBoard {
           currentZ += (dimensions.z / 2)
         }
 
-        let geometry = new THREE.BoxGeometry(dimensions.x, dimensions.y, dimensions.z)
+        let geometry = new THREE.CubeGeometry(dimensions.x, dimensions.y, dimensions.z)
 
         // if (strip.get('mesh')) {
         //   mesh = strip.get('mesh')
@@ -182,6 +226,80 @@ export default class VirtualBoard {
         //   mesh = new THREE.Mesh(geometry, boxMaterial)
         //   strip.set('mesh', mesh)
         // }
+
+//        geometry.faceVertexUvs[0] = [
+//          // Right face
+//          [
+//            faces.right[0],
+//            faces.right[1],
+//            faces.right[3],
+//          ],
+//          [
+//            faces.right[1],
+//            faces.right[2],
+//            faces.right[3],
+//          ],
+//
+//          // Left face
+//          [
+//            faces.left[0],
+//            faces.left[1],
+//            faces.left[3],
+//          ],
+//          [
+//            faces.left[1],
+//            faces.left[2],
+//            faces.left[3],
+//          ],
+//
+//          // Top face
+//          [
+//            faces.top[0],
+//            faces.top[1],
+//            faces.top[3],
+//          ],
+//          [
+//            faces.top[1],
+//            faces.top[2],
+//            faces.top[3],
+//          ],
+//
+//          // Bottom face
+//          [
+//            faces.bottom[0],
+//            faces.bottom[1],
+//            faces.bottom[3],
+//          ],
+//          [
+//            faces.bottom[1],
+//            faces.bottom[2],
+//            faces.bottom[3],
+//          ],
+//
+//          // Front face
+//          [
+//            faces.front[0],
+//            faces.front[1],
+//            faces.front[3],
+//          ],
+//          [
+//            faces.front[1],
+//            faces.front[2],
+//            faces.front[3],
+//          ],
+//
+//          // Back face
+//          [
+//            faces.back[0],
+//            faces.back[1],
+//            faces.back[3],
+//          ],
+//          [
+//            faces.back[1],
+//            faces.back[2],
+//            faces.back[3],
+//          ],
+//        ]
 
         let mesh = new THREE.Mesh(geometry, boxMaterial)
 
