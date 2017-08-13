@@ -31,7 +31,7 @@ if (queryParams.verify) {
 
 } else if (queryParams.hash) {
   // Preview with order - displays dialog box "order's on the way bro"
-  component = <Builder order={queryParams.order} hash={queryParams.hash} preview={true} jasonMode={queryParams.jasonMode} />
+  component = <Builder orderId={queryParams.order} hash={queryParams.hash} preview={true} jasonMode={queryParams.jasonMode} />
 
 } else {
   // share link ingress (from facebook/twitter) - basic readonly preview mode

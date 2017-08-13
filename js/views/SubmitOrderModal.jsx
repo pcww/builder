@@ -7,15 +7,16 @@ export default class SubmitOrderModal extends React.Component {
   constructor (props) {
     super(props)
 
+    order = this.props.order
+    order.set('board', this.props.board)
+
     this.state = {
       address1: undefined,
       address2: undefined,
       city: undefined,
       email: undefined,
       name: undefined,
-      order: new OrderModel({
-        board: this.props.board
-      }),
+      order: order,
       phone: undefined,
       state: undefined,
       zip: undefined,
@@ -170,7 +171,6 @@ export default class SubmitOrderModal extends React.Component {
           board_id: board.get('id'),
           email: this.state.email,
           name: this.state.name,
-          notes: '',
           order_date: new Date().toISOString(),
           phone: this.state.phone,
         }, {
@@ -214,6 +214,7 @@ export default class SubmitOrderModal extends React.Component {
       submitButtonText = (<span><i className="fa fa-circle-o-notch fa-spin fa-fw"></i> Submitting&hellip;</span>)
     }
 
+    let submitButtonDisabled = (this.state.orderComplete) ? "disabled" : false
 
     return (
       <Modal show={this.props.show} onHide={this.props.close} backdrop="static">
@@ -222,6 +223,8 @@ export default class SubmitOrderModal extends React.Component {
         </Modal.Header>
 
         <Modal.Body>
+          <pre>Order: {JSON.stringify(this.props.order)}</pre>
+          <pre>State Order: {JSON.stringify(this.state.order)}</pre>
           <Collapse in={!this.state.orderComplete}>
             <div>
               <form>
@@ -350,7 +353,7 @@ export default class SubmitOrderModal extends React.Component {
         </Modal.Body>
         <Modal.Footer>
           { this.state.orderComplete ? (<button className="btn btn-link pull-left" onClick={this.props.close}>Okay, I've verified my order</button>) : null}
-          <button className="btn btn-primary" onClick={this.onSubmit}>{submitButtonText}</button>
+          <button className="btn btn-primary" disabled={submitButtonDisabled} onClick={this.onSubmit}>{submitButtonText}</button>
         </Modal.Footer>
       </Modal>
     )
