@@ -223,8 +223,6 @@ export default class SubmitOrderModal extends React.Component {
         </Modal.Header>
 
         <Modal.Body>
-          <pre>Order: {JSON.stringify(this.props.order)}</pre>
-          <pre>State Order: {JSON.stringify(this.state.order)}</pre>
           <Collapse in={!this.state.orderComplete}>
             <div>
               <form>
