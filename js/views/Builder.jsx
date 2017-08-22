@@ -29,6 +29,12 @@ export default class Builder extends React.Component {
     })
   }
 
+  closeMaterialsModal () {
+    this.setState({
+      showMaterialsModal: false
+    })
+  }
+
   constructor (props) {
     super(props)
     this.state = {
@@ -36,20 +42,23 @@ export default class Builder extends React.Component {
       order: false,
       loaded: false,
       showModal: false,
+      showMaterialsModal: !!this.props.jasonMode || false,
       orderComplete: false
     }
 
     this.closeModal = this.closeModal.bind(this)
+    this.closeMaterialsModal = this.closeMaterialsModal.bind(this)
     this.openModal = this.openModal.bind(this)
+    this.openMaterialsModal = this.openMaterialsModal.bind(this)
 
     window.board = this.state.board
   }
 
   componentWillMount () {
     let promise = new Promise((resolve, reject) => {
-      if (this.props.order) {
+      if (this.props.orderId) {
         this.state.order = new OrderModel({
-          id: this.props.order,
+          id: this.props.orderId,
           hash: this.props.hash
         })
         this.state.order.fetch({ success: resolve, error: reject })
@@ -60,6 +69,9 @@ export default class Builder extends React.Component {
     .then(() => {
       if (this.state.order) {
         this.state.board.set('createdFromId', this.state.order.get('board_id'))
+      } else {
+        // stub out an order to hold onto user notes in Wizard->SummaryStep
+        this.state.order = new OrderModel({})
       }
       return new Promise((resolve, reject) => {
         this.state.board.fetch({ success: resolve , error: reject })
@@ -83,6 +95,12 @@ export default class Builder extends React.Component {
     })
   }
 
+  openMaterialsModal () {
+    this.setState({
+      showMaterialsModal: true
+    })
+  }
+
   orderComplete () {
     this.setState({
       orderComplete: true
@@ -103,7 +121,6 @@ export default class Builder extends React.Component {
           <Board
             board={this.state.board}
             image={this.props.image}
-
             overlay
             preview={this.props.preview || this.state.orderComplete}/>
           <Wizard
@@ -111,11 +128,10 @@ export default class Builder extends React.Component {
             order={this.state.order}
             onSubmit={this.openModal}
             preview={this.props.preview || this.state.orderComplete}
+            showMaterialsModal={!!this.props.jasonMode ? this.openMaterialsModal : false}
             step={this.props.step}/>
-          <SubmitOrderModal board={this.state.board} show={this.state.showModal} close={this.closeModal} complete={this.orderComplete.bind(this)}/>
-          <MaterialsListModal
-            board={this.state.board}
-            jasonMode={this.props.jasonMode}/>
+          <SubmitOrderModal board={this.state.board} order={this.state.order} show={this.state.showModal} close={this.closeModal} complete={this.orderComplete.bind(this)}/>
+          <MaterialsListModal board={this.state.board} show={this.state.showMaterialsModal} close={this.closeMaterialsModal}/>
         </main>
       )
     }

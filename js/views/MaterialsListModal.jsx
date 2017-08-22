@@ -10,14 +10,11 @@ export default class MaterialsListModal extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      showModal: this.props.jasonMode
-    }
   }
 
   render () {
     return (
-      <Modal show={this.state.showModal} backdrop="static">
+      <Modal show={this.props.show} backdrop="static" onHide={this.props.close}>
         <Modal.Header closeButton>
           <Modal.Title>Materials List</Modal.Title>
         </Modal.Header>
@@ -47,7 +44,7 @@ export default class MaterialsListModal extends React.Component {
                             <td>{strip.wood}</td>
 
                             <td>
-                              W: {sizes[strip.size]}"<br />
+                              W: {sizes[strip.size]}"<br/>
                               L: {this.props.board.get('length')}"<br />
                               H: 1.75"
                             </td>

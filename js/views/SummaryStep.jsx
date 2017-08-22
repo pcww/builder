@@ -5,7 +5,14 @@ import accessories from '../accessories.json'
 
 let sizes = constants.SIZES
 
-export default class Wizard extends React.Component {
+export default class SummaryStep extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.onCustomChange = this.onCustomChange.bind(this)
+    window.order = this.props.order
+  }
+
   getEdge () {
     let board = this.props.board
     let edge = board.get('edge').profile
@@ -153,8 +160,13 @@ export default class Wizard extends React.Component {
     let placeholderText = "(Optional) If you have any additional requests, we would love to hear them!"
     let value = (this.props.order) ? this.props.order.get('notes') : ''
     return (
-      <textarea className="customText form-control" rows="4" placeholder={placeholderText} defaultValue={value}></textarea>
+      <textarea className="customText form-control" rows="15" placeholder={placeholderText} defaultValue={value} onChange={this.onCustomChange.bind(this)}></textarea>
     )
+  }
+
+  onCustomChange (event) {
+    this.props.order.set('notes', event.currentTarget.value)
+    this.forceUpdate()
   }
 
   render () {
@@ -163,6 +175,9 @@ export default class Wizard extends React.Component {
         <fieldset>
           <legend>Layout</legend>
           {this.getLayout()}
+          {this.props.showMaterialsModal &&
+            <p class="text-center"><br/><a class="btn btn-xs btn-primary" onClick={this.props.showMaterialsModal}>Show Materials</a></p>
+          }
         </fieldset>
 
         <fieldset>
@@ -191,25 +206,27 @@ export default class Wizard extends React.Component {
         </fieldset>
 
         <fieldset>
-          <legend>Purchase Information</legend>
+          <div class="well well-sm">
+            <legend>Purchase Information</legend>
 
-          <div className="media">
-            <div className="media-body">
-              <h4 className="media-heading">
-                Lead Time
-              </h4>
+            <div className="media">
+              <div className="media-body">
+                <h4 className="media-heading">
+                  Lead Time
+                </h4>
 
-              <p>Boards will typically be delivered 2 - 4 months from the date your order is placed.</p>
+                <p>Boards will typically be delivered <span class="label label-primary label-round">2 - 4 months</span> from the date your order is placed.</p>
+              </div>
             </div>
-          </div>
 
-          <div className="media">
-            <div className="media-body">
-              <h4 className="media-heading">
-                Pricing
-              </h4>
+            <div className="media">
+              <div className="media-body">
+                <h4 className="media-heading">
+                  Pricing
+                </h4>
 
-              <p>Prices will vary depending on board size. Please see <a href="/assets/Pricelist.pdf" target="_blank"><i className="fa fa-file-pdf-o" /> this price table</a> to get an idea of how much your board will cost.</p>
+                <p>Prices will vary depending on board size. Please see the <span className="label label-primary label-round"><a href="/assets/Pricelist.pdf" target="_blank"><i className="fa fa-file-pdf-o" /> Price Table</a></span> to get an idea of how much your board will cost.</p>
+              </div>
             </div>
           </div>
         </fieldset>

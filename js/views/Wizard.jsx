@@ -187,7 +187,7 @@ export default class Wizard extends React.Component {
 
           <div className="steps">
             <Step isActive={true} key={1}>
-              <SummaryStep board={board} order={order}></SummaryStep>
+              <SummaryStep board={board} order={order} showMaterialsModal={this.props.showMaterialsModal}></SummaryStep>
             </Step>
           </div>
         </menu>
