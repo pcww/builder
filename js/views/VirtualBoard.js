@@ -143,6 +143,7 @@ export default class VirtualBoard {
     let redraw = this.board.get('redraw')
 
     if (redraw) {
+      let totalWidth = 0
       // remove all existing meshes from groupMesh
       while (meshGroup.children.length > 0) { window.meshGroup.remove(window.meshGroup.children[0]); }
 
@@ -166,6 +167,8 @@ export default class VirtualBoard {
           y: 1.75,
           z: sizes[strip.get('size')]
         }
+
+        totalWidth += sizes[strip.get('size')]
 
         if (index > 0) {
           currentZ += (dimensions.z / 2)
@@ -210,6 +213,12 @@ export default class VirtualBoard {
         // }
       })
 
+      let buttonGeometry = new THREE.CylinderGeometry(5, 5, totalWidth)
+      let buttonMaterial = new THREE.MeshLambertMaterial({
+        map: new THREE.TextureLoader().load(`/assets/woods/${strip.get('wood')}.jpg`)
+      })
+      let buttonMesh = new THREE.Mesh(buttonGeometry, buttonMaterial)
+      console.log('totalWidth', totalWidth)
 
       this.board.set('redraw', false)
     }
