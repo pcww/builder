@@ -10,6 +10,50 @@ require('three/controls/OrbitControls')
 
 let sizes = constants.SIZES
 
+const faces = {
+  left: [
+    new THREE.Vector2(0.00, 0.19),
+    new THREE.Vector2(0.03, 0.19),
+    new THREE.Vector2(0.03, 0.49),
+    new THREE.Vector2(0.00, 0.49),
+  ],
+
+  right: [
+    new THREE.Vector2(0.97, 0.19),
+    new THREE.Vector2(1.00, 0.19),
+    new THREE.Vector2(1.00, 0.49),
+    new THREE.Vector2(0.97, 0.49),
+  ],
+
+  back: [
+    new THREE.Vector2(0.04, 0.69),
+    new THREE.Vector2(0.96, 0.69),
+    new THREE.Vector2(0.96, 1.00),
+    new THREE.Vector2(0.04, 1.00),
+  ],
+
+  top: [
+    new THREE.Vector2(0.04, 0.50),
+    new THREE.Vector2(0.96, 0.50),
+    new THREE.Vector2(0.96, 0.69),
+    new THREE.Vector2(0.04, 0.69),
+  ],
+
+  front: [
+    new THREE.Vector2(0.04, 0.19),
+    new THREE.Vector2(0.96, 0.19),
+    new THREE.Vector2(0.96, 0.50),
+    new THREE.Vector2(0.04, 0.50),
+  ],
+
+  bottom: [
+    new THREE.Vector2(0.04, 0.00),
+    new THREE.Vector2(0.96, 0.00),
+    new THREE.Vector2(0.96, 0.19),
+    new THREE.Vector2(0.04, 0.19),
+  ],
+}
+
 
 
 
@@ -156,7 +200,7 @@ export default class VirtualBoard {
 
         } else {
           boxMaterial = this.materials[strip.get('wood')] = new THREE.MeshLambertMaterial({
-            map: new THREE.TextureLoader().load(`/assets/woods/${strip.get('wood')}.jpg`),
+            map: new THREE.TextureLoader().load(`/assets/woods/textures/${strip.get('wood')}-texture.jpg`),
             wireframe: !!window.debug
           })
         }
@@ -171,17 +215,39 @@ export default class VirtualBoard {
           currentZ += (dimensions.z / 2)
         }
 
-        let geometry = new THREE.BoxGeometry(dimensions.x, dimensions.y, dimensions.z)
+        let geometry = new THREE.CubeGeometry(dimensions.x, dimensions.y, dimensions.z)
 
-        // if (strip.get('mesh')) {
-        //   mesh = strip.get('mesh')
-        //   mesh.geometry = geometry
-        //   mesh.material = boxMaterial
-        //
-        // } else {
-        //   mesh = new THREE.Mesh(geometry, boxMaterial)
-        //   strip.set('mesh', mesh)
-        // }
+        if (strip.get('mesh')) {
+          mesh = strip.get('mesh')
+          mesh.geometry = geometry
+          mesh.material = boxMaterial
+
+        } else {
+          mesh = new THREE.Mesh(geometry, boxMaterial)
+          strip.set('mesh', mesh)
+        }
+
+        geometry.faceVertexUvs[0] = []
+
+        let sides = ['right', 'left', 'top', 'bottom', 'front', 'back']
+
+        sides.forEach(side => {
+          let faceSet = faces[side]
+
+          geometry.faceVertexUvs[0].push([
+            // top left
+            faceSet[3],
+            faceSet[0],
+            faceSet[2],
+          ])
+
+          geometry.faceVertexUvs[0].push([
+            // bottom right
+            faceSet[0],
+            faceSet[1],
+            faceSet[2],
+          ])
+        })
 
         let mesh = new THREE.Mesh(geometry, boxMaterial)
 
@@ -209,7 +275,6 @@ export default class VirtualBoard {
         // strip.set('rendered', true, {silent: true})
         // }
       })
-
 
       this.board.set('redraw', false)
     }
