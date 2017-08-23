@@ -12,45 +12,45 @@ let sizes = constants.SIZES
 
 const faces = {
   left: [
-    new THREE.Vector2(0.00, .50),
-    new THREE.Vector2(0.03, .50),
-    new THREE.Vector2(0.03, .81),
-    new THREE.Vector2(0.00, .81),
+    new THREE.Vector2(0.00, 0.19),
+    new THREE.Vector2(0.03, 0.19),
+    new THREE.Vector2(0.03, 0.50),
+    new THREE.Vector2(0.00, 0.50),
   ],
 
   right: [
-    new THREE.Vector2(0.96, 0.50),
+    new THREE.Vector2(0.97, 0.19),
+    new THREE.Vector2(1.00, 0.19),
     new THREE.Vector2(1.00, 0.50),
-    new THREE.Vector2(1.00, 0.81),
-    new THREE.Vector2(0.96, 0.81),
+    new THREE.Vector2(0.97, 0.50),
   ],
 
   back: [
-    new THREE.Vector2(0.03, 0.00),
-    new THREE.Vector2(0.96, 0.00),
-    new THREE.Vector2(0.96, 0.31),
-    new THREE.Vector2(0.03, 0.31),
+    new THREE.Vector2(0.03, 0.69),
+    new THREE.Vector2(0.96, 0.69),
+    new THREE.Vector2(0.96, 1.00),
+    new THREE.Vector2(0.03, 1.00),
   ],
 
   top: [
-    new THREE.Vector2(0.03, 0.31),
-    new THREE.Vector2(0.96, 0.31),
-    new THREE.Vector2(0.96, 0.50),
     new THREE.Vector2(0.03, 0.50),
+    new THREE.Vector2(0.96, 0.50),
+    new THREE.Vector2(0.96, 0.69),
+    new THREE.Vector2(0.03, 0.69),
   ],
 
   front: [
-    new THREE.Vector2(0.03, 0.50),
+    new THREE.Vector2(0.03, 0.19),
+    new THREE.Vector2(0.96, 0.19),
     new THREE.Vector2(0.96, 0.50),
-    new THREE.Vector2(0.96, 0.81),
-    new THREE.Vector2(0.03, 0.81),
+    new THREE.Vector2(0.03, 0.50),
   ],
 
   bottom: [
-    new THREE.Vector2(0.03, 0.81),
-    new THREE.Vector2(0.96, 0.81),
-    new THREE.Vector2(0.96, 1.00),
-    new THREE.Vector2(0.03, 1.00),
+    new THREE.Vector2(0.03, 0.00),
+    new THREE.Vector2(0.96, 0.00),
+    new THREE.Vector2(0.96, 0.19),
+    new THREE.Vector2(0.03, 0.19),
   ],
 }
 
@@ -191,7 +191,9 @@ export default class VirtualBoard {
       while (meshGroup.children.length > 0) { window.meshGroup.remove(window.meshGroup.children[0]); }
 
       // slap in all the strip meshes
-      strips.forEach((strip, index, collection) => {
+      let strip = strips.first()
+      let index = 0
+//      strips.forEach((strip, index, collection) => {
         // if (!strip.get('rendered')) {
         let boxMaterial
 
@@ -200,7 +202,8 @@ export default class VirtualBoard {
 
         } else {
           boxMaterial = this.materials[strip.get('wood')] = new THREE.MeshLambertMaterial({
-            map: new THREE.TextureLoader().load(`/assets/woods/${strip.get('wood')}-texture.png`),
+//            map: new THREE.TextureLoader().load(`/assets/woods/${strip.get('wood')}-texture.png`),
+            map: new THREE.TextureLoader().load(`/assets/woods/template-texture.png`),
             wireframe: !!window.debug
           })
         }
@@ -217,89 +220,89 @@ export default class VirtualBoard {
 
         let geometry = new THREE.CubeGeometry(dimensions.x, dimensions.y, dimensions.z)
 
-        // if (strip.get('mesh')) {
-        //   mesh = strip.get('mesh')
-        //   mesh.geometry = geometry
-        //   mesh.material = boxMaterial
-        //
-        // } else {
-        //   mesh = new THREE.Mesh(geometry, boxMaterial)
-        //   strip.set('mesh', mesh)
-        // }
+        if (strip.get('mesh')) {
+          mesh = strip.get('mesh')
+          mesh.geometry = geometry
+          mesh.material = boxMaterial
 
-//        geometry.faceVertexUvs[0] = [
-//          // Right face
-//          [
-//            faces.right[0],
-//            faces.right[1],
-//            faces.right[3],
-//          ],
-//          [
-//            faces.right[1],
-//            faces.right[2],
-//            faces.right[3],
-//          ],
-//
-//          // Left face
-//          [
-//            faces.left[0],
-//            faces.left[1],
-//            faces.left[3],
-//          ],
-//          [
-//            faces.left[1],
-//            faces.left[2],
-//            faces.left[3],
-//          ],
-//
-//          // Top face
-//          [
-//            faces.top[0],
-//            faces.top[1],
-//            faces.top[3],
-//          ],
-//          [
-//            faces.top[1],
-//            faces.top[2],
-//            faces.top[3],
-//          ],
-//
-//          // Bottom face
-//          [
-//            faces.bottom[0],
-//            faces.bottom[1],
-//            faces.bottom[3],
-//          ],
-//          [
-//            faces.bottom[1],
-//            faces.bottom[2],
-//            faces.bottom[3],
-//          ],
-//
-//          // Front face
-//          [
-//            faces.front[0],
-//            faces.front[1],
-//            faces.front[3],
-//          ],
-//          [
-//            faces.front[1],
-//            faces.front[2],
-//            faces.front[3],
-//          ],
-//
-//          // Back face
-//          [
-//            faces.back[0],
-//            faces.back[1],
-//            faces.back[3],
-//          ],
-//          [
-//            faces.back[1],
-//            faces.back[2],
-//            faces.back[3],
-//          ],
-//        ]
+        } else {
+          mesh = new THREE.Mesh(geometry, boxMaterial)
+          strip.set('mesh', mesh)
+        }
+
+        geometry.faceVertexUvs[0] = [
+          // Right face
+          [ // top left
+            faces.right[0],
+            faces.right[1],
+            faces.right[3],
+          ],
+          [ // bottom right
+            faces.right[1],
+            faces.right[2],
+            faces.right[3],
+          ],
+
+          // Left face
+          [ // top left
+            faces.left[0],
+            faces.left[1],
+            faces.left[3],
+          ],
+          [ // bottom right
+            faces.left[1],
+            faces.left[2],
+            faces.left[3],
+          ],
+
+          // Top face
+          [ // top left
+            faces.top[0],
+            faces.top[1],
+            faces.top[3],
+          ],
+          [ // bottom right
+            faces.top[1],
+            faces.top[2],
+            faces.top[3],
+          ],
+
+          // Bottom face
+          [ // top left
+            faces.bottom[0],
+            faces.bottom[1],
+            faces.bottom[3],
+          ],
+          [ // bottom right
+            faces.bottom[1],
+            faces.bottom[2],
+            faces.bottom[3],
+          ],
+
+          // Front face
+          [ // top left
+            faces.front[2],
+            faces.front[1],
+            faces.front[3],
+          ],
+          [ // bottom right
+            faces.front[0],
+            faces.front[1],
+            faces.front[2],
+          ],
+
+          // Back face
+          [ // top left
+            faces.back[1],
+            faces.back[0],
+            faces.back[2],
+          ],
+          [ // bottom right
+            faces.back[2],
+            faces.back[3],
+            faces.back[0],
+          ],
+        ]
 
         let mesh = new THREE.Mesh(geometry, boxMaterial)
 
@@ -326,8 +329,7 @@ export default class VirtualBoard {
 
         // strip.set('rendered', true, {silent: true})
         // }
-      })
-
+//      })
 
       this.board.set('redraw', false)
     }
