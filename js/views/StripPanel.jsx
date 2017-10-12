@@ -95,6 +95,19 @@ export default class StripPanel extends React.Component {
                   L
                 </label>
               </OverlayTrigger>
+              
+              <OverlayTrigger key={this.props.id+'xlarge'} placement="top" overlay={<Tooltip id="tooltip">Extra Large &mdash; 1.5&quot;</Tooltip>}>
+                <label className="radio-inline">
+                  <input
+                    checked={this.props.strip.get('size') === 'xlarge'}
+                    id={radioGroupPrefix + '-size-6'}
+                    name={radioGroupName}
+                    type="radio"
+                    value="xlarge"
+                    onChange={this.onSizeChange.bind(this)} />
+                  XL
+                </label>
+              </OverlayTrigger>
 
             </fieldset>
 
