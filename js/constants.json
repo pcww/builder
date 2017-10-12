@@ -6,6 +6,7 @@
     "xsmall": 0.375,
     "small": 0.5,
     "medium": 0.625,
-    "large": 1
+    "large": 1,
+    "xlarge": 1.5
   }
 }
