@@ -21,7 +21,7 @@ export default class EdgePicker extends React.Component {
 
   render () {
     let board = this.props.board
-    let edge = board.get('edge').profile
+    let edge = board.get('edge').profile || 'small-round'
     let edgeName = accessories.edges[edge].name
     let edgeDescription = accessories.edges[edge].description
     let EdgeRadios = Object.keys(accessories.edges).map((key) => {

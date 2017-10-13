@@ -21,7 +21,7 @@ export default class FeetPicker extends React.Component {
 
   render () {
     let board = this.props.board
-    let feet = board.get('feet').type
+    let feet = board.get('feet').type || 'suction'
     let feetName = accessories.feet[feet].name
     let feetDescription = accessories.feet[feet].description
 
