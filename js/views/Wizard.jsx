@@ -45,7 +45,9 @@ export default class Wizard extends React.Component {
     this.state = {
       currentStep,
       stripsExpand: false,
-      totalSteps: 4
+      totalSteps: 4,
+      firstStep: true,
+      lastStep: false
     }
   }
 
@@ -107,20 +109,28 @@ export default class Wizard extends React.Component {
 
   onNext () {
     let nextStep = this.state.currentStep + 1
+    let isLastStep = (nextStep === (this.state.totalSteps-1))
+    let isFirstStep = (nextStep === 0)
 
     if (nextStep < this.state.totalSteps) {
       this.setState({
-        currentStep: nextStep
+        currentStep: nextStep,
+        firstStep: isFirstStep,
+        lastStep: isLastStep
       })
     }
   }
 
   onPrevious () {
     let previousStep = this.state.currentStep - 1
+    let isLastStep = (previousStep === (this.state.totalSteps-1))
+    let isFirstStep = (previousStep === 0)
 
     if (previousStep >= 0) {
       this.setState({
-        currentStep: previousStep
+        currentStep: previousStep,
+        firstStep: isFirstStep,
+        lastStep: isLastStep
       })
     }
   }
@@ -182,7 +192,9 @@ export default class Wizard extends React.Component {
             heading={'Order Sumary'}
             onNext={this.onNext.bind(this)}
             onPrevious={this.onPrevious.bind(this)}
-            preview={this.props.preview}>
+            preview={this.props.preview}
+            firstStep={this.state.firstStep}
+            lastStep={this.state.lastStep}>
           </StepHeader>
 
           <div className="steps">
@@ -199,7 +211,9 @@ export default class Wizard extends React.Component {
           <StepHeader
             heading={'Step ' + (this.state.currentStep + 1) + ': ' + this.stepHeadings[this.state.currentStep + 1]}
             onNext={this.onNext.bind(this)}
-            onPrevious={this.onPrevious.bind(this)}>
+            onPrevious={this.onPrevious.bind(this)}
+            firstStep={this.state.firstStep}
+            lastStep={this.state.lastStep}>
           </StepHeader>
 
           <div className="steps">

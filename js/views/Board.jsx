@@ -63,7 +63,7 @@ export default class Board extends React.Component {
     this.onChangeBackground = this.onChangeBackground.bind(this)
 
     this.state = {
-      background: backgroundUrls[0]
+      background: backgroundUrls[2] //Brian - default to leaf background - looks the best for now
     }
   }
 

@@ -1,60 +1,157 @@
-.wizard {
-  height: 100vh;
-  width: 30vw;
-  min-width: 35rem; /* concession for now to keep menu from looking like ass on small h-rez screens */
+// .wizard {
+//   height: 100vh;
+//   width: 30vw;
+//   min-width: 35rem; /* concession for now to keep menu from looking like ass on small h-rez screens */
 
+//   background-color: #efefef;
+//   display: flex;
+//   flex-direction: column;
+//   overflow-y: auto;
+//   overflow-x: hidden;
+//   position: relative;
+
+//   > * {
+//     flex-shrink: 0;
+//   }
+
+//   header {
+//     padding: .5rem 2rem;
+//     background-color: $pcw-brown;
+//     color: white;
+
+//     h3 {
+//       margin-top: 1rem;
+//       font-weight: 100;
+//     }
+
+//     .fa {
+//       color: $pcw-green;
+//     }
+//   }
+
+//   .options {
+//     padding: 2rem;
+//     flex-grow: 1;
+
+//     fieldset {
+//       margin-bottom: 2rem;
+//     }
+//   }
+
+//   .separator {
+//     margin: 1.5rem 2rem 0;
+//     border-top: .1rem solid #CCC;
+//     padding: 0 1.5rem 1.5rem;
+//   }
+
+//   .controls {
+//     padding: 0.5rem 2rem 2rem;
+//   }
+
+//   .steps {
+//     position: absolute;
+//     width: 100%;
+//     height: calc(100vh - #{$step-header-height}rem);
+//     top: #{$step-header-height}rem;
+
+//     .step-container {
+//       overflow: hidden;
+//       position: absolute;
+//       top: 0;
+//       left: 50vw;
+//       width: 100%;
+//       height: 100%;
+//       transition: left 0.5s ease-in-out;
+
+//       &.current {
+//         left: 0;
+//       }
+
+//       form.step {
+//         position: absolute;
+//         padding: 0;
+//         width: 100%;
+
+//         .step-content {
+//           height: calc(100vh - #{$step-header-height + $step-controls-height}rem);
+//           padding: 2rem;
+//           overflow-x: hidden;
+//           overflow-y: auto;
+//         }
+
+//         .step-controls {
+//           padding: 1.5rem;
+//           width: 100%;
+//           height: #{$step-controls-height}rem;
+//           position: absolute;
+//           bottom: -#{$step-controls-height}rem;
+//           color: white;
+//           background-color: $pcw-brown;
+//           text-align: center;
+//         }
+//       }
+//     }
+//   }
+
+//   &.preview {
+//     .step-content {
+//       height: calc(100vh - #{$step-header-height}rem) !important;
+//     }
+//   }
+
+//   .warning {
+//     margin-top: 0.5rem;
+
+//     .current {
+//       color: #F76F8E;
+//     }
+//   }
+// }
+
+
+// .media input[type="radio"] {
+//   margin-left: -18px !important;
+// }
+
+
+
+.wizard {
+  height: 100%;
+  width: 30vw;
+  min-width: 35rem;
   background-color: #efefef;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
   position: relative;
+  box-shadow: -8px 0px 30px 7px rgba(0, 0, 0, 0.3);
 
-  > * {
-    flex-shrink: 0;
-  }
 
   header {
-    padding: .5rem 2rem;
-    height: #{$step-header-height}rem;
-    overflow: auto;
+    padding: 0rem 2rem;
+    height: 4.6rem;
     background-color: black;
+    display: flex;
     color: white;
+    flex-direction: column;
+    background-color: $pcw-brown;
 
     h3 {
       margin-top: 1rem;
       font-weight: 100;
     }
 
-    .fa {
-      color: #62bd91;
+    a {
+      color: $pcw-green;
+      &:hover {
+        color: $pcw-green-dark;
+      }
     }
-  }
-
-  .options {
-    padding: 2rem;
-    flex-grow: 1;
-
-    fieldset {
-      margin-bottom: 2rem;
-    }
-  }
-
-  .separator {
-    margin: 1.5rem 2rem 0;
-    border-top: .1rem solid #CCC;
-    padding: 0 1.5rem 1.5rem;
-  }
-
-  .controls {
-    padding: 0.5rem 2rem 2rem;
   }
 
   .steps {
-    position: absolute;
+    position: relative;
     width: 100%;
-    height: calc(100vh - #{$step-header-height}rem);
-    top: #{$step-header-height}rem;
+    height: calc(100% - 4.6rem);
 
     .step-container {
       overflow: hidden;
@@ -69,48 +166,30 @@
         left: 0;
       }
 
-      form.step {
-        position: absolute;
+      .step {
+        height: 100%;
         padding: 0;
-        width: 100%;
 
         .step-content {
-          height: calc(100vh - #{$step-header-height + $step-controls-height}rem);
+          height: calc(100% - 6rem);
           padding: 2rem;
           overflow-x: hidden;
           overflow-y: auto;
         }
-
         .step-controls {
           padding: 1.5rem;
           width: 100%;
-          height: #{$step-controls-height}rem;
+          height: 6rem;
           position: absolute;
-          bottom: -#{$step-controls-height}rem;
+          bottom: 0;
+          left: 0;
           color: white;
-          background-color: black;
+          background-color: $pcw-brown;
           text-align: center;
         }
       }
     }
   }
 
-  &.preview {
-    .step-content {
-      height: calc(100vh - #{$step-header-height}rem) !important;
-    }
-  }
-
-  .warning {
-    margin-top: 0.5rem;
-
-    .current {
-      color: #F76F8E;
-    }
-  }
-}
-
-
-.media input[type="radio"] {
-  margin-left: -18px !important;
+  
 }
