@@ -1,0 +1,14 @@
+.btn {
+  &.btn-primary {
+    background-color: $pcw-green !important;
+    border-color: $pcw-green-border !important;
+    &:hover {
+      background-color: $pcw-green-border !important;
+      border-color: $pcw-green-dark !important;
+    }
+    &:active {
+      background-color: $pcw-green-dark !important;
+      border-color: $pcw-green-dark-dark !important;
+    }
+  }
+}

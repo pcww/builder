@@ -7,6 +7,7 @@ import classNames from 'classnames'
 import SubmitOrderModal from 'views/SubmitOrderModal.jsx';
 import MaterialsListModal from 'views/MaterialsListModal.jsx';
 import OrderProcessingModal from 'views/OrderProcessingModal.jsx';
+import HeaderBar from 'views/HeaderBar.jsx';
 
 import woods from '../woods.json'
 
@@ -118,18 +119,21 @@ export default class Builder extends React.Component {
     if (this.state.loaded) {
       return (
         <main>
-          <Board
-            board={this.state.board}
-            image={this.props.image}
-            overlay
-            preview={this.props.preview || this.state.orderComplete}/>
-          <Wizard
-            board={this.state.board}
-            order={this.state.order}
-            onSubmit={this.openModal}
-            preview={this.props.preview || this.state.orderComplete}
-            showMaterialsModal={!!this.props.jasonMode ? this.openMaterialsModal : false}
-            step={this.props.step}/>
+          <HeaderBar/>
+          <div className="builder-area">
+            <Board
+              board={this.state.board}
+              image={this.props.image}
+              overlay
+              preview={this.props.preview || this.state.orderComplete}/>
+            <Wizard
+              board={this.state.board}
+              order={this.state.order}
+              onSubmit={this.openModal}
+              preview={this.props.preview || this.state.orderComplete}
+              showMaterialsModal={!!this.props.jasonMode ? this.openMaterialsModal : false}
+              step={this.props.step}/>
+          </div>
           <SubmitOrderModal board={this.state.board} order={this.state.order} show={this.state.showModal} close={this.closeModal} complete={this.orderComplete.bind(this)}/>
           <MaterialsListModal board={this.state.board} show={this.state.showMaterialsModal} close={this.closeMaterialsModal}/>
         </main>

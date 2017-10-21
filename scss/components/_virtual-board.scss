@@ -21,7 +21,7 @@ $background-prefix: '/assets/backgrounds/';
     background-size: cover;
 
     &.selected {
-      border-color: #62bd91;
+      border-color: $pcw-green;
     }
   }
 }

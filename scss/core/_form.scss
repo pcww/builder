@@ -8,4 +8,8 @@ form {
   .label a {
     color: white;
   }
+
+  .checkbox label, .radio label {
+    padding-left: 22px;
+  }
 }

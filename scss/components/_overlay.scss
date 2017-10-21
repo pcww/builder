@@ -3,7 +3,7 @@ section[type="overlay"] {
   font-size: 3rem;
   pointer-events: none;
   width: 70vw;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
   position: absolute;
   top: 0;
@@ -11,9 +11,12 @@ section[type="overlay"] {
 
   .dimensions {
     position: absolute;
-    left: 0.5rem;
-    top: 0.5rem;
+    left: 2rem;
+    top: 2rem;
     font-size: 2.0rem;
+    border-radius: 0.3rem;
+    opacity: 0.55;
+    background-color: $pcw-brown !important;
   }
 
   .cost {
@@ -82,7 +85,7 @@ section[type="overlay"] {
       top: 2rem;
       opacity: 0;
       margin-left: 2rem;
-      color: #62bd91;
+      color: $pcw-green;
     }
 
     &:hover {
@@ -97,7 +100,7 @@ section[type="overlay"] {
       }
 
       .fa {
-        color: #62bd91;
+        color: $pcw-green;
       }
     }
   }
@@ -136,13 +139,13 @@ section[type="overlay"] {
 .board-info {
   z-index: 1;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.3);
-  height: 20rem;
+  background-color: rgba(111, 88, 73, 0.4);
+  height: 21rem;
   width: 17rem;
-  border-radius: 1rem;
+  border-radius: 0.4rem;
   text-align: center;
-  top: 5rem;
-  left: 2rem;
+  top: 7rem;
+  left: 4rem;
 
   h1 {
     font-weight: 100;

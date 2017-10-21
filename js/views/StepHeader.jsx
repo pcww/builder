@@ -4,15 +4,21 @@ import classNames from 'classnames'
 
 export default class StepHeader extends React.Component {
   render () {
+    let nextButtonClasses = classNames('fa', 'fa-chevron-circle-right', {
+      'text-muted': this.props.lastStep
+    })
     var nextButton = (
       <a href="#" className="next-step">
-        <i className="fa fa-chevron-circle-right" aria-hidden="true" onClick={this.props.onNext}></i>
+        <i className={nextButtonClasses} aria-hidden="true" onClick={this.props.onNext}></i>
       </a>
     )
 
+    let previousButtonClasses = classNames('fa', 'fa-chevron-circle-left', {
+      'text-muted': this.props.firstStep
+    })
     var previousButton = (
       <a href="#">
-        <i className="fa fa-chevron-circle-left" aria-hidden="true" onClick={this.props.onPrevious}></i>
+        <i className={previousButtonClasses} aria-hidden="true" onClick={this.props.onPrevious}></i>
       </a>
     )
 

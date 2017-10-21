@@ -31,11 +31,11 @@
   pointer-events: all;
 
   &:hover {
-    border-color: #62bd91;
+    border-color: $pcw-green;
     cursor: pointer;
   }
 
   &.selected {
-    border-color: #62bd91;
+    border-color: $pcw-green;
   }
 }
