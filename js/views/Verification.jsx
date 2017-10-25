@@ -112,7 +112,7 @@ export default class Verification extends React.Component {
           </div>
 
           <div className="flippy2">
-            <a href={order.getFacebookLink()}>
+            <a href={order.getFacebookLink()} target="_blank">
               <i className="fa fa-fw fa-facebook fa-3x"></i>
             </a>
 
