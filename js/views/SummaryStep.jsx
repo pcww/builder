@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import constants from '../constants.json'
 import accessories from '../accessories.json'
+import woods from '../woods.json'
+import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 
 let sizes = constants.SIZES
 
@@ -143,9 +145,17 @@ export default class SummaryStep extends React.Component {
       let styles = {
         flexGrow: sizes[strip.get('size')]
       }
+      let wood = strip.get('wood')
+      let woodName = woods[wood].name
+      let tooltip = <Tooltip id={key}>{woodName}</Tooltip>
 
       return (
-        <div className={strip.get('wood')} key={strip.id} style={styles}></div>
+        <OverlayTrigger
+          key={key}
+          overlay={tooltip} placement="top"
+          delayShow={0} delayHide={0}>
+          <div className={strip.get('wood')} key={strip.id} style={styles}></div>
+        </OverlayTrigger>
       )
     })
 
