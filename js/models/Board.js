@@ -51,6 +51,20 @@ export default class Board extends BaseModel {
     this._bindEvents()
   }
 
+  toJSON (options) {
+    let clone = super.toJSON(options)
+
+    clone.strips = clone.strips.toJSON()
+
+    clone.strips.map(strip => {
+      delete strip.mesh
+
+      return strip
+    })
+
+    return clone
+  }
+
   get defaults () {
     return {
       createdFromId: 1,
