@@ -64,18 +64,8 @@ export default class Wizard extends React.Component {
     window.addEventListener('keydown', onHandleKeyPress.bind(this), false)
     function onHandleKeyPress(e) {
       var keyCode = e.keyCode;
-      if (keyCode == KEYS.ARROW_LEFT) {
-        this.onNext()
-        console.log('NEXT!')
-
-      }
-      else if (keyCode == KEYS.ARROW_RIGHT) {
-        this.onPrevious()
-        console.log('PREV!')
-      }
-      else {
-        console.log(e, keyCode, e.which)
-      }
+      if (keyCode == KEYS.ARROW_LEFT) this.onPrevious()
+      else if (keyCode == KEYS.ARROW_RIGHT)  this.onNext()
     }
   }
 

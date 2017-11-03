@@ -154,6 +154,7 @@ export default class SummaryStep extends React.Component {
           key={key}
           overlay={tooltip} placement="top"
           delayShow={0} delayHide={0}>
+          
           <div className={strip.get('wood')} key={strip.id} style={styles}></div>
         </OverlayTrigger>
       )
