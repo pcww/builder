@@ -17,6 +17,11 @@ import SummaryStep from 'views/SummaryStep.jsx'
 
 import constants from '../constants.json'
 
+const KEYS = {
+  ARROW_LEFT: 37,
+  ARROW_RIGHT: 39
+}
+
 export default class Wizard extends React.Component {
   static get constants() {
     return wizardConstants
@@ -54,6 +59,23 @@ export default class Wizard extends React.Component {
   componentDidMount () {
     if (!this.props.preview) {
       this.initializeSortable()
+    }
+
+    window.addEventListener('keydown', onHandleKeyPress.bind(this), false)
+    function onHandleKeyPress(e) {
+      var keyCode = e.keyCode;
+      if (keyCode == KEYS.ARROW_LEFT) {
+        this.onNext()
+        console.log('NEXT!')
+
+      }
+      else if (keyCode == KEYS.ARROW_RIGHT) {
+        this.onPrevious()
+        console.log('PREV!')
+      }
+      else {
+        console.log(e, keyCode, e.which)
+      }
     }
   }
 
