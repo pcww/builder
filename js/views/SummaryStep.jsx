@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom'
 import constants from '../constants.json'
 import accessories from '../accessories.json'
 import woods from '../woods.json'
-import { OverlayTrigger, Tooltip } from 'react-bootstrap'
+import { OverlayTrigger, Tooltip, Popover, Col, Row } from 'react-bootstrap'
+import classNames from 'classnames'
 
 let sizes = constants.SIZES
 
@@ -43,11 +44,22 @@ export default class SummaryStep extends React.Component {
   getEndcaps () {
     let board = this.props.board
     let endcaps = board.get('endcaps')
-    let color = accessories['endcap-colors'][endcaps.color].name
+    let color = accessories['endcap-colors'][endcaps.color]
+    let branding = accessories['endcaps-branding'][endcaps.branding]
     let description = accessories['endcaps'][endcaps.type].description
     let type = accessories['endcaps'][endcaps.type].name
+    let chooseapatternPath = endcaps.chooseapattern
+    let brandingImagePath = (endcaps.branding === 'chooseapattern') ?
+      (chooseapatternPath ?
+        `/assets/endcap-designs/${chooseapatternPath}` :
+        '/assets/branding/chooseapattern.jpg') :
+      `/assets/branding/${endcaps.branding}.jpg`
 
-    let name = `${color} ${type}`
+    let name = `${color.name} ${type}`
+    let colorClasses = classNames('color-swatch', 'swatch', 'swatch-medium', 'endcap-color-swatch', 'color-'+endcaps.color, 'media-object')
+    const colorTooltip = <Tooltip id={endcaps.color}>{color.name}</Tooltip>
+    const logoClasses = 'media-object swatch swatch-medium'
+    const logoTooltip = <Tooltip id={endcaps.branding}>{branding.name}</Tooltip>
 
     return (
       <div className="media">
@@ -56,15 +68,33 @@ export default class SummaryStep extends React.Component {
         </div>
 
         <div className="media-body">
-        <h4 className="media-heading">
-          {name}
-        </h4>
+          <h4 className="media-heading">
+            {name}
+          </h4>
 
-        <p>
-          {description}
-        </p>
+          <p>
+            {description}
+          </p>
+
+          <div className="endcap-options">
+            <legend className="small">Selected Options</legend>
+            <OverlayTrigger
+                overlay={colorTooltip} 
+                placement="top"
+                delayShow={100} delayHide={150}>
+                <div className={colorClasses}/>
+              </OverlayTrigger>  
+              <OverlayTrigger
+                overlay={logoTooltip} 
+                placement="top"
+                delayShow={100} delayHide={150}>
+                <img className={logoClasses} src={brandingImagePath}/>
+              </OverlayTrigger> 
+          </div>
+
+        </div>
+
       </div>
-    </div>
     )
   }
 
@@ -147,14 +177,18 @@ export default class SummaryStep extends React.Component {
       }
       let wood = strip.get('wood')
       let woodName = woods[wood].name
-      let tooltip = <Tooltip id={key}>{woodName}</Tooltip>
+
+      let popover = <Popover id="popover-trigger-focus" className="summary-wood">
+          <div className={'swatch swatch-clickable ' +  woods[wood].safeName} />
+          <h6>{woodName}</h6>
+        </Popover>
 
       return (
         <OverlayTrigger
           key={key}
-          overlay={tooltip} placement="top"
+          overlay={popover} 
+          placement="top"
           delayShow={0} delayHide={0}>
-          
           <div className={strip.get('wood')} key={strip.id} style={styles}></div>
         </OverlayTrigger>
       )

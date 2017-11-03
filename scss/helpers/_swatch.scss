@@ -12,10 +12,21 @@
   cursor: pointer;
 }
 
+&.centered {
+  float: none;
+  margin: 0 auto;
+}
+
 .swatch-big {
   height: 10rem;
   width: 10rem;
   border-radius: 5rem;
+}
+
+.swatch-medium {
+  height: 5rem;
+  width: 5rem;
+  margin: 0 .5rem 0 0;
 }
 
 .swatch-mini {
@@ -37,5 +48,13 @@
 
   &.selected {
     border-color: $pcw-green;
+  }
+}
+
+
+.popover {
+  .swatch {
+    float: none;
+    margin: 0 auto;
   }
 }
