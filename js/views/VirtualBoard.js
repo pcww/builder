@@ -284,7 +284,7 @@ export default class VirtualBoard {
       let endcapRadius = (endcapType === 'button' ? 1.25 : 1) / 2
       let endcapGeometry = new THREE.CylinderGeometry(endcapRadius, endcapRadius, cylinderLength, 100)
       let endcapMaterial = new THREE.MeshStandardMaterial({
-        color: 0x999999, // endcapColor,
+        color: 0xcccccc, // endcapColor,
         shininess: 30,
         metal: true,
       })
@@ -314,11 +314,19 @@ export default class VirtualBoard {
     if (!this.rendered) {
       this.rendered = true
 
-      let ambientLight = new THREE.AmbientLight('white')
-      let pointLight1 = new THREE.PointLight('white', 1, 100)
-      let pointLight2 = new THREE.PointLight('white', 1, 100)
-      let pointLight3 = new THREE.PointLight('white', 1, 10)
-      let pointLight4 = new THREE.PointLight('white', 1, 10)
+      let ambientLight = new THREE.AmbientLight('white', 0.5)
+      let spotLight1 = new THREE.SpotLight('white', 2)
+      let spotLight2 = new THREE.SpotLight('white', 2)
+      let pointLight1 = new THREE.PointLight('white', 1, 1)
+      let pointLight2 = new THREE.PointLight('white', 1, 1)
+      let pointLight3 = new THREE.PointLight('white', 1, 1)
+      let pointLight4 = new THREE.PointLight('white', 1, 1)
+
+      spotLight1.position.set(18, -9, 15)
+      spotLight1.castShadow = true
+
+      spotLight2.position.set(-18, 9, -15)
+      spotLight1.castShadow = true
 
       pointLight1.position.set(0, 0, 10)
       pointLight2.position.set(0, 0, -10)
@@ -326,6 +334,8 @@ export default class VirtualBoard {
       pointLight4.position.set(-20, 0, 0)
 
       this.scene.add(ambientLight)
+      this.scene.add(spotLight1)
+      this.scene.add(spotLight2)
       this.scene.add(pointLight1)
       this.scene.add(pointLight2)
       this.scene.add(pointLight3)
