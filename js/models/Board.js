@@ -91,10 +91,6 @@ export default class Board extends BaseModel {
     }
 
     if (response.strips) {
-      response.strips.forEach((strip, index) => {
-        strip.id = index
-      })
-
       this.get('strips').reset(response.strips)
 
       delete response.strips

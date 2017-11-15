@@ -154,7 +154,6 @@ export default class Wizard extends React.Component {
   addStrip () {
     let strips = this.props.board.get('strips')
     strips.add({
-      id: strips.length,
       size: 'large',
       wood: 'maple'
     })
@@ -186,8 +185,8 @@ export default class Wizard extends React.Component {
 
     let Strips = board.get('strips').map((strip, key) => {
       return (
-        <li className="panel panel-default" data-id={strip.get('id')} key={strip.get('id')}>
-          <StripPanel key={strip.cid} id={key} strip={strip} canRemoveStrip={canRemoveStrip} removeStrip={this.removeStrip.bind(this)}></StripPanel>
+        <li className="panel panel-default" data-id={strip.cid} key={key}>
+          <StripPanel id={strip.cid} strip={strip} canRemoveStrip={canRemoveStrip} removeStrip={this.removeStrip.bind(this)}></StripPanel>
         </li>
       )
     })

@@ -199,7 +199,6 @@ export default class VirtualBoard {
           boxMaterial = this.materials[strip.get('wood')]
 
         } else {
-          console.log(`/assets/woods/textures/${strip.get('wood')}.jpg`)
           boxMaterial = this.materials[strip.get('wood')] = new THREE.MeshLambertMaterial({
             map: new THREE.TextureLoader().load(`/assets/woods/textures/${strip.get('wood')}.jpg`),
             wireframe: !!window.debug
