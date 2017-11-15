@@ -43,7 +43,7 @@ export default class SummaryStep extends React.Component {
 
   getEndcaps () {
     let board = this.props.board
-    let endcaps = board.get('endcaps')
+    let endcaps = board.get('endcaps').toJSON()
     let color = accessories['endcap-colors'][endcaps.color]
     let branding = accessories['endcaps-branding'][endcaps.branding]
     let description = accessories['endcaps'][endcaps.type].description

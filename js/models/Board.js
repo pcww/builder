@@ -7,6 +7,7 @@ let sizes = constants.SIZES
 
 export default class Board extends BaseModel {
   _bindEvents () {
+    let endcaps = this.get('endcaps')
     let strips = this.get('strips')
 
     this.listenTo(this, 'sync', () => {
@@ -17,15 +18,17 @@ export default class Board extends BaseModel {
       })
     })
 
-    this.listenTo(this, 'change:length', this._rerenderStrips)
-    this.listenTo(this, 'change:width', this._rerenderStrips)
+    this.listenTo(this, 'change:length', this._rerender)
+    this.listenTo(this, 'change:width', this._rerender)
 
-    this.listenTo(strips, 'reset', this._rerenderStrips)
+    this.listenTo(strips, 'reset', this._rerender)
     this.listenTo(strips, 'change:size', this._updateWidth)
     this.listenTo(strips, 'change add remove', () => {
-      this._rerenderStrips()
+      this._rerender()
       this._updateWidth()
     })
+
+    this.listenTo(endcaps, 'change', this._rerender)
   }
 
   _currentWidth () {
@@ -36,7 +39,7 @@ export default class Board extends BaseModel {
     return width
   }
 
-  _rerenderStrips() {
+  _rerender() {
     this.set('redraw', true)
   }
 
@@ -68,6 +71,11 @@ export default class Board extends BaseModel {
   get defaults () {
     return {
       createdFromId: 1,
+      endcaps: new Backbone.Model({
+        branding: 'pineclifflogo',
+        color: 'stainless',
+        type: 'button',
+      }),
       handle: 'none',
       length: 0,
       medusa: false,
@@ -88,6 +96,12 @@ export default class Board extends BaseModel {
 
     } else {
       response.groove = 'none'
+    }
+
+    if (response.endcaps) {
+      this.get('endcaps').set(response.endcaps)
+
+      delete response.endcaps
     }
 
     if (response.strips) {

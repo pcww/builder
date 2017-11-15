@@ -23,9 +23,7 @@ export default class EndcapPatternPicker extends React.Component {
 
   selectPattern (event) {
     let value = event.currentTarget.getAttribute('data-pattern')
-    let currentVals = this.props.board.get('endcaps')
-
-    this.props.board.set('endcaps', Object.assign(currentVals, { chooseapattern: value }))
+    let currentVals = this.props.board.get('endcaps').set('chooseapattern', value)
 
     this.setState({showPicker: false})
 

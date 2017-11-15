@@ -74,31 +74,33 @@ export default class EndcapPicker extends React.Component {
   // End Modal Setup
 
   onEndcapChange (event) {
-    let currentVals = this.props.board.get('endcaps')
+    let endcaps = this.props.board.get('endcaps')
 
     let color = event.currentTarget.value === 'nutcover' ?
-      'stainless' : this.props.board.get('endcaps').color // force stainless for nutcovers
+      'stainless' : endcaps.get('color') // force stainless for nutcovers
 
-    this.props.board.set('endcaps', Object.assign(currentVals, { color: color, type: event.currentTarget.value }))
+    endcaps.set('color', color)
+    endcaps.set('type', event.currentTarget.value)
     this.forceUpdate()
   }
 
   onColorChange (event) {
-    let currentVals = this.props.board.get('endcaps')
+    let endcaps = this.props.board.get('endcaps')
 
     let color = event.currentTarget.getAttribute('data-value')
-    if (currentVals.type === 'nutcover')
+    if (endcaps.get('type') === 'nutcover') {
       color = 'stainless'
+    }
 
-    this.props.board.set('endcaps', Object.assign(currentVals, { color: color }))
+    endcaps.set('color', color)
     this.forceUpdate()
   }
 
   onBrandingChange (event) {
-    let currentVals = this.props.board.get('endcaps')
+    let endcaps = this.props.board.get('endcaps')
     let branding = event.currentTarget.value
 
-    this.props.board.set('endcaps', Object.assign(currentVals, { branding: branding }))
+    endcaps.set('branding', branding)
     this.forceUpdate()
   }
 
@@ -109,7 +111,7 @@ export default class EndcapPicker extends React.Component {
 
   render () {
     let board = this.props.board
-    let endcap = board.get('endcaps')
+    let endcap = board.get('endcaps').toJSON()
     let endcapType = endcap.type
     let endcapColor = endcap.color
     let endcapBranding = endcap.branding
@@ -154,7 +156,7 @@ export default class EndcapPicker extends React.Component {
 
     let brandingName = accessories['endcaps-branding'][endcapBranding].name
     let brandingDescription = accessories['endcaps-branding'][endcapBranding].description
-    let chooseapatternPath = this.props.board.get('endcaps').chooseapattern
+    let chooseapatternPath = endcap.chooseapattern
     let brandingImagePath = (endcapBranding === 'chooseapattern') ?
       (chooseapatternPath ?
         `/assets/endcap-designs/${chooseapatternPath}` :
