@@ -8,6 +8,7 @@
   },
   "main": "js/index.js",
   "scripts": {
+    "deploy": "$(npm bin)/grunt deploy:production",
     "postinstall": "$(npm bin)/bower install",
     "start": "$(npm bin)/grunt"
   },
