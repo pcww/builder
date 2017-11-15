@@ -4,6 +4,8 @@ import THREE from 'three.js'
 window.THREE = THREE
 require('three/controls/OrbitControls')
 
+import accessories from '../accessories.json'
+
 
 
 
@@ -277,17 +279,14 @@ export default class VirtualBoard {
       })
 
       let endcapColor = this.board.get('endcaps').get('color')
+      let endcapColorHex = `#${accessories['endcap-colors'][endcapColor].hex}`
       let endcapType = this.board.get('endcaps').get('type')
       let endcapLength = endcapType === 'button' ? 0.2 : 1.5
       let cylinderLength = this.board.get('width') + endcapLength
 
       let endcapRadius = (endcapType === 'button' ? 1.25 : 1) / 2
       let endcapGeometry = new THREE.CylinderGeometry(endcapRadius, endcapRadius, cylinderLength, 100)
-      let endcapMaterial = new THREE.MeshStandardMaterial({
-        color: 0xcccccc, // endcapColor,
-        shininess: 30,
-        metal: true,
-      })
+      let endcapMaterial = new THREE.MeshStandardMaterial({ color: endcapColorHex })
       let endcapTranslation = (this.board.get('length') / 2) - (endcapRadius + 1)
       let endcapRotation = (Math.PI / 180) * -90
 
