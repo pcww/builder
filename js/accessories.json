@@ -99,119 +99,149 @@
   "endcap-colors": {
     "stainless": {
       "name": "Stainless Steel",
-      "code": "stainless"
+      "code": "stainless",
+      "hex": "6b6a68"
     },
     "satin-oregano": {
       "name": "Satin Oregano",
-      "code": "249069"
+      "code": "249069",
+      "hex": "7c5a1c"
     },
     "satin-strawflower": {
       "name": "Satin Strawflower",
-      "code": "249065"
+      "code": "249065",
+      "hex": "d5ab4c"
     },
     "satin-summer-squash": {
       "name": "Satin Summer Squash",
-      "code": "249064"
+      "code": "249064",
+      "hex": "f3d034"
     },
     "aged-brass": {
       "name": "Aged Brass",
-      "code": "202719"
+      "code": "202719",
+      "hex": "cd952c"
     },
     "classic-bronze": {
       "name": "Classic Bronze",
-      "code": "202642"
+      "code": "202642",
+      "hex": "a16c3b"
     },
     "satin-nutmeg": {
       "name": "Satin Nutmeg",
-      "code": "259070"
+      "code": "259070",
+      "hex": "95531f"
     },
     "satin-cinnamon": {
       "name": "Satin Cinnamon",
-      "code": "249084"
+      "code": "249084",
+      "hex": "a63f21"
     },
     "metallic-copper": {
       "name": "Metallic Copper",
-      "code": "1937830"
+      "code": "1937830",
+      "hex": "d37f38"
     },
     "satin-poppy-red": {
       "name": "Satin Poppy Red",
-      "code": "277994"
+      "code": "277994",
+      "hex": "c0321f"
     },
     "satin-fire-orange": {
       "name": "Satin Fire Orange",
-      "code": "263149"
+      "code": "263149",
+      "hex": "9d3027"
     },
     "colonial-red": {
       "name": "Colonial Red",
-      "code": "249082"
+      "code": "249082",
+      "hex": "a6342e"
+    
     },
     "satin-claret-wine": {
       "name": "Satin Claret Wine",
-      "code": "249083"
+      "code": "249083",
+      "hex": "6a2a2a"
     },
     "satin-aubergine": {
       "name": "Satin Aubergine",
-      "code": "257419"
+      "code": "257419",
+      "hex": "843531"
     },
     "satin-magenta": {
       "name": "Satin Magenta",
-      "code": "283188"
+      "code": "283188",
+      "hex": "c1445b"
     },
     "satin-sweet-pea": {
       "name": "Satin Sweet Pea",
-      "code": "249063"
+      "code": "249063",
+      "hex": "c1445b"
     },
     "hammered-ivory": {
       "name": "Hammered Ivory",
-      "code": "250898"
+      "code": "250898",
+      "hex": "e8dab9"
     },
     "satin-blossom-white": {
       "name": "Satin Blossom White",
-      "code": "249843"
+      "code": "249843",
+      "hex": "f0efcd"
     },
     "aged-bronze": {
       "name": "Aged Bronze",
-      "code": "202646"
+      "code": "202646",
+      "hex": "937753"
     },
     "flat-grey": {
       "name": "Flat Grey",
-      "code": "249088"
+      "code": "249088",
+      "hex": "665c4d"
     },
     "flat-black": {
       "name": "Flat Black",
-      "code": "249127"
+      "code": "249127",
+      "hex": "322922"
     },
     "satin-slate-blue": {
       "name": "Satin Slate Blue",
-      "code": "249066"
+      "code": "249066",
+      "hex": "838685"
     },
     "satin-french-lilac": {
       "name": "Satin French Lilac",
-      "code": "249079"
+      "code": "249079",
+      "hex": "c1a39f"
     },
     "satin-wildflower-blue": {
       "name": "Satin Wildflower Blue",
-      "code": "249062"
+      "code": "249062",
+      "hex": "647da3"
     },
     "satin-aqua": {
       "name": "Satin Aqua",
-      "code": "249085"
+      "code": "249085",
+      "hex": "81cfc6"
     },
     "satin-classic-navy": {
       "name": "Satin Classic Navy",
-      "code": "300115"
+      "code": "300115",
+      "hex": "3d4c5e"
     },
     "satin-club-green": {
       "name": "Satin Club Green",
-      "code": "249074"
+      "code": "249074",
+      "hex": "3d4926"
     },
     "semi-gloss-hunter-green": {
       "name": "Semi-Gloss Hunter Green",
-      "code": "249853"
+      "code": "249853",
+      "hex": "2b492b"
     },
     "satin-leafy-green": {
       "name": "Satin Leafy Green",
-      "code": "249072"
+      "code": "249072",
+      "hex": "75812d"
     }
   },
 
