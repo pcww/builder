@@ -5,9 +5,10 @@ import woods from '../woods.json'
 
 export default class StripPanel extends React.Component {
   render () {
-    let headingTarget = "heading-" + this.props.id
-    let collapseTarget = 'collapse-' + this.props.id
-    let collapseTargetId = '#' + collapseTarget
+    let key = this.props.strip.cid
+    let headingTarget = `heading-${key}`
+    let collapseTarget = `collapse-${key}`
+    let collapseTargetId = `#${collapseTarget}`
     let wood = this.props.strip.get('wood')
     let woodObj = woods[wood] || 'Unknown'
     let classes = ['swatch', 'swatch-mini', wood].join(' ')
