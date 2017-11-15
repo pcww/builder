@@ -75,7 +75,7 @@ function buildAxis( src, dst, colorHex, dashed ) {
   var geom = new THREE.Geometry(),
       mat;
 
-  if(dashed) {
+  if (dashed) {
     mat = new THREE.LineDashedMaterial({ linewidth: 3, color: colorHex, dashSize: 3, gapSize: 3 });
   } else {
     mat = new THREE.LineBasicMaterial({ linewidth: 3, color: colorHex });
@@ -276,6 +276,35 @@ export default class VirtualBoard {
         // }
       })
 
+      let endcapColor = this.board.get('endcaps').get('color')
+      let endcapType = this.board.get('endcaps').get('type')
+      let endcapLength = endcapType === 'button' ? 0.2 : 1.5
+      let cylinderLength = this.board.get('width') + endcapLength
+
+      let endcapRadius = (endcapType === 'button' ? 1.25 : 1) / 2
+      let endcapGeometry = new THREE.CylinderGeometry(endcapRadius, endcapRadius, cylinderLength, 100)
+      let endcapMaterial = new THREE.MeshStandardMaterial({
+        color: 0x999999, // endcapColor,
+        shininess: 30,
+        metal: true,
+      })
+      let endcapTranslation = (this.board.get('length') / 2) - (endcapRadius + 1)
+      let endcapRotation = (Math.PI / 180) * -90
+
+      let endcap1 = new THREE.Mesh(endcapGeometry, endcapMaterial)
+      endcap1.rotateX(endcapRotation)
+      endcap1.translateX(endcapTranslation)
+      endcap1.translateY(0.2)
+      this.scene.remove(this.endcap1)
+      this.scene.add(this.endcap1 = endcap1)
+
+      let endcap2 = new THREE.Mesh(endcapGeometry, endcapMaterial)
+      endcap2.rotateX(endcapRotation)
+      endcap2.translateX(-endcapTranslation)
+      endcap2.translateY(0.2)
+      this.scene.remove(this.endcap2)
+      this.scene.add(this.endcap2 = endcap2)
+
       this.board.set('redraw', false)
     }
 
@@ -285,7 +314,22 @@ export default class VirtualBoard {
     if (!this.rendered) {
       this.rendered = true
 
-      this.scene.add(new THREE.AmbientLight('white'))
+      let ambientLight = new THREE.AmbientLight('white')
+      let pointLight1 = new THREE.PointLight('white', 1, 100)
+      let pointLight2 = new THREE.PointLight('white', 1, 100)
+      let pointLight3 = new THREE.PointLight('white', 1, 10)
+      let pointLight4 = new THREE.PointLight('white', 1, 10)
+
+      pointLight1.position.set(0, 0, 10)
+      pointLight2.position.set(0, 0, -10)
+      pointLight3.position.set(20, 0, 0)
+      pointLight4.position.set(-20, 0, 0)
+
+      this.scene.add(ambientLight)
+      this.scene.add(pointLight1)
+      this.scene.add(pointLight2)
+      this.scene.add(pointLight3)
+      this.scene.add(pointLight4)
 
       this.el.appendChild(this.renderer.domElement)
     }
