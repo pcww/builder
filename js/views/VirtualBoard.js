@@ -106,6 +106,124 @@ export default class VirtualBoard {
     window.addEventListener('resize', this.resize.bind(this))
   }
 
+  _handleFirstRender () {
+    this.rendered = true
+
+    let ambientLight = new THREE.AmbientLight('white', 0.5)
+    let spotLight1 = new THREE.SpotLight('white', 2)
+    let spotLight2 = new THREE.SpotLight('white', 2)
+    let pointLight1 = new THREE.PointLight('white', 1, 1)
+    let pointLight2 = new THREE.PointLight('white', 1, 1)
+    let pointLight3 = new THREE.PointLight('white', 1, 1)
+    let pointLight4 = new THREE.PointLight('white', 1, 1)
+
+    spotLight1.position.set(18, -9, 15)
+    spotLight1.castShadow = true
+
+    spotLight2.position.set(-18, 9, -15)
+    spotLight1.castShadow = true
+
+    pointLight1.position.set(0, 0, 10)
+    pointLight2.position.set(0, 0, -10)
+    pointLight3.position.set(20, 0, 0)
+    pointLight4.position.set(-20, 0, 0)
+
+    this.scene.add(ambientLight)
+    this.scene.add(spotLight1)
+    this.scene.add(spotLight2)
+    this.scene.add(pointLight1)
+    this.scene.add(pointLight2)
+    this.scene.add(pointLight3)
+    this.scene.add(pointLight4)
+
+    this.el.appendChild(this.renderer.domElement)
+  }
+
+  _renderStrip (strip, index, collection) {
+    // if (!strip.get('rendered')) {
+    let boxMaterial
+
+    if (this.materials[strip.get('wood')]) {
+      boxMaterial = this.materials[strip.get('wood')]
+
+    } else {
+      boxMaterial = this.materials[strip.get('wood')] = new THREE.MeshLambertMaterial({
+        map: new THREE.TextureLoader().load(`/assets/woods/textures/${strip.get('wood')}.jpg`),
+        wireframe: !!window.debug
+      })
+    }
+
+    let dimensions = {
+      x: this.board.get('length'),
+      y: 1.75,
+      z: sizes[strip.get('size')]
+    }
+
+    if (index > 0) {
+      this.currentZ += (dimensions.z / 2)
+    }
+
+    let geometry = new THREE.CubeGeometry(dimensions.x, dimensions.y, dimensions.z)
+
+    if (strip.get('mesh')) {
+      mesh = strip.get('mesh')
+      mesh.geometry = geometry
+      mesh.material = boxMaterial
+
+    } else {
+      mesh = new THREE.Mesh(geometry, boxMaterial)
+      strip.set('mesh', mesh)
+    }
+
+    geometry.faceVertexUvs[0] = []
+
+    let sides = ['right', 'left', 'top', 'bottom', 'front', 'back']
+
+    sides.forEach(side => {
+      let faceSet = faces[side]
+
+      geometry.faceVertexUvs[0].push([
+        // top left
+        faceSet[3],
+        faceSet[0],
+        faceSet[2],
+      ])
+
+      geometry.faceVertexUvs[0].push([
+        // bottom right
+        faceSet[0],
+        faceSet[1],
+        faceSet[2],
+      ])
+    })
+
+    let mesh = new THREE.Mesh(geometry, boxMaterial)
+
+    mesh.position.z = this.currentZ
+
+    if (strip.get('moving')) {
+      mesh.position.y = 1
+
+    } else {
+      mesh.position.y = 0
+    }
+
+    this.currentZ += (dimensions.z / 2)
+
+    this.meshGroup.add(mesh)
+
+    let boardWidth = 0
+
+    this.meshGroup.children.forEach(strip => {
+      boardWidth += strip.geometry.parameters.depth
+    })
+
+    this.meshGroup.position.z = -(boardWidth / 2)
+
+    // strip.set('rendered', true, {silent: true})
+    // }
+  }
+
 
 
 
@@ -115,6 +233,8 @@ export default class VirtualBoard {
   \******************************************************************************/
 
   constructor (BoardModel, container) {
+    this._renderStrip = this._renderStrip.bind(this)
+
     this.board = BoardModel
 
     BoardModel.on('change', () => {
@@ -185,98 +305,18 @@ export default class VirtualBoard {
 
   render () {
     let strips = this.board.get('strips')
-    let currentZ = 0
     let redraw = this.board.get('redraw')
+
+    this.currentZ = 0
 
     if (redraw) {
       // remove all existing meshes from groupMesh
-      while (meshGroup.children.length > 0) { window.meshGroup.remove(window.meshGroup.children[0]); }
+      while (meshGroup.children.length > 0) {
+        window.meshGroup.remove(window.meshGroup.children[0])
+      }
 
       // slap in all the strip meshes
-      strips.forEach((strip, index, collection) => {
-        // if (!strip.get('rendered')) {
-        let boxMaterial
-
-        if (this.materials[strip.get('wood')]) {
-          boxMaterial = this.materials[strip.get('wood')]
-
-        } else {
-          boxMaterial = this.materials[strip.get('wood')] = new THREE.MeshLambertMaterial({
-            map: new THREE.TextureLoader().load(`/assets/woods/textures/${strip.get('wood')}.jpg`),
-            wireframe: !!window.debug
-          })
-        }
-
-        let dimensions = {
-          x: this.board.get('length'),
-          y: 1.75,
-          z: sizes[strip.get('size')]
-        }
-
-        if (index > 0) {
-          currentZ += (dimensions.z / 2)
-        }
-
-        let geometry = new THREE.CubeGeometry(dimensions.x, dimensions.y, dimensions.z)
-
-        if (strip.get('mesh')) {
-          mesh = strip.get('mesh')
-          mesh.geometry = geometry
-          mesh.material = boxMaterial
-
-        } else {
-          mesh = new THREE.Mesh(geometry, boxMaterial)
-          strip.set('mesh', mesh)
-        }
-
-        geometry.faceVertexUvs[0] = []
-
-        let sides = ['right', 'left', 'top', 'bottom', 'front', 'back']
-
-        sides.forEach(side => {
-          let faceSet = faces[side]
-
-          geometry.faceVertexUvs[0].push([
-            // top left
-            faceSet[3],
-            faceSet[0],
-            faceSet[2],
-          ])
-
-          geometry.faceVertexUvs[0].push([
-            // bottom right
-            faceSet[0],
-            faceSet[1],
-            faceSet[2],
-          ])
-        })
-
-        let mesh = new THREE.Mesh(geometry, boxMaterial)
-
-        mesh.position.z = currentZ
-
-        if (strip.get('moving')) {
-          mesh.position.y = 1
-
-        } else {
-          mesh.position.y = 0
-        }
-
-        currentZ += (dimensions.z / 2)
-
-        this.meshGroup.add(mesh)
-
-        let boardWidth = 0
-
-        this.meshGroup.children.forEach(strip => {
-          boardWidth += strip.geometry.parameters.depth
-        })
-
-        this.meshGroup.position.z = -(boardWidth / 2)
-
-        // strip.set('rendered', true, {silent: true})
-        // }
-      })
+      strips.forEach(this._renderStrip)
 
       let endcapColor = this.board.get('endcaps').get('color')
       let endcapColorHex = `#${accessories['endcap-colors'][endcapColor].hex}`
@@ -311,36 +351,7 @@ export default class VirtualBoard {
     this.renderer.render(this.scene, this.camera)
 
     if (!this.rendered) {
-      this.rendered = true
-
-      let ambientLight = new THREE.AmbientLight('white', 0.5)
-      let spotLight1 = new THREE.SpotLight('white', 2)
-      let spotLight2 = new THREE.SpotLight('white', 2)
-      let pointLight1 = new THREE.PointLight('white', 1, 1)
-      let pointLight2 = new THREE.PointLight('white', 1, 1)
-      let pointLight3 = new THREE.PointLight('white', 1, 1)
-      let pointLight4 = new THREE.PointLight('white', 1, 1)
-
-      spotLight1.position.set(18, -9, 15)
-      spotLight1.castShadow = true
-
-      spotLight2.position.set(-18, 9, -15)
-      spotLight1.castShadow = true
-
-      pointLight1.position.set(0, 0, 10)
-      pointLight2.position.set(0, 0, -10)
-      pointLight3.position.set(20, 0, 0)
-      pointLight4.position.set(-20, 0, 0)
-
-      this.scene.add(ambientLight)
-      this.scene.add(spotLight1)
-      this.scene.add(spotLight2)
-      this.scene.add(pointLight1)
-      this.scene.add(pointLight2)
-      this.scene.add(pointLight3)
-      this.scene.add(pointLight4)
-
-      this.el.appendChild(this.renderer.domElement)
+      this._handleFirstRender()
     }
 
     requestAnimationFrame(this.render.bind(this))
