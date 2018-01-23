@@ -9,12 +9,18 @@ export default class Board extends BaseModel {
   _bindEvents () {
     let endcaps = this.get('endcaps')
     let strips = this.get('strips')
+    let initialized = false
 
     this.listenTo(this, 'sync', () => {
       this._updateWidth()
 
       this.listenToOnce(strips, 'change add remove', () => {
-        this.set('medusa', true)
+        if (!strips) { return }
+        if (!initialized) { 
+          initialized = true
+        } else {
+          this.set('medusa', true)
+        }
       })
     })
 
