@@ -132,9 +132,6 @@ export default class Wizard extends React.Component {
       const relatedStripIndex = strips.indexOf(relatedStrip)
       const { draggedStrip } = this.state
 
-      console.log('CID', cid)
-      console.log('relatedStripIndex', relatedStripIndex)
-
       this.swapping = cid
 
       strips.remove(draggedStrip, { silent: true })
@@ -240,6 +237,8 @@ export default class Wizard extends React.Component {
                   <legend>Board Strips <button type="button" className="btn btn-link pull-right" onClick={this.onToggleStripsExpand.bind(this)}><i className={expandClass} aria-hidden="true"></i></button></legend>
 
                   <StripList
+                    lockAxis="y"
+                    lockToContainerEdges
                     onSortEnd={this.onSortEnd}
                     onSortMove={this.onSortMove}
                     onSortStart={this.onSortStart}
