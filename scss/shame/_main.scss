@@ -20,7 +20,11 @@
     .drag-handle  {
         opacity: 1;
     }
-
   }
+}
 
+body {
+  > li {
+    list-style: none;
+  }
 }

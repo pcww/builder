@@ -1,7 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { SortableHandle } from 'react-sortable-hoc'
 
 import woods from '../woods.json'
+
+
+
+
+
+const DragHandle = SortableHandle(() => (
+  <i className="fa drag-handle fa-bars" aria-hidden="true" />
+))
+
+
+
+
 
 export default class StripPanel extends React.Component {
   render () {
@@ -14,9 +27,13 @@ export default class StripPanel extends React.Component {
     let classes = ['swatch', 'swatch-mini', wood].join(' ')
 
     return (
-      <div className="panel-heading" role="tab" id={headingTarget}>
+      <div
+        className="panel-heading"
+        data-cid={this.props.strip.cid}
+        id={headingTarget}
+        role="tab">
         <h4 className="panel-title">
-          <i className="fa drag-handle fa-bars" aria-hidden="true"></i>
+          <DragHandle />
 
           <a role="button" data-toggle="collapse" data-parent="#strip-list" href={collapseTargetId} aria-expanded="true" aria-controls={collapseTarget}>
             {woodObj.name}

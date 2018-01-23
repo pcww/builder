@@ -2,16 +2,16 @@ import _ from 'underscore'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import classNames from 'classnames'
-import Sortable from '../../bower_components/Sortable/Sortable.min.js'
 
+import EndcapPicker from 'views/EndcapPicker.jsx'
+import EdgePicker from 'views/EdgePicker.jsx'
+import FeetPicker from 'views/FeetPicker.jsx'
+import GroovePicker from 'views/GroovePicker.jsx'
+import HandlePicker from 'views/HandlePicker.jsx'
 import Step from 'views/Step.jsx'
 import StepHeader from 'views/StepHeader.jsx'
 import StripPanel from 'views/StripPanel.jsx'
-import EndcapPicker from 'views/EndcapPicker.jsx'
-import HandlePicker from 'views/HandlePicker.jsx'
-import EdgePicker from 'views/EdgePicker.jsx'
-import GroovePicker from 'views/GroovePicker.jsx'
-import FeetPicker from 'views/FeetPicker.jsx'
+import StripList from 'views/StripList.jsx'
 
 import SummaryStep from 'views/SummaryStep.jsx'
 
@@ -29,6 +29,10 @@ export default class Wizard extends React.Component {
 
   constructor(props) {
     super(props)
+
+    this.onSortEnd = this.onSortEnd.bind(this)
+    this.onSortMove = this.onSortMove.bind(this)
+    this.onSortStart = this.onSortStart.bind(this)
 
     let currentStep
 
@@ -57,66 +61,12 @@ export default class Wizard extends React.Component {
   }
 
   componentDidMount () {
-    if (!this.props.preview) {
-      this.initializeSortable()
-    }
-
     window.addEventListener('keydown', onHandleKeyPress.bind(this), false)
     function onHandleKeyPress(e) {
       var keyCode = e.keyCode;
       if (keyCode == KEYS.ARROW_LEFT) this.onPrevious()
       else if (keyCode == KEYS.ARROW_RIGHT)  this.onNext()
     }
-  }
-
-  initializeSortable () {
-    if (this.sortable) {
-      this.sortable.destroy()
-    }
-
-    this.sortable = Sortable.create(document.querySelector('.sortable-list'), {
-      animation: 150,
-      delay: 0,
-      handle: '.drag-handle',
-      onEnd: (event) => {
-        let strips = this.props.board.get('strips')
-
-        strips.forEach((strip) => {
-          strip.set('moving', false)
-        })
-      },
-      onMove: (event) => {
-        let strips = this.props.board.get('strips')
-        let stripsArray = strips.toJSON()
-
-        // Dragged strip details
-        let draggedRect = event.draggedRect
-        let draggedStrip = event.dragged
-        let draggedStripId = parseInt(draggedStrip.getAttribute('data-id'))
-        let draggedStripModel = _.findWhere(stripsArray, {id: draggedStripId})
-        let draggedStripIndex = _.indexOf(stripsArray, draggedStripModel)
-
-        // Related strip details
-        let relatedRect = event.relatedRect
-        let relatedStrip = event.related
-        let relatedStripId = parseInt(relatedStrip.getAttribute('data-id'))
-        let relatedStripModel = _.findWhere(stripsArray, {id: relatedStripId})
-        let relatedStripIndex = _.indexOf(stripsArray, relatedStripModel)
-
-        stripsArray = _.without(stripsArray, draggedStripModel)
-        stripsArray.splice(relatedStripIndex, 0, draggedStripModel)
-        strips.reset(stripsArray)
-
-        this.setState({})
-      },
-      onStart: (event) => {
-        let oldIndex = event.oldIndex
-        let strips = this.props.board.get('strips')
-        let strip = strips.at(oldIndex)
-
-        strip.set('moving', true)
-      }
-    })
   }
 
   onNext () {
@@ -147,6 +97,61 @@ export default class Wizard extends React.Component {
     }
   }
 
+  onSortEnd ({ newIndex, oldIndex }) {
+    const strips = this.props.board.get('strips')
+    const { draggedStrip } = this.state
+
+    strips.remove(draggedStrip, { silent: true })
+    strips.add(draggedStrip, { at: newIndex })
+
+    draggedStrip.set('moving', false)
+
+    this.swapDirection = null
+    this.swapping = null
+    this.y = null
+    this.setState({ draggedStrip: null })
+  }
+
+  onSortMove ({ screenY, target }) {
+    const previousSwapdirection = this.swapDirection
+    let cid = null
+
+    this.swapDirection = screenY > this.y ? 'down' : 'up'
+    this.y = screenY
+
+    if (target.classList.contains('panel') || target.classList.contains('panel-heading')) {
+      cid = target.getAttribute('data-cid')
+    }
+
+    if (cid) {
+      if ((previousSwapdirection === this.swapDirection) && (this.swapping === cid)) { return }
+
+      const strips = this.props.board.get('strips')
+
+      const relatedStrip = strips.get({ cid })
+      const relatedStripIndex = strips.indexOf(relatedStrip)
+      const { draggedStrip } = this.state
+
+      console.log('CID', cid)
+      console.log('relatedStripIndex', relatedStripIndex)
+
+      this.swapping = cid
+
+      strips.remove(draggedStrip, { silent: true })
+      strips.add(draggedStrip, { at: relatedStripIndex })
+    }
+  }
+
+  onSortStart ({ index }, { screenY }) {
+    const draggedStrip = this.props.board.get('strips').at(index)
+
+    draggedStrip.set('moving', true)
+
+    this.y = screenY
+
+    this.setState({ draggedStrip: draggedStrip })
+  }
+
   onStripLengthChanged (event) {
     this.props.board.set('length', event.currentTarget.value)
   }
@@ -158,14 +163,12 @@ export default class Wizard extends React.Component {
       wood: 'maple'
     })
     this.forceUpdate()
-    this.initializeSortable()
   }
 
   removeStrip (strip) {
     this.props.board.get('strips').remove(strip)
     this.props.board.set('redraw', true)
     this.forceUpdate()
-    this.initializeSortable()
   }
 
   onToggleStripsExpand () {
@@ -181,20 +184,11 @@ export default class Wizard extends React.Component {
   render () {
     let board = this.props.board
     let order = this.props.order
-    let canRemoveStrip = this.props.board.get('strips').length > 1
-
-    let Strips = board.get('strips').map((strip, key) => {
-      return (
-        <li className="panel panel-default" data-id={strip.cid} key={key}>
-          <StripPanel id={strip.cid} strip={strip} canRemoveStrip={canRemoveStrip} removeStrip={this.removeStrip.bind(this)}></StripPanel>
-        </li>
-      )
-    })
 
     let expandClass = classNames('fa', {
       'fa-plus': !this.state.stripsExpand,
       'fa-minus': this.state.stripsExpand
-    });
+    })
 
     if (this.props.preview) {
       return (
@@ -245,7 +239,13 @@ export default class Wizard extends React.Component {
                 <fieldset>
                   <legend>Board Strips <button type="button" className="btn btn-link pull-right" onClick={this.onToggleStripsExpand.bind(this)}><i className={expandClass} aria-hidden="true"></i></button></legend>
 
-                  <ol id="strip-list" className="sortable-list panel-group" role="tablist" aria-multiselectable="true">{Strips}</ol>
+                  <StripList
+                    onSortEnd={this.onSortEnd}
+                    onSortMove={this.onSortMove}
+                    onSortStart={this.onSortStart}
+                    removeStrip={this.removeStrip.bind(this)}
+                    strips={board.get('strips')}
+                    useDragHandle />
                 </fieldset>
               </div>
 
