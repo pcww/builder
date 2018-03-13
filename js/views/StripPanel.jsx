@@ -10,6 +10,12 @@ import { SortableElement } from 'react-sortable-hoc'
 
 
 class StripPanel extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.onSizeChange = this.onSizeChange.bind(this)
+  }
+
   onSizeChange (event) {
     this.props.strip.set('size', event.currentTarget.value)
     this.forceUpdate()
@@ -46,7 +52,7 @@ class StripPanel extends React.Component {
                     name={radioGroupName}
                     type="radio"
                     value="xxsmall"
-                    onChange={this.onSizeChange.bind(this)} />
+                    onChange={this.onSizeChange} />
                   XXS
                 </label>
               </OverlayTrigger>
@@ -59,7 +65,7 @@ class StripPanel extends React.Component {
                     name={radioGroupName}
                     type="radio"
                     value="xsmall"
-                    onChange={this.onSizeChange.bind(this)} />
+                    onChange={this.onSizeChange} />
                   XS
                 </label>
               </OverlayTrigger>
@@ -72,7 +78,7 @@ class StripPanel extends React.Component {
                     name={radioGroupName}
                     type="radio"
                     value="small"
-                    onChange={this.onSizeChange.bind(this)} />
+                    onChange={this.onSizeChange} />
                   S
                 </label>
               </OverlayTrigger>
@@ -85,7 +91,7 @@ class StripPanel extends React.Component {
                     name={radioGroupName}
                     type="radio"
                     value="medium"
-                    onChange={this.onSizeChange.bind(this)} />
+                    onChange={this.onSizeChange} />
                   M
                 </label>
               </OverlayTrigger>
@@ -98,7 +104,7 @@ class StripPanel extends React.Component {
                     name={radioGroupName}
                     type="radio"
                     value="large"
-                    onChange={this.onSizeChange.bind(this)} />
+                    onChange={this.onSizeChange} />
                   L
                 </label>
               </OverlayTrigger>
@@ -111,7 +117,7 @@ class StripPanel extends React.Component {
                     name={radioGroupName}
                     type="radio"
                     value="xlarge"
-                    onChange={this.onSizeChange.bind(this)} />
+                    onChange={this.onSizeChange} />
                   XL
                 </label>
               </OverlayTrigger>
