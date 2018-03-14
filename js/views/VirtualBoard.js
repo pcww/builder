@@ -145,7 +145,7 @@ export default class VirtualBoard {
     let endcapColor = this.board.get('endcaps').get('color')
     let endcapColorHex = `#${accessories['endcap-colors'][endcapColor].hex}`
     let endcapType = this.board.get('endcaps').get('type')
-    let endcapLength = endcapType === 'button' ? 0.2 : 1
+    let endcapLength = endcapType === 'button' ? 0.2 : .8
     let cylinderLength = this.board.get('width') + (endcapLength * 2)
 
     let endcapRadius = (endcapType === 'button' ? 1.25 : 1) / 2
