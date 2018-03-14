@@ -56,6 +56,8 @@ const faces = {
   ],
 }
 
+const sides = ['right', 'left', 'top', 'bottom', 'front', 'back']
+
 
 
 
@@ -139,13 +141,41 @@ export default class VirtualBoard {
     this.el.appendChild(this.renderer.domElement)
   }
 
+  _renderEndcaps () {
+    let endcapColor = this.board.get('endcaps').get('color')
+    let endcapColorHex = `#${accessories['endcap-colors'][endcapColor].hex}`
+    let endcapType = this.board.get('endcaps').get('type')
+    let endcapLength = endcapType === 'button' ? 0.2 : 1
+    let cylinderLength = this.board.get('width') + (endcapLength * 2)
+
+    let endcapRadius = (endcapType === 'button' ? 1.25 : 1) / 2
+    let endcapGeometry = new THREE.CylinderGeometry(endcapRadius, endcapRadius, cylinderLength, 100)
+    let endcapMaterial = new THREE.MeshStandardMaterial({ color: endcapColorHex })
+    let endcapTranslation = (this.board.get('length') / 2) - (endcapRadius + 1)
+    let endcapRotation = (Math.PI / 180) * -90
+    let endcapHorizontalCenter = cylinderLength / 2
+
+    endcapGeometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, -(cylinderLength / 2), 0))
+
+    let endcap1 = new THREE.Mesh(endcapGeometry, endcapMaterial)
+    endcap1.rotateX(endcapRotation)
+    endcap1.translateY(endcapLength)
+    endcap1.translateX(endcapTranslation)
+
+    let endcap2 = new THREE.Mesh(endcapGeometry, endcapMaterial)
+    endcap2.rotateX(endcapRotation)
+    endcap2.translateY(endcapLength)
+    endcap2.translateX(-endcapTranslation)
+
+    this.meshGroup.add(endcap1)
+    this.meshGroup.add(endcap2)
+  }
+
   _renderStrip (strip, index, collection) {
-    // if (!strip.get('rendered')) {
     let boxMaterial
 
     if (this.materials[strip.get('wood')]) {
       boxMaterial = this.materials[strip.get('wood')]
-
     } else {
       boxMaterial = this.materials[strip.get('wood')] = new THREE.MeshLambertMaterial({
         map: new THREE.TextureLoader().load(`/assets/woods/textures/${strip.get('wood')}.jpg`),
@@ -156,20 +186,17 @@ export default class VirtualBoard {
     let dimensions = {
       x: this.board.get('length'),
       y: 1.75,
-      z: sizes[strip.get('size')]
+      z: sizes[strip.get('size')],
     }
 
-    if (index > 0) {
-      this.currentZ += (dimensions.z / 2)
-    }
+    this.currentZ += dimensions.z / 2
 
-    let geometry = new THREE.CubeGeometry(dimensions.x, dimensions.y, dimensions.z)
+    let geometry = new THREE.CubeGeometry(...Object.values(dimensions))
 
     if (strip.get('mesh')) {
       mesh = strip.get('mesh')
       mesh.geometry = geometry
       mesh.material = boxMaterial
-
     } else {
       mesh = new THREE.Mesh(geometry, boxMaterial)
       strip.set('mesh', mesh)
@@ -177,51 +204,32 @@ export default class VirtualBoard {
 
     geometry.faceVertexUvs[0] = []
 
-    let sides = ['right', 'left', 'top', 'bottom', 'front', 'back']
-
     sides.forEach(side => {
       let faceSet = faces[side]
 
-      geometry.faceVertexUvs[0].push([
-        // top left
-        faceSet[3],
-        faceSet[0],
-        faceSet[2],
-      ])
-
-      geometry.faceVertexUvs[0].push([
-        // bottom right
-        faceSet[0],
-        faceSet[1],
-        faceSet[2],
-      ])
+      geometry.faceVertexUvs[0].push(
+        [
+          // top left
+          faceSet[3],
+          faceSet[0],
+          faceSet[2],
+        ],
+        [
+          // bottom right
+          faceSet[0],
+          faceSet[1],
+          faceSet[2],
+        ]
+      )
     })
 
     let mesh = new THREE.Mesh(geometry, boxMaterial)
 
     mesh.position.z = this.currentZ
+    mesh.position.y = strip.get('moving') ? 1 : 0
 
-    if (strip.get('moving')) {
-      mesh.position.y = 1
-
-    } else {
-      mesh.position.y = 0
-    }
-
-    this.currentZ += (dimensions.z / 2)
-
+    this.currentZ += dimensions.z / 2
     this.meshGroup.add(mesh)
-
-    let boardWidth = 0
-
-    this.meshGroup.children.forEach(strip => {
-      boardWidth += strip.geometry.parameters.depth
-    })
-
-    this.meshGroup.position.z = -(boardWidth / 2)
-
-    // strip.set('rendered', true, {silent: true})
-    // }
   }
 
 
@@ -264,7 +272,7 @@ export default class VirtualBoard {
     this.camera.position.x = -29.19
     this.camera.position.y = 29.98
     this.camera.position.z = 25.47
-    // -29.191713152566408, y: 29.98114709809336, z: 25.474981882246105 // nice starting angle
+    // x: -29.191713152566408, y: 29.98114709809336, z: 25.474981882246105 // nice starting angle
     this.camera.lookAt(0, 0, 0)
 
     // Limit zooming (keeping in mind near/far camera planes)
@@ -277,7 +285,7 @@ export default class VirtualBoard {
     // this.renderer.setClearColor('white', 1)
     this.renderer.setClearColor( 0x000000, 0 )
 
-    if (!!window.debug) {
+    if (!!window.debug || /debug=(true|1)/gi.test(location.search)) {
       this.scene.add(buildAxes(1000))
     }
 
@@ -304,45 +312,23 @@ export default class VirtualBoard {
   }
 
   render () {
-    let strips = this.board.get('strips')
     let redraw = this.board.get('redraw')
-
-    this.currentZ = 0
+    let strips = this.board.get('strips')
+    let width = this.board.get('width')
 
     if (redraw) {
+      this.currentZ = 0
+      this.meshGroup.position.z = -(width / 2)
+
       // remove all existing meshes from groupMesh
-      while (meshGroup.children.length > 0) {
-        window.meshGroup.remove(window.meshGroup.children[0])
+      while (this.meshGroup.children.length > 0) {
+        this.meshGroup.remove(this.meshGroup.children[0])
       }
 
       // slap in all the strip meshes
       strips.forEach(this._renderStrip)
 
-      let endcapColor = this.board.get('endcaps').get('color')
-      let endcapColorHex = `#${accessories['endcap-colors'][endcapColor].hex}`
-      let endcapType = this.board.get('endcaps').get('type')
-      let endcapLength = endcapType === 'button' ? 0.2 : 1.5
-      let cylinderLength = this.board.get('width') + endcapLength
-
-      let endcapRadius = (endcapType === 'button' ? 1.25 : 1) / 2
-      let endcapGeometry = new THREE.CylinderGeometry(endcapRadius, endcapRadius, cylinderLength, 100)
-      let endcapMaterial = new THREE.MeshStandardMaterial({ color: endcapColorHex })
-      let endcapTranslation = (this.board.get('length') / 2) - (endcapRadius + 1)
-      let endcapRotation = (Math.PI / 180) * -90
-
-      let endcap1 = new THREE.Mesh(endcapGeometry, endcapMaterial)
-      endcap1.rotateX(endcapRotation)
-      endcap1.translateX(endcapTranslation)
-      endcap1.translateY(0.2)
-      this.scene.remove(this.endcap1)
-      this.scene.add(this.endcap1 = endcap1)
-
-      let endcap2 = new THREE.Mesh(endcapGeometry, endcapMaterial)
-      endcap2.rotateX(endcapRotation)
-      endcap2.translateX(-endcapTranslation)
-      endcap2.translateY(0.2)
-      this.scene.remove(this.endcap2)
-      this.scene.add(this.endcap2 = endcap2)
+      this._renderEndcaps()
 
       this.board.set('redraw', false)
     }
