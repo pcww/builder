@@ -2722,7 +2722,7 @@ lodash@^3.10.1, lodash@~3.10.1:
   version "3.10.1"
   resolved "https://purecloud.artifactoryonline.com/purecloud/api/npm/inin-internal-npm/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.3.0, lodash@^4.7.0, lodash@~4.17.4:
+lodash@^4.0.0, lodash@^4.12.0, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.3.0, lodash@^4.7.0, lodash@~4.17.4:
   version "4.17.4"
   resolved "https://purecloud.artifactoryonline.com/purecloud/api/npm/inin-internal-npm/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -3770,6 +3770,15 @@ react-prop-types@^0.4.0:
   resolved "https://purecloud.artifactoryonline.com/purecloud/api/npm/inin-internal-npm/react-prop-types/-/react-prop-types-0.4.0.tgz#f99b0bfb4006929c9af2051e7c1414a5c75b93d0"
   dependencies:
     warning "^3.0.0"
+
+react-sortable-hoc@^0.6.8:
+  version "0.6.8"
+  resolved "https://purecloud.artifactoryonline.com/purecloud/api/npm/inin-internal-npm/react-sortable-hoc/-/react-sortable-hoc-0.6.8.tgz#b08562f570d7c41f6e393fca52879d2ebb9118e9"
+  dependencies:
+    babel-runtime "^6.11.6"
+    invariant "^2.2.1"
+    lodash "^4.12.0"
+    prop-types "^15.5.7"
 
 react-transition-group@^1.2.0:
   version "1.2.1"
