@@ -31,6 +31,8 @@ export default class EndcapPicker extends React.Component {
     this.state = {
       brandingModalIsOpen: false,
       modalIsOpen: false,
+      colorWheelModalIsOpen: false,
+      colorWheelModalImage: 1,
       imageIndex: 0
     }
   }
@@ -214,10 +216,42 @@ export default class EndcapPicker extends React.Component {
         <hr/>
 
         <fieldset>
-          <legend>Choose Endcap Color</legend>
+          <legend>Choose Endcap Color&nbsp;
+            <OverlayTrigger
+                overlay={<Tooltip id="endcap-color-wheel-show-tooltip">Show Color Wheel</Tooltip>} placement="top"
+                delayShow={300} delayHide={150}
+              >
+                <i style={{cursor: 'pointer'}} className="fa fa-question-circle" onClick={() => this.setState({ colorWheelModalIsOpen: true })}></i>
+            </OverlayTrigger>
+          </legend>
           <ul className="color-swatch-picker" role="menu">
             {Colors}
           </ul>
+
+          <Modal
+            show={this.state.colorWheelModalIsOpen}
+            onHide={() => this.setState({ colorWheelModalIsOpen: false })} className="full-width-modal">
+            <Modal.Header closeButton>
+              <Modal.Title>Endcap Color Options</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body style={{ textAlign: 'center' }}>
+              <p>
+                { this.state.colorWheelModalImage == 1 ? <img style={{ maxWidth: '100%' }} src={'/assets/endcap-colors/ColorWheel.solids.jpg'} alt="..."/> : null }
+                { this.state.colorWheelModalImage == 2 ? <img style={{ maxWidth: '100%' }} src={'/assets/endcap-colors/ColorWheel.labeled.jpg'} alt="..."/> : null }
+              </p>
+              <br/>
+              <div>
+                <a className={"btn btn-sm " + (this.state.colorWheelModalImage==1 ? 'btn-primary' : 'btn-default')} onClick={() => { this.setState({colorWheelModalImage: 1 }) }}>Solid Colors</a>&nbsp;
+                <a className={"btn btn-sm " + (this.state.colorWheelModalImage==2 ? 'btn-primary' : 'btn-default')} onClick={() => { this.setState({colorWheelModalImage: 2 }) }}>Labeled Colors</a>
+              </div>
+            </Modal.Body>
+
+            <Modal.Footer>
+              <p>These are the color options available for button type endcaps. Nutcovers will always come in stainless, but still support engraved logos.</p>
+            </Modal.Footer>
+          </Modal>
+
         </fieldset>
 
         <fieldset>
