@@ -58,8 +58,8 @@ export default class Builder extends React.Component {
       showModal: false,
       showMaterialsModal: !!this.props.jasonMode || false,
       showOrderProcessingModal: (this.props.preview && !(!!this.props.jasonMode || false) && !!this.props.hash) || false,
-      showSocialMediaIngressModal: (!this.props.jasonMode && !this.props.hash) || false,
-      isSocialMediaIngress: !this.props.hash,
+      showSocialMediaIngressModal: (!this.props.jasonMode && !this.props.hash && this.props.preview) || false,
+      isSocialMediaIngress: !this.props.hash && this.props.preview,
       orderComplete: false
     }
 
