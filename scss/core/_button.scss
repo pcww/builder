@@ -15,3 +15,9 @@
     cursor: pointer;
   }
 }
+
+.fa {
+  &.drag-handle {
+    cursor: ns-resize;
+  }
+}

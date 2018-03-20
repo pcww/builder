@@ -64,6 +64,7 @@ export default class Builder extends React.Component {
         })
         this.state.order.fetch({ success: resolve, error: reject })
       } else {
+        this.setState({order: this.state.order})
         resolve()
       }
     })
@@ -135,7 +136,7 @@ export default class Builder extends React.Component {
               step={this.props.step}/>
           </div>
           <SubmitOrderModal board={this.state.board} order={this.state.order} show={this.state.showModal} close={this.closeModal} complete={this.orderComplete.bind(this)}/>
-          <MaterialsListModal board={this.state.board} show={this.state.showMaterialsModal} close={this.closeMaterialsModal}/>
+          <MaterialsListModal board={this.state.board} order={this.state.order} show={this.state.showMaterialsModal} close={this.closeMaterialsModal}/>
         </main>
       )
     }

@@ -240,7 +240,6 @@ export default class EndcapPicker extends React.Component {
                 { this.state.colorWheelModalImage == 1 ? <img style={{ maxWidth: '100%' }} src={'/assets/endcap-colors/ColorWheel.solids.jpg'} alt="..."/> : null }
                 { this.state.colorWheelModalImage == 2 ? <img style={{ maxWidth: '100%' }} src={'/assets/endcap-colors/ColorWheel.labeled.jpg'} alt="..."/> : null }
               </p>
-              <br/>
               <div>
                 <a className={"btn btn-sm " + (this.state.colorWheelModalImage==1 ? 'btn-primary' : 'btn-default')} onClick={() => { this.setState({colorWheelModalImage: 1 }) }}>Solid Colors</a>&nbsp;
                 <a className={"btn btn-sm " + (this.state.colorWheelModalImage==2 ? 'btn-primary' : 'btn-default')} onClick={() => { this.setState({colorWheelModalImage: 2 }) }}>Labeled Colors</a>

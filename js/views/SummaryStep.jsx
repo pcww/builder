@@ -79,17 +79,17 @@ export default class SummaryStep extends React.Component {
           <div className="endcap-options">
             <legend className="small">Selected Options</legend>
             <OverlayTrigger
-                overlay={colorTooltip} 
+                overlay={colorTooltip}
                 placement="top"
                 delayShow={100} delayHide={150}>
                 <div className={colorClasses}/>
-              </OverlayTrigger>  
+              </OverlayTrigger>
               <OverlayTrigger
-                overlay={logoTooltip} 
+                overlay={logoTooltip}
                 placement="top"
                 delayShow={100} delayHide={150}>
                 <img className={logoClasses} src={brandingImagePath}/>
-              </OverlayTrigger> 
+              </OverlayTrigger>
           </div>
 
         </div>
@@ -186,7 +186,7 @@ export default class SummaryStep extends React.Component {
       return (
         <OverlayTrigger
           key={key}
-          overlay={popover} 
+          overlay={popover}
           placement="top"
           delayShow={0} delayHide={0}>
           <div className={strip.get('wood')} key={strip.id} style={styles}></div>
@@ -205,7 +205,7 @@ export default class SummaryStep extends React.Component {
     let placeholderText = "(Optional) If you have any additional requests, we would love to hear them!"
     let value = (this.props.order) ? this.props.order.get('notes') : ''
     return (
-      <textarea className="customText form-control" rows="15" placeholder={placeholderText} defaultValue={value} onChange={this.onCustomChange.bind(this)}></textarea>
+      <textarea readOnly={this.props.preview} className="customText form-control" rows="15" placeholder={placeholderText} defaultValue={value} onChange={this.onCustomChange.bind(this)}></textarea>
     )
   }
 

@@ -201,7 +201,7 @@ export default class Wizard extends React.Component {
 
           <div className="steps">
             <Step isActive={true} key={1}>
-              <SummaryStep board={board} order={order} showMaterialsModal={this.props.showMaterialsModal}></SummaryStep>
+              <SummaryStep preview={this.props.preview} board={board} order={order} showMaterialsModal={this.props.showMaterialsModal}></SummaryStep>
             </Step>
           </div>
         </menu>
@@ -249,7 +249,7 @@ export default class Wizard extends React.Component {
               </div>
 
               <div className="step-controls controls">
-                <button type="button" className="btn btn-sm btn-primary" onClick={this.addStrip.bind(this)}><i className="fa fa-plus-circle"></i> Add Strip</button>
+                <button type="button" className="btn btn-sm btn-warning" onClick={this.addStrip.bind(this)}><i className="fa fa-plus-circle"></i> Add Strip</button>
                 &nbsp;
                 <button type="button" className="btn btn-sm btn-primary" onClick={this.onNext.bind(this)}>Next Step <i className="fa fa-arrow-right"></i></button>
               </div>

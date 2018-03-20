@@ -38,8 +38,6 @@ export default class Board extends React.Component {
       <section type="overlay">
         <div className="dimensions badge">Dimensions {length}" x {width}"</div>
 
-        {/* <div className="cost well text-center">Board Cost: <span className="label label-success">$297.36</span></div> */}
-
         {!this.props.image && (
           <div className="background-picker panel panel-default">
             <div className="panel-heading">select a background</div>
