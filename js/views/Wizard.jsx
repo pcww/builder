@@ -201,7 +201,7 @@ export default class Wizard extends React.Component {
 
           <div className="steps">
             <Step isActive={true} key={1}>
-              <SummaryStep preview={this.props.preview} board={board} order={order} showMaterialsModal={this.props.showMaterialsModal}></SummaryStep>
+              <SummaryStep isSocialMediaIngress={this.props.isSocialMediaIngress} preview={this.props.preview} board={board} order={order} showMaterialsModal={this.props.showMaterialsModal}></SummaryStep>
             </Step>
           </div>
         </menu>

@@ -7,7 +7,7 @@ export default class OrderProcessingModal extends React.Component {
     super(props)
 
     this.state = {
-      showModal: !!this.props.order
+      showModal: (!!this.props.show && !!this.props.order) || false
     }
 
     if (this.props.order) {
@@ -24,7 +24,7 @@ export default class OrderProcessingModal extends React.Component {
   render () {
 
     return (
-      <Modal show={this.state.showModal}>
+      <Modal show={this.state.showModal} onHide={this.onClose.bind(this)}>
         <Modal.Header closeButton>
           <Modal.Title>Order Status</Modal.Title>
         </Modal.Header>
@@ -45,7 +45,10 @@ export default class OrderProcessingModal extends React.Component {
           </div>
           <br/>
           <div className="order-summary-message well well-sm text-center">
-            <p className="text-info"><i className="fa fa-twitter-square fa-4x" aria-hidden="true"></i> <i className="fa fa-facebook-square fa-4x" aria-hidden="true"></i></p>
+            <p className="text-info">
+              <a href={order.getTweetLink()} target="_blank"><i className="fa fa-twitter-square fa-4x" aria-hidden="true"></i></a>
+              <a href={order.getFacebookLink()} target="_blank"><i className="fa fa-facebook-square fa-4x" aria-hidden="true"></i></a>
+            </p>
             <p>In the meantime, share your new board on social media.</p>
           </div>
         </Modal.Body>

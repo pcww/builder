@@ -7,6 +7,7 @@ import classNames from 'classnames'
 import SubmitOrderModal from 'views/SubmitOrderModal.jsx';
 import MaterialsListModal from 'views/MaterialsListModal.jsx';
 import OrderProcessingModal from 'views/OrderProcessingModal.jsx';
+import SocialMediaIngressModal from 'views/SocialMediaIngressModal.jsx';
 import HeaderBar from 'views/HeaderBar.jsx';
 
 import woods from '../woods.json'
@@ -36,6 +37,18 @@ export default class Builder extends React.Component {
     })
   }
 
+  closeOrderProcessingModal () {
+    this.setState({
+      showOrderProcessingModal: false
+    })
+  }
+
+  closeSocialMediaIngressModal () {
+    this.setState({
+      showSocialMediaIngressModal: false
+    })
+  }
+
   constructor (props) {
     super(props)
     this.state = {
@@ -44,12 +57,17 @@ export default class Builder extends React.Component {
       loaded: false,
       showModal: false,
       showMaterialsModal: !!this.props.jasonMode || false,
+      showOrderProcessingModal: (this.props.preview && !(!!this.props.jasonMode || false) && !!this.props.hash) || false,
+      showSocialMediaIngressModal: (!this.props.jasonMode && !this.props.hash) || false,
+      isSocialMediaIngress: !this.props.hash,
       orderComplete: false
     }
 
     this.closeModal = this.closeModal.bind(this)
     this.closeMaterialsModal = this.closeMaterialsModal.bind(this)
     this.openModal = this.openModal.bind(this)
+    this.closeOrderProcessingModal = this.closeOrderProcessingModal.bind(this)
+    this.closeSocialMediaIngressModal = this.closeSocialMediaIngressModal.bind(this)
     this.openMaterialsModal = this.openMaterialsModal.bind(this)
 
     window.board = this.state.board
@@ -133,9 +151,12 @@ export default class Builder extends React.Component {
               onSubmit={this.openModal}
               preview={this.props.preview || this.state.orderComplete}
               showMaterialsModal={!!this.props.jasonMode ? this.openMaterialsModal : false}
+              isSocialMediaIngress={this.state.isSocialMediaIngress}
               step={this.props.step}/>
           </div>
           <SubmitOrderModal board={this.state.board} order={this.state.order} show={this.state.showModal} close={this.closeModal} complete={this.orderComplete.bind(this)}/>
+          <OrderProcessingModal order={this.state.order} show={this.state.showOrderProcessingModal} close={this.closeOrderProcessingModal} />
+          <SocialMediaIngressModal show={this.state.showSocialMediaIngressModal} close={this.closeSocialMediaIngressModal} />
           <MaterialsListModal board={this.state.board} order={this.state.order} show={this.state.showMaterialsModal} close={this.closeMaterialsModal}/>
         </main>
       )

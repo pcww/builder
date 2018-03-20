@@ -250,36 +250,40 @@ export default class SummaryStep extends React.Component {
           {this.getFeet()}
         </fieldset>
 
-        <fieldset>
-          <div class="well well-sm">
-            <legend>Purchase Information</legend>
+        { !this.props.isSocialMediaIngress ?
+          <fieldset>
+            <div class="well well-sm">
+              <legend>Purchase Information</legend>
 
-            <div className="media">
-              <div className="media-body">
-                <h4 className="media-heading">
-                  Lead Time
-                </h4>
+              <div className="media">
+                <div className="media-body">
+                  <h4 className="media-heading">
+                    Lead Time
+                  </h4>
 
-                <p>Boards will typically be delivered <span class="label label-primary label-round">2 - 4 months</span> from the date your order is placed.</p>
+                  <p>Boards will typically be delivered <span class="label label-primary label-round">2 - 4 months</span> from the date your order is placed.</p>
+                </div>
+              </div>
+
+              <div className="media">
+                <div className="media-body">
+                  <h4 className="media-heading">
+                    Pricing
+                  </h4>
+
+                  <p>Prices will vary depending on board size. Please see the <span className="label label-primary label-round"><a href="/assets/Pricelist.pdf" target="_blank"><i className="fa fa-file-pdf-o" /> Price Table</a></span> to get an idea of how much your board will cost.</p>
+                </div>
               </div>
             </div>
+          </fieldset> : null
+        }
 
-            <div className="media">
-              <div className="media-body">
-                <h4 className="media-heading">
-                  Pricing
-                </h4>
-
-                <p>Prices will vary depending on board size. Please see the <span className="label label-primary label-round"><a href="/assets/Pricelist.pdf" target="_blank"><i className="fa fa-file-pdf-o" /> Price Table</a></span> to get an idea of how much your board will cost.</p>
-              </div>
-            </div>
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>Custom Requests</legend>
-          {this.getCustom()}
-        </fieldset>
+        { !this.props.isSocialMediaIngress ?
+          <fieldset>
+            <legend>Custom Requests</legend>
+            {this.getCustom()}
+          </fieldset> : null
+        }
       </div>
     )
   }
