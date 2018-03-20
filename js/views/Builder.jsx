@@ -8,6 +8,7 @@ import SubmitOrderModal from 'views/SubmitOrderModal.jsx';
 import MaterialsListModal from 'views/MaterialsListModal.jsx';
 import OrderProcessingModal from 'views/OrderProcessingModal.jsx';
 import SocialMediaIngressModal from 'views/SocialMediaIngressModal.jsx';
+import WelcomeModal from 'views/WelcomeModal.jsx';
 import HeaderBar from 'views/HeaderBar.jsx';
 
 import woods from '../woods.json'
@@ -25,6 +26,27 @@ const customStyles = {
 }
 
 export default class Builder extends React.Component {
+
+  // -------- OPEN MODALS
+  openModal () {
+    this.setState({
+      showModal: true
+    })
+  }
+
+  openMaterialsModal () {
+    this.setState({
+      showMaterialsModal: true
+    })
+  }
+
+  orderComplete () {
+    this.setState({
+      orderComplete: true
+    })
+  }
+
+  // -------- CLOSE MODALS
   closeModal () {
     this.setState({
       showModal: false
@@ -49,6 +71,13 @@ export default class Builder extends React.Component {
     })
   }
 
+  closeWelcomeModal () {
+    this.setState({
+      showWelcomeModal: false
+    })
+  }
+
+
   constructor (props) {
     super(props)
     this.state = {
@@ -60,6 +89,7 @@ export default class Builder extends React.Component {
       showOrderProcessingModal: (this.props.preview && !(!!this.props.jasonMode || false) && !!this.props.hash) || false,
       showSocialMediaIngressModal: (!this.props.jasonMode && !this.props.hash && this.props.preview) || false,
       isSocialMediaIngress: !this.props.hash && this.props.preview,
+      showWelcomeModal: !this.props.preview && !this.props.orderId && !this.props.hash,
       orderComplete: false
     }
 
@@ -69,6 +99,7 @@ export default class Builder extends React.Component {
     this.closeOrderProcessingModal = this.closeOrderProcessingModal.bind(this)
     this.closeSocialMediaIngressModal = this.closeSocialMediaIngressModal.bind(this)
     this.openMaterialsModal = this.openMaterialsModal.bind(this)
+    this.closeWelcomeModal = this.closeWelcomeModal.bind(this)
 
     window.board = this.state.board
   }
@@ -109,26 +140,6 @@ export default class Builder extends React.Component {
     this.request.abort()
   }
 
-  openModal () {
-    this.setState({
-      showModal: true
-    })
-  }
-
-  openMaterialsModal () {
-    this.setState({
-      showMaterialsModal: true
-    })
-  }
-
-  orderComplete () {
-    this.setState({
-      orderComplete: true
-    })
-  }
-
-
-
   render () {
     let genericWoodKeys = _.chain(woods).filter(function(wood, key){ return !wood.mosaic && !wood.endgrain }).map(function(wood) { return wood.safeName }).value()
     let randomWoodIndex = Math.round(Math.random()*genericWoodKeys.length)
@@ -154,6 +165,7 @@ export default class Builder extends React.Component {
               isSocialMediaIngress={this.state.isSocialMediaIngress}
               step={this.props.step}/>
           </div>
+          <WelcomeModal show={this.state.showWelcomeModal} close={this.closeWelcomeModal} />
           <SubmitOrderModal board={this.state.board} order={this.state.order} show={this.state.showModal} close={this.closeModal} complete={this.orderComplete.bind(this)}/>
           <OrderProcessingModal order={this.state.order} show={this.state.showOrderProcessingModal} close={this.closeOrderProcessingModal} />
           <SocialMediaIngressModal show={this.state.showSocialMediaIngressModal} close={this.closeSocialMediaIngressModal} />
