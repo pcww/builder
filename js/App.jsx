@@ -8,6 +8,8 @@ import ReactDOM from 'react-dom'
 import Builder from 'views/Builder.jsx'
 import Verification from 'views/Verification.jsx'
 
+import constants from './constants.json'
+
 let component
 let queryParams = {}
 let renderTarget = document.querySelector('div[role="application"]')
@@ -40,7 +42,7 @@ if (queryParams.verify) {
     step = 0
   }
 
-  component = <Builder id={queryParams.id || 1} image={queryParams.image} preview={queryParams.preview} step={step} />
+  component = <Builder id={queryParams.id || constants.EMPTY_MEDUSA_BOARD_ID} image={queryParams.image} preview={queryParams.preview} step={step} />
 }
 
 ReactDOM.render(

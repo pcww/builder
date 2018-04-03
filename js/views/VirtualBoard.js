@@ -312,9 +312,10 @@ export default class VirtualBoard {
   }
 
   render () {
-    let redraw = this.board.get('redraw')
-    let strips = this.board.get('strips')
-    let width = this.board.get('width')
+    let redraw        = this.board.get('redraw')
+    let strips        = this.board.get('strips')
+    let width         = this.board.get('width')
+    let boardIsEmpty  = (_.get(strips, 'length', 0) == 0)
 
     if (redraw) {
       this.currentZ = 0
@@ -328,7 +329,9 @@ export default class VirtualBoard {
       // slap in all the strip meshes
       strips.forEach(this._renderStrip)
 
-      this._renderEndcaps()
+      if (!boardIsEmpty) {
+        this._renderEndcaps()
+      }
 
       this.board.set('redraw', false)
     }

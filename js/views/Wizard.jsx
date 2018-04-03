@@ -61,12 +61,15 @@ export default class Wizard extends React.Component {
   }
 
   componentDidMount () {
-    window.addEventListener('keydown', onHandleKeyPress.bind(this), false)
-    function onHandleKeyPress(e) {
+    const THROTTLE_KEY_COMMANDS_IN_MS = 550
+
+    const onHandleKeyPress = _.throttle(function(e) {
       var keyCode = e.keyCode;
+      // console.log('--- HANDLE ARROW KEY PRESS ---')
       if (keyCode == KEYS.ARROW_LEFT) this.onPrevious()
       else if (keyCode == KEYS.ARROW_RIGHT)  this.onNext()
-    }
+    }, THROTTLE_KEY_COMMANDS_IN_MS, {trailing: false})
+    window.addEventListener('keydown', onHandleKeyPress.bind(this), false)
   }
 
   onNext () {
@@ -181,6 +184,7 @@ export default class Wizard extends React.Component {
   render () {
     let board = this.props.board
     let order = this.props.order
+    let strips = board.get('strips')
 
     let expandClass = classNames('fa', {
       'fa-plus': !this.state.stripsExpand,
@@ -236,6 +240,14 @@ export default class Wizard extends React.Component {
                 <fieldset>
                   <legend>Board Strips <button type="button" className="btn btn-link pull-right" onClick={this.onToggleStripsExpand.bind(this)}><i className={expandClass} aria-hidden="true"></i></button></legend>
 
+                  { !strips.length &&
+                    <div className="alert alert-warning">
+                      <h4>Add Some Strips</h4>
+                      <p>Looks like you're starting from scratch!</p>
+                      <p>Add some wood strips with the <button type="button" className="btn btn-sm btn-warning" onClick={this.addStrip.bind(this)}><i className="fa fa-plus-circle"></i> Add Strip</button> button below.</p>
+                    </div>
+                  }
+
                   <StripList
                     lockAxis="y"
                     lockToContainerEdges
@@ -243,7 +255,7 @@ export default class Wizard extends React.Component {
                     onSortMove={this.onSortMove}
                     onSortStart={this.onSortStart}
                     removeStrip={this.removeStrip.bind(this)}
-                    strips={board.get('strips')}
+                    strips={strips}
                     useDragHandle />
                 </fieldset>
               </div>

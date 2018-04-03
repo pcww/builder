@@ -93,11 +93,13 @@ export default class Board extends React.Component {
     let backgroundUrl
     let boardInfo
     let boardLogo
+    let emptyBoardMessage
     let length = board.get('length')
     let width = board.get('width')
     let name = board.get('name')
     let logo_url = board.get('logo_url')
     let isMedusa = board.get('medusa')
+    let strips = board.get('strips')
 
     let overlay = this._generateOverlay(width, length, logo_url, name)
 
@@ -122,6 +124,14 @@ export default class Board extends React.Component {
       </div>
     )
 
+    emptyBoardMessage = (
+      <div className="empty-board-message">
+        <div className="alert alert-warning">
+          <i class="fa fa-diamond fa-2x" aria-hidden="true"></i> You're looking at a blank slate of endless possibility. Begin building your board using the right-hand control panel.
+        </div>
+      </div>
+    )
+
     return (
       <div
         className="virtual-board"
@@ -130,6 +140,7 @@ export default class Board extends React.Component {
         }}>
         {overlay}
         {boardInfo}
+        {(strips.length == 0) && emptyBoardMessage}
       </div>
     )
   }
