@@ -7,27 +7,27 @@
 
     "shaped": {
       "name": "Shaped Handle",
-      "description": "A Beautiful shaped handle will be added to this board."
+      "description": "A 3/4”x4” half-moon shaped handle cutout will be added to this board for more gription."
     },
 
     "stainless": {
       "name": "Stainless Handle",
-      "description": "A Beautiful stainless handle will be added to this board."
+      "description": "A 1” diameter polished stainless steel handle which incases the rod will be added to your board for superior gription."
     },
 
     "dado": {
       "name": "Dadoed Handle",
-      "description": "A Beautiful dado handle will be added to this board."
+      "description": "A 3/4” wide protruding style dado handle will be added to this board for steady gription."
     },
 
     "turned": {
       "name": "Turned Handle",
-      "description": "A Beautiful turned handle will be added to this board."
+      "description": "A 1” diameter hand turned cylindrical handle will be added to this board for maximum stylish gription."
     },
 
     "elk-horn": {
       "name": "Elk Horn Handle",
-      "description": "A Beautiful elk horn handle will be added to this board."
+      "description": "A beautifully ornate elk horn shed will be added to this board for the ultimate elegance in gription."
     }
   },
 
