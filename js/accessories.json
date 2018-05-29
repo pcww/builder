@@ -156,7 +156,7 @@
       "name": "Colonial Red",
       "code": "249082",
       "hex": "a6342e"
-    
+
     },
     "satin-claret-wine": {
       "name": "Satin Claret Wine",
@@ -251,12 +251,12 @@
       "description": "Your endcaps will be blank and devoid of any fancy logos."
     },
     "pineclifflogo": {
-      "name": "PineCliff Logo",
-      "description": "Show your support with a PineCliff Woodworks logo emblazoned on one of the endcaps."
+      "name": "Pine Cliff Logo",
+      "description": "One of your buttons will display our original Pine Cliff Tree Logo."
     },
     "pcwartlogo": {
-      "name": "PCW Art Logo",
-      "description": "Show your inner fanboy with the new PCW Art logo on one of your endcaps."
+      "name": "PCW Insignia",
+      "description": "One of your buttons will display our new PCW Insignia."
     },
     "chooseapattern": {
       "name": "Various Patterns",
