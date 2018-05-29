@@ -33,7 +33,7 @@ export default class SocialMediaIngressModal extends React.Component {
                 <tr>
                   <td><i className="fa fa-hand-spock-o fa-3x bounce" aria-hidden="true"></i></td>
                   <td>
-                    <h4>Welcome to the PineCliff Woodworks Board Builder™</h4>
+                    <h4>Welcome to the Pine Cliff Woodworks Board Builder™</h4>
                     <p>You're viewing a custom cutting board that someone has crafted. Check it out and click "Back to Shop" to create one yourself.</p>
                     <p>Cheers, from the PCW Team! </p>
                   </td>

@@ -1,7 +1,7 @@
 {
   "name": "pcww-builder",
   "version": "1.0.0",
-  "description": "Board Builder Tool for PineCliff Woodworks",
+  "description": "Board Builder Tool for Pine Cliff Woodworks",
   "repository": {
     "type": "git",
     "url": "https://github.com/pcww/builder.git"

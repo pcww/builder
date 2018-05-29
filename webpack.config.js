@@ -72,7 +72,7 @@ module.exports = {
       new Webpack.ResolverPlugin.DirectoryDescriptionFilePlugin(".bower.json", ["main"])
     ),
     new HtmlWebpackPlugin({
-      title: 'LOCAL PineCliff Woodworks - Board Builder',
+      title: 'LOCAL Pine Cliff Woodworks - Board Builder',
       template: 'templates/index.ejs',
       favicon: 'assets/favicon.png',
       inject: false

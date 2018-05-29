@@ -33,7 +33,7 @@ export default class WelcomeModal extends React.Component {
                 <tr>
                   <td style={{paddingRight: '1.5rem'}}><i className="fa fa-cog fa-3x bounce" aria-hidden="true"></i></td>
                   <td style={{textAlign: 'left'}}>
-                    <h4>Welcome to the PineCliff Woodworks Board Builder™</h4>
+                    <h4>Welcome to the Pine Cliff Woodworks Board Builder™</h4>
                     <p>Once you close this message you can begin to build your custom board. Start by selecting the length, and choosing any number of wood strips that will make up your design. Contact us if you have any questions.</p>
                     <p>Cheers, from the PCW Team! </p>
                   </td>

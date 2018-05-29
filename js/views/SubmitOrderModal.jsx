@@ -341,7 +341,7 @@ export default class SubmitOrderModal extends React.Component {
           <Collapse in={this.state.orderComplete}>
             <div className="text-center well well-sm">
               <h3 className="text-primary">One Last Step!</h3>
-              <p>Please Check your email to verify the order. <br/>It <strong><em>WILL NOT</em></strong> be processed by PineCliff Woodworks without being verified.</p>
+              <p>Please Check your email to verify the order. <br/>It <strong><em>WILL NOT</em></strong> be processed by Pine Cliff Woodworks without being verified.</p>
               <br/>
               <i className="fa fa-exclamation-triangle fa-5x text-primary" aria-hidden="true"></i>
             </div>
