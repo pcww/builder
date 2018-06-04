@@ -232,7 +232,7 @@ export default class Wizard extends React.Component {
                     type="range"
                     max="48"
                     min="8"
-                    step="2"
+                    step="1"
                     defaultValue={board.get('length')}
                     onChange={this.onStripLengthChanged.bind(this)} />
                 </fieldset>
